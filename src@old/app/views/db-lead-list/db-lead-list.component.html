@@ -1,0 +1,162 @@
+<!-- Header -->
+<app-db-header></app-db-header>
+<!-- Header ends -->
+
+<div class="wrapper_shala wrapper_db">
+	<section class="outer_db_wraper db_main_investmnt">
+    	<div class="combine_sidenav_right_db d-flex">
+        	<div class="main_right_db invest_db">
+        		<section class="bread_top_sec">
+        			<div class="db_container">
+            			<div class="d-flex justify-content-between align-items-center text-white pos_rel">
+            				<div class="sid_controlr">
+            					<i class="clos_sid fa fa-bars"></i>
+            					<!-- <i class="opn_sid fa fa-times"></i> -->
+            				</div>
+	            			<h3>Lead List</h3>
+	            			<!-- <nav class="bread_nav_sec">
+								<ol class="breadcrumb">
+								    <li class="breadcrumb-item"><a href="#">Home</a></li>
+								    <li class="breadcrumb-item">Dashboard</li>
+								    <li class="breadcrumb-item active">Lead List</li>
+								</ol>
+							</nav> -->
+	            		</div>
+	            	</div>
+        		</section>
+        		<div class="marg_over_bread">
+            		<section class="p-0 top_filter_sec">
+            			<div class="db_container">
+            				<div class="card">
+            					<div class="card-body">
+		            				<form class="formm">
+			            				<div class="row">
+				            				<div class="col-sm-4">
+		            							<div class="form-group">
+		            								<input [(ngModel)]="search" [ngModelOptions]="{standalone: true}" type="" class="form-control" name="" placeholder="Search Keyword">
+		            							</div>
+			            					</div>
+			            					<div class="col-sm-6">
+		            							<div class="form-group">
+		            								<button (click)="getSearch()" class="btn btn_theme">Search</button>
+		            							</div>
+			            					</div>
+			            				</div>
+		            				</form>
+		            			</div>
+		            		</div>
+		            	</div>
+            		</section>
+
+            		<section class="investment_table_sec">
+            			<div class="db_container">
+            				<div class="row">
+	            				<div class="col-sm-12">
+		            				<div class="card">
+		            					<div class="card-body">
+			            					<div class="card_ttl">
+			            						<h3>Lead List</h3>
+			            						<small class="sub_crd">A project is an activity to meet the creation of a unique product or service and thus activities that are undertaken to accomplish routine activities.</small>
+			            					</div>
+		            						<div class="table-responsive table_seler">
+		            							<!-- table start -->
+												<div class="table_db_indi">
+													<div class="onl_tabl">
+														<table class="mat-table table-bordered table table-striped" sort>
+														  	<tr class="mat-header-row">
+															    <th (click)="sort('LastName')" class="mat-header-cell">Surname</th>
+															    <th (click)="sort('FirstName')" class="mat-header-cell">First Name</th>
+															    <th (click)="sort('IdNumber')" class="mat-header-cell">ID</th>
+															    <th (click)="sort('CellNumber')" class="mat-header-cell">Cell No.</th>
+															    <th (click)="sort('Email')" class="mat-header-cell">Email</th>
+															    <th (click)="sort('HomeAddress')" class="mat-header-cell">Address</th>
+															    <th (click)="sort('status')" class="mat-header-cell">Status</th>
+														  	</tr>
+														  	
+														  	<ng-container *ngFor="let value of leads; let i = index">
+														  	<tr class="mat-row">
+															    <td class="mat-cell">{{value.LastName}} </td>
+															    <td (click)="toggle(value.id)" class="mat-cell wtnrp">{{value.FirstName}} </td>
+															    <td class="mat-cell">{{value.IdNumber}}</td>
+															    <td class="mat-cell">{{value.CellNumber}}</td>
+															    <td class="mat-cell">{{value.Email}}</td>
+															    <td class="mat-cell addrs_td">{{value.HomeAddress.substr(0,20)}} <a (click)="viewMore('Address',value.HomeAddress)" href="javascript:;" class="wtnrp">View More</a></td>
+															    <td class="mat-cell">
+															    	<button mat-raised-button [matMenuTriggerFor]="menu" 
+															    	[color]="getStatusColor(value.status)"
+															    	>
+																		{{value.status}}
+																	</button>
+																	<mat-menu #menu="matMenu" xPosition="before">
+																		<button (click)="changeStatus(value.id,'visitor')" mat-menu-item>
+																		    <span>Visitor</span>
+																		</button>
+																		<button (click)="changeStatus(value.id,'investor')" mat-menu-item>
+																		    <span>Make Investor</span>
+																		</button>
+																		<button (click)="changeStatus(value.id,'called')" mat-menu-item>
+																		    <span>Called</span>
+																		</button>
+																		<button (click)="changeStatus(value.id,'cancelled')" mat-menu-item>
+																		    <span>Cancelled</span>
+																		</button>
+																	</mat-menu>
+															    </td>
+														  	</tr>
+														  	<tr *ngIf="opened.includes(value.id)" class="mat-row">
+															    <td class="mat-cell" colspan="15">
+															    	<h5>Name: {{ value.FirstName }} {{ value.LastName }}</h5>
+															    	<p>Home Number: {{ value.HomeNumber }}</p>
+															    	<p>Marital Status: {{ value.MaritalStatus }}</p>
+															    	<p class="mb-0">Note: <a (click)="viewMore('Note',value.Note)" href="javascript:;" class="wtnrp">View Note</a></p>
+															    </td>
+														  	</tr>
+														  	</ng-container>
+														  	
+														</table>
+
+														<mat-paginator [length]="length" [pageSize]="50" [pageSizeOptions]="[10, 25, 50, 100]" (page)="paginationOptionChange($event)"></mat-paginator>
+													</div>
+												</div>
+												<!-- table start -->
+		            						</div>		
+		            					</div>
+		            				</div>
+		            			</div>
+		            		</div>
+            			</div>
+            		</section>
+            	</div>
+        	</div>
+        	<div class="modal" id="myModal">
+        	    <div class="modal-dialog">
+        	      <div class="modal-content">
+        	      
+        	        <!-- Modal Header -->
+        	        <div class="modal-header">
+        	          <h4 class="modal-title">{{ModalHeading}}</h4>
+        	          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        	        </div>
+        	        
+        	        <!-- Modal body -->
+        	        <div class="modal-body">
+        	          {{ModalBody}}
+        	        </div>
+        	        
+        	        <!-- Modal footer -->
+        	        <div class="modal-footer">
+        	          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        	        </div>
+        	        
+        	      </div>
+        	    </div>
+        	  </div>
+        	<div class="sidenav_db">
+				<app-db-sidebar></app-db-sidebar>
+        	</div>
+        </div>
+    </section>
+    <!-- footer starts -->
+    <!-- <app-footer></app-footer> -->
+    <!-- footer ends -->
+</div>

@@ -1,0 +1,277 @@
+<!-- Header -->
+<app-db-header></app-db-header>
+<!-- Header ends -->
+
+<div class="wrapper_shala wrapper_db">
+	<section class="outer_db_wraper db_main_brokr_apont">
+    	<div class="combine_sidenav_right_db d-flex">
+        	<div class="main_right_db invest_db">
+        		<section class="bread_top_sec">
+        			<div class="db_container">
+            			<div class="d-flex justify-content-between align-items-center text-white pos_rel">
+            				<div class="sid_controlr">
+            					<i class="clos_sid fa fa-bars"></i>
+            					<!-- <i class="opn_sid fa fa-times"></i> -->
+            				</div>
+	            			<h3>Broker Appointment</h3>
+	            			<!-- <nav class="bread_nav_sec">
+								<ol class="breadcrumb">
+								    <li class="breadcrumb-item"><a href="#">Home</a></li>
+								    <li class="breadcrumb-item">Dashboard</li>
+								    <li class="breadcrumb-item"><a routerLink="/user/clientProfile">Profile Detail</a></li>
+								    <li class="breadcrumb-item active">Broker Appointment</li>
+								</ol>
+							</nav> -->
+	            		</div>
+	            	</div>
+        		</section>
+        		<div class="marg_over_bread">
+            		<section class="brokr_apoint_sec p-0">
+            			<div class="db_container">
+            				<div class="row">
+	            				<div class="col-sm-12">
+		            				<div class="card">
+		            					<div class="card-body">
+			            					<div class="card_ttl">
+			            						<h3>Broker Appointment</h3>
+			            					</div>
+		            						<div class="welcom_letter_wrp">
+		            							<div class="brokr_info">
+			            							<p>I, the undersigned, hereby appoint the following broker with immediate effect:</p>
+			            							<ul type="none" class="broker_ul_info">
+			            								<li>
+			            									<span class="tlt_lbl">FSP:</span>
+			            									<span>Five Two Investments (PTY) Ltd.</span>
+			            								</li>
+			            								<li>
+			            									<span class="tlt_lbl">Broker:</span>
+			            									<span>MC Oosthuizen</span>
+			            								</li>
+			            							</ul>
+			            						</div>
+			            						<form [formGroup]="form">
+			            						<div class="compn_brokr mt-4 mb-4">
+			            							<p>The letter of appointment applies to the following companies.</p>
+			            							<div class="col-sm-10">
+				            							<div class="table-responsive table_seler">
+				            								<table class="mat-table table-bordered table table-striped" sort>
+															  	<thead>
+															  		<tr>
+																	    <th>Company</th>
+																	    <th>Broker Code</th>
+																	</tr>
+															  	</thead>
+															  	<tbody>
+																  	<tr>
+																	    <td class="table_inpt">
+					            											<select (change)="changeCompany($event)" formControlName="company_id" class="custom-select form-control">
+
+					            												<!-- <option value="">Select Company </option> -->
+					            												<ng-container *ngFor="let item of companies">
+					            													<option [value]="item.id">{{item.name}}</option>
+					            												</ng-container>
+					            												<!-- <option>Company Name 2</option> -->
+					            											</select>
+					            											<span *ngIf="company_idVal.invalid && (company_idVal.dirty || company_idVal.touched || steps)"
+							            											    class="text-danger">
+					            											    <span *ngIf="company_idVal.errors.required">
+					            											        This field is required.
+					            											    </span>
+					            											    <span *ngIf="company_idVal.errors.pattern">
+					            											    	Please enter digits only
+					            											    </span>
+					            											    
+					            											</span>
+					            										</td>
+					            										<td class="table_inpt">
+					            											<select formControlName="broker_code_id" class="custom-select form-control">
+
+					            												<ng-container *ngFor="let item of broker_codes">
+					            													<option [value]="item.id">{{item.name}}</option>
+					            												</ng-container>
+					            												
+					            											</select>
+					            										</td>
+																  	</tr>
+																</tbody>
+															</table>
+				            							</div>
+				            							<div class="table-responsive table_seler">
+				            								<table class="mat-table table-bordered table table-striped" sort>
+				            									<tbody>
+																  	<tr>
+																	    <th>Owner Insured</th>
+																	    <td class="table_inpt">
+					            											<input formControlName="OwnerInsured" type="text" class="form-control" name="" maxlength="20">
+
+					            											<span *ngIf="OwnerInsuredVal.invalid && (OwnerInsuredVal.dirty || OwnerInsuredVal.touched || steps)"
+							            											    class="text-danger">
+					            											    <span *ngIf="OwnerInsuredVal.errors.required">
+					            											        This field is required.
+					            											    </span>
+					            											    <span *ngIf="OwnerInsuredVal.errors.pattern">
+					            											    	Please enter digits only
+					            											    </span>
+					            											    
+					            											</span>
+					            											
+					            										</td>
+																  	</tr>
+																  	<tr>
+																	    <th>Postal Address</th>
+																	    <td class="table_inpt">
+					            											<input formControlName="PostalAddress" type="text" class="form-control" name="" ngxAutocomPlace (selectedPlace)="placeChangedCallback($event)" placeholder="" maxlength="255">
+
+					            											<span *ngIf="PostalAddressVal.invalid && (PostalAddressVal.dirty || PostalAddressVal.touched || steps)"
+							            											    class="text-danger">
+					            											    <span *ngIf="PostalAddressVal.errors.required">
+					            											        This field is required.
+					            											    </span>
+					            											    <span *ngIf="PostalAddressVal.errors.pattern">
+					            											    	Invalid Postal Address
+					            											    </span>
+					            											    
+					            											</span>
+					            										</td>
+																  	</tr>
+																  	<tr>
+																	    <th>ID Number</th>
+																	    <td class="table_inpt">
+					            											<input formControlName="IdNumber" type="text" class="form-control" name="">
+
+					            											<span *ngIf="IdNumberVal.invalid && (IdNumberVal.dirty || IdNumberVal.touched || steps)"
+							            											    class="text-danger">
+					            											    <span *ngIf="IdNumberVal.errors.required">
+					            											        This field is required.
+					            											    </span>
+					            											    <span *ngIf="IdNumberVal.errors.pattern">
+					            											    	Invalid Id Number
+					            											    </span>
+					            											    
+					            											</span>
+					            										</td>
+																  	</tr>
+																  	<tr>
+																  		<th colspan="2">Contact Details:</th>
+																  	</tr>
+																  	<tr>
+																	    <th>Home</th>
+																	    <td class="table_inpt">
+					            											<input formControlName="HomeNumber" type="text" class="form-control" name="">
+
+					            											<span *ngIf="HomeNumberVal.invalid && (HomeNumberVal.dirty || HomeNumberVal.touched || steps)"
+							            											    class="text-danger">
+					            											    <span *ngIf="HomeNumberVal.errors.required">
+					            											        This field is required.
+					            											    </span>
+					            											    <span *ngIf="HomeNumberVal.errors.pattern">
+					            											    	Invalid Home Number
+					            											    </span>
+					            											    
+					            											</span>
+					            										</td>
+																  	</tr>
+																  	<tr>
+																	    <th>Work</th>
+																	    <td class="table_inpt">
+					            											<input formControlName="WorkNumber" type="text" class="form-control" name="">
+
+					            											<span *ngIf="WorkNumberVal.invalid && (WorkNumberVal.dirty || WorkNumberVal.touched || steps)"
+							            											    class="text-danger">
+					            											    <span *ngIf="WorkNumberVal.errors.required">
+					            											        This field is required.
+					            											    </span>
+					            											    <span *ngIf="WorkNumberVal.errors.pattern">
+					            											    	Invalid Work Number
+					            											    </span>
+					            											    
+					            											</span>
+					            										</td>
+																  	</tr>
+																  	<tr>
+																	    <th>Cell</th>
+																	    <td class="table_inpt">
+					            											<input formControlName="CellNumber" type="text" class="form-control" name="">
+
+					            											<span *ngIf="CellNumberVal.invalid && (CellNumberVal.dirty || CellNumberVal.touched || steps)"
+							            											    class="text-danger">
+					            											    <span *ngIf="CellNumberVal.errors.required">
+					            											        This field is required.
+					            											    </span>
+					            											    <span *ngIf="CellNumberVal.errors.pattern">
+					            											    	Invalid Cell Number
+					            											    </span>
+					            											    
+					            											</span>
+					            										</td>
+																  	</tr>
+																  	<tr>
+																	    <th>Email</th>
+																	    <td class="table_inpt">
+					            											<input formControlName="Email" type="text" class="form-control" name="">
+
+					            											<span *ngIf="EmailVal.invalid && (EmailVal.dirty || EmailVal.touched || steps)"
+							            											    class="text-danger">
+					            											    <span *ngIf="EmailVal.errors.required">
+					            											        This field is required.
+					            											    </span>
+					            											    <span *ngIf="EmailVal.errors.pattern">
+					            											    	Invalid Email
+					            											    </span>
+					            											    
+					            											</span>
+					            										</td>
+																  	</tr>
+																</tbody>
+															</table>
+				            							</div>
+				            						</div>
+			            						</div>
+			            						<div class="sgintry_area">
+			            							<div class="row">
+			            								<div class="col-sm-6">
+			            									<label>Signature of Policy Owner / Insured</label>
+			            									<ng-signature-pad [emitOnDragEnd]="true" (done)="SignUpload($event)" doneButtonText="Save Sign" format="base64" [showClearButton]="hide" [showDoneButton]="hide">
+															</ng-signature-pad>
+			            								</div>
+			            								<div class="col-sm-4">
+			            									<label>Date Signed</label>
+			            									<input [(ngModel)]="DateSigned" [ngModelOptions]="{standalone: true}" type="date" class="form-control" name="" required #DateSignedVal="ngModel">
+
+			            									<span *ngIf="DateSignedVal.invalid && (DateSignedVal.dirty || DateSignedVal.touched || steps)"
+							            											    class="text-danger">
+	            											    <span *ngIf="DateSignedVal.errors.required">
+	            											        This field is required.
+	            											    </span>
+	            											    <span *ngIf="DateSignedVal.errors.pattern">
+	            											    	Invalid Date
+	            											    </span>
+	            											    
+	            											</span>
+			            								</div>
+			            							</div>
+			            						</div>
+			            						<div class="form-group text-right">
+			            						    <div class="pos_rel log_sgn_btn">
+			            						        <a (click)="add()" href="javascript:;" class="btn btn_theme sgnup_btn"> Save  </a>
+			            						    </div>
+			            						</div>
+			            						</form>
+		            						</div>
+		            					</div>
+		            				</div>
+		            			</div>
+		            		</div>
+            			</div>
+            		</section>
+            	</div>
+        	</div>
+        	<div class="sidenav_db">
+				<app-db-sidebar></app-db-sidebar>
+        	</div>
+        </div>
+    </section>
+    <!-- footer starts -->
+    <!-- <app-footer></app-footer> -->
+    <!-- footer ends -->
+</div>
