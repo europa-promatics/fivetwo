@@ -1,0 +1,118 @@
+<!-- Header -->
+<app-db-header></app-db-header>
+<!-- Header ends -->
+
+<div class="wrapper_shala wrapper_db">
+	<section class="outer_db_wraper db_main_invstr">
+    	<div class="combine_sidenav_right_db d-flex">
+        	<div class="main_right_db invstr_db">
+        		<section class="bread_top_sec">
+        			<div class="db_container">
+            			<div class="d-flex justify-content-between align-items-center text-white pos_rel">
+            				<div class="sid_controlr">
+            					<i class="clos_sid fa fa-bars"></i>
+            					<!-- <i class="opn_sid fa fa-times"></i> -->
+            				</div>
+	            			<h3>{{title}}</h3>
+	            			<!-- <nav class="bread_nav_sec">
+								<ol class="breadcrumb">
+								    <li class="breadcrumb-item"><a href="#">Home</a></li>
+								    <li class="breadcrumb-item">Dashboard</li>
+								    <li class="breadcrumb-item"><a routerLink="/user/clientProfile">Profile Detail</a></li>
+								    <li class="breadcrumb-item active">{{title}}</li>
+								</ol>
+							</nav> -->
+	            		</div>
+	            	</div>
+        		</section>
+        		<div class="marg_over_bread">
+        			<section class="review_sec_db">
+            			<div class="db_container">
+            				<div class="row">
+	            				<div class="col-sm-12">									
+		            				<div class="card">
+		            					<div class="card-body">
+			            					<!-- <div class="card_ttl">
+			            						<h3>{{title}}</h3>
+			            						<small class="sub_crd">A project is an activity to meet the creation of a unique product or service and thus activities that are undertaken to accomplish routine activities.</small>
+											</div> -->
+
+											<form class="formm">
+												<div class="row">													
+													<div class="col-sm-3">
+														<div class="form-group text-right">
+															<a href="javascript:;" (click)="goBack()" class="btn btn_theme">Back</a>
+														</div>
+													</div>
+												</div>
+											</form>
+											
+		            						<div class="table-responsive table_seler">
+		            							<!-- <mat-horizontal-stepper labelPosition="bottom" linear #stepper (selectionChange)="selectionChange($event)"> -->
+												  	
+												  	<!-- <mat-step [stepControl]=""  > -->
+													    <form enctype="multipart/form-data" >
+													      	<!-- <ng-template matStepLabel>ID</ng-template> -->
+													      	<!-- stepper Inner -->
+													      	<div class="stepper_cuntnt">
+													      		<div class="col-sm-10 offset-sm-1 pb-5 pt-5">
+													      			<div class="form-group">
+													      				<label>Upload ID</label>
+													      				<div class="custom-file">
+																		    <input (change)="serviceIdUpload($event)" type="file" class="custom-file-input" id="customFile">
+																		    <label class="custom-file-label" for="customFile">{{ upload_id_label.toString() }}</label>
+																		</div>
+													      			</div>
+													      			
+													      		</div>
+													      	</div>
+													      	<!-- stepper Inner /-->
+													      	<!-- <div class=" justify-content-between text-right"> -->
+													        	<!-- <button type="button" mat-raised-button class="btn_back_stppr" matStepperPrevious>Back</button> -->
+													        	 <!-- <button mat-button matStepperPrevious>Back</button> -->
+													        	<!-- <button (click) ="goBack(stepper)" type="button" mat-raised-button class="btn_back_stppr" >Back</button> -->
+													        	<!-- <button (click) ="secondForm(stepper)" mat-raised-button type="button" color="primary" >Next</button> -->
+													        	<!-- <button mat-raised-button type="button" color="primary" matStepperNext>Next</button> -->
+													        	
+													      	<!-- </div> -->
+													      	<div class="form-group text-right">
+													      	    <div class="pos_rel log_sgn_btn">
+													      	        <a (click)="add()" href="javascript:;" class="btn btn_theme sgnup_btn"> Save  </a>
+													      	    </div>
+													      	</div>
+													    </form>
+												  	<!-- </mat-step> -->
+												  	
+												  	<!-- change default 'edit' icon -->
+											  	    <!-- <ng-template matStepperIcon="done" let-index="index"> -->
+											  	    	<!-- <span style="background-color: green;"> -->
+											  	    		<!-- <mat-icon> -->
+											  	    	<!-- {{index +1}} -->
+											  	    		<!-- </mat-icon> -->
+											  	    	<!-- </span> -->
+											  	    <!-- </ng-template> -->
+											  	    <!-- <ng-template matStepperIcon="edit" let-index="index"> -->
+											  	    	<!-- <span style="background-color: orange;"> -->
+											  	    	<!-- {{index +1}} -->
+											  	    	<!-- </span> -->
+											  	    <!-- </ng-template> -->
+												<!-- </mat-horizontal-stepper> -->
+		            						</div>		
+		            					</div>
+		            				</div>
+		            			</div>
+		            		</div>
+            			</div>
+            		</section>
+            	</div>
+        	</div>
+        	<div class="sidenav_db">
+				<app-db-sidebar></app-db-sidebar>
+        	</div>
+        </div>
+    </section>
+    <!-- footer starts -->
+    <!-- <app-footer></app-footer> -->
+    <!-- footer ends -->
+</div>
+

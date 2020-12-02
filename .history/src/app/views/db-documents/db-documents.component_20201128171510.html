@@ -1,0 +1,208 @@
+<!-- Header -->
+<app-db-header></app-db-header>
+<!-- Header ends -->
+
+<div class="wrapper_shala wrapper_db">
+	<section class="outer_db_wraper db_main_revew">
+    	<div class="combine_sidenav_right_db d-flex">
+        	<div class="main_right_db revew_db">
+        		<section class="bread_top_sec">
+        			<div class="db_container">
+            			<div class="d-flex justify-content-between align-items-center text-white pos_rel">
+            				<div class="sid_controlr">
+            					<i class="clos_sid fa fa-bars"></i>
+            					<!-- <i class="opn_sid fa fa-times"></i> -->
+            				</div>
+	            			<h3>Documents</h3>
+	            			<!-- <nav class="bread_nav_sec">
+								<ol class="breadcrumb">
+								    <li class="breadcrumb-item"><a href="#">Home</a></li>
+								    <li class="breadcrumb-item">Dashboard</li>
+								    <li class="breadcrumb-item active">Reviews</li>
+								</ol>
+							</nav> -->
+	            		</div>
+	            	</div>
+        		</section>
+        		<div class="marg_over_bread">
+            		<section class="p-0 top_filter_sec">
+            			<div class="db_container">
+            				<div class="card">
+            					<div class="card-body">
+		            				<form class="formm">
+			            				<div class="row">
+				            				<div class="col-sm-3">
+		            							<div class="form-group">
+		            								<input type="" class="form-control" name="" placeholder="From Date">
+		            							</div>
+			            					</div>
+				            				<div class="col-sm-3">
+		            							<div class="form-group">
+		            								<input type="" class="form-control" name="" placeholder="To Date">
+		            							</div>
+			            					</div>
+			            					<div class="col-sm-6">
+		            							<div class="form-group">
+		            								<button class="btn btn_theme">Upload</button>
+		            							</div>
+			            					</div>
+			            				</div>
+		            				</form>
+		            			</div>
+		            		</div>
+		            	</div>
+            		</section>
+
+            		<section class="reviews_sec">
+            			<div class="db_container">
+            				<div class="row">
+	            				<div class="col-sm-12">
+		            				<div class="card">
+		            					<div class="card-body">
+		            						<h3 class="rev_h3 pb-2"><i class="fa fa-folder"></i> CLIENT DOCUMENTS</h3>
+		            						<div class="wrap_overall_revws">
+		            							<div class="sing_continer_revs">
+                                                    
+
+		            								<h3><i class="fa fa-folder"></i> DOCUMENTS</h3>
+		            								<ul class="" type="none">
+		            									<li class="d-flex justify-content-between col-sm-12">
+		            										<span class="name_spann"><i class="fa fa-file"></i> ID</span>
+		            										<span class="downl_spn" yo="" *ngIf="getSingleFiles('investor_documents') != '--'" >
+																<a download target="_blank" href="{{ getSingleFiles('investor_documents') }}">
+																	<i class="fa fa-download"></i> Download
+																</a>
+															</span>
+
+															<span class="downl_spn" yo="" *ngIf="getSingleFiles('investor_documents') == '--'" >
+																<a href="javascript:;">
+																	<i class="fa fa-download"></i> Download
+																</a>
+															</span>
+		            									</li>
+		            									<li class="d-flex justify-content-between col-sm-12">
+		            										<span class="name_spann"><i class="fa fa-file"></i> Disclosure</span>
+		            										    <span class="downl_spn" link=""><a download target="_blank" href="{{ getSingleFiles('DisclosureSign') }}"><i class="fa fa-download"></i> Download</a></span>
+		            									</li>
+		            									<li class="d-flex justify-content-between col-sm-12">
+		            										<span class="name_spann"><i class="fa fa-file"></i> Record of Advice</span>
+		            										<span class="downl_spn" link="" ><a  download target="_blank" href="{{ getSingleFiles('RecordAdviceClientSignature') }}"><i class="fa fa-download"></i> Download</a></span>
+		            									</li>
+		            									<li class="d-flex justify-content-between col-sm-12">
+		            										<span class="name_spann"><i class="fa fa-file"></i> Risk Profiler</span>
+		            										   <span class="downl_spn" link=""><a download target="_blank" href="{{ getSingleFiles('RiskProfilerClientSignature')}}"><i class="fa fa-download"></i> Download</a></span>
+		            									</li>
+		            								</ul>
+		            							</div>
+		            							<!-- <div class="sing_continer_revs">
+		            								<h3><i class="fa fa-folder"></i> D</h3>
+		            								<ul class="" type="none">
+		            									<li class="d-flex justify-content-between col-sm-12">
+		            										<span class="name_spann"><i class="fa fa-file"></i> Document 1</span>
+		            										<span class="downl_spn"><i class="fa fa-download"></i> Download</span>
+		            									</li>
+		            									<li class="d-flex justify-content-between col-sm-12">
+		            										<span class="name_spann"><i class="fa fa-file"></i> Document 2</span>
+		            										<span class="downl_spn"><i class="fa fa-download"></i> Download</span>
+		            									</li>
+		            									<li class="d-flex justify-content-between col-sm-12">
+		            										<span class="name_spann"><i class="fa fa-file"></i> Document 3</span>
+		            										<span class="downl_spn"><i class="fa fa-download"></i> Download</span>
+		            									</li>
+		            									<li class="d-flex justify-content-between col-sm-12">
+		            										<span class="name_spann"><i class="fa fa-file"></i> Document 4</span>
+		            										<span class="downl_spn"><i class="fa fa-download"></i> Download</span>
+		            									</li>
+		            								</ul>
+		            							</div> -->
+		            							<!-- <div class="sing_continer_revs">
+		            								<h3><i class="fa fa-folder"></i> ROA</h3>
+		            								<ul class="" type="none">
+		            									<li class="d-flex justify-content-between col-sm-12">
+		            										<span class="name_spann"><i class="fa fa-file"></i> Liberty Statement</span>
+		            										<span class="downl_spn"><i class="fa fa-download"></i> Download</span>
+		            									</li>
+		            									<li class="d-flex justify-content-between col-sm-12">
+		            										<span class="name_spann"><i class="fa fa-file"></i> Alen Gray Policy Schedule</span>
+		            										<span class="downl_spn"><i class="fa fa-download"></i> Download</span>
+		            									</li>
+		            								</ul>
+		            							</div>
+		            							<div class="sing_continer_revs">
+		            								<h3><i class="fa fa-folder"></i> Ninty One</h3>
+		            								<ul class="" type="none">
+		            									<li class="d-flex justify-content-between col-sm-12">
+		            										<span class="name_spann"><i class="fa fa-file"></i> Living Annuity Application Form</span>
+		            										<span class="downl_spn"><i class="fa fa-download"></i> Download</span>
+		            									</li>
+		            									<li class="d-flex justify-content-between col-sm-12">
+		            										<span class="name_spann"><i class="fa fa-file"></i> Online Auth</span>
+		            										<span class="downl_spn"><i class="fa fa-download"></i> Download</span>
+		            									</li>
+		            									<li class="d-flex justify-content-between col-sm-12">
+		            										<span class="name_spann"><i class="fa fa-file"></i> Annexure</span>
+		            										<span class="downl_spn"><i class="fa fa-download"></i> Download</span>
+		            									</li>
+		            								</ul>
+		            							</div>
+		            							<div class="sing_continer_revs">
+		            								<h3><i class="fa fa-folder"></i> Other</h3>
+		            								<ul class="" type="none">
+		            									<li class="d-flex justify-content-between col-sm-12">
+		            										<span class="name_spann"><i class="fa fa-file"></i> Broker Appointment</span>
+		            										<span class="downl_spn"><i class="fa fa-download"></i> Download</span>
+		            									</li>
+		            									<li class="d-flex justify-content-between col-sm-12">
+		            										<span class="name_spann"><i class="fa fa-file"></i> Marriage Certificate</span>
+		            										<span class="downl_spn"><i class="fa fa-download"></i> Download</span>
+		            									</li>
+		            									<li class="d-flex justify-content-between col-sm-12">
+		            										<span class="name_spann"><i class="fa fa-file"></i> Tax Certificate</span>
+		            										<span class="downl_spn"><i class="fa fa-download"></i> Download</span>
+		            									</li>
+		            								</ul>
+		            							</div>
+		            							<div class="sing_continer_revs">
+		            								<h3><i class="fa fa-folder"></i> Additional Record of Advice</h3>
+		            								<ul class="" type="none">
+		            									<li class="d-flex justify-content-between col-sm-12">
+		            										<span class="name_spann"><i class="fa fa-file"></i> Document 1</span>
+		            										<span class="downl_spn"><i class="fa fa-download"></i> Download</span>
+		            									</li>
+		            									<li class="d-flex justify-content-between col-sm-12">
+		            										<span class="name_spann"><i class="fa fa-file"></i> Document 2</span>
+		            										<span class="downl_spn"><i class="fa fa-download"></i> Download</span>
+		            									</li>
+		            								</ul>
+		            							</div>
+		            							<div class="sing_continer_revs">
+		            								<h3><i class="fa fa-folder"></i> Confirmation Letter</h3>
+		            								<ul class="" type="none">
+		            									<li class="d-flex justify-content-between col-sm-12">
+		            										<span class="name_spann"><i class="fa fa-file"></i> Document 1</span>
+		            										<span class="downl_spn"><i class="fa fa-download"></i> Download</span>
+		            									</li>
+		            									<li class="d-flex justify-content-between col-sm-12">
+		            										<span class="name_spann"><i class="fa fa-file"></i> 2nd Document</span>
+		            										<span class="downl_spn"><i class="fa fa-download"></i> Download</span>
+		            									</li>
+		            								</ul>
+		            							</div> -->
+		            						</div>
+		            					</div>
+		            				</div>
+		            			</div>
+		            		</div>
+            			</div>
+            		</section>
+            	</div>
+        	</div>
+        	<div class="sidenav_db">
+				<app-db-sidebar></app-db-sidebar>
+        	</div>
+        </div>
+    </section>
+    <!-- footer starts -->
+    <!-- <app-footer></app-footer> -->
+    <!-- footer ends -->
+</div>

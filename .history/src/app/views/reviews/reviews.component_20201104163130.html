@@ -1,0 +1,2309 @@
+<!-- Header -->
+<app-db-header></app-db-header>
+<!-- Header ends -->
+
+<div class="wrapper_shala wrapper_db">
+	<section class="outer_db_wraper db_main_revew">
+    	<div class="combine_sidenav_right_db d-flex">
+        	<div class="main_right_db revew_db">
+        		<section class="bread_top_sec">
+        			<div class="db_container">
+            			<div class="d-flex justify-content-between align-items-center text-white pos_rel">
+            				<div class="sid_controlr">
+            					<i class="clos_sid fa fa-bars"></i>
+            					<!-- <i class="opn_sid fa fa-times"></i> -->
+            				</div>
+	            			<h3>Reviews</h3>
+	            			<!-- <nav class="bread_nav_sec">
+								<ol class="breadcrumb">
+								    <li class="breadcrumb-item"><a href="#">Home</a></li>
+								    <li class="breadcrumb-item">Dashboard</li>
+								    <li class="breadcrumb-item active">Reviews</li>
+								</ol>
+							</nav> -->
+	            		</div>
+	            	</div>
+        		</section>
+        		<div class="marg_over_bread">
+            		<section class="p-0 top_filter_sec">
+            			<div class="db_container">
+            				<div class="card">
+            					<div class="card-body">
+		            				<form class="formm">
+			            				<div class="row">
+				            				<div class="col-sm-3">
+		            							<div class="form-group">
+		            								<input type="" class="form-control" name="" placeholder="From Date">
+		            							</div>
+			            					</div>
+				            				<div class="col-sm-3">
+		            							<div class="form-group">
+		            								<input type="" class="form-control" name="" placeholder="To Date">
+		            							</div>
+			            					</div>
+			            					<div class="col-sm-6">
+		            							<div class="form-group">
+		            								<button class="btn btn_theme">Upload</button>
+		            							</div>
+			            					</div>
+			            				</div>
+		            				</form>
+		            			</div>
+		            		</div>
+		            	</div>
+            		</section>
+
+            		<section class="reviews_sec">
+            			<div class="db_container">
+            				<div class="row">
+	            				<div class="col-sm-12">
+		            				<div class="card">
+		            					<div class="card-body">
+		            						<h3 class="rev_h3 pb-2"><i class="fa fa-folder"></i> Reviews</h3>
+		            						<div class="wrap_overall_revws">
+		            							<!--  -->
+												<div class="accordion" id="accordionExample">
+												    <div class="card" *ngFor="let item of years">
+												        <div class="card-header" id="headingOne">
+												            <h2 class="mb-0" data-toggle="collapse" data-target="#collapseOne" (click)="getMonthlyInvestor(item.log_date)" aria-expanded="true" aria-controls="collapseOne">
+												                {{ formatYear(item.log_date) }}
+												            </h2>
+												        </div>
+												        <div id="collapseOne" class="collapse" aria-labelledby="headingOne"  data-parent="#accordionExample">
+												            <div class="card-body">
+
+												            	<div class="accordion" id="accordion_inner">
+												            		<div class="card" *ngFor="let mon of monthly">
+																        <div class="card-header" id="headingTwo">
+																            <h6 class="mb-0" data-toggle="collapse" data-target="#collapseOne-1" aria-expanded="false" aria-controls="collapseOne-1">
+																                {{ formatMonth(mon.log_date) }}
+																            </h6>
+																            <button class="btn_abs_move" mat-raised-button mat-button-primary data-toggle="modal" data-target="#myModal">Move To</button>
+																        </div>
+																        <div id="collapseOne-1" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordion_inner">
+																            <div class="card-body">
+																                <div class="onl_tabl">	
+																					<table class="mat-table table-bordered table table-striped" sort>	
+																					  	<tr class="mat-header-row">
+																						    <th class="mat-header-cell parnt_chk" rowspan="2">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </th>
+																						    <th class="mat-header-cell" rowspan="2">Client Number</th>
+																						    <th class="mat-header-cell" rowspan="2">Client Name</th>
+																						    <th class="mat-header-cell" rowspan="2">No. of Products</th>
+																						    <th class="mat-header-cell" rowspan="2">Total Holdings</th>
+																						    <th class="mat-header-cell" colspan="6">Risk Profiler (In Year)</th>
+																					  	</tr>
+																					  	<tr class="mat-header-row">
+																						    <th class="mat-header-cell">1st</th>
+																						    <th class="mat-header-cell">2nd</th>
+																						    <th class="mat-header-cell">3rd</th>
+																						    <th class="mat-header-cell">4th</th>
+																						    <th class="mat-header-cell">5th</th>
+																						    <th class="mat-header-cell">6th</th>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox checked="checked"></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					</table>															
+																				</div>
+																            </div>
+																        </div>
+																    </div>																    
+												            	</div>
+
+												            </div>
+												        </div>
+												    </div>
+												    <!-- <div class="card">
+												        <div class="card-header" id="headingTwo">
+												            <h2 class="mb-0 collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+												                2020
+												            </h2>
+												        </div>
+												        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+												            <div class="card-body">
+												                
+												                <div class="accordion" id="accordion_inner2">
+												            		<div class="card">
+																        <div class="card-header" id="headingTwo">
+																            <h6 class="mb-0" data-toggle="collapse" data-target="#collapseOne-1" aria-expanded="false" aria-controls="collapseOne-1">
+																                January
+																            </h6>
+																            <button class="btn_abs_move" mat-raised-button mat-button-primary data-toggle="modal" data-target="#myModal">Move To</button>
+																        </div>
+																        <div id="collapseOne-1" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordion_inner2">
+																            <div class="card-body">
+																                <div class="onl_tabl">	
+																					<table class="mat-table table-bordered table table-striped" sort>	
+																					  	<tr class="mat-header-row">
+																						    <th class="mat-header-cell parnt_chk" rowspan="2">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </th>
+																						    <th class="mat-header-cell" rowspan="2">Client Number</th>
+																						    <th class="mat-header-cell" rowspan="2">Client Name</th>
+																						    <th class="mat-header-cell" rowspan="2">No. of Products</th>
+																						    <th class="mat-header-cell" rowspan="2">Total Holdings</th>
+																						    <th class="mat-header-cell" colspan="6">Risk Profiler (In Year)</th>
+																					  	</tr>
+																					  	<tr class="mat-header-row">
+																						    <th class="mat-header-cell">1st</th>
+																						    <th class="mat-header-cell">2nd</th>
+																						    <th class="mat-header-cell">3rd</th>
+																						    <th class="mat-header-cell">4th</th>
+																						    <th class="mat-header-cell">5th</th>
+																						    <th class="mat-header-cell">6th</th>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox checked="checked"></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					</table>															
+																				</div>
+																            </div>
+																        </div>
+																    </div>
+																    <div class="card">
+																        <div class="card-header" id="headingTwo">
+																            <h6 class="mb-0 collapsed" data-toggle="collapse" data-target="#collapseOne-2" aria-expanded="false" aria-controls="collapseOne-2">
+																                February
+																            </h6>
+																            <button class="btn_abs_move" mat-raised-button mat-button-primary data-toggle="modal" data-target="#myModal">Move To</button>
+																        </div>
+																        <div id="collapseOne-2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion_inner2">
+																            <div class="card-body">
+																                <div class="onl_tabl">	
+																					<table class="mat-table table-bordered table table-striped" sort>	
+																					  	<tr class="mat-header-row">
+																						    <th class="mat-header-cell parnt_chk" rowspan="2">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </th>
+																						    <th class="mat-header-cell" rowspan="2">Client Number</th>
+																						    <th class="mat-header-cell" rowspan="2">Client Name</th>
+																						    <th class="mat-header-cell" rowspan="2">No. of Products</th>
+																						    <th class="mat-header-cell" rowspan="2">Total Holdings</th>
+																						    <th class="mat-header-cell" colspan="6">Risk Profiler (In Year)</th>
+																					  	</tr>
+																					  	<tr class="mat-header-row">
+																						    <th class="mat-header-cell">1st</th>
+																						    <th class="mat-header-cell">2nd</th>
+																						    <th class="mat-header-cell">3rd</th>
+																						    <th class="mat-header-cell">4th</th>
+																						    <th class="mat-header-cell">5th</th>
+																						    <th class="mat-header-cell">6th</th>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox checked="checked"></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					</table>															
+																				</div>
+																            </div>
+																        </div>
+																    </div>
+																    <div class="card">
+																        <div class="card-header" id="headingTwo">
+																            <h6 class="mb-0 collapsed" data-toggle="collapse" data-target="#collapseOne-3" aria-expanded="false" aria-controls="collapseOne-3">
+																                March
+																            </h6>
+																            <button class="btn_abs_move" mat-raised-button mat-button-primary data-toggle="modal" data-target="#myModal">Move To</button>
+																        </div>
+																        <div id="collapseOne-3" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion_inner2">
+																            <div class="card-body">
+																                <div class="onl_tabl">	
+																					<table class="mat-table table-bordered table table-striped" sort>	
+																					  	<tr class="mat-header-row">
+																						    <th class="mat-header-cell parnt_chk" rowspan="2">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </th>
+																						    <th class="mat-header-cell" rowspan="2">Client Number</th>
+																						    <th class="mat-header-cell" rowspan="2">Client Name</th>
+																						    <th class="mat-header-cell" rowspan="2">No. of Products</th>
+																						    <th class="mat-header-cell" rowspan="2">Total Holdings</th>
+																						    <th class="mat-header-cell" colspan="6">Risk Profiler (In Year)</th>
+																					  	</tr>
+																					  	<tr class="mat-header-row">
+																						    <th class="mat-header-cell">1st</th>
+																						    <th class="mat-header-cell">2nd</th>
+																						    <th class="mat-header-cell">3rd</th>
+																						    <th class="mat-header-cell">4th</th>
+																						    <th class="mat-header-cell">5th</th>
+																						    <th class="mat-header-cell">6th</th>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox checked="checked"></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					</table>															
+																				</div>
+																            </div>
+																        </div>
+																    </div>
+																    <div class="card">
+																        <div class="card-header" id="headingTwo">
+																            <h6 class="mb-0 collapsed" data-toggle="collapse" data-target="#collapseOne-4" aria-expanded="false" aria-controls="collapseOne-4">
+																                April
+																            </h6>
+																            <button class="btn_abs_move" mat-raised-button mat-button-primary data-toggle="modal" data-target="#myModal">Move To</button>
+																        </div>
+																        <div id="collapseOne-4" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion_inner2">
+																            <div class="card-body">
+																                <div class="onl_tabl">	
+																					<table class="mat-table table-bordered table table-striped" sort>	
+																					  	<tr class="mat-header-row">
+																						    <th class="mat-header-cell parnt_chk" rowspan="2">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </th>
+																						    <th class="mat-header-cell" rowspan="2">Client Number</th>
+																						    <th class="mat-header-cell" rowspan="2">Client Name</th>
+																						    <th class="mat-header-cell" rowspan="2">No. of Products</th>
+																						    <th class="mat-header-cell" rowspan="2">Total Holdings</th>
+																						    <th class="mat-header-cell" colspan="6">Risk Profiler (In Year)</th>
+																					  	</tr>
+																					  	<tr class="mat-header-row">
+																						    <th class="mat-header-cell">1st</th>
+																						    <th class="mat-header-cell">2nd</th>
+																						    <th class="mat-header-cell">3rd</th>
+																						    <th class="mat-header-cell">4th</th>
+																						    <th class="mat-header-cell">5th</th>
+																						    <th class="mat-header-cell">6th</th>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox checked="checked"></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					</table>															
+																				</div>
+																            </div>
+																        </div>
+																    </div>
+												            	</div>
+
+												            </div>
+												        </div>
+												    </div>
+												    <div class="card">
+												        <div class="card-header" id="headingThree">
+												            <h2 class="mb-0 collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+												                Planning
+												            </h2>
+												        </div>
+												        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+												            <div class="card-body">
+
+												                <div class="accordion" id="accordion_inner3">
+												            		<div class="card">
+																        <div class="card-header" id="headingTwo">
+																            <h6 class="mb-0" data-toggle="collapse" data-target="#collapseOne-1" aria-expanded="false" aria-controls="collapseOne-1">
+																                January
+																            </h6>
+																            <button class="btn_abs_move" mat-raised-button mat-button-primary data-toggle="modal" data-target="#myModal">Move To</button>
+																        </div>
+																        <div id="collapseOne-1" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordion_inner3">
+																            <div class="card-body">
+																                <div class="onl_tabl">	
+																					<table class="mat-table table-bordered table table-striped" sort>	
+																					  	<tr class="mat-header-row">
+																						    <th class="mat-header-cell parnt_chk" rowspan="2">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </th>
+																						    <th class="mat-header-cell" rowspan="2">Client Number</th>
+																						    <th class="mat-header-cell" rowspan="2">Client Name</th>
+																						    <th class="mat-header-cell" rowspan="2">No. of Products</th>
+																						    <th class="mat-header-cell" rowspan="2">Total Holdings</th>
+																						    <th class="mat-header-cell" colspan="6">Risk Profiler (In Year)</th>
+																					  	</tr>
+																					  	<tr class="mat-header-row">
+																						    <th class="mat-header-cell">1st</th>
+																						    <th class="mat-header-cell">2nd</th>
+																						    <th class="mat-header-cell">3rd</th>
+																						    <th class="mat-header-cell">4th</th>
+																						    <th class="mat-header-cell">5th</th>
+																						    <th class="mat-header-cell">6th</th>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox checked="checked"></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					</table>															
+																				</div>
+																            </div>
+																        </div>
+																    </div>
+																    <div class="card">
+																        <div class="card-header" id="headingTwo">
+																            <h6 class="mb-0 collapsed" data-toggle="collapse" data-target="#collapseOne-2" aria-expanded="false" aria-controls="collapseOne-2">
+																                February
+																            </h6>
+																            <button class="btn_abs_move" mat-raised-button mat-button-primary data-toggle="modal" data-target="#myModal">Move To</button>
+																        </div>
+																        <div id="collapseOne-2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion_inner3">
+																            <div class="card-body">
+																                <div class="onl_tabl">	
+																					<table class="mat-table table-bordered table table-striped" sort>	
+																					  	<tr class="mat-header-row">
+																						    <th class="mat-header-cell parnt_chk" rowspan="2">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </th>
+																						    <th class="mat-header-cell" rowspan="2">Client Number</th>
+																						    <th class="mat-header-cell" rowspan="2">Client Name</th>
+																						    <th class="mat-header-cell" rowspan="2">No. of Products</th>
+																						    <th class="mat-header-cell" rowspan="2">Total Holdings</th>
+																						    <th class="mat-header-cell" colspan="6">Risk Profiler (In Year)</th>
+																					  	</tr>
+																					  	<tr class="mat-header-row">
+																						    <th class="mat-header-cell">1st</th>
+																						    <th class="mat-header-cell">2nd</th>
+																						    <th class="mat-header-cell">3rd</th>
+																						    <th class="mat-header-cell">4th</th>
+																						    <th class="mat-header-cell">5th</th>
+																						    <th class="mat-header-cell">6th</th>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox checked="checked"></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					</table>															
+																				</div>
+																            </div>
+																        </div>
+																    </div>
+																    <div class="card">
+																        <div class="card-header" id="headingTwo">
+																            <h6 class="mb-0 collapsed" data-toggle="collapse" data-target="#collapseOne-3" aria-expanded="false" aria-controls="collapseOne-3">
+																                March
+																            </h6>
+																            <button class="btn_abs_move" mat-raised-button mat-button-primary data-toggle="modal" data-target="#myModal">Move To</button>
+																        </div>
+																        <div id="collapseOne-3" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion_inner3">
+																            <div class="card-body">
+																                <div class="onl_tabl">	
+																					<table class="mat-table table-bordered table table-striped" sort>	
+																					  	<tr class="mat-header-row">
+																						    <th class="mat-header-cell parnt_chk" rowspan="2">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </th>
+																						    <th class="mat-header-cell" rowspan="2">Client Number</th>
+																						    <th class="mat-header-cell" rowspan="2">Client Name</th>
+																						    <th class="mat-header-cell" rowspan="2">No. of Products</th>
+																						    <th class="mat-header-cell" rowspan="2">Total Holdings</th>
+																						    <th class="mat-header-cell" colspan="6">Risk Profiler (In Year)</th>
+																					  	</tr>
+																					  	<tr class="mat-header-row">
+																						    <th class="mat-header-cell">1st</th>
+																						    <th class="mat-header-cell">2nd</th>
+																						    <th class="mat-header-cell">3rd</th>
+																						    <th class="mat-header-cell">4th</th>
+																						    <th class="mat-header-cell">5th</th>
+																						    <th class="mat-header-cell">6th</th>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox checked="checked"></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					</table>															
+																				</div>
+																            </div>
+																        </div>
+																    </div>
+																    <div class="card">
+																        <div class="card-header" id="headingTwo">
+																            <h6 class="mb-0 collapsed" data-toggle="collapse" data-target="#collapseOne-4" aria-expanded="false" aria-controls="collapseOne-4">
+																                April
+																            </h6>
+																            <button class="btn_abs_move" mat-raised-button mat-button-primary data-toggle="modal" data-target="#myModal">Move To</button>
+																        </div>
+																        <div id="collapseOne-4" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion_inner3">
+																            <div class="card-body">
+																                <div class="onl_tabl">	
+																					<table class="mat-table table-bordered table table-striped" sort>	
+																					  	<tr class="mat-header-row">
+																						    <th class="mat-header-cell parnt_chk" rowspan="2">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </th>
+																						    <th class="mat-header-cell" rowspan="2">Client Number</th>
+																						    <th class="mat-header-cell" rowspan="2">Client Name</th>
+																						    <th class="mat-header-cell" rowspan="2">No. of Products</th>
+																						    <th class="mat-header-cell" rowspan="2">Total Holdings</th>
+																						    <th class="mat-header-cell" colspan="6">Risk Profiler (In Year)</th>
+																					  	</tr>
+																					  	<tr class="mat-header-row">
+																						    <th class="mat-header-cell">1st</th>
+																						    <th class="mat-header-cell">2nd</th>
+																						    <th class="mat-header-cell">3rd</th>
+																						    <th class="mat-header-cell">4th</th>
+																						    <th class="mat-header-cell">5th</th>
+																						    <th class="mat-header-cell">6th</th>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox checked="checked"></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					</table>															
+																				</div>
+																            </div>
+																        </div>
+																    </div>
+												            	</div>
+
+												            </div>
+												        </div>
+												    </div>
+												    <div class="card">
+												        <div class="card-header" id="headingThree">
+												            <h2 class="mb-0 collapsed" data-toggle="collapse" data-target="#collapseThree3" aria-expanded="false" aria-controls="collapseThree3">
+												                Ninty One
+												            </h2>
+												        </div>
+												        <div id="collapseThree3" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+												            <div class="card-body">
+												                
+												                <div class="accordion" id="accordion_inner4">
+												            		<div class="card">
+																        <div class="card-header" id="headingTwo">
+																            <h6 class="mb-0" data-toggle="collapse" data-target="#collapseOne-1" aria-expanded="false" aria-controls="collapseOne-1">
+																                January
+																            </h6>
+																            <button class="btn_abs_move" mat-raised-button mat-button-primary data-toggle="modal" data-target="#myModal">Move To</button>
+																        </div>
+																        <div id="collapseOne-1" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordion_inner4">
+																            <div class="card-body">
+																                <div class="onl_tabl">	
+																					<table class="mat-table table-bordered table table-striped" sort>	
+																					  	<tr class="mat-header-row">
+																						    <th class="mat-header-cell parnt_chk" rowspan="2">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </th>
+																						    <th class="mat-header-cell" rowspan="2">Client Number</th>
+																						    <th class="mat-header-cell" rowspan="2">Client Name</th>
+																						    <th class="mat-header-cell" rowspan="2">No. of Products</th>
+																						    <th class="mat-header-cell" rowspan="2">Total Holdings</th>
+																						    <th class="mat-header-cell" colspan="6">Risk Profiler (In Year)</th>
+																					  	</tr>
+																					  	<tr class="mat-header-row">
+																						    <th class="mat-header-cell">1st</th>
+																						    <th class="mat-header-cell">2nd</th>
+																						    <th class="mat-header-cell">3rd</th>
+																						    <th class="mat-header-cell">4th</th>
+																						    <th class="mat-header-cell">5th</th>
+																						    <th class="mat-header-cell">6th</th>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox checked="checked"></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					</table>															
+																				</div>
+																            </div>
+																        </div>
+																    </div>
+																    <div class="card">
+																        <div class="card-header" id="headingTwo">
+																            <h6 class="mb-0 collapsed" data-toggle="collapse" data-target="#collapseOne-2" aria-expanded="false" aria-controls="collapseOne-2">
+																                February
+																            </h6>
+																            <button class="btn_abs_move" mat-raised-button mat-button-primary data-toggle="modal" data-target="#myModal">Move To</button>
+																        </div>
+																        <div id="collapseOne-2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion_inner4">
+																            <div class="card-body">
+																                <div class="onl_tabl">	
+																					<table class="mat-table table-bordered table table-striped" sort>	
+																					  	<tr class="mat-header-row">
+																						    <th class="mat-header-cell parnt_chk" rowspan="2">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </th>
+																						    <th class="mat-header-cell" rowspan="2">Client Number</th>
+																						    <th class="mat-header-cell" rowspan="2">Client Name</th>
+																						    <th class="mat-header-cell" rowspan="2">No. of Products</th>
+																						    <th class="mat-header-cell" rowspan="2">Total Holdings</th>
+																						    <th class="mat-header-cell" colspan="6">Risk Profiler (In Year)</th>
+																					  	</tr>
+																					  	<tr class="mat-header-row">
+																						    <th class="mat-header-cell">1st</th>
+																						    <th class="mat-header-cell">2nd</th>
+																						    <th class="mat-header-cell">3rd</th>
+																						    <th class="mat-header-cell">4th</th>
+																						    <th class="mat-header-cell">5th</th>
+																						    <th class="mat-header-cell">6th</th>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox checked="checked"></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					</table>															
+																				</div>
+																            </div>
+																        </div>
+																    </div>
+																    <div class="card">
+																        <div class="card-header" id="headingTwo">
+																            <h6 class="mb-0 collapsed" data-toggle="collapse" data-target="#collapseOne-3" aria-expanded="false" aria-controls="collapseOne-3">
+																                March
+																            </h6>
+																            <button class="btn_abs_move" mat-raised-button mat-button-primary data-toggle="modal" data-target="#myModal">Move To</button>
+																        </div>
+																        <div id="collapseOne-3" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion_inner4">
+																            <div class="card-body">
+																                <div class="onl_tabl">	
+																					<table class="mat-table table-bordered table table-striped" sort>	
+																					  	<tr class="mat-header-row">
+																						    <th class="mat-header-cell parnt_chk" rowspan="2">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </th>
+																						    <th class="mat-header-cell" rowspan="2">Client Number</th>
+																						    <th class="mat-header-cell" rowspan="2">Client Name</th>
+																						    <th class="mat-header-cell" rowspan="2">No. of Products</th>
+																						    <th class="mat-header-cell" rowspan="2">Total Holdings</th>
+																						    <th class="mat-header-cell" colspan="6">Risk Profiler (In Year)</th>
+																					  	</tr>
+																					  	<tr class="mat-header-row">
+																						    <th class="mat-header-cell">1st</th>
+																						    <th class="mat-header-cell">2nd</th>
+																						    <th class="mat-header-cell">3rd</th>
+																						    <th class="mat-header-cell">4th</th>
+																						    <th class="mat-header-cell">5th</th>
+																						    <th class="mat-header-cell">6th</th>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox checked="checked"></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					</table>															
+																				</div>
+																            </div>
+																        </div>
+																    </div>
+																    <div class="card">
+																        <div class="card-header" id="headingTwo">
+																            <h6 class="mb-0 collapsed" data-toggle="collapse" data-target="#collapseOne-4" aria-expanded="false" aria-controls="collapseOne-4">
+																                April
+																            </h6>
+																            <button class="btn_abs_move" mat-raised-button mat-button-primary data-toggle="modal" data-target="#myModal">Move To</button>
+																        </div>
+																        <div id="collapseOne-4" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion_inner4">
+																            <div class="card-body">
+																                <div class="onl_tabl">	
+																					<table class="mat-table table-bordered table table-striped" sort>	
+																					  	<tr class="mat-header-row">
+																						    <th class="mat-header-cell parnt_chk" rowspan="2">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </th>
+																						    <th class="mat-header-cell" rowspan="2">Client Number</th>
+																						    <th class="mat-header-cell" rowspan="2">Client Name</th>
+																						    <th class="mat-header-cell" rowspan="2">No. of Products</th>
+																						    <th class="mat-header-cell" rowspan="2">Total Holdings</th>
+																						    <th class="mat-header-cell" colspan="6">Risk Profiler (In Year)</th>
+																					  	</tr>
+																					  	<tr class="mat-header-row">
+																						    <th class="mat-header-cell">1st</th>
+																						    <th class="mat-header-cell">2nd</th>
+																						    <th class="mat-header-cell">3rd</th>
+																						    <th class="mat-header-cell">4th</th>
+																						    <th class="mat-header-cell">5th</th>
+																						    <th class="mat-header-cell">6th</th>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox checked="checked"></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					</table>															
+																				</div>
+																            </div>
+																        </div>
+																    </div>
+												            	</div>
+
+												            </div>
+												        </div>
+												    </div>
+												    <div class="card">
+												        <div class="card-header" id="headingThree">
+												            <h2 class="mb-0 collapsed" data-toggle="collapse" data-target="#collapseThree4" aria-expanded="false" aria-controls="collapseThree4">
+												                Others
+												            </h2>
+												        </div>
+												        <div id="collapseThree4" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+												            <div class="card-body">
+												                
+												                <div class="accordion" id="accordion_inner5">
+												            		<div class="card">
+																        <div class="card-header" id="headingTwo">
+																            <h6 class="mb-0" data-toggle="collapse" data-target="#collapseOne-1" aria-expanded="false" aria-controls="collapseOne-1">
+																                January
+																            </h6>
+																            <button class="btn_abs_move" mat-raised-button mat-button-primary data-toggle="modal" data-target="#myModal">Move To</button>
+																        </div>
+																        <div id="collapseOne-1" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordion_inner5">
+																            <div class="card-body">
+																                <div class="onl_tabl">	
+																					<table class="mat-table table-bordered table table-striped" sort>	
+																					  	<tr class="mat-header-row">
+																						    <th class="mat-header-cell parnt_chk" rowspan="2">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </th>
+																						    <th class="mat-header-cell" rowspan="2">Client Number</th>
+																						    <th class="mat-header-cell" rowspan="2">Client Name</th>
+																						    <th class="mat-header-cell" rowspan="2">No. of Products</th>
+																						    <th class="mat-header-cell" rowspan="2">Total Holdings</th>
+																						    <th class="mat-header-cell" colspan="6">Risk Profiler (In Year)</th>
+																					  	</tr>
+																					  	<tr class="mat-header-row">
+																						    <th class="mat-header-cell">1st</th>
+																						    <th class="mat-header-cell">2nd</th>
+																						    <th class="mat-header-cell">3rd</th>
+																						    <th class="mat-header-cell">4th</th>
+																						    <th class="mat-header-cell">5th</th>
+																						    <th class="mat-header-cell">6th</th>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox checked="checked"></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					</table>															
+																				</div>
+																            </div>
+																        </div>
+																    </div>
+																    <div class="card">
+																        <div class="card-header" id="headingTwo">
+																            <h6 class="mb-0 collapsed" data-toggle="collapse" data-target="#collapseOne-2" aria-expanded="false" aria-controls="collapseOne-2">
+																                February
+																            </h6>
+																            <button class="btn_abs_move" mat-raised-button mat-button-primary data-toggle="modal" data-target="#myModal">Move To</button>
+																        </div>
+																        <div id="collapseOne-2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion_inner5">
+																            <div class="card-body">
+																                <div class="onl_tabl">	
+																					<table class="mat-table table-bordered table table-striped" sort>	
+																					  	<tr class="mat-header-row">
+																						    <th class="mat-header-cell parnt_chk" rowspan="2">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </th>
+																						    <th class="mat-header-cell" rowspan="2">Client Number</th>
+																						    <th class="mat-header-cell" rowspan="2">Client Name</th>
+																						    <th class="mat-header-cell" rowspan="2">No. of Products</th>
+																						    <th class="mat-header-cell" rowspan="2">Total Holdings</th>
+																						    <th class="mat-header-cell" colspan="6">Risk Profiler (In Year)</th>
+																					  	</tr>
+																					  	<tr class="mat-header-row">
+																						    <th class="mat-header-cell">1st</th>
+																						    <th class="mat-header-cell">2nd</th>
+																						    <th class="mat-header-cell">3rd</th>
+																						    <th class="mat-header-cell">4th</th>
+																						    <th class="mat-header-cell">5th</th>
+																						    <th class="mat-header-cell">6th</th>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox checked="checked"></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					</table>															
+																				</div>
+																            </div>
+																        </div>
+																    </div>
+																    <div class="card">
+																        <div class="card-header" id="headingTwo">
+																            <h6 class="mb-0 collapsed" data-toggle="collapse" data-target="#collapseOne-3" aria-expanded="false" aria-controls="collapseOne-3">
+																                March
+																            </h6>
+																            <button class="btn_abs_move" mat-raised-button mat-button-primary data-toggle="modal" data-target="#myModal">Move To</button>
+																        </div>
+																        <div id="collapseOne-3" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion_inner5">
+																            <div class="card-body">
+																                <div class="onl_tabl">	
+																					<table class="mat-table table-bordered table table-striped" sort>	
+																					  	<tr class="mat-header-row">
+																						    <th class="mat-header-cell parnt_chk" rowspan="2">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </th>
+																						    <th class="mat-header-cell" rowspan="2">Client Number</th>
+																						    <th class="mat-header-cell" rowspan="2">Client Name</th>
+																						    <th class="mat-header-cell" rowspan="2">No. of Products</th>
+																						    <th class="mat-header-cell" rowspan="2">Total Holdings</th>
+																						    <th class="mat-header-cell" colspan="6">Risk Profiler (In Year)</th>
+																					  	</tr>
+																					  	<tr class="mat-header-row">
+																						    <th class="mat-header-cell">1st</th>
+																						    <th class="mat-header-cell">2nd</th>
+																						    <th class="mat-header-cell">3rd</th>
+																						    <th class="mat-header-cell">4th</th>
+																						    <th class="mat-header-cell">5th</th>
+																						    <th class="mat-header-cell">6th</th>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox checked="checked"></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					</table>															
+																				</div>
+																            </div>
+																        </div>
+																    </div>
+																    <div class="card">
+																        <div class="card-header" id="headingTwo">
+																            <h6 class="mb-0 collapsed" data-toggle="collapse" data-target="#collapseOne-4" aria-expanded="false" aria-controls="collapseOne-4">
+																                April
+																            </h6>
+																            <button class="btn_abs_move" mat-raised-button mat-button-primary data-toggle="modal" data-target="#myModal">Move To</button>
+																        </div>
+																        <div id="collapseOne-4" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion_inner5">
+																            <div class="card-body">
+																                <div class="onl_tabl">	
+																					<table class="mat-table table-bordered table table-striped" sort>	
+																					  	<tr class="mat-header-row">
+																						    <th class="mat-header-cell parnt_chk" rowspan="2">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </th>
+																						    <th class="mat-header-cell" rowspan="2">Client Number</th>
+																						    <th class="mat-header-cell" rowspan="2">Client Name</th>
+																						    <th class="mat-header-cell" rowspan="2">No. of Products</th>
+																						    <th class="mat-header-cell" rowspan="2">Total Holdings</th>
+																						    <th class="mat-header-cell" colspan="6">Risk Profiler (In Year)</th>
+																					  	</tr>
+																					  	<tr class="mat-header-row">
+																						    <th class="mat-header-cell">1st</th>
+																						    <th class="mat-header-cell">2nd</th>
+																						    <th class="mat-header-cell">3rd</th>
+																						    <th class="mat-header-cell">4th</th>
+																						    <th class="mat-header-cell">5th</th>
+																						    <th class="mat-header-cell">6th</th>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox checked="checked"></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					</table>															
+																				</div>
+																            </div>
+																        </div>
+																    </div>
+												            	</div>
+
+												            </div>
+												        </div>
+												    </div>
+												    <div class="card">
+												        <div class="card-header" id="headingThree">
+												            <h2 class="mb-0 collapsed" data-toggle="collapse" data-target="#collapseThree5" aria-expanded="false" aria-controls="collapseThree5">
+												                Additional Record of Advice
+												            </h2>
+												        </div>
+												        <div id="collapseThree5" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+												            <div class="card-body">
+												                
+												                <div class="accordion" id="accordion_inner6">
+												            		<div class="card">
+																        <div class="card-header" id="headingTwo">
+																            <h6 class="mb-0" data-toggle="collapse" data-target="#collapseOne-1" aria-expanded="false" aria-controls="collapseOne-1">
+																                January
+																            </h6>
+																            <button class="btn_abs_move" mat-raised-button mat-button-primary data-toggle="modal" data-target="#myModal">Move To</button>
+																        </div>
+																        <div id="collapseOne-1" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordion_inner6">
+																            <div class="card-body">
+																                <div class="onl_tabl">	
+																					<table class="mat-table table-bordered table table-striped" sort>	
+																					  	<tr class="mat-header-row">
+																						    <th class="mat-header-cell parnt_chk" rowspan="2">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </th>
+																						    <th class="mat-header-cell" rowspan="2">Client Number</th>
+																						    <th class="mat-header-cell" rowspan="2">Client Name</th>
+																						    <th class="mat-header-cell" rowspan="2">No. of Products</th>
+																						    <th class="mat-header-cell" rowspan="2">Total Holdings</th>
+																						    <th class="mat-header-cell" colspan="6">Risk Profiler (In Year)</th>
+																					  	</tr>
+																					  	<tr class="mat-header-row">
+																						    <th class="mat-header-cell">1st</th>
+																						    <th class="mat-header-cell">2nd</th>
+																						    <th class="mat-header-cell">3rd</th>
+																						    <th class="mat-header-cell">4th</th>
+																						    <th class="mat-header-cell">5th</th>
+																						    <th class="mat-header-cell">6th</th>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox checked="checked"></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					</table>															
+																				</div>
+																            </div>
+																        </div>
+																    </div>
+																    <div class="card">
+																        <div class="card-header" id="headingTwo">
+																            <h6 class="mb-0 collapsed" data-toggle="collapse" data-target="#collapseOne-2" aria-expanded="false" aria-controls="collapseOne-2">
+																                February
+																            </h6>
+																            <button class="btn_abs_move" mat-raised-button mat-button-primary data-toggle="modal" data-target="#myModal">Move To</button>
+																        </div>
+																        <div id="collapseOne-2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion_inner6">
+																            <div class="card-body">
+																                <div class="onl_tabl">	
+																					<table class="mat-table table-bordered table table-striped" sort>	
+																					  	<tr class="mat-header-row">
+																						    <th class="mat-header-cell parnt_chk" rowspan="2">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </th>
+																						    <th class="mat-header-cell" rowspan="2">Client Number</th>
+																						    <th class="mat-header-cell" rowspan="2">Client Name</th>
+																						    <th class="mat-header-cell" rowspan="2">No. of Products</th>
+																						    <th class="mat-header-cell" rowspan="2">Total Holdings</th>
+																						    <th class="mat-header-cell" colspan="6">Risk Profiler (In Year)</th>
+																					  	</tr>
+																					  	<tr class="mat-header-row">
+																						    <th class="mat-header-cell">1st</th>
+																						    <th class="mat-header-cell">2nd</th>
+																						    <th class="mat-header-cell">3rd</th>
+																						    <th class="mat-header-cell">4th</th>
+																						    <th class="mat-header-cell">5th</th>
+																						    <th class="mat-header-cell">6th</th>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox checked="checked"></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					</table>															
+																				</div>
+																            </div>
+																        </div>
+																    </div>
+																    <div class="card">
+																        <div class="card-header" id="headingTwo">
+																            <h6 class="mb-0 collapsed" data-toggle="collapse" data-target="#collapseOne-3" aria-expanded="false" aria-controls="collapseOne-3">
+																                March
+																            </h6>
+																            <button class="btn_abs_move" mat-raised-button mat-button-primary data-toggle="modal" data-target="#myModal">Move To</button>
+																        </div>
+																        <div id="collapseOne-3" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion_inner6">
+																            <div class="card-body">
+																                <div class="onl_tabl">	
+																					<table class="mat-table table-bordered table table-striped" sort>	
+																					  	<tr class="mat-header-row">
+																						    <th class="mat-header-cell parnt_chk" rowspan="2">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </th>
+																						    <th class="mat-header-cell" rowspan="2">Client Number</th>
+																						    <th class="mat-header-cell" rowspan="2">Client Name</th>
+																						    <th class="mat-header-cell" rowspan="2">No. of Products</th>
+																						    <th class="mat-header-cell" rowspan="2">Total Holdings</th>
+																						    <th class="mat-header-cell" colspan="6">Risk Profiler (In Year)</th>
+																					  	</tr>
+																					  	<tr class="mat-header-row">
+																						    <th class="mat-header-cell">1st</th>
+																						    <th class="mat-header-cell">2nd</th>
+																						    <th class="mat-header-cell">3rd</th>
+																						    <th class="mat-header-cell">4th</th>
+																						    <th class="mat-header-cell">5th</th>
+																						    <th class="mat-header-cell">6th</th>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox checked="checked"></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					</table>															
+																				</div>
+																            </div>
+																        </div>
+																    </div>
+																    <div class="card">
+																        <div class="card-header" id="headingTwo">
+																            <h6 class="mb-0 collapsed" data-toggle="collapse" data-target="#collapseOne-4" aria-expanded="false" aria-controls="collapseOne-4">
+																                April
+																            </h6>
+																            <button class="btn_abs_move" mat-raised-button mat-button-primary data-toggle="modal" data-target="#myModal">Move To</button>
+																        </div>
+																        <div id="collapseOne-4" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion_inner6">
+																            <div class="card-body">
+																                <div class="onl_tabl">	
+																					<table class="mat-table table-bordered table table-striped" sort>	
+																					  	<tr class="mat-header-row">
+																						    <th class="mat-header-cell parnt_chk" rowspan="2">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </th>
+																						    <th class="mat-header-cell" rowspan="2">Client Number</th>
+																						    <th class="mat-header-cell" rowspan="2">Client Name</th>
+																						    <th class="mat-header-cell" rowspan="2">No. of Products</th>
+																						    <th class="mat-header-cell" rowspan="2">Total Holdings</th>
+																						    <th class="mat-header-cell" colspan="6">Risk Profiler (In Year)</th>
+																					  	</tr>
+																					  	<tr class="mat-header-row">
+																						    <th class="mat-header-cell">1st</th>
+																						    <th class="mat-header-cell">2nd</th>
+																						    <th class="mat-header-cell">3rd</th>
+																						    <th class="mat-header-cell">4th</th>
+																						    <th class="mat-header-cell">5th</th>
+																						    <th class="mat-header-cell">6th</th>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox checked="checked"></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					  	<tr class="mat-row">
+																						    <td class="mat-cell child_chk">
+																						    	<mat-checkbox></mat-checkbox>
+																						    </td>
+																						    <td class="mat-cell wtnrp">641566</td>
+																						    <td class="mat-cell wtnrp">Julia Miller</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">-</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">20%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">10%</td>
+																						    <td class="mat-cell">20%</td>
+																					  	</tr>
+																					</table>															
+																				</div>
+																            </div>
+																        </div>
+																    </div>
+												            	</div>
+
+												            </div>
+												        </div>
+												    </div> -->
+												</div>
+		            							<!--  -->
+		            						</div>
+		            					</div>
+		            				</div>
+		            			</div>
+		            		</div>
+            			</div>
+            		</section>
+            	</div>
+        	</div>
+        	<div class="sidenav_db">
+				<app-db-sidebar></app-db-sidebar>
+        	</div>
+        </div>
+    </section>
+    <!-- footer starts -->
+    <!-- <app-footer></app-footer> -->
+    <!-- footer ends -->
+</div>
+
+
+
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Move Entry</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="modal_accordion">
+                	<div class="wrap_overall_revws">
+						<!--  -->
+						<div class="accordion" id="acrodion_modal">
+						    <div class="card" *ngFor="let item of years">
+						        <div class="card-header" id="headingOne">
+						            <h2 class="mb-0" data-toggle="collapse" data-target="#collapseOnem" aria-expanded="true" aria-controls="collapseOnem">
+						                {{ formatYear(item.log_date) }}
+						            </h2>
+						        </div>
+						        <div id="collapseOnem" class="collapse show" aria-labelledby="headingOne" data-parent="#acrodion_modal">
+						            <div class="card-body">
+						            	<ul class="">
+						            	 	<li><mat-checkbox> January </mat-checkbox></li>
+						            	 	<li><mat-checkbox> Februray </mat-checkbox></li>
+						            	 	<li><mat-checkbox> March </mat-checkbox></li>
+						            	 	<li><mat-checkbox> April </mat-checkbox></li>
+						            	 	<li><mat-checkbox> May </mat-checkbox></li>
+						            	 	<li><mat-checkbox> June </mat-checkbox></li>
+						            	 	<li><mat-checkbox> July </mat-checkbox></li>
+						            	</ul>
+						            </div>
+						        </div>
+						    </div>
+						    <!-- <div class="card">
+						        <div class="card-header" id="headingTwo">
+						            <h2 class="mb-0 collapsed" data-toggle="collapse" data-target="#collapseTwom" aria-expanded="false" aria-controls="collapseTwom">
+						                2020
+						            </h2>
+						        </div>
+						        <div id="collapseTwom" class="collapse" aria-labelledby="headingTwo" data-parent="#acrodion_modal">
+						            <div class="card-body">
+						                
+						                <ul class="">
+						            	 	<li><mat-checkbox> January </mat-checkbox></li>
+						            	 	<li><mat-checkbox> Februray </mat-checkbox></li>
+						            	 	<li><mat-checkbox> March </mat-checkbox></li>
+						            	 	<li><mat-checkbox> April </mat-checkbox></li>
+						            	 	<li><mat-checkbox> May </mat-checkbox></li>
+						            	 	<li><mat-checkbox> June </mat-checkbox></li>
+						            	 	<li><mat-checkbox> July </mat-checkbox></li>
+						            	</ul>
+
+						            </div>
+						        </div>
+						    </div>
+						    <div class="card">
+						        <div class="card-header" id="headingThree">
+						            <h2 class="mb-0 collapsed" data-toggle="collapse" data-target="#collapseThreem" aria-expanded="false" aria-controls="collapseThreem">
+						                Planning
+						            </h2>
+						        </div>
+						        <div id="collapseThreem" class="collapse" aria-labelledby="headingThree" data-parent="#acrodion_modal">
+						            <div class="card-body">
+
+						                <ul class="">
+						            	 	<li><mat-checkbox> January </mat-checkbox></li>
+						            	 	<li><mat-checkbox> Februray </mat-checkbox></li>
+						            	 	<li><mat-checkbox> March </mat-checkbox></li>
+						            	 	<li><mat-checkbox> April </mat-checkbox></li>
+						            	 	<li><mat-checkbox> May </mat-checkbox></li>
+						            	 	<li><mat-checkbox> June </mat-checkbox></li>
+						            	 	<li><mat-checkbox> July </mat-checkbox></li>
+						            	</ul>
+
+						            </div>
+						        </div>
+						    </div>
+						    <div class="card">
+						        <div class="card-header" id="headingThree">
+						            <h2 class="mb-0 collapsed" data-toggle="collapse" data-target="#collapseThree3m" aria-expanded="false" aria-controls="collapseThree3m">
+						                Ninty One
+						            </h2>
+						        </div>
+						        <div id="collapseThree3m" class="collapse" aria-labelledby="headingThree" data-parent="#acrodion_modal">
+						            <div class="card-body">
+						                
+						                <ul class="">
+						            	 	<li><mat-checkbox> January </mat-checkbox></li>
+						            	 	<li><mat-checkbox> Februray </mat-checkbox></li>
+						            	 	<li><mat-checkbox> March </mat-checkbox></li>
+						            	 	<li><mat-checkbox> April </mat-checkbox></li>
+						            	 	<li><mat-checkbox> May </mat-checkbox></li>
+						            	 	<li><mat-checkbox> June </mat-checkbox></li>
+						            	 	<li><mat-checkbox> July </mat-checkbox></li>
+						            	</ul>
+
+						            </div>
+						        </div>
+						    </div>
+						    <div class="card">
+						        <div class="card-header" id="headingThree">
+						            <h2 class="mb-0 collapsed" data-toggle="collapse" data-target="#collapseThree4m" aria-expanded="false" aria-controls="collapseThree4m">
+						                Others
+						            </h2>
+						        </div>
+						        <div id="collapseThree4m" class="collapse" aria-labelledby="headingThree" data-parent="#acrodion_modal">
+						            <div class="card-body">
+						                
+						                <ul class="">
+						            	 	<li><mat-checkbox> January </mat-checkbox></li>
+						            	 	<li><mat-checkbox> Februray </mat-checkbox></li>
+						            	 	<li><mat-checkbox> March </mat-checkbox></li>
+						            	 	<li><mat-checkbox> April </mat-checkbox></li>
+						            	 	<li><mat-checkbox> May </mat-checkbox></li>
+						            	 	<li><mat-checkbox> June </mat-checkbox></li>
+						            	 	<li><mat-checkbox> July </mat-checkbox></li>
+						            	</ul>
+
+						            </div>
+						        </div>
+						    </div>
+						    <div class="card">
+						        <div class="card-header" id="headingThree">
+						            <h2 class="mb-0 collapsed" data-toggle="collapse" data-target="#collapseThree5m" aria-expanded="false" aria-controls="collapseThree5m">
+						                Additional Record of Advice
+						            </h2>
+						        </div>
+						        <div id="collapseThree5m" class="collapse" aria-labelledby="headingThree" data-parent="#acrodion_modal">
+						            <div class="card-body">
+						                
+						                <ul class="">
+						            	 	<li><mat-checkbox> January </mat-checkbox></li>
+						            	 	<li><mat-checkbox> Februray </mat-checkbox></li>
+						            	 	<li><mat-checkbox> March </mat-checkbox></li>
+						            	 	<li><mat-checkbox> April </mat-checkbox></li>
+						            	 	<li><mat-checkbox> May </mat-checkbox></li>
+						            	 	<li><mat-checkbox> June </mat-checkbox></li>
+						            	 	<li><mat-checkbox> July </mat-checkbox></li>
+						            	</ul>
+
+						            </div>
+						        </div>
+						    </div> -->
+						</div>
+						<!--  -->
+					</div>
+                </div>
+            </div>
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Done</button>
+            </div>
+        </div>
+    </div>
+</div>
+

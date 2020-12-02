@@ -1,0 +1,115 @@
+<!-- Header -->
+<app-header></app-header>
+<!-- Header ends -->
+<!-- <mat-spinner></mat-spinner> -->
+
+<div class="wrapper_shala">
+    <section class="register_sec">
+        <div class="row_marg_minus">
+            <div class="row">
+                <div class="col-sm-6 sgnUp_bg d-flex align-items-center justify-content-right">
+                    <div class="text_wrp_left text-right">
+                        <h1>Welcome Back!</h1>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                        consequat.</p>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="wrp_white d-flex align-items-center justify-content-center flex-column">
+                        <div class="login_head text-left">
+                            <div class="text-center logo_login">
+                                <img src="assets/img/logo.png" class="img-fluid">
+                            </div>
+                            <h2>Broker Sign In</h2>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </div>
+                        <div class="form_head">
+                            <!-- <h5 class="text-center">Enter your Valid Mobile Number</h5> -->
+
+                            <form [formGroup]="form">
+                                <div class="form-group">
+                                    <label>Email Address</label>
+                                    <div class="pos_rel icon_input">
+                                        <i class="fa fa-envelope"></i>
+                                        <input name="email" type="email" class="form-control" placeholder="Email Address" formControlName="email" email maxlength="100">
+                                        <div *ngIf="email.invalid && (email.dirty || email.touched || signinclick)"
+                                            class="text-danger">
+                                            <div *ngIf="email.errors.required">
+                                                This field is required.
+                                            </div>
+                                            <div *ngIf="email.errors.email">
+                                                Please enter valid email
+                                            </div>
+                                            <div *ngIf="email.errors.maxlength">
+                                                Please enter not more than 100 character
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Password</label>
+                                    <div class="pos_rel icon_input">
+                                        <i class="fa fa-key"></i>
+                                        <input type="password" class="form-control" placeholder="Enter Password" formControlName="password" maxlength="100">
+                                        <div *ngIf="password.invalid && (password.dirty || password.touched || signinclick)"
+                                            class="text-danger">
+                                            <div *ngIf="password.errors.required">
+                                                This field is required.
+                                            </div>
+                                            <div *ngIf="password.errors.maxlength">
+                                                Please enter not more than 100 character
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <div class="custom-control custom-checkbox">
+                                                <input formControlName="remember" type="checkbox" class="custom-control-input" id="customCheck" name="example1">
+                                                <label class="custom-control-label" for="customCheck">Remember Me</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group text-right">
+                                            <a routerLink="/forgotPassword" class="cp"><i>Forgot Password?</i></a>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="pos_rel log_sgn_btn">
+                                        <!-- <a href="javascript:;" class="btn btn_theme sgnup_btn"> <i class="far fa-key"></i> Sign In </a> -->
+                                        <!-- <button [disabled]="form.invalid || form.disabled" (click)="signInClick()" class="btn btn_theme sgnup_btn"> <i class="far fa-key"></i> Sign In </button> -->
+                                        <button (click)="signInClick()" class="btn btn_theme sgnup_btn"> <i class="far fa-key"></i> Sign In </button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <!-- <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <div class="custom-control custom-checkbox">
+                                                <input formControlName="remember" type="checkbox" class="custom-control-input" id="customCheck" name="example1">
+                                                <label class="custom-control-label" for="customCheck">Remember Me</label>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                    <div class="col-sm-12">
+                                        <div class="form-group text-center">
+                                            <!-- <a routerLink="/forgotPassword" class="cp"><i>Forgot Password?</i></a> -->
+                                            <a routerLink="/officerLogin" class="cp"><i>Complaince Officer Click Here To Login</i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- footer starts -->
+    <!-- <app-footer></app-footer> -->
+    <!-- footer ends -->
+</div>

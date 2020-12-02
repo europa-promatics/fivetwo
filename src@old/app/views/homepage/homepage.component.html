@@ -1,0 +1,168 @@
+<!-- Header -->
+<app-header></app-header>
+<!-- Header ends -->
+
+<div class="wrapper_shala">
+	<section class="her_sldr_don">
+		<div class="hero_carosel">
+			<owl-carousel-o [options]="customOptions">
+				<ng-container *ngFor="let slide of banner_data; let i = index">
+					<ng-template carouselSlide>
+						<div class="hero-img">
+							<img src="{{banner_img_url}}{{slide.image}}" alt="">
+						</div>
+						<div class="desc_sldr text-center">
+							<span class="tag">{{slide.top_heading}}</span>
+							<h2>{{slide.heading}}</h2>
+							<p class="carsl_cnt">{{slide.description}}</p>
+							<p class="carsl_btn"><a href="#" class="btn_theme">View Investment</a></p>
+						</div>
+					</ng-template>
+					<!-- <ng-template carouselSlide [id]="slide.id">
+					  <img [src]="slide.src" [alt]="slide.alt" [title]="slide.title">
+					</ng-template> -->
+				</ng-container>
+				<!-- <ng-template carouselSlide>
+		            <div class="hero-img">
+		               <img src="assets/img/sl3.jpg" alt="">  
+		            </div>
+		            <div class="desc_sldr text-center">
+		               <span class="tag" >SIP Investment</span>
+		               <h2>Popular Investment Plans</h2>
+		               <p class="carsl_cnt">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+		               <p class="carsl_btn"><a href="#" class="btn_theme">View Investment</a></p>
+		            </div>
+			    </ng-template>  
+			    <ng-template carouselSlide>
+		            <div class="hero-img">
+		               <img src="assets/img/sl2.jpg" alt="">  
+		            </div>
+		            <div class="desc_sldr text-center">
+		               <span class="tag">Debt Funds</span>
+		               <h2 >Wide range of Services</h2>
+		               <p class="carsl_cnt">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+		               <p class="carsl_btn"><a href="#" class="btn_theme">Our Services</a></p>
+		            </div>
+			    </ng-template>  
+			    <ng-template carouselSlide>
+		            <div class="hero-img">
+		               <img src="assets/img/sl1.jpg" alt="">  
+		            </div>
+		            <div class="desc_sldr text-center">
+		               <span class="tag">Index Fund Investment</span>
+		               <h2>Easy way to Invest</h2>
+		               <p class="carsl_cnt">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+		               <p class="carsl_btn"><a href="#" class="btn_theme">View Plans</a></p>
+		            </div>
+			    </ng-template>   -->
+			</owl-carousel-o>
+			<!-- <div class="slider-counter">{{i+1}}/{{banner_data.length}}</div> -->
+		</div>
+	</section>
+
+	<section class="aabott_sec">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-6">
+					<div class="left_abt_mig">
+						<img *ngIf="aboutUs" src="{{about_us_url}}{{aboutUs.image}}" class="img-fluid">
+						<img src="assets/img/abtptrn.svg" class="img-fluid img_dots">
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<div class="wrap_abt_right">
+						<div class="section-title pos_rel text-left">
+							<div class="intro-title">About</div>
+							<h2>{{aboutUs ? aboutUs.heading : ''}}</h2>
+						</div>
+						<div class="p_abt" *ngIf="aboutUs">
+							<p>{{aboutUs.description}}</p>
+							<!-- <p>The needs of a retired person are far greater than that of any other. As a retired person, your capital needs to grow while drawing down an income. My investment strategy has been working. My retired clients have experienced 14% p.a. growth in their portfolios (after fees) from 2012-2018.</p>
+	                        <p>I was approached by the founding director of the brokerage I worked for and was encouraged to open my own investment brokerage, as their focus was insurance. This is how Five Two Investments started and my assets under management have grown by over 500% in the 5 years we’ve been in business.</p>
+	                        <ul type="none">
+	                            <li><i class="fa fa-long-arrow-right"></i> You can't have people making decisions</li>
+	                            <li><i class="fa fa-long-arrow-right"></i> Then we can agree on what kind of data to get; we get the data; and the data solves the problem</li>
+	                            <li><i class="fa fa-long-arrow-right"></i> I think that intelligence is such a narrow branch of the tree</li>
+	                            <li><i class="fa fa-long-arrow-right"></i> It can be considered intelligent be all that important for survival</li>
+	                            <li><i class="fa fa-long-arrow-right"></i> There are so many animals that don't have what we call intelligence</li>
+	                        </ul> -->
+							<a class="btn btn_theme">Explore More <i class="fa fa-long-arrow-right"></i></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<div class="parallax-window" data-parallax="scroll"
+		data-image-src="https://www.dbs.com/in/iwov-resources/media/images/learn/covid19-tips-for-investing-short-term-funds/covid19-tips-for-investing-short-term-funds-1404x630.jpg">
+		<div class="page-section section-bg-6b">
+			<div class="custom_container">
+				<div class="wrap_how_sec">
+					<div class="section-title pos_rel text-center">
+						<div class="intro-title">How it Works</div>
+						<h2>Safe & Secure</h2>
+					</div>
+					<div class="row">
+						<div class="col-sm-3" *ngFor="let element of howItWorks; let i = index;">
+							<div class="inr_work text-center">
+								<img src="{{howItWorks_url}}{{element.image}}" class="img-fluid">
+								<h4 class="text-uppercase">{{element.title}}</h4>
+								<p>{{element.description}}</p>
+							</div>
+						</div>
+						<!-- <div class="col-sm-3">
+							<div class="inr_work text-center">
+								<img src="assets/img/register.svg" class="img-fluid">
+								<h4 class="text-uppercase">Register Yourself</h4>
+								<p>Lorem ipsum dolor sit amet consectetur elit, sed do eiusmod
+									tempor incididunt ut labore et dolore magna aliqua.</p>
+							</div>
+						</div>
+						<div class="col-sm-3">
+							<div class="inr_work text-center">
+								<img src="assets/img/trade.svg" class="img-fluid">
+								<h4 class="text-uppercase">Trade Online</h4>
+								<p>Lorem ipsum dolor sit amet consectetur elit, sed do eiusmod
+									tempor incididunt ut labore et dolore magna aliqua.</p>
+							</div>
+						</div>
+						<div class="col-sm-3">
+							<div class="inr_work text-center">
+								<img src="assets/img/addcustomer.svg" class="img-fluid">
+								<h4 class="text-uppercase">Add Customer Securely</h4>
+								<p>Lorem ipsum dolor sit amet consectetur elit, sed do eiusmod
+									tempor incididunt ut labore et dolore magna aliqua.</p>
+							</div>
+						</div>
+						<div class="col-sm-3">
+							<div class="inr_work text-center">
+								<img src="assets/img/manage.svg" class="img-fluid">
+								<h4 class="text-uppercase">Manage Accounts</h4>
+								<p>Lorem ipsum dolor sit amet consectetur elit, sed do eiusmod
+									tempor incididunt ut labore et dolore magna aliqua.</p>
+							</div>
+						</div> -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<section class="get_app_store">
+		<div class="custom_container">
+			<div class="wrap_app_iner text-center">
+				<h1 class="text-uppercase">Get FiveTwo investment in your Phone.</h1>
+				<p class="text-uppercase">Download the App Free for Android and iOS</p>
+				<div class="img_stor d-flex justify-content-center">
+					<img src="assets/img/aps.webp" class="img-fluid">
+					<img src="assets/img/pls.webp" class="img-fluid">
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- footer starts -->
+	<app-footer></app-footer>
+	<!-- footer ends -->
+</div>

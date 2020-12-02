@@ -1,0 +1,26 @@
+.img-ID_up {
+    img {
+        width:150px;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 8px;
+        overflow: hidden;
+        margin-bottom: 20px;
+    }
+}
+.img-ID_up.multi_sign {
+    img {
+        width: 300px;
+    }
+}
+ul.ul-itms li {
+    display: inline-block;
+    /*width  : 250px;*/
+    white-space: nowrap;
+}
+.ul-itms i{
+    color: #238ab4;
+    margin: 0px 4px;
+    font-size: 10px;
+
+}

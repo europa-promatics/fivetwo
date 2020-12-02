@@ -1,0 +1,322 @@
+
+
+<!-- Header -->
+<app-db-header></app-db-header>
+<!-- Header ends -->
+<div class="wrapper_shala wrapper_db">
+    <section class="outer_db_wraper db_main_clprofile">
+        <div class="combine_sidenav_right_db d-flex">
+            <div class="main_right_db clprofile_db">
+                <section class="bread_top_sec">
+                    <div class="db_container">
+                        <div class="d-flex justify-content-between align-items-center text-white pos_rel">
+                            <div class="sid_controlr">
+                                <i class="clos_sid fa fa-bars"></i>
+                                <!-- <i class="opn_sid fa fa-times"></i> -->
+                            </div>
+                            <h3>Client Profile</h3>
+                            <!-- <nav class="bread_nav_sec">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                    <li class="breadcrumb-item">Dashboard</li>
+                                    <li class="breadcrumb-item"><a routerLink="/user/dbClients">Clients</a></li>
+                                    <li class="breadcrumb-item active">Client Profile Info</li>
+                                </ol>
+                            </nav> -->
+                        </div>
+                    </div>
+                </section>
+                <div class="marg_over_bread">
+                    <section class="p-0 clt_prof_sec">
+                        <div class="db_container">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="profl_dtl_clnt_outr position-relative">
+                                                <h4 class="clnt_nm_ttl">Client Name: {{investor.FirstName}} {{investor.LastName}}</h4>
+                                                <h6 class="clnt_nm_ttl">Client Number: {{investor.ClientNumber}}</h6>
+                                                <button routerLink="/user/edit-profile/{{investor.id}}" class="btn btn_theme btn_absss">Edit</button>
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <div class="lft_cards_info">
+                                                            <div id="accordion">
+                                                                <div class="card mb-4 align-items-center">
+                                                                    <div class="card-header activee" id="headingOne">
+                                                                        <div class="mb-0 collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                                            <div class="hgt_flex d-flex justify-content-between">
+                                                                                <span class="val_hed">Total value</span>
+                                                                                <span><strong>@</strong></span>
+                                                                                <span>15 May 2020</span>
+                                                                                <span>R {{totalBalance}}</span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                 <!-- <div class="card mb-4 align-items-center">
+                                                                    <div class="card-header" id="headingTwo">
+                                                                        <div class="mb-0 collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                                                             <div class="hgt_flex d-flex justify-content-between"> 
+                                                                                <span class="val_hed">Living Annuity</span>
+                                                                                <span>AGLA 56987</span>
+                                                                                <span>R 2,500,000</span>
+                                                                            </div>
+                                                                            <p class="hedr_clk_p m-0"><small>Income: R 12,500 = 6% (Monthly)</small></p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>  -->
+
+
+                                                                <div *ngFor="let ele of in_arr; let i = index" class="card mb-4 align-items-center">
+                                                                    <div class="card-header" id="headingThree">
+                                                                        <div class="mb-0 collapsed" data-toggle="collapse" [attr.data-target]="'#collapseThree'+ i" aria-expanded="false" aria-controls="collapseThree">
+                                                                            <div class="hgt_flex d-flex justify-content-between">
+                                                                                <span class="val_hed">
+                                                                                    {{ ele ? ele.investor_deals['product_name'] : "" }}</span>
+                                                                                <span>{{ ele ? ele.investor_deals['product_code'] : "" }} {{ ele ? ele.investor_deals['contract_number'] : "" }}</span>
+                                                                                <span>{{ ele['StatusFlag'] }} R {{  ele.income_details_daily_balance.net_amount }}</span>
+                                                                            </div>
+                                                                            <!-- Income: R 5,000 = 6% (Monthly) -->
+                                                                            <p class="hedr_clk_p m-0"><small>  {{ getIncomeDetail(ele['Deal Reference']) }} </small></p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div id="collapseThree{{i}}" class="collapse {{ i == 0 ? 'show' : '' }}" aria-labelledby="headingThree" data-parent="#accordion">
+                                                                        <div class="card-body">
+                                                                            <div class="invst_dtls">
+                                                                                <ul class="yers_open_li" type="none">
+                                                                                    <li class="d-flex justify-content-between">
+                                                                                        <span class="wid_two">Year 1</span>
+                                                                                        <span class="wid_two">6%</span>
+                                                                                        <span>R 60,000 <br>Coronation Jibar Plus Fund</span>
+                                                                                    </li>
+                                                                                    <li class="d-flex justify-content-between">
+                                                                                        <span class="wid_two">Year 2</span>
+                                                                                        <span class="wid_two">10%</span>
+                                                                                        <span>R 100,000 <br>Prescient Income provider Fund</span>
+                                                                                    </li>
+                                                                                    <li class="d-flex justify-content-between">
+                                                                                        <span class="wid_two">Year 3</span>
+                                                                                        <span class="wid_two">6%</span>
+                                                                                        <span>R 60,000 <br>Coronation Balanced Defensive Fund</span>
+                                                                                    </li>
+                                                                                    <li class="d-flex justify-content-between">
+                                                                                        <span class="wid_two">Year 4</span>
+                                                                                        <span class="wid_two">6%</span>
+                                                                                        <span>R 60,000 <br>Ninety one Opportunity Fund</span>
+                                                                                    </li>
+                                                                                    <li class="d-flex justify-content-between">
+                                                                                        <span class="wid_two">Year 5</span>
+                                                                                        <span class="wid_two">8%</span>
+                                                                                        <span>R 80,000 <br>Coronation Balanced Defensive Fund</span>
+                                                                                    </li>
+                                                                                    <li class="d-flex justify-content-between">
+                                                                                        <span class="wid_two">Year 6</span>
+                                                                                        <span class="wid_two">64% <br>40% <br>24%</span>
+                                                                                        <span>R 60,000 <br>old Mutual Gold Fund <br>Coronation Top 20 Fund</span>
+                                                                                    </li>
+                                                                                </ul>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+
+
+                                                                
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <div class="upper_divider">
+                                                            <div class="row">
+                                                                <div class="col-sm-6">
+                                                                    <fieldset class="filed_set">
+                                                                        <h5>Risk Profiler</h5>
+                                                                        <div class="inr_filed-pad">
+                                                                            <ul type="none">
+                                                                                <li class="d-flex justify-content-between">
+                                                                                    <span>Year 1</span>
+                                                                                    <span> {{ investor.Year1? investor.Year1 : 0  }}%</span>
+                                                                                </li>
+                                                                                <li class="d-flex justify-content-between">
+                                                                                    <span>Year 2</span>
+                                                                                    <span> {{ investor.Year2? investor.Year2 : 0  }}%</span>
+                                                                                </li>
+                                                                                <li class="d-flex justify-content-between">
+                                                                                    <span>Year 3</span>
+                                                                                    <span> {{ investor.Year3? investor.Year3 : 0  }}%</span>
+                                                                                </li>
+                                                                                <li class="d-flex justify-content-between">
+                                                                                    <span>Year 4</span>
+                                                                                    <span> {{ investor.Year4? investor.Year4 : 0  }}%</span>
+                                                                                </li>
+                                                                                <li class="d-flex justify-content-between">
+                                                                                    <span>Year 5</span>
+                                                                                    <span> {{ investor.Year5? investor.Year5 : 0  }}%</span>
+                                                                                </li>
+                                                                                <li class="d-flex justify-content-between">
+                                                                                    <span>Year 6</span>
+                                                                                    <span> {{ investor.Year6? investor.Year6 : 0  }}%</span>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </fieldset>
+                                                                </div>
+                                                                <div class="col-sm-6">
+                                                                    <fieldset class="filed_set">
+                                                                        <h5 style="cursor: pointer;" routerLink="/user/client_documents/{{investor.ClientNumber}}">Documents</h5>
+                                                                        <div class="inr_filed-pad chk_pls_field">
+                                                                            <ul type="none">
+                                                                                <li class="d-flex justify-content-between">
+                                                                                    <span><i *ngIf="investor.investor_documents.length>0" class="fa fa-check"></i> ID</span>
+                                                                                    <span *ngIf="investor.investor_documents.length==0" (click)="plusClick('id')" class="pls_ico_spn"><i class="fa fa-plus"></i></span>
+                                                                                </li>
+                                                                                <li class="d-flex justify-content-between">
+                                                                                    <span><i *ngIf="investor.DisclosureSign!=null" class="fa fa-check"></i> Disclosure</span>
+                                                                                    <span *ngIf="investor.DisclosureSign==null" (click)="plusClick('disclosure')" class="pls_ico_spn"><i class="fa fa-plus"></i></span>
+                                                                                </li>
+                                                                                <li class="d-flex justify-content-between">
+                                                                                    <span><i *ngIf="investor.RecordAdviceClientSignature!=null" class="fa fa-check"></i> Record of Advice</span>
+                                                                                    <span *ngIf="investor.RecordAdviceClientSignature==null" (click)="plusClick('record_advice')" class="pls_ico_spn"><i class="fa fa-plus"></i></span>
+                                                                                </li>
+                                                                                <li class="d-flex justify-content-between">
+                                                                                    <span><i *ngIf="investor.RiskProfilerClientSignature!=null" class="fa fa-check"></i> Risk Profiler</span>
+                                                                                    <span *ngIf="investor.RiskProfilerClientSignature==null" (click)="plusClick('risk_profiler')" class="pls_ico_spn"><i class="fa fa-plus"></i></span>
+                                                                                </li>
+                                                                                <li class="d-flex justify-content-between">
+                                                                                    <span><i class="fa fa-check"></i> Welcome Letter</span>
+                                                                                    <!-- <span class="pls_ico_spn">
+                                                                                        <i class="fa fa-plus"></i>
+                                                                                        </span> -->
+                                                                                </li>
+                                                                                <li class="d-flex justify-content-between">
+                                                                                    <span><i *ngIf="investor.investor_broker_appointments!=null" class="fa fa-check"></i > Broker Appointment</span>
+                                                                                    <span *ngIf="investor.investor_broker_appointments==null" (click)="plusClick('broker_appointment')" class="pls_ico_spn"><i class="fa fa-plus"></i></span>
+                                                                                </li>
+                                                                                <li class="d-flex justify-content-between">
+                                                                                    <span><i class="fa fa-check"></i> Letter of Authority</span>
+                                                                                    <span (click)="plusClick('letter_authority')" class="pls_ico_spn"><i class="fa fa-plus"></i></span>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </fieldset>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="botom_acord_perinfo">
+                                                            <div id="accordion1">
+                                                                <div class="card mb-4 align-items-center">
+                                                                    <div class="card-header" id="headingThree">
+                                                                        <div class="mb-0 collapsed" data-toggle="collapse" data-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
+                                                                            <div class="hgt_flex d-flex justify-content-center">
+                                                                                <span class="val_hed">Personal Info</span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div id="collapse3" class="collapse show" aria-labelledby="headingThree" data-parent="#accordion1">
+                                                                        <div class="card-body">
+                                                                            <div class="invst_dtls">
+                                                                                <ul class="yers_open_li" type="none">
+                                                                                    <li class="d-flex justify-content-between">
+                                                                                        <span>Surname</span>
+                                                                                        <span class="wid_two">{{investor.LastName}}</span>
+                                                                                    </li>
+                                                                                    <li class="d-flex justify-content-between">
+                                                                                        <span>First Name</span>
+                                                                                        <span class="wid_two">{{investor.FirstName}}</span>
+                                                                                    </li>
+                                                                                    <li class="d-flex justify-content-between">
+                                                                                        <span>ID Number</span>
+                                                                                        <span class="wid_two">{{investor.IdNumber}}</span>
+                                                                                    </li>
+                                                                                    <li class="d-flex justify-content-between">
+                                                                                        <span>Email Address</span>
+                                                                                        <span class="wid_two">{{investor.Email}}</span>
+                                                                                    </li>
+                                                                                    <li class="d-flex justify-content-between">
+                                                                                        <span>Cell Number</span>
+                                                                                        <span class="wid_two">{{investor.CellNumber}}</span>
+                                                                                    </li>
+                                                                                    <li class="d-flex justify-content-between">
+                                                                                        <span>Home Number</span>
+                                                                                        <span class="wid_two">{{investor.HomeNumber?investor.HomeNumber:'-'}}</span>
+                                                                                    </li>
+                                                                                    <li class="d-flex justify-content-between">
+                                                                                        <span>Home Address</span>
+                                                                                        <span class="wid_two">{{investor.HomeAddress?investor.HomeAddress:'-'}}</span>
+                                                                                    </li>
+                                                                                    <li class="d-flex justify-content-between">
+                                                                                        <span>Postal Address</span>
+                                                                                        <span class="wid_two">{{investor.PostalAddress?investor.PostalAddress:'-'}}</span>
+                                                                                    </li>
+                                                                                    <li class="d-flex justify-content-between">
+                                                                                        <span>Tax Number</span>
+                                                                                        <span class="wid_two">{{investor.TaxNumber?investor.TaxNumber:'-'}}</span>
+                                                                                    </li>
+                                                                                    <li class="d-flex justify-content-between">
+                                                                                        <span>Marital Status</span>
+                                                                                        <span class="wid_two">{{investor.MaritalStatus?investor.MaritalStatus:'-'}}</span>
+                                                                                    </li>
+                                                                                    <li class="d-flex justify-content-between">
+                                                                                        <span>Bank Name<br>Acct. Number<br>Account Type</span>
+                                                                                        <span class="wid_two">{{investor.bank_detail_1?investor.bank_detail_1.bank_name:'-'}}<br>{{investor.BankNumber?investor.BankNumber:'-'}}<br>{{investor.AccountType?investor.AccountType:'-'}}</span>
+                                                                                    </li>
+                                                                                    <li class="d-flex justify-content-between" *ngIf="investor.investor_childrens.length>0">
+                                                                                        <span>
+                                                                                            <ng-container *ngFor="let item of investor.investor_childrens;let i=index">
+                                                                                                Child {{i+1}}<br>
+                                                                                            </ng-container>
+                                                                                        </span>
+                                                                                        <span class="wid_two">
+                                                                                            <ng-container *ngFor="let item of investor.investor_childrens;let i=index">
+                                                                                                {{item.FullName}}<br>
+                                                                                            </ng-container>
+                                                                                        </span>
+                                                                                    </li>
+                                                                                    <li class="d-flex justify-content-between" *ngIf="investor.investor_beneficiaries.length>0">
+                                                                                        <span>
+                                                                                            <ng-container *ngFor="let item of investor.investor_beneficiaries;let i=index">
+                                                                                                Beneficiary {{i+1}}<br>
+                                                                                            </ng-container>
+                                                                                        </span>
+                                                                                        <span class="wid_two">
+                                                                                            <ng-container *ngFor="let item of investor.investor_beneficiaries;let i=index">
+                                                                                                {{item.FullName}}<br>
+                                                                                            </ng-container>
+                                                                                        </span>
+                                                                                    </li>
+                                                                                </ul>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- <div class="form-group" *ngIf="investor.Note"> -->
+                                                        <div class="form-group">
+                                                            <label>Notes</label>
+                                                            <textarea [(ngModel)]="investor.Note" [ngModelOptions]="{standalone: true}" class="form-control" rows="3" placeholder=""></textarea>
+                                                        </div>
+                                                        <div class="btn_save text-right">
+                                                            <button class="btn btn_theme">Save Notes</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+            <div class="sidenav_db">
+                <app-db-sidebar></app-db-sidebar>
+            </div>
+        </div>
+    </section>
+    <!-- footer starts -->
+    <!-- <app-footer></app-footer> -->
+    <!-- footer ends -->
+</div>

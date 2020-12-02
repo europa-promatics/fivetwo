@@ -1,0 +1,266 @@
+<!-- Header -->
+<app-db-header></app-db-header>
+<!-- Header ends -->
+
+<div class="wrapper_shala wrapper_db">
+	<section class="outer_db_wraper db_main_investmnt">
+    	<div class="combine_sidenav_right_db d-flex">
+        	<div class="main_right_db invest_db">
+        		<section class="bread_top_sec">
+        			<div class="db_container">
+            			<div class="d-flex justify-content-between align-items-center text-white pos_rel">
+            				<div class="sid_controlr">
+            					<i class="clos_sid fa fa-bars"></i>
+            					<!-- <i class="opn_sid fa fa-times"></i> -->
+            				</div>
+	            			<h3>Instructions</h3>
+	            			<nav class="bread_nav_sec">
+								<ol class="breadcrumb">
+								    <li class="breadcrumb-item"><a href="#">Home</a></li>
+								    <li class="breadcrumb-item">Dashboard</li>
+								    <li class="breadcrumb-item active">Instructions</li>
+								</ol>
+							</nav>
+	            		</div>
+	            	</div>
+        		</section>
+        		<div class="marg_over_bread">
+            		<section class="p-0 top_filter_sec">
+            			<div class="db_container">
+            				<div class="card">
+            					<div class="card-body">
+		            				<form  class="formm">
+			            				<div class="row">
+				            				<div class="col-sm-3">
+		            							<div class="form-group">
+		            								<select class="custom-select form-control">
+		            									<option>Option 1</option>
+		            									<option>Option 2</option>
+		            									<option>Option 3</option>
+		            									<option>Option 4</option>
+		            									<option>Option 5</option>
+		            								</select>
+		            							</div>
+			            					</div>
+				            				<div class="col-sm-3">
+		            							<div class="form-group">
+		            								<input type="" class="form-control" name="" placeholder="Search Keyword">
+		            							</div>
+			            					</div>
+			            					<div class="col-sm-2">
+		            							<div class="form-group">
+		            								<button class="btn btn_theme">Search</button>
+		            							</div>
+			            					</div>
+			            					<div class="col-sm-3 offset-sm-1 text-right">
+			            						<div class="form-group">
+		            								<input type="" class="form-control" name="" placeholder="Date (From)">
+		            							</div>
+			            					</div>
+			            				</div>
+		            				</form>
+		            			</div>
+		            		</div>
+		            	</div>
+            		</section>
+
+            		<section class="investment_table_sec">
+            			<div class="db_container">
+            				<div class="row">
+	            				<div class="col-sm-12">
+		            				<div class="card">
+		            					<div class="card-body">
+			            					<div class="card_ttl">
+			            						<h3>Instructions</h3>
+			            					</div>
+		            						<div class="table-responsive table_seler">
+		            							<!-- table start -->
+												<div class="table_db_indi">
+				            						<p class="d-flex justify-content-around mb-3 mt-2">
+				            							<span>In Progress: 4</span>
+				            							<span>Outstanding Requirements: 4</span>
+				            						</p>
+													<div class="onl_tabl">	
+														<table class="mat-table table-bordered table table-striped" sort>	
+															<thead>
+															  	<tr class="mat-header-row">
+																    <th class="mat-header-cell">Investor Name</th>
+																    <th class="mat-header-cell">Investor Number</th>
+																    <th class="mat-header-cell">Instruction type</th>
+																    <th class="mat-header-cell">Status</th>
+																    <th class="mat-header-cell">Reference No.</th>
+																    <th class="mat-header-cell">Product</th>
+																    <th class="mat-header-cell">Date Submitted</th>
+																    <th class="mat-header-cell">Action</th>
+															  	</tr>
+															</thead>
+															<tbody>
+															  	<tr class="mat-row">
+																    <td class="mat-cell">John Devor</td>
+																    <td class="mat-cell">456789</td>
+																    <td class="mat-cell">Repurchase</td>
+																    <td class="mat-cell">
+																    	<span class="badge badge-success">Received</span>
+																    </td>
+																    <td class="mat-cell">054604846</td>
+																    <td class="mat-cell">Investment Portfolio<br> 4987153</td>
+																    <td class="mat-cell">23 Jun 2020</td>
+																    <td class="mat-cell">
+																    	<button mat-button [matMenuTriggerFor]="menu" >
+																			<i class="fa fa-angle-down"></i>
+																		</button>
+																		<mat-menu #menu="matMenu" xPosition="before">
+																			<button mat-menu-item>
+																			    <span>Switch</span>
+																			</button>
+																			<button mat-menu-item>
+																			    <span>Change Beneficiary</span>
+																			</button>
+																		</mat-menu>
+																    </td>
+															  	</tr>
+															  	<tr class="mat-row">
+																    <td class="mat-cell">Julia Venture</td>
+																    <td class="mat-cell">456710</td>
+																    <td class="mat-cell">Advisor Change</td>
+																    <td class="mat-cell">
+																    	<span class="badge badge-warning">Quallity Control</span>
+																    </td>
+																    <td class="mat-cell">054604846</td>
+																    <td class="mat-cell">Retiremment Annuity</td>
+																    <td class="mat-cell">23 Jun 2020</td>
+																    <td class="mat-cell">
+																    	<button mat-button [matMenuTriggerFor]="menu" >
+																			<i class="fa fa-angle-down"></i>
+																		</button>
+																		<mat-menu #menu="matMenu" xPosition="before">
+																			<button mat-menu-item>
+																			    <span>Switch</span>
+																			</button>
+																			<button mat-menu-item>
+																			    <span>Change Beneficiary</span>
+																			</button>
+																		</mat-menu>
+																    </td>
+															  	</tr>
+															  	<tr class="mat-row">
+																    <td class="mat-cell">James Fred</td>
+																    <td class="mat-cell">456789</td>
+																    <td class="mat-cell">Group RA<br>Contribution</td>
+																    <td class="mat-cell">
+																    	<span class="badge badge-warning">Quallity Control</span>
+																    </td>
+																    <td class="mat-cell">054604846</td>
+																    <td class="mat-cell">Investment Portfolio<br> 4987153</td>
+																    <td class="mat-cell">23 Jun 2020</td>
+																    <td class="mat-cell">
+																    	<button mat-button [matMenuTriggerFor]="menu" >
+																			<i class="fa fa-angle-down"></i>
+																		</button>
+																		<mat-menu #menu="matMenu" xPosition="before">
+																			<button mat-menu-item>
+																			    <span>Switch</span>
+																			</button>
+																			<button mat-menu-item>
+																			    <span>Change Beneficiary</span>
+																			</button>
+																		</mat-menu>
+																    </td>
+															  	</tr>
+															  	<tr class="mat-row">
+																    <td class="mat-cell">John Devor</td>
+																    <td class="mat-cell">456789</td>
+																    <td class="mat-cell">Switch</td>
+																    <td class="mat-cell">
+																    	<span class="badge badge-danger">Closed</span>
+																    </td>
+																    <td class="mat-cell">054604846</td>
+																    <td class="mat-cell">Living Annuity</td>
+																    <td class="mat-cell">23 Jun 2020</td>
+																    <td class="mat-cell">
+																    	<button mat-button [matMenuTriggerFor]="menu" >
+																			<i class="fa fa-angle-down"></i>
+																		</button>
+																		<mat-menu #menu="matMenu" xPosition="before">
+																			<button mat-menu-item>
+																			    <span>Switch</span>
+																			</button>
+																			<button mat-menu-item>
+																			    <span>Change Beneficiary</span>
+																			</button>
+																		</mat-menu>
+																    </td>
+															  	</tr>
+															  	<tr class="mat-row">
+																    <td class="mat-cell">Julia Venture</td>
+																    <td class="mat-cell">456710</td>
+																    <td class="mat-cell">Switch</td>
+																    <td class="mat-cell">
+																    	<span class="badge badge-danger">Closed</span>
+																    </td>
+																    <td class="mat-cell">054604846</td>
+																    <td class="mat-cell">Investment Portfolio<br> 4987153</td>
+																    <td class="mat-cell">23 Jun 2020</td>
+																    <td class="mat-cell">
+																    	<button mat-button [matMenuTriggerFor]="menu" >
+																			<i class="fa fa-angle-down"></i>
+																		</button>
+																		<mat-menu #menu="matMenu" xPosition="before">
+																			<button mat-menu-item>
+																			    <span>Switch</span>
+																			</button>
+																			<button mat-menu-item>
+																			    <span>Change Beneficiary</span>
+																			</button>
+																		</mat-menu>
+																    </td>
+															  	</tr>
+															  	<tr class="mat-row">
+																    <td class="mat-cell">James Fred</td>
+																    <td class="mat-cell">456789</td>
+																    <td class="mat-cell">Additional Flow</td>
+																    <td class="mat-cell">
+																    	<span class="badge badge-success">Received</span>
+																    </td>
+																    <td class="mat-cell">054604846</td>
+																    <td class="mat-cell">Investment Portfolio<br> 4987153</td>
+																    <td class="mat-cell">23 Jun 2020</td>
+																    <td class="mat-cell">
+																    	<button mat-button [matMenuTriggerFor]="menu" >
+																			<i class="fa fa-angle-down"></i>
+																		</button>
+																		<mat-menu #menu="matMenu" xPosition="before">
+																			<button mat-menu-item>
+																			    <span>Switch</span>
+																			</button>
+																			<button mat-menu-item>
+																			    <span>Change Beneficiary</span>
+																			</button>
+																		</mat-menu>
+																    </td>
+															  	</tr>
+															</tbody>
+														</table>
+
+														<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>	
+													</div>
+												</div>
+												<!-- table start -->
+		            						</div>		
+		            					</div>
+		            				</div>
+		            			</div>
+		            		</div>
+            			</div>
+            		</section>
+            	</div>
+        	</div>
+        	<div class="sidenav_db">
+				<app-db-sidebar></app-db-sidebar>
+        	</div>
+        </div>
+    </section>
+    <!-- footer starts -->
+    <!-- <app-footer></app-footer> -->
+    <!-- footer ends -->
+</div>

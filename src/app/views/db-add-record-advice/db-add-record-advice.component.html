@@ -1,0 +1,243 @@
+<!-- Header -->
+<app-db-header></app-db-header>
+<!-- Header ends -->
+
+<div class="wrapper_shala wrapper_db">
+	<section class="outer_db_wraper db_main_invstr">
+    	<div class="combine_sidenav_right_db d-flex">
+        	<div class="main_right_db invstr_db">
+        		<section class="bread_top_sec">
+        			<div class="db_container">
+            			<div class="d-flex justify-content-between align-items-center text-white pos_rel">
+            				<div class="sid_controlr">
+            					<i class="clos_sid fa fa-bars"></i>
+            					<!-- <i class="opn_sid fa fa-times"></i> -->
+            				</div>
+	            			<h3>Add Record of Advice</h3>
+	            			<!-- <nav class="bread_nav_sec">
+								<ol class="breadcrumb">
+								    <li class="breadcrumb-item"><a href="#">Home</a></li>
+								    <li class="breadcrumb-item">Dashboard</li>
+								    <li class="breadcrumb-item"><a routerLink="/user/clientProfile">Client Profile</a></li>
+								    <li class="breadcrumb-item active">Add Record of Advice</li>
+								</ol>
+							</nav> -->
+	            		</div>
+	            	</div>
+        		</section>
+        		<div class="marg_over_bread">
+        			<section class="review_sec_db">
+            			<div class="db_container">
+            				<div class="row">
+	            				<div class="col-sm-12">
+		            				<div class="card">
+		            					<div class="card-body">
+			            					<!-- <div class="card_ttl">
+			            						<h3>Add Record of Advice</h3>
+			            						<small class="sub_crd">A project is an activity to meet the creation of a unique product or service and thus activities that are undertaken to accomplish routine activities.</small>
+											</div> -->
+											<form class="formm">
+												<div class="row">													
+													<div class="col-sm-12 float-right">
+														<div class="form-group text-right">
+															<a href="javascript:;" (click)="goBack()" class="btn btn_theme">Back</a>
+														</div>
+													</div>
+												</div>
+											</form>
+		            						<div class="">
+		            							<!-- <mat-horizontal-stepper labelPosition="bottom" linear #stepper (selectionChange)="selectionChange($event)"> -->
+												  	
+												  	<!-- <mat-step [stepControl]="" > -->
+													    <form >
+													      	<!-- <ng-template matStepLabel>Record of Advice</ng-template> -->
+													      	<!-- stepper Inner -->
+													      	<div class="stepper_cuntnt">
+													      		<div class="row">
+													      			<!-- <div class="col-sm-4">
+													      				<div class="form-group">
+													      					<label>Date</label>
+													      					<input [(ngModel)]="RecordAdviceDate" [ngModelOptions]="{standalone: true}" type="date" required class="form-control" name="" #RecordAdviceDateVal="ngModel">
+													      					<span *ngIf="RecordAdviceDateVal.invalid && (RecordAdviceDateVal.dirty || RecordAdviceDateVal.touched || forthStep)"
+																			    class="text-danger">
+																			    This field is required.
+																			</span>
+													      				</div>
+													      			</div>
+													      			<div class="col-sm-4">
+													      				<div class="form-group">
+													      					<label>Client</label>
+													      					<input [(ngModel)]="RecordAdviceClient" [ngModelOptions]="{standalone: true}" type="" required class="form-control" name="" #RecordAdviceClientVal="ngModel" oninput="this.value = this.value.replace(/[^a-zA-Z .]/g, '').replace(/(\..*)\./g, '$1');" >
+													      					<span *ngIf="RecordAdviceClientVal.invalid && (RecordAdviceClientVal.dirty || RecordAdviceClientVal.touched || forthStep)"
+																			    class="text-danger">
+																			    This field is required.
+																			</span>
+													      				</div>
+													      			</div>
+													      			<div class="col-sm-4">
+													      				<div class="form-group">
+													      					<label>Advisor</label>
+													      					<input [(ngModel)]="RecordAdviceAdvisor" [ngModelOptions]="{standalone: true}" type="" required class="form-control" name="" #RecordAdviceAdvisorVal="ngModel"  oninput="this.value = this.value.replace(/[^a-zA-Z .]/g, '').replace(/(\..*)\./g, '$1');">
+													      					<span *ngIf="RecordAdviceAdvisorVal.invalid && (RecordAdviceAdvisorVal.dirty || RecordAdviceAdvisorVal.touched || forthStep)"
+																			    class="text-danger">
+																			    This field is required.
+																			</span>
+													      				</div>
+													      			</div> -->
+													      			<div class="col-sm-12">
+													      				<div class="form-group">
+													      					<label>Summary of discussion with client</label>
+													      					<textarea required [(ngModel)]="RecordAdviceSummaryOfDiscussionWithClient" [ngModelOptions]="{standalone: true}" class="form-control" rows="4" #RecordAdviceSummaryOfDiscussionWithClientVal="ngModel"></textarea>
+													      					<span *ngIf="RecordAdviceSummaryOfDiscussionWithClientVal.invalid && (RecordAdviceSummaryOfDiscussionWithClientVal.dirty || RecordAdviceSummaryOfDiscussionWithClientVal.touched || forthStep)"
+																			    class="text-danger">
+																			    This field is required.
+																			</span>
+													      				</div>
+													      			</div>
+													      		</div>
+													      		<div class="row">
+													      			<div class="col-sm-12">
+													      				<div class="form-group">
+													      					<label>Summary of Advice from Advisor</label>
+													      					<textarea required [(ngModel)]="RecordAdviceSummaryOfAdviceFromAdvisor" [ngModelOptions]="{standalone: true}" class="form-control" rows="4" #RecordAdviceSummaryOfAdviceFromAdvisorVal="ngModel"></textarea>
+													      					<span *ngIf="RecordAdviceSummaryOfAdviceFromAdvisorVal.invalid && advisorRequired && (RecordAdviceSummaryOfAdviceFromAdvisorVal.dirty || RecordAdviceSummaryOfAdviceFromAdvisorVal.touched || forthStep)"
+																			    class="text-danger">
+																			    This field is required.
+																			</span>
+													      				</div>
+													      			</div>
+													      			<div class="col-sm-6">
+													      				<div class="form-group">
+													      					<label>Was the Advice of the Advisor taken:</label>
+													      				</div>
+													      			</div>
+													      			<div class="col-sm-6">
+													      				<div class="form-group">
+													      				
+																					
+																					  <mat-radio-group name="opList"  fxLayout="column" [(ngModel)]="chosenItem" [ngModelOptions]="{standalone: true}">
+
+																<span class="mr-4" style="margin-left: 5px;" *ngFor="let op of list">
+																					  	<mat-radio-button  [value]="op.name" name="opList" >{{ op.name}}</mat-radio-button>
+																					  </span></mat-radio-group>
+																				
+
+													      						
+													      			
+
+													      					
+													      				</div>
+													      			</div>
+													      			
+													      			<div *ngIf="chosenItem=='No'" class="col-sm-12">
+
+													      				<div class="form-group">
+													      					<label>If not then, Explain:</label>
+													      					<textarea required [(ngModel)]="RecordAdviceOfAdvisorExplain" [ngModelOptions]="{standalone: true}" class="form-control" rows="4" #RecordAdviceOfAdvisorExplainVal="ngModel"></textarea>
+													      					<span *ngIf="RecordAdviceOfAdvisorExplainVal.invalid && chosenItemStatus() && (RecordAdviceOfAdvisorExplainVal.dirty || RecordAdviceOfAdvisorExplainVal.touched || forthStep)"
+																			    class="text-danger">
+																			    This field is required.
+																			</span>
+													      				</div>
+													      			</div>
+													      			<div class="col-sm-6">
+													      				<div class="form-group">
+													      					<label>Client Signature</label>
+													      					<ng-signature-pad doneButtonText="Save Sign" format="base64" [emitOnDragEnd]="true" (done)="ClientSignUpload($event)" [showClearButton]="hide" [showDoneButton]="hide">
+																			</ng-signature-pad>
+																			<label>Client</label>
+																			<input [(ngModel)]="RecordAdviceClient" [ngModelOptions]="{standalone: true}" type="" required class="form-control" name="" #RecordAdviceClientVal="ngModel" oninput="this.value = this.value.replace(/[^a-zA-Z .]/g, '').replace(/(\..*)\./g, '$1');" >
+													      					<span *ngIf="RecordAdviceClientVal.invalid && (RecordAdviceClientVal.dirty || RecordAdviceClientVal.touched || forthStep)"
+																			    class="text-danger">
+																			    This field is required.
+																			</span>
+													      				</div>
+													      			</div>
+													      			<div class="col-sm-6">
+													      				<div class="form-group">
+													      					<label>Advisor Signature</label>
+													      					<ng-signature-pad
+																			  doneButtonText="Save Sign" format="base64" [emitOnDragEnd]="true" (done)="AdvisorSignUpload($event)" [showClearButton]="hide" [showDoneButton]="hide">
+																			</ng-signature-pad>
+																			<label>Advisor</label>
+													      					<input [(ngModel)]="RecordAdviceAdvisor" [ngModelOptions]="{standalone: true}" type="" required class="form-control" name="" #RecordAdviceAdvisorVal="ngModel"  oninput="this.value = this.value.replace(/[^a-zA-Z .]/g, '').replace(/(\..*)\./g, '$1');">
+													      					<span *ngIf="RecordAdviceAdvisorVal.invalid && advisorRequired && (RecordAdviceAdvisorVal.dirty || RecordAdviceAdvisorVal.touched || forthStep)"
+																			    class="text-danger">
+																			    This field is required.
+																			</span>
+
+													      				</div>
+													      			</div>
+													      		</div>
+													      		<div class="row">
+													      			<div class="col-sm-4">
+													      				<div class="form-group">
+													      					<label>Date</label>
+													      					<input [(ngModel)]="RecordAdviceDate" [ngModelOptions]="{standalone: true}" type="date" required class="form-control" name="" #RecordAdviceDateVal="ngModel">
+													      					<span *ngIf="RecordAdviceDateVal.invalid && (RecordAdviceDateVal.dirty || RecordAdviceDateVal.touched || forthStep)"
+																			    class="text-danger">
+																			    This field is required.
+																			</span>
+													      				</div>
+													      			</div>
+													      			<!-- <div class="col-sm-4">
+													      				<div class="form-group">
+													      					
+													      					
+													      				</div>
+													      			</div> -->
+													      			<!-- <div class="col-sm-4">
+													      				<div class="form-group">
+													      					
+													      				</div>
+													      			</div> -->
+													      			
+													      		</div>
+													      	</div>
+													      	<div class="form-group text-right">
+													      	    <div class="pos_rel log_sgn_btn">
+													      	        <a (click)="add()" href="javascript:;" class="btn btn_theme sgnup_btn"> Save  </a>
+													      	    </div>
+													      	</div>
+													      	<!-- stepper Inner /-->
+													      	<!-- <div class="d-flex justify-content-between">
+													        	<button type="button" mat-raised-button class="btn_back_stppr" matStepperPrevious>Back</button>
+													        	<button mat-raised-button type="button" color="primary" (click)="forthForm(stepper)">Next</button>
+													        	
+													      	</div> -->
+													    </form>
+												  	<!-- </mat-step> -->
+												  	
+												  	<!-- change default 'edit' icon -->
+											  	    <!-- <ng-template matStepperIcon="done" let-index="index"> -->
+											  	    	<!-- <span style="background-color: green;"> -->
+											  	    		<!-- <mat-icon> -->
+											  	    	<!-- {{index +1}} -->
+											  	    		<!-- </mat-icon> -->
+											  	    	<!-- </span> -->
+											  	    <!-- </ng-template> -->
+											  	    <!-- <ng-template matStepperIcon="edit" let-index="index"> -->
+											  	    	<!-- <span style="background-color: orange;"> -->
+											  	    	<!-- {{index +1}} -->
+											  	    	<!-- </span> -->
+											  	    <!-- </ng-template> -->
+												<!-- </mat-horizontal-stepper> -->
+		            						</div>		
+		            					</div>
+		            				</div>
+		            			</div>
+		            		</div>
+            			</div>
+            		</section>
+            	</div>
+        	</div>
+        	<div class="sidenav_db">
+				<app-db-sidebar></app-db-sidebar>
+        	</div>
+        </div>
+    </section>
+    <!-- footer starts -->
+    <!-- <app-footer></app-footer> -->
+    <!-- footer ends -->
+</div>
+

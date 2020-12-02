@@ -1,0 +1,286 @@
+<!-- Header -->
+<app-db-header></app-db-header>
+<!-- Header ends -->
+
+<div class="wrapper_shala wrapper_db">
+	<section class="outer_db_wraper db_main_invstr">
+    	<div class="combine_sidenav_right_db d-flex">
+        	<div class="main_right_db invstr_db">
+        		<section class="bread_top_sec">
+        			<div class="db_container">
+            			<div class="d-flex justify-content-between align-items-center text-white pos_rel">
+            				<div class="sid_controlr">
+            					<i class="clos_sid fa fa-bars"></i>
+            					<!-- <i class="opn_sid fa fa-times"></i> -->
+            				</div>
+	            			<h3>Add Disclosure</h3>
+	            			<!-- <nav class="bread_nav_sec">
+								<ol class="breadcrumb">
+								    <li class="breadcrumb-item"><a href="#">Home</a></li>
+								    <li class="breadcrumb-item">Dashboard</li>
+								    <li class="breadcrumb-item"><a routerLink="/user/clientProfile">Client Profile</a></li>
+								    <li class="breadcrumb-item active">Add Disclosure</li>
+								</ol>
+							</nav> -->
+	            		</div>
+	            	</div>
+        		</section>
+        		<div class="marg_over_bread">
+        			<section class="review_sec_db">
+            			<div class="db_container">
+            				<div class="row">
+	            				<div class="col-sm-12">
+		            				<div class="card">
+		            					<div class="card-body">
+			            					<!-- <div class="card_ttl">
+			            						<h3>Add Disclosure</h3>
+			            						<small class="sub_crd">A project is an activity to meet the creation of a unique product or service and thus activities that are undertaken to accomplish routine activities.</small>
+											</div> -->
+											<form class="formm">
+												<div class="row">
+													<div class="col-sm-12 float-right">
+														<div class="form-group text-right">
+															<a href="javascript:;" (click)="goBack()" class="btn btn_theme">Back</a>
+														</div>
+													</div>
+													<div class="col-sm-2"></div>
+													<div class="col-sm-6">
+														<div class="form-group">
+															<input type="file" class="form-control" (change)="selectPDF($event)" [accept]="'.pdf'" name="" placeholder="choose discloser">
+														</div>
+													</div>
+													<div class="col-sm-3">
+														<div class="form-group">
+															<button class="btn btn_theme" (click)="updateDisclosure()">Upload Disclosure</button>
+														</div>
+													</div>
+													
+												</div>
+											</form>
+		            						<div class="table-responsive table_seler">
+		            							<!-- <mat-horizontal-stepper labelPosition="bottom" linear #stepper (selectionChange)="selectionChange($event)"> -->
+												  	
+												  	<!-- <mat-step [stepControl]="" > -->
+													   
+													    <!-- <form [formGroup]="form3"> -->
+													      	<!-- <ng-template matStepLabel>Disclosure</ng-template> -->
+													      	<!-- stepper Inner -->
+													      	<div class="stepper_cuntnt">
+													      		<div class="col-sm-10 offset-sm-1">
+													      			<div class="outr_boundry_disclos">
+																		<div class="wrp_upr_disc text-center">
+																			<h3>Intermediary Disclosure</h3>
+																			<p>Advisor Full Name: Marthunis Christiaan Oosthuizen<br>
+																		  Director of Five Two Investment (PTY) Ltd<br>
+																		  Practicing since 2010-Salary employed<br>
+																		  No commision is received directly from product providers</p>
+																		  <p>Formal Association: Member of Mensa<br>
+																		  Formal Qualification: Certificate in Financial Planning.</p>
+																		  <h5>I have training and experience to advice clients regarding:</h5>
+																		  <ul class="ul-itms">
+																			<li><i class="far fa-circle" aria-hidden="true"></i>Investment Management & Planning</li>
+																			<li> <i class="far fa-circle" aria-hidden="true"></i>Estate Planning</li>
+																			<li> <i class="far fa-circle" aria-hidden="true"></i>Retirement Planning </li>
+																			<li> <i class="far fa-circle" aria-hidden="true"></i>Domestic & Commercial Insurance</li>
+																			<li> <i class="far fa-circle" aria-hidden="true"></i>Financial Planning</li>
+																			<li> <i class="far fa-circle" aria-hidden="true"></i>Health Care</li>
+																		</ul>
+																		</div>
+													      				<div class="botom_div_ard">
+													      					<div class="row">
+																				<div class="col-sm-6">
+																					<div class="wrp_span_typ">
+																						<h5>Professional Indemnity Cover</h5>
+																						<p>R10,000,000</p>
+																					</div>
+																					<div class="wrp_span_typ">
+																						<h5>Commission</h5>
+																						<p>Ninety One > 80%</p>
+																					</div>
+																					<div class="wrp_span_typ">
+																						<h5>FAIS Ombud</h5>
+																						<p>Phone: 012 762 5000</p>
+																						<p>Email: info@faisombud.co.za</p>
+																					  <p>Boabab House</p>
+																					  <p>Eastwood Office Park </p>
+																					  <p>Lynwood Road </p>
+																					  <p>Pretoria </p>
+																						<!-- <p>Postal Address: <br>P.O. 465798,<br>Rosewood Ridge<br>0040</p> -->
+																					</div>
+																				</div>
+													      						<!-- <div class="col-sm-6">
+													      							<div class="wrp_span_typ">
+													      								<h5>Shareholdings</h5>
+													      								<p>No sharehold of FSP's support</p>
+													      							</div>
+													      							<div class="wrp_span_typ">
+													      								<h5>Compliance officer</h5>
+													      								<p>National Compliance<br>Practice Number: 45612<br>Contact Number: 7895315</p>
+													      							</div>
+													      							<div class="wrp_span_typ">
+													      								<h5>TCF & POPI</h5>
+													      								<p>Weabiding by treating customer Fairly(TCF) & the Protection of Personal information (POPI) Copies are avaiabble upon request.</p>
+													      							</div>
+													      						</div> -->
+																				<div class="col-sm-6">
+																					<div class="wrp_span_typ">
+																						<h5>Shareholdings</h5>
+																						<p>We do not hold share in any of the FCP's we contact to. </p>
+																					</div>
+																					<div class="wrp_span_typ">
+																						<h5>Compliance officer</h5>
+																						<p>National Compliance<br>Practice Number: 1307<br>Contact Number: 032 946 2921</p>
+																					</div>
+																					<div class="wrp_span_typ">
+																						<h5>POPI Requirements</h5>
+																						<p>*We respects the rights to privacy & confidentiality of our potentials/existing client's personal information. </p>
+																						<p>*You give consent that we may process, transfer disclose your personal information for the purposes of providing you with insurance products and services and complying with your instructions. </p>
+																						<p>*This may necessitate us sharing information with third parties to give effect to your requirements.</p>
+																						<p>*A copy of POPI Policy and Privacy Policy is available on our website or upon request.</p>
+																						<!-- <p>Weabiding by treating customer Fairly(TCF) & the Protection of Personal information (POPI) Copies are avaiabble upon request.</p> -->
+																					</div>
+																				</div>
+																			</div>
+													      					<div class="img_logos text-center">
+													      						<h6>Financial services providers licenced to represent</h6>
+													      						<!-- <div class="wrp_logs">
+													      							<span class="iimg_spn"><img src="https://findvectorlogo.com/wp-content/uploads/2018/09/serato-sample-vector-logo.png" class="img-fluid"></span>
+													      							<span class="iimg_spn"><img src="https://www.qualia.com/images/branding/qualia_logo_medium.png" class="img-fluid"></span>
+													      							<span class="iimg_spn"><img src="https://pngimage.net/wp-content/uploads/2018/06/sample-company-logo-png-1.png" class="img-fluid"></span>
+													      							<span class="iimg_spn"><img src="https://www.pngfind.com/pngs/m/132-1329963_logo-design-concept-for-huebris-sample-logo-design.png" class="img-fluid"></span>
+													      							<span class="iimg_spn"><img src="https://fbcd.co/images/products/0479bfbf54a9cdb35d8a51b824ee0fcc_resize.png" class="img-fluid"></span>
+													      							<span class="iimg_spn"><img src="https://www.logogarden.com/wp-content/uploads/lg-logo-samples/Technology-Science-Logo-3.png" class="img-fluid"></span>
+													      							<span class="iimg_spn"><img src="https://fbcd.co/product-lg/04498c286875e145371671a30ed93581_resize.jpg" class="img-fluid"></span>
+																				  </div> -->
+																				  <div class="wrp_logs">
+																					<span class="iimg_spn"><img src="./../../../assets/img/discloser-logo/1.jpeg" class="img-fluid"></span>
+																					<span class="iimg_spn"><img src="./../../../assets/img/discloser-logo/2.png" class="img-fluid"></span>
+																					<span class="iimg_spn"><img src="./../../../assets/img/discloser-logo/3.png" class="img-fluid"></span>
+																					<span class="iimg_spn"><img src="./../../../assets/img/discloser-logo/4.jpg" class="img-fluid"></span>
+																					<span class="iimg_spn"><img src="./../../../assets/img/discloser-logo/5.jpg" class="img-fluid"></span>
+																					<span class="iimg_spn"><img src="./../../../assets/img/discloser-logo/6.png" class="img-fluid"></span>
+																					<span class="iimg_spn"><img src="./../../../assets/img/discloser-logo/7.png" class="img-fluid"></span>
+																					<span class="iimg_spn"><img src="./../../../assets/img/discloser-logo/8.png" class="img-fluid"></span>
+																					<span class="iimg_spn"><img src="./../../../assets/img/discloser-logo/9.jpg" class="img-fluid"></span>
+																					<span class="iimg_spn"><img src="./../../../assets/img/discloser-logo/10.png" class="img-fluid"></span>
+																					<span class="iimg_spn"><img src="./../../../assets/img/discloser-logo/11.png" class="img-fluid"></span>
+																					<span class="iimg_spn"><img src="./../../../assets/img/discloser-logo/12.jpg" class="img-fluid"></span>
+																					<!-- <span class="iimg_spn"><img src="./../../../assets/img/discloser-logo/13.jpg" class="img-fluid"></span> -->
+																					
+																				</div>
+													      					</div>
+													      					<h6>By signing this disclosure, I confirm that i agree to above statements</h6>
+													      					<!-- <h6>By signing this disclosure, I confirm that i have recieved a copy of such:</h6> -->
+													      					<form  class="row mb-3" action="">
+													      						
+																				<div class="col-sm-12">
+																					<div class="form-group">
+																						<label for="pwd">Sign in the given box below</label>
+																						<!-- <ng-signature-pad [emitOnDragEnd]="true" (done)="DisclosureSignUpload($event)"
+																						  doneButtonText="Save Sign"
+																						  format="base64" [showClearButton]="hide" [showDoneButton]="hide">
+																						</ng-signature-pad> -->
+
+																						<ng-signature-pad [emitOnDragEnd]="true" (done)="DisclosureSignUpload($event)"
+																						  doneButtonText="Save Sign" (clear)="clearSign()" [editable]="true"
+																						  format="base64" [showClearButton]="true" [showDoneButton]="false" [clearButtonText]="'Clear Signature'">
+																						</ng-signature-pad>
+																					</div>
+																				</div>
+																				<div class="col-sm-4">
+													      							<div class="form-group">
+																						<label for="email">Name:</label>
+																						<input [(ngModel)]="DisclosureName" [ngModelOptions]="{standalone: true}" type="text" class="form-control" placeholder="Name" id="email" required #DisclosureNameRe="ngModel" oninput="this.value = this.value.replace(/[^a-zA-Z .]/g, '').replace(/(\..*)\./g, '$1');" >
+																						<span *ngIf="DisclosureNameRe.invalid && (DisclosureNameRe.dirty || DisclosureNameRe.touched  || thirdStep)"
+																						    class="text-danger">
+
+																						    This field is required.
+																						    
+																						</span>
+																						<!-- <ng-template #elseBlock>
+																							
+																						<span *ngIf="DisclosureName==''"
+																						    class="text-danger">
+
+																						    This field is required.
+																						    
+																						</span>
+																						</ng-template> -->
+
+
+
+																						
+																					</div>
+																				</div>
+																				<div class="col-sm-4">
+																					<div class="form-group">
+																						<label for="pwd">Date:</label>
+																						<input [(ngModel)]="DisclosureDate" [ngModelOptions]="{standalone: true}" type="date" class="form-control" placeholder="Date" id="pwd" required #DisclosureDateRe="ngModel">
+																						<span *ngIf="DisclosureDateRe.invalid && (DisclosureDateRe.dirty || DisclosureDateRe.touched || thirdStep)"
+																						    class="text-danger">
+
+																						    This field is required.
+																						    
+																						</span>
+																					</div>
+																				</div>
+																			</form> 
+																			<!-- <mat-checkbox [(ngModel)]="DisclosureAgree" [ngModelOptions]="{standalone: true}" required #DisclosureAgreeRe="ngModel" class="example-margin">I hereby agree to the terms and conditions of the above disclosure</mat-checkbox> -->
+																			<!-- <br> -->
+																			<!-- <span *ngIf="DisclosureAgreeRe.invalid && (DisclosureAgreeRe.dirty || DisclosureAgreeRe.touched || thirdStep)"
+																			    class="text-danger">
+
+																			    This field is required.
+																			    
+																			</span> -->
+													      				</div>
+													      			</div>
+													      		</div>
+													      	</div>
+													      	<div class="form-group text-right">
+													      	    <div class="pos_rel log_sgn_btn">
+													      	        <a (click)="add()" href="javascript:;" class="btn btn_theme sgnup_btn"> Save  </a>
+													      	    </div>
+													      	</div>
+													      	<!-- stepper Inner /-->
+													      	<!-- <div class="d-flex justify-content-between"> -->
+													        	<!-- <button type="button" mat-raised-button class="btn_back_stppr" matStepperPrevious>Back</button> -->
+													        	<!-- <button (click) ="thirdForm(stepper)" mat-raised-button type="button" color="primary" >Next</button> -->
+													        	<!-- <button mat-raised-button type="button" color="primary" matStepperNext>Next</button> -->
+													      	<!-- </div> -->
+													    <!-- </form> -->
+												  	<!-- </mat-step> -->
+												  	
+												  	<!-- change default 'edit' icon -->
+											  	    <!-- <ng-template matStepperIcon="done" let-index="index"> -->
+											  	    	<!-- <span style="background-color: green;"> -->
+											  	    		<!-- <mat-icon> -->
+											  	    	<!-- {{index +1}} -->
+											  	    		<!-- </mat-icon> -->
+											  	    	<!-- </span> -->
+											  	    <!-- </ng-template> -->
+											  	    <!-- <ng-template matStepperIcon="edit" let-index="index"> -->
+											  	    	<!-- <span style="background-color: orange;"> -->
+											  	    	<!-- {{index +1}} -->
+											  	    	<!-- </span> -->
+											  	    <!-- </ng-template> -->
+												<!-- </mat-horizontal-stepper> -->
+		            						</div>		
+		            					</div>
+		            				</div>
+		            			</div>
+		            		</div>
+            			</div>
+            		</section>
+            	</div>
+        	</div>
+        	<div class="sidenav_db">
+				<app-db-sidebar></app-db-sidebar>
+        	</div>
+        </div>
+    </section>
+    <!-- footer starts -->
+    <!-- <app-footer></app-footer> -->
+    <!-- footer ends -->
+</div>
+
