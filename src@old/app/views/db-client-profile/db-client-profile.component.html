@@ -42,14 +42,27 @@
                                                         <div class="lft_cards_info">
                                                             <div id="accordion">
                                                                 <div class="card mb-4 align-items-center">
-                                                                    <div class="card-header activee" id="headingOne">
-                                                                        <div class="mb-0 collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                                    <div class="card-header activee" id="headingOne" style="cursor: pointer;">
+                                                                        <div class="mb-0 collapsed" data-toggle="collapse" data-target="#collapseOneNew" aria-expanded="true" aria-controls="collapseOneNew">
                                                                             <div class="hgt_flex d-flex justify-content-between">
                                                                                 <span class="val_hed">Total value</span>
                                                                                 <span><strong>@</strong></span>
                                                                                 <!-- <span>15 May 2020</span> -->
                                                                                 <span>{{ last_date }}</span>
                                                                                 <span>R {{ formatAmount(totalBalance.toFixed(2)) }}</span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div id="collapseOneNew" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                                                                        <div class="card-body">
+                                                                            <div class="invst_dtls">
+                                                                                <ul class="yers_open_li" type="none">
+                                                                                    <li *ngFor="let item of totalClientValue" class="d-flex justify-content-between">
+                                                                                        <span class="wid_two">{{ showYear(item) }}</span>
+                                                                                        <span class="wid_two">{{ getPercentageTotalValue(item.totalAmount) }}%</span>
+                                                                                        <span>R {{ formatAmount(item.totalAmount)}}<br> {{ item.product_name }} </span>
+                                                                                    </li>                                                                                   
+                                                                                </ul>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -75,7 +88,7 @@
                                                                                 <span class="val_hed">
                                                                                     {{ ele ? replaceNameFiveTwo(ele.investor_deals['product_name']) : "" }}</span>
                                                                                 <span>{{ ele ? ele.investor_deals['product_code'] : "" }} {{ ele ? ele.investor_deals['contract_number'] : "" }}</span>
-                                                                                <span>{{ ele.investor_deals.status_flag }} R {{  formatAmount(calculateTotal(ele.investor_deals.dealAttribute_balance)) }}</span>
+                                                                                <span> <!--ele.investor_deals.status_flag -->  R {{  formatAmount(calculateTotal(ele.investor_deals.dealAttribute_balance)) }}</span>
                                                                             </div>
                                                                             <!-- Income: R 5,000 = 6% (Monthly) -->
                                                                             <p class="hedr_clk_p m-0"><small> Income: R {{ ele.investor_deals && ele.investor_deals.deal_income_details ? ele.investor_deals.deal_income_details.gross_income : "--" }} = {{ ele.investor_deals &&  ele.investor_deals.deal_income_details ? ele.investor_deals.deal_income_details.income_rate : "--" }}% ({{ ele.investor_deals && ele.investor_deals.deal_income_details ? ele.investor_deals.deal_income_details.income_frequency : "--" }})  </small></p>
@@ -148,8 +161,8 @@
                                                                                     <span *ngIf="investor.investor_documents.length==0" (click)="plusClick('id')" class="pls_ico_spn"><i class="fa fa-plus"></i></span>
                                                                                 </li>
                                                                                 <li class="d-flex justify-content-between">
-                                                                                    <span><i *ngIf="investor.DisclosureSign!=null" class="fa fa-check"></i> Disclosure</span>
-                                                                                    <span *ngIf="investor.DisclosureSign==null" (click)="plusClick('disclosure')" class="pls_ico_spn"><i class="fa fa-plus"></i></span>
+                                                                                    <span><i *ngIf="investor.DisclosurePDF != null" class="fa fa-check"></i> Disclosure</span>
+                                                                                    <span *ngIf="investor.DisclosurePDF==null" (click)="plusClick('disclosure')" class="pls_ico_spn"><i class="fa fa-plus"></i></span>
                                                                                 </li>
                                                                                 <li class="d-flex justify-content-between">
                                                                                     <span><i *ngIf="investor.RecordAdviceClientSignature!=null" class="fa fa-check"></i> Record of Advice</span>

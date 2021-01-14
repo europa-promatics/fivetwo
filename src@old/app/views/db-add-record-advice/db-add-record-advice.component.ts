@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../.././auth/auth.service';
 import { ActivatedRoute, Router } from  "@angular/router";
 import { ToastrService } from 'ngx-toastr';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-db-add-record-advice',
@@ -28,7 +29,7 @@ export class DbAddRecordAdviceComponent implements OnInit {
     chosenItem = this.list[0].name;
     adviseTaken
 
-  constructor(private authService:AuthService,private router:Router, private toastr: ToastrService) { }
+  constructor(private _location: Location,private authService:AuthService,private router:Router, private toastr: ToastrService) { }
 
   ngOnInit() {
   	this.getInvestor()
@@ -198,5 +199,9 @@ export class DbAddRecordAdviceComponent implements OnInit {
             return false;
         }
     }
+
+    goBack(){
+        this._location.back();
+      }
 
 }

@@ -15,7 +15,8 @@ import * as currencyFormatter from 'currency-formatter';
 
 export class DbClientProfileComponent implements OnInit {
 	investor
-	investor_data
+  investor_data
+  investor_DD : any
 	Note
   authService
   client_data
@@ -23,15 +24,17 @@ export class DbClientProfileComponent implements OnInit {
   totalBalance=0;
   last_date
   deals = []
+  totalClientValue = []
 
   constructor(private route: ActivatedRoute,private service:AuthService,private router:Router,private toastr: ToastrService) {
       this.authService = service;
    }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.client_data = {};
     // alert(currencyFormatter.format(1000000, { code: 'ZAR' }))
-  	this.getInvestor()
+    await this.getInvestor();
+    this.getTotalValue();
   }
 
   getBalance(ref_number){
@@ -66,7 +69,7 @@ export class DbClientProfileComponent implements OnInit {
 
       })
       // all total balance
-      console.log(this.totalBalance);
+      // console.log(this.totalBalance);
       // this.totalBalance = this.totalBalance + totalBalanceTemp;
       return totalBalanceTemp.toFixed(2);
   }
@@ -84,6 +87,13 @@ export class DbClientProfileComponent implements OnInit {
   getPercentage(amount,total_amount){
 		if(amount > 0){
 			return Math.round(amount / total_amount * 100)
+		}else{
+			return 0;
+		}
+  }
+  getPercentageTotalValue(amount){
+		if(amount > 0){
+			return Math.round(amount / this.totalBalance * 100)
 		}else{
 			return 0;
 		}
@@ -136,7 +146,7 @@ export class DbClientProfileComponent implements OnInit {
 
   
 
-  getInvestor(){
+  async getInvestor(){
   	var investor_data = JSON.parse(sessionStorage.getItem('investor'))
 
     var ob = {
@@ -146,7 +156,8 @@ export class DbClientProfileComponent implements OnInit {
     this.authService.clientProfile(ob).subscribe(data => {
 
       if (data) {
-		this.investor_data = data.investor;
+		    this.investor_data = data.investor;
+		    this.investor_DD = data.investor;
 		  
         console.log(data)
         this.client_data = data;
@@ -178,6 +189,29 @@ export class DbClientProfileComponent implements OnInit {
   		console.log(this.investor)
 
   	}
+  }
+
+  getTotalValue(){
+    // alert(this.investor_DD);
+    var obj = {
+      client_id : this.route.snapshot.params.client_id
+    }
+    this.authService.getTotalValue(obj).subscribe(data => {
+      console.log(data);
+        if(data.success){
+
+          this.totalClientValue = data.deals;
+
+
+        }else{
+          this.toastr.error(data.message);
+        }
+
+    },err => {
+      this.authService.showAuthError(err);
+    })
+
+
   }
 
   plusClick(type){

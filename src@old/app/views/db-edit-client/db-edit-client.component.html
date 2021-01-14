@@ -33,7 +33,7 @@
 		            					<div class="card-body">
 			            					
 		            						<div class="table-responsive table_seler">
-		            							<mat-horizontal-stepper labelPosition="bottom" linear #stepper (selectionChange)="selectionChange($event)">
+		            							<mat-horizontal-stepper labelPosition="bottom" [linear]="false" linear #stepper (selectionChange)="selectionChange($event)">
 												  	<mat-step [stepControl]="" >
 													    <form [formGroup]="form"
 													    	(ngSubmit)="submit()"
@@ -654,54 +654,77 @@
 													      					<p>Formal Association: Member of Mensa<br>
 													      					Formal Qualification: Certificate in Financial Planning.</p>
 													      					<h5>I have training and experience to advice clients regarding:</h5>
-													      					<ul type="circle">
-													      						<li>Investment Management</li><li>Estate Planning</li><li>Domestic & Commercial Insurance</li><li>Financial Planning</li><li>Health Care</li>
-													      					</ul>
+													      					<!-- <ul type="circle">
+													      						<li>Investment Management & Planning</li><li>Estate Planning</li><li>Retirement Planning </li><li>Domestic & Commercial Insurance</li><li>Financial Planning</li><li>Health Care</li>
+																			  </ul> -->
+																			  <ul class="ul-itms">
+																				<li><i class="far fa-circle" aria-hidden="true"></i>Investment Management & Planning</li>
+																				<li> <i class="far fa-circle" aria-hidden="true"></i>Estate Planning</li>
+																				<li> <i class="far fa-circle" aria-hidden="true"></i>Retirement Planning </li>
+																				<li> <i class="far fa-circle" aria-hidden="true"></i>Domestic & Commercial Insurance</li>
+																				<li> <i class="far fa-circle" aria-hidden="true"></i>Financial Planning</li>
+																				<li> <i class="far fa-circle" aria-hidden="true"></i>Health Care</li>
+																			</ul>
 													      				</div>
 													      				<div class="botom_div_ard">
 													      					<div class="row">
 													      						<div class="col-sm-6">
 													      							<div class="wrp_span_typ">
 													      								<h5>Professional Indemnity Cover</h5>
-													      								<p>R 1,000,000</p>
+													      								<p>R10,000,000</p>
 													      							</div>
 													      							<div class="wrp_span_typ">
 													      								<h5>Commission</h5>
-													      								<p>Investor 80%</p>
+													      								<p>Ninety One > 80%</p>
 													      							</div>
 													      							<div class="wrp_span_typ">
 													      								<h5>FAIS Ombud</h5>
-													      								<p>Phone: 012 46879430</p>
-													      								<p>Email: info@example.com</p>
-													      								<p>Postal Address: <br>P.O. 465798,<br>Rosewood Ridge<br>0040</p>
+													      								<p>Phone: 012 762 5000</p>
+																						  <p>Email: info@faisombud.co.za</p>
+																						<p>Boabab House</p>
+																						<p>Eastwood Office Park </p>
+																						<p>Lynwood Road </p>
+																						<p>Pretoria </p>
+													      								<!-- <p>Postal Address: <br>P.O. 465798,<br>Rosewood Ridge<br>0040</p> -->
 													      							</div>
 													      						</div>
 													      						<div class="col-sm-6">
 													      							<div class="wrp_span_typ">
 													      								<h5>Shareholdings</h5>
-													      								<p>No sharehold of FSP's support</p>
+													      								<p>We do not hold share in any of the FCP's we contact to. </p>
 													      							</div>
 													      							<div class="wrp_span_typ">
 													      								<h5>Compliance officer</h5>
-													      								<p>National Compliance<br>Practice Number: 45612<br>Contact Number: 7895315</p>
+													      								<p>National Compliance<br>Practice Number: 1307<br>Contact Number: 032 946 2921</p>
 													      							</div>
 													      							<div class="wrp_span_typ">
-													      								<h5>TCF & POPI</h5>
-													      								<p>Weabiding by treating customer Fairly(TCF) & the Protection of Personal information (POPI) Copies are avaiabble upon request.</p>
+																						  <h5>POPI Requirements</h5>
+																						  <p>*We respects the rights to privacy & confidentiality of our potentials/existing client's personal information. </p>
+																						  <p>*You give consent that we may process, transfer disclose your personal information for the purposes of providing you with insurance products and services and complying with your instructions. </p>
+																						  <p>*This may necessitate us sharing information with third parties to give effect to your requirements.</p>
+																						  <p>*A copy of POPI Policy and Privacy Policy is available on our website or upon request.</p>
+													      								<!-- <p>Weabiding by treating customer Fairly(TCF) & the Protection of Personal information (POPI) Copies are avaiabble upon request.</p> -->
 													      							</div>
 													      						</div>
 													      					</div>
 													      					<div class="img_logos text-center">
 													      						<h6>Financial services providers licenced to represent</h6>
 													      						<div class="wrp_logs">
-													      							<span class="iimg_spn"><img src="https://findvectorlogo.com/wp-content/uploads/2018/09/serato-sample-vector-logo.png" class="img-fluid"></span>
-													      							<span class="iimg_spn"><img src="https://www.qualia.com/images/branding/qualia_logo_medium.png" class="img-fluid"></span>
-													      							<span class="iimg_spn"><img src="https://pngimage.net/wp-content/uploads/2018/06/sample-company-logo-png-1.png" class="img-fluid"></span>
-													      							<span class="iimg_spn"><img src="https://www.pngfind.com/pngs/m/132-1329963_logo-design-concept-for-huebris-sample-logo-design.png" class="img-fluid"></span>
-													      							<span class="iimg_spn"><img src="https://fbcd.co/images/products/0479bfbf54a9cdb35d8a51b824ee0fcc_resize.png" class="img-fluid"></span>
-													      							<span class="iimg_spn"><img src="https://www.logogarden.com/wp-content/uploads/lg-logo-samples/Technology-Science-Logo-3.png" class="img-fluid"></span>
-													      							<span class="iimg_spn"><img src="https://fbcd.co/product-lg/04498c286875e145371671a30ed93581_resize.jpg" class="img-fluid"></span>
-													      						</div>
+																					<span class="iimg_spn"><img src="./../../../assets/img/discloser-logo/1.jpeg" class="img-fluid"></span>
+																					<span class="iimg_spn"><img src="./../../../assets/img/discloser-logo/2.png" class="img-fluid"></span>
+																					<span class="iimg_spn"><img src="./../../../assets/img/discloser-logo/3.png" class="img-fluid"></span>
+																					<span class="iimg_spn"><img src="./../../../assets/img/discloser-logo/4.jpg" class="img-fluid"></span>
+																					<span class="iimg_spn"><img src="./../../../assets/img/discloser-logo/5.jpg" class="img-fluid"></span>
+																					<span class="iimg_spn"><img src="./../../../assets/img/discloser-logo/6.png" class="img-fluid"></span>
+																					<span class="iimg_spn"><img src="./../../../assets/img/discloser-logo/7.png" class="img-fluid"></span>
+																					<span class="iimg_spn"><img src="./../../../assets/img/discloser-logo/8.png" class="img-fluid"></span>
+																					<span class="iimg_spn"><img src="./../../../assets/img/discloser-logo/9.jpg" class="img-fluid"></span>
+																					<span class="iimg_spn"><img src="./../../../assets/img/discloser-logo/10.png" class="img-fluid"></span>
+																					<span class="iimg_spn"><img src="./../../../assets/img/discloser-logo/11.png" class="img-fluid"></span>
+																					<span class="iimg_spn"><img src="./../../../assets/img/discloser-logo/12.jpg" class="img-fluid"></span>
+																					<!-- <span class="iimg_spn"><img src="./../../../assets/img/discloser-logo/13.jpg" class="img-fluid"></span> -->
+																					
+																				</div>
 													      					</div>
 													      					<h6>By signing this disclosure, I confirm that i agree to above statements</h6>
 													      					<!-- <h6>By signing this disclosure, I confirm that i have recieved a copy of such:</h6> -->
@@ -710,10 +733,14 @@
 																					<div class="col-sm-9">
 																						<div class="form-group">
 																							<label for="pwd">Sign in the given box below</label>
-																							<ng-signature-pad [emitOnDragEnd]="true" (done)="DisclosureSignUpload($event)"
+																							<!-- <ng-signature-pad [emitOnDragEnd]="true" (done)="DisclosureSignUpload($event)"
 																							doneButtonText="Save Sign"
 																							format="base64" [showClearButton]="hide" [showDoneButton]="hide">
-																							</ng-signature-pad>
+																							</ng-signature-pad> -->
+																							<ng-signature-pad [emitOnDragEnd]="true" (done)="DisclosureSignUpload($event)"
+																						  doneButtonText="Save Sign" (clear)="clearSign()" [editable]="true"
+																						  format="base64" [showClearButton]="true" [showDoneButton]="false" [clearButtonText]="'Clear Signature'">
+																						</ng-signature-pad>
 																						</div>
 																					</div>
 																					<div class="col-sm-3" >
@@ -881,8 +908,12 @@
 																		</div>
 													      				<div class="form-group">
 													      					<label>Client Signature</label>
-													      					<ng-signature-pad doneButtonText="Save Sign" format="base64" [emitOnDragEnd]="true" (done)="ClientSignUpload($event)" [showClearButton]="hide" [showDoneButton]="hide">
-																			</ng-signature-pad>
+													      					<!-- <ng-signature-pad doneButtonText="Save Sign" format="base64" [emitOnDragEnd]="true" (done)="ClientSignUpload($event)" [showClearButton]="hide" [showDoneButton]="hide">
+																			</ng-signature-pad> -->
+																			<ng-signature-pad [emitOnDragEnd]="true" (done)="ClientSignUpload($event)"
+																						  doneButtonText="Save Sign" (clear)="clearSign()" [editable]="true"
+																						  format="base64" [showClearButton]="true" [showDoneButton]="false" [clearButtonText]="'Clear Signature'">
+																						</ng-signature-pad>
 																			<label>Client</label>
 																			<input [(ngModel)]="RecordAdviceClient" [ngModelOptions]="{standalone: true}" type="" required class="form-control" name="" #RecordAdviceClientVal="ngModel" oninput="this.value = this.value.replace(/[^a-zA-Z .]/g, '').replace(/(\..*)\./g, '$1');" >
 													      					<span *ngIf="RecordAdviceClientVal.invalid && (RecordAdviceClientVal.dirty || RecordAdviceClientVal.touched || forthStep)"
@@ -899,9 +930,13 @@
 																		</div>
 													      				<div class="form-group">
 													      					<label>Advisor Signature</label>
-													      					<ng-signature-pad
+													      					<!-- <ng-signature-pad
 																			  doneButtonText="Save Sign" format="base64" [emitOnDragEnd]="true" (done)="AdvisorSignUpload($event)" [showClearButton]="hide" [showDoneButton]="hide">
-																			</ng-signature-pad>
+																			</ng-signature-pad> -->
+																			<ng-signature-pad [emitOnDragEnd]="true" (done)="ClientSignUpload($event)"
+																						  doneButtonText="Save Sign" (clear)="clearSign()" [editable]="true"
+																						  format="base64" [showClearButton]="true" [showDoneButton]="false" [clearButtonText]="'Clear Signature'">
+																						</ng-signature-pad>
 																			<label>Advisor</label>
 													      					<input [(ngModel)]="RecordAdviceAdvisor" [ngModelOptions]="{standalone: true}" type="" required class="form-control" name="" #RecordAdviceAdvisorVal="ngModel"  oninput="this.value = this.value.replace(/[^a-zA-Z .]/g, '').replace(/(\..*)\./g, '$1');">
 													      					<span *ngIf="RecordAdviceAdvisorVal.invalid && advisorRequired && (RecordAdviceAdvisorVal.dirty || RecordAdviceAdvisorVal.touched || forthStep)"
@@ -960,7 +995,7 @@
 														      					</div>
 														      					<div class="col-sm-4">
 														      						<div class="input-group mb-3">
-																				  		<input [(ngModel)]="Year1" [ngModelOptions]="{standalone: true}" required type="text"  class="form-control" #Year1Val="ngModel" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" placeholder="0" min="1">
+																				  		<input (keyup)="getYearTotal()" [(ngModel)]="Year1" [ngModelOptions]="{standalone: true}" required type="text"  class="form-control" #Year1Val="ngModel" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" placeholder="0" min="1">
 																					  	<div class="input-group-append">
 																					    	<span class="input-group-text" id="basic-addon2">%</span>
 																					  	</div>
@@ -980,7 +1015,7 @@
 														      					</div>
 														      					<div class="col-sm-4">
 														      						<div class="input-group mb-3">
-																				  		<input [(ngModel)]="Year2" [ngModelOptions]="{standalone: true}" required type="text" class="form-control" #Year2Val="ngModel" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" placeholder="0">
+																				  		<input (keyup)="getYearTotal()" [(ngModel)]="Year2" [ngModelOptions]="{standalone: true}" required type="text" class="form-control" #Year2Val="ngModel" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" placeholder="0">
 																					  	<div class="input-group-append">
 																					    	<span class="input-group-text" id="basic-addon2">%</span>
 																					  	</div>
@@ -999,7 +1034,7 @@
 														      					</div>
 														      					<div class="col-sm-4">
 														      						<div class="input-group mb-3">
-																				  		<input [(ngModel)]="Year3" [ngModelOptions]="{standalone: true}" required type="text" class="form-control" #Year3Val="ngModel" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" placeholder="0">
+																				  		<input (keyup)="getYearTotal()" [(ngModel)]="Year3" [ngModelOptions]="{standalone: true}" required type="text" class="form-control" #Year3Val="ngModel" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" placeholder="0">
 																					  	<div class="input-group-append">
 																					    	<span class="input-group-text" id="basic-addon2">%</span>
 																					  	</div>
@@ -1018,7 +1053,7 @@
 														      					</div>
 														      					<div class="col-sm-4">
 														      						<div class="input-group mb-3">
-																				  		<input [(ngModel)]="Year4" [ngModelOptions]="{standalone: true}" required type="text" class="form-control" #Year4Val="ngModel" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" placeholder="0">
+																				  		<input (keyup)="getYearTotal()" [(ngModel)]="Year4" [ngModelOptions]="{standalone: true}" required type="text" class="form-control" #Year4Val="ngModel" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" placeholder="0">
 																					  	<div class="input-group-append">
 																					    	<span class="input-group-text" id="basic-addon2">%</span>
 																					  	</div>
@@ -1037,7 +1072,7 @@
 														      					</div>
 														      					<div class="col-sm-4">
 														      						<div class="input-group mb-3">
-																				  		<input [(ngModel)]="Year5" [ngModelOptions]="{standalone: true}" required type="text" class="form-control" #Year5Val="ngModel" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" placeholder="0">
+																				  		<input (keyup)="getYearTotal()" [(ngModel)]="Year5" [ngModelOptions]="{standalone: true}" required type="text" class="form-control" #Year5Val="ngModel" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" placeholder="0">
 																					  	<div class="input-group-append">
 																					    	<span class="input-group-text" id="basic-addon2">%</span>
 																					  	</div>
@@ -1056,7 +1091,7 @@
 														      					</div>
 														      					<div class="col-sm-4">
 														      						<div class="input-group mb-3">
-																				  		<input [(ngModel)]="Year6" [ngModelOptions]="{standalone: true}" required type="text" class="form-control" #Year6Val="ngModel" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" placeholder="0" >
+																				  		<input (keyup)="getYearTotal()" [(ngModel)]="Year6" [ngModelOptions]="{standalone: true}" required type="text" class="form-control" #Year6Val="ngModel" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" placeholder="0" >
 																					  	<div class="input-group-append">
 																					    	<span class="input-group-text" id="basic-addon2">%</span>
 																					  	</div>
@@ -1075,7 +1110,7 @@
 														      					</div>
 														      					<div class="col-sm-4">
 														      						<div class="input-group mb-3">
-																				  		<input [(ngModel)]="YearTotal" [ngModelOptions]="{standalone: true}" type="text" class="form-control" value="" readonly="">
+																				  		<input [(ngModel)]="YearTotal" [ngModelOptions]="{standalone: true}" type="text" class="form-control {{ errorClass }}" value="" readonly="">
 																					  	<div class="input-group-append">
 																					    	<span class="input-group-text" id="basic-addon2">%</span>
 																					  	</div>
@@ -1135,6 +1170,16 @@
 														      						Year 5
 														      					</div>
 														      					<div class="col-sm-7">
+														      						Multi Asset-High Equity
+														      					</div>
+														      				</div>
+														      			</div>
+														      			<div class="one_div_wrp">
+														      				<div class="row">
+														      					<div class="col-sm-5">
+														      						Year 6
+														      					</div>
+														      					<div class="col-sm-7">
 														      						Equity
 														      					</div>
 														      				</div>
@@ -1150,8 +1195,12 @@
 																		</div>
 													      				<div class="form-group">
 													      					<label>Client Signature</label>
-													      					<ng-signature-pad doneButtonText="Save Sign" format="base64" [emitOnDragEnd]="true" (done)="RiskClientSignUpload($event)" [showClearButton]="hide" [showDoneButton]="hide">
-																			</ng-signature-pad>
+													      					<!-- <ng-signature-pad doneButtonText="Save Sign" format="base64" [emitOnDragEnd]="true" (done)="RiskClientSignUpload($event)" [showClearButton]="show" [showDoneButton]="hide">
+																			</ng-signature-pad> -->
+																			<ng-signature-pad [emitOnDragEnd]="true" (done)="RiskClientSignUpload($event)"
+																						  doneButtonText="Save Sign" (clear)="clearSign()" [editable]="true"
+																						  format="base64" [showClearButton]="true" [showDoneButton]="false" [clearButtonText]="'Clear Signature'">
+																						</ng-signature-pad>
 													      				</div>
 													      			</div>
 													      			<div class="col-sm-6">
@@ -1162,13 +1211,51 @@
 																		</div>
 													      				<div class="form-group">
 													      					<label>Advisor Signature</label>
-													      					<ng-signature-pad
-																			  doneButtonText="Save Sign" format="base64" [emitOnDragEnd]="true" (done)="RiskAdvisorSignUpload($event)" [showClearButton]="hide" [showDoneButton]="hide">
-																			</ng-signature-pad>
+													      					<!-- <ng-signature-pad
+																			  doneButtonText="Save Sign" format="base64" [emitOnDragEnd]="true" (done)="RiskAdvisorSignUpload($event)" [showClearButton]="show" [showDoneButton]="hide">
+																			</ng-signature-pad> -->
+																			<ng-signature-pad [emitOnDragEnd]="true" (done)="RiskAdvisorSignUpload($event)"
+																						  doneButtonText="Save Sign" (clear)="clearSign()" [editable]="true"
+																						  format="base64" [showClearButton]="true" [showDoneButton]="false" [clearButtonText]="'Clear Signature'">
+																						</ng-signature-pad>
 													      				</div>
 													      			</div>	
 													      		</div>
-													      	</div>
+															  </div>
+															  
+															  <form class="row mb-3" action="">													      						
+																
+																<div class="col-sm-4">
+																	  <div class="form-group">
+																		<label for="email">Name of signatory: </label>
+																		<input readonly="true" [(ngModel)]="RiskProfileName" [ngModelOptions]="{standalone: true}" type="text" class="form-control" placeholder="Name" id="email" required #DisclosureNameRe="ngModel" oninput="this.value = this.value.replace(/[^a-zA-Z .]/g, '').replace(/(\..*)\./g, '$1');" >
+																		<span *ngIf="DisclosureNameRe.invalid && (DisclosureNameRe.dirty || DisclosureNameRe.touched  || thirdStep)"
+																			class="text-danger">
+
+																			This field is required.
+																			
+																		</span>
+																	</div>
+																</div>
+																<div class="col-sm-4">
+																	<div class="form-group">
+																		<label>Name of Advisor</label>
+																		<input type="text" readonly="" value="Marthunis Oosthuizen" class="form-control" >
+																	</div>
+																</div>
+																<div class="col-sm-4">
+																	<div class="form-group">
+																		<label for="pwd">Date:</label>
+																		<input [(ngModel)]="DisclosureDate" [ngModelOptions]="{standalone: true}" type="date" class="form-control" placeholder="Date" id="pwd" required #DisclosureDateRe="ngModel">
+																		<span *ngIf="DisclosureDateRe.invalid && (DisclosureDateRe.dirty || DisclosureDateRe.touched || thirdStep)"
+																			class="text-danger">
+
+																			This field is required.
+																			
+																		</span>
+																	</div>
+																</div>
+															</form>
 													      	<!-- stepper Inner /-->
 													      	<div class="d-flex justify-content-between">
 													        	<button type="button" mat-raised-button class="btn_back_stppr" matStepperPrevious>Back</button>

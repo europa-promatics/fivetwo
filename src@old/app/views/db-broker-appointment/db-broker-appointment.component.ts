@@ -3,6 +3,8 @@ import { AuthService } from '../.././auth/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from  "@angular/router";
 import { FormGroup, FormBuilder, Validators, FormControl, FormArray } from '@angular/forms';
+import { Location } from '@angular/common';
+
 
 @Component({
   selector: 'app-db-broker-appointment',
@@ -27,7 +29,7 @@ export class DbBrokerAppointmentComponent implements OnInit {
 	investors_data
 
 
-  constructor(private route:ActivatedRoute,private router:Router,private authService:AuthService,private toastr: ToastrService,public formBuilder: FormBuilder) { }
+  constructor(private _location: Location,private route:ActivatedRoute,private router:Router,private authService:AuthService,private toastr: ToastrService,public formBuilder: FormBuilder) { }
 
   	form = new FormGroup({
         
@@ -243,7 +245,7 @@ export class DbBrokerAppointmentComponent implements OnInit {
                 sessionStorage.setItem('investor',JSON.stringify(investor_data))
                 
                 this.toastr.success('Broker appointment added successfully')
-                this.router.navigate(['/user/clientProfile']);
+                this._location.back();
                
 
             }else  {
@@ -272,5 +274,9 @@ export class DbBrokerAppointmentComponent implements OnInit {
         // console.log(evt);
         this.Signature = evt;
     }
+
+    goBack(){
+        this._location.back();
+      }
 
 }

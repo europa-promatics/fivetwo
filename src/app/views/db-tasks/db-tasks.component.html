@@ -13,7 +13,7 @@
             					<i class="clos_sid fa fa-bars"></i>
             					<!-- <i class="opn_sid fa fa-times"></i> -->
             				</div>
-	            			<h3>Tasks List</h3>
+	            			<h3>Tasks</h3>
 	            			<!-- <nav class="bread_nav_sec">
 								<ol class="breadcrumb">
 								    <li class="breadcrumb-item"><a href="#">Home</a></li>
@@ -32,10 +32,10 @@
 	            				<div class="col-sm-12">
 		            				<div class="card">
 		            					<div class="card-body">
-			            					<div class="card_ttl">
+			            					<!-- <div class="card_ttl">
 			            						<h3>Tasks List</h3>
 			            						<small class="sub_crd">A project is an activity to meet the creation of a unique product or service.</small>
-			            					</div>
+			            					</div> -->
 		            						<div class="table-responsive table_seler">
 		            							<!-- table start -->
 												<div class="table_db_indi">
@@ -44,54 +44,71 @@
 					            							<table class="table table-bordered table-striped">
 					            								<thead>
 					            									<tr>
-					            										<th>Date.</th>
-					            										<th>Value</th>
+					            										<th>Date</th>
+					            										<th>Follow Up</th>
+					            										<th>Subject</th>
 					            										<th>Description</th>
 					            										<th>Status</th>
 					            									</tr>
 					            								</thead>
 					            								<tbody>
-					            									<tr>
-					            										<td>02/02/2018</td>
-					            										<td>R 2433000</td>
-					            										<td>Old Mutual Gold Fund A</td>
-					            										<td class="text-primary">In Progress</td>
-					            									</tr>
-					            									<tr>
-					            										<td>02/02/2018</td>
-					            										<td>R 35000</td>
-					            										<td>Five Two Money Market Fund [ B ]</td>
-					            										<td class="text-primary">In Progress</td>
-					            									</tr>
-					            									<tr>
-					            										<td>03/09/2019</td>
-					            										<td>R 2433000</td>
-					            										<td>Foord Flexible FoF B4</td>
-					            										<td class="text-success">Complete</td>
-					            									</tr>
-					            									<tr>
-					            										<td>05/11/2018</td>
-					            										<td>R 35000</td>
-					            										<td>Old Mutual Gold Fund A</td>
-					            										<td class="text-primary">In Progress</td>
-					            									</tr>
-					            									<tr>
-					            										<td>11/03/2019</td>
-					            										<td>R 2433000</td>
-					            										<td>Five Two Money Market Fund [ B ]</td>
-					            										<td class="text-primary">In Progress</td>
-					            									</tr>
-					            									<tr>
-					            										<td>11/03/2020</td>
-					            										<td>R 35000</td>
-					            										<td>Foord Flexible FoF B4</td>
-					            										<td class="text-success">Complete</td>
+					            									<tr *ngFor="let item of data; let i = index;" [ngClass]="conditionCheck(item) ? 'abc':''">
+																		<!-- {{conditionCheck(item)}} -->
+					            										<td>{{item.current_date | date: 'MM/dd/yyyy' }}
+																			<!-- {{conditionCheck(item)}} -->
+																		</td>
+					            										<td class="datpckr_td">
+					            											<mat-form-field appearance="fill" >
+																				<input matInput [matDatepicker]="pickerFrom" [disabled]='true'  [(ngModel)]="item.follow_up_date" [ngModelOptions]="{standalone: true}">
+																				<mat-datepicker-toggle matSuffix [disabled]='true' [for]="pickerFrom"></mat-datepicker-toggle>
+																				<mat-datepicker [disabled]='true' #pickerFrom></mat-datepicker>
+																			</mat-form-field>
+					            										</td>
+					            										<td class="part_algn_top">
+																			<div class="d-flex align-items-start">
+																				<span *ngIf="!item.edit_subject" class="spn_edt"  (click)="editSubject(i)"><i class="fa fa-pencil"></i></span>
+																				<input *ngIf="item.edit_subject" type="text" placeholder="das" class="form-control" name=""   [(ngModel)]="item.subject" [ngModelOptions]="{standalone: true}">
+																				<span *ngIf="item.edit_subject" (click)="saveSubject(item)" class="spn_edt">
+																					<a class="vmor cp"> <i class="fa fa-save"></i></a>
+																				</span>
+																				<span  *ngIf="!item.edit_subject" class="txt_hdnn">{{item.subject}}</span>
+																			</div>
+					            										</td>
+					            										<td class="part_algn_top">
+																			<div class="d-flex align-items-start">
+																				<span *ngIf="!item.edit_description" class="spn_edt"  (click)="editDescription(i)"><i class="fa fa-pencil"></i></span>
+																				<textarea *ngIf="item.edit_description" type="text" placeholder="das" class="form-control stxt_aer_cls" name=""   [(ngModel)]="item.description" [ngModelOptions]="{standalone: true}"></textarea>
+																				<span *ngIf="item.edit_description" (click)="saveDescription(item)" class="spn_edt">
+																					<a class="vmor cp"> <i class="fa fa-save"></i></a>
+																				</span>
+																				
+																				<span *ngIf="!item.edit_description"  class="txt_hdnn">  {{ item.description }}</span>
+																			</div>
+					            										</td>
+					            										<td class="mat-cell">
+																	    	<!-- <button color="primary" class="{{item.status == 'completed' ? 'comp-btn' : 'pro-button' }}" mat-raised-button [matMenuTriggerFor]="menu1"
+																			>{{item.status == 'completed' ? 'Completed' : 'In-Progress' }}</button> -->
+																			<button color="{{item.status == 'completed' ? 'primary' : 'warn' }}" mat-raised-button [matMenuTriggerFor]="menu1"
+																	    	>{{item.status == 'completed' ? 'Completed' : 'In-Progress' }}</button>
+																			<mat-menu #menu1="matMenu" xPosition="before">
+																				<!-- <button > -->
+																				    <span mat-menu-item *ngIf="item.status != 'completed'" (click)="changeStatus('completed',item)">Completed</span>
+																				<!-- </button> -->
+																				<!-- <button > -->
+																				    <span mat-menu-item  *ngIf="item.status != 'in_progress'" (click)="changeStatus('in_progress',item)">In-Progress</span>
+																				<!-- </button> -->
+																				<!-- <button > -->
+																				    <span mat-menu-item (click)="deleteTask(item)">Discard</span>
+																				<!-- </button> -->
+																			</mat-menu>
+																	    </td>
 					            									</tr>
 					            								</tbody>
 					            							</table>
 					            						</div>	
 
-														<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>	
+														<mat-paginator [length]="length" [pageSize]="50" [pageSizeOptions]="[10, 25, 50, 100]" (page)="paginationOptionChange($event)"></mat-paginator>
+	
 													</div>
 												</div>
 												<!-- table start -->

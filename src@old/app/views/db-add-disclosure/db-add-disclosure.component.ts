@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators, FormControl, FormArray } from '@ang
 import { AuthService } from '../.././auth/auth.service';
 import { ActivatedRoute, Router } from  "@angular/router";
 import { ToastrService } from 'ngx-toastr';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-db-add-disclosure',
@@ -13,13 +14,14 @@ export class DbAddDisclosureComponent implements OnInit {
 	investor_id
 	investor
 	
+	DisclosurePDF
 	DisclosureSign
 	DisclosureDate
 	DisclosureName
 	DisclosureAgree=false
   // thirdStep
   ThirdStepStatus=false
-  constructor(private authService:AuthService,private router:Router, private toastr: ToastrService) { }
+  constructor(private _location: Location,private authService:AuthService,private router:Router, private toastr: ToastrService) { }
 
   ngOnInit() {
   	this.getInvestor()
@@ -105,8 +107,9 @@ export class DbAddDisclosureComponent implements OnInit {
                     var investor_data = data.data
               		sessionStorage.setItem('investor',JSON.stringify(investor_data))
                   
-                  this.toastr.success('Disclosure added successfully')
-              		this.router.navigate(['/user/clientProfile']);
+                    this.toastr.success('Disclosure added successfully')
+                      // this.router.navigate(['/user/clientProfile']);
+                      this._location.back();
                     // stepper.next();
                     // this.stepperNextAsyc(stepper,'3')
 
@@ -129,6 +132,41 @@ export class DbAddDisclosureComponent implements OnInit {
         // console.log(evt)
         this.DisclosureSign = evt;    
 
+    }
+    
+    updateDisclosure(){
+        if(!this.DisclosurePDF){
+            this.toastr.success("Please select PDF first",'Error')
+            return false
+        }
+        var formData = new FormData();
+        formData.append("pdf_file",this.DisclosurePDF);
+        formData.append("investor_id",this.investor_id);
+
+        this.authService.updateDisclosure(formData).subscribe(data => {
+
+            if (data.success == 1) {
+                console.log(data)			
+                this.toastr.success(data.message,'Success.!')
+            }else{
+                this.toastr.error(data.message,'Error')
+            }
+        }, err => {
+            console.log(err)
+            // If not token provided or token invalid
+            this.authService.showAuthError(err);
+        })  
+
+    }
+
+    selectPDF(event){
+        this.DisclosurePDF = event.target.files[0];
+        console.log(this.DisclosurePDF);
+
+    }
+
+    goBack(){
+        this._location.back();
     }
 
 }

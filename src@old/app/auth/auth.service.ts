@@ -605,6 +605,30 @@ export class AuthService {
         // catchError(this.error)
         )
     }
+    
+    getTotalValue(data): Observable<any> {
+      let API_URL = this.SERVER_URL+'get/all/total/value/client';
+      return this.http.post(API_URL,data,this.httpOptions)
+      .pipe(
+        map((res: Response) => {
+          return res
+        }),
+        retry(1),
+        // catchError(this.error)
+        )
+    }
+
+    updateDisclosure(data): Observable<any> {
+      let API_URL = this.SERVER_URL+'upload/disclosure';
+      return this.http.post(API_URL,data,this.httpOptionswithoutContent)
+      .pipe(
+        map((res: Response) => {
+          return res
+        }),
+        // retry(1),
+        // catchError(this.error)
+        )
+    }
 
 
 }

@@ -6,6 +6,8 @@ import { MatStepper } from '@angular/material/stepper';
 import { AuthService } from '../.././auth/auth.service';
 
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
+import * as moment from "moment";
+
 declare var Tesseract;
 
 function id() {
@@ -170,6 +172,7 @@ export class DbAddInvestorComponent implements OnInit {
     ThirdStepStatus = false;
     defaultImage = `data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAtcAAAC1CAYAAACULdMlAAACFUlEQVR4nO3BAQ0AAADCoPdPbQ8HFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwJkBCTkAAbMzGX4AAAAASUVORK5CYII=`;
 
+    errorClass=""
 
     // defaultShortImage=`data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAggAAACCCAYAAAAjSDD0AAABHUlEQVR4nO3BMQEAAADCoPVPbQ0PoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADeDCD+AAEWEPbFAAAAAElFTkSuQmCC`;
 
@@ -1132,10 +1135,10 @@ export class DbAddInvestorComponent implements OnInit {
         formdata.append("Year6", this.Year6.toString());
 
 
-        if (this.Year1 == 0 || this.Year2 == 0 || this.Year3 == 0 || this.Year4 == 0 || this.Year5 == 0 || this.Year6 == 0) {
-            this.toastr.warning('Year % should be greater than 0')
-            return
-        }
+        // if (this.Year1 == 0 || this.Year2 == 0 || this.Year3 == 0 || this.Year4 == 0 || this.Year5 == 0 || this.Year6 == 0) {
+        //     this.toastr.warning('Year % should be greater than 0')
+        //     return
+        // }
 
         if (this.YearTotal != 100) {
             this.toastr.warning('Total should be 100%')
@@ -1220,6 +1223,12 @@ export class DbAddInvestorComponent implements OnInit {
             console.log(this.YearTotal)
         } else {
             console.log(this.YearTotal)
+        }
+
+        if(this.YearTotal == 100){
+            this.errorClass = "";
+        }else{
+            this.errorClass = "error-percent";
         }
         // this.YearTotal= YearTotals;
     }

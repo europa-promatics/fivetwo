@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../.././auth/auth.service';
 import { ActivatedRoute, Router } from  "@angular/router";
 import { ToastrService } from 'ngx-toastr';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-db-add-id',
@@ -15,7 +16,7 @@ export class DbAddIdComponent implements OnInit {
     upload_id_label = ['Choose file']
     title='Add Id'
     fileext
-  constructor(private authService:AuthService,private router:Router, private toastr: ToastrService) { }
+  constructor(private _location: Location,private authService:AuthService,private router:Router, private toastr: ToastrService) { }
 
   ngOnInit() {
   	this.getInvestor()
@@ -89,7 +90,7 @@ export class DbAddIdComponent implements OnInit {
               sessionStorage.setItem('investor',JSON.stringify(investor_data))
               
               this.toastr.success('Id added successfully')
-              this.router.navigate(['/user/clientProfile']);
+              this._location.back();
               // console.log(data);
               // stepper.next();
               // this.stepperNextAsyc(stepper,'2')
@@ -161,6 +162,10 @@ export class DbAddIdComponent implements OnInit {
       }
 
       
+  }
+
+  goBack(){
+    this._location.back();
   }
 
 }

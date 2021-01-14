@@ -38,8 +38,8 @@
 											</div> -->
 											<form class="formm">
 												<div class="row">													
-													<div class="col-sm-3">
-														<div class="form-group text-right">
+													<div class="col-sm-12">
+														<div class="form-group float-right">
 															<a href="javascript:;" (click)="goBack()" class="btn btn_theme">Back</a>
 														</div>
 													</div>
@@ -298,7 +298,7 @@
 																<div class="col-sm-4">
 																	<div class="form-group">
 																		<label>Name of Advisor</label>
-																		<input type="text" readonly="" value="Marthunis Oosthuizen" class="form-control" >
+																		<input type="text" readonly="" value="{{ BROKER ? BROKER.full_name : '--' }}" class="form-control" >
 																	</div>
 																</div>
 																<div class="col-sm-4">

@@ -27,6 +27,8 @@ export class DbBrokerAppointmentComponent implements OnInit {
 	companies
 	broker_codes
 	investors_data
+    AdvisorSignature: any;
+    BROKER
 
 
   constructor(private _location: Location,private route:ActivatedRoute,private router:Router,private authService:AuthService,private toastr: ToastrService,public formBuilder: FormBuilder) { }
@@ -57,26 +59,47 @@ export class DbBrokerAppointmentComponent implements OnInit {
   	this.getInvestor()
   	this.getCompanies()
   	let d = new Date();
-   let currDate = d.getDate();
-   let currMonth = d.getMonth()+1;
-   let currYear = d.getFullYear();
-   let today=currYear + "-" + ((currMonth<10) ? '0'+currMonth : currMonth )+ "-" + ((currDate<10) ? '0'+currDate : currDate );
+    let currDate = d.getDate();
+    let currMonth = d.getMonth()+1;
+    let currYear = d.getFullYear();
+    let today=currYear + "-" + ((currMonth<10) ? '0'+currMonth : currMonth )+ "-" + ((currDate<10) ? '0'+currDate : currDate );
 
-   this.DateSigned=today
+    this.DateSigned=today
+    this.BROKER = this.authService.getLoggedUserDetails();
 
 
    // this.form.controls['DateSigned'].setValue(lead.LastName);
   }
 
   getInvestor(){
-  	var investor_data = JSON.parse(sessionStorage.getItem('investor'))
+  	// var investor_data = JSON.parse(sessionStorage.getItem('investor'))
 
-  	if (investor_data!=null) {
-  		this.investor=investor_data
-  		this.investor_id=investor_data.id
-  		console.log(this.investor)
+  	// if (investor_data!=null) {
+  	// 	this.investor=investor_data
+  	// 	this.investor_id=investor_data.id
+  	// 	console.log(this.investor)
   		
-  	}
+      // }
+      
+      var ob = {
+        id: atob(this.route.snapshot.params.investor_id),
+      };
+      console.log(ob)
+      this.authService.singleInvestor(ob).subscribe(data => {
+  
+        if (data.success) {
+            this.investor = data.data
+            this.investor_id=atob(this.route.snapshot.params.investor_id)
+            // this.DisclosureName= this.investor.FirstName+' '+this.investor.LastName;
+
+        }
+      }, err => {
+        console.log(err)
+        // If not token provided or token invalid
+        this.authService.showAuthError(err);
+        //this.toastr.error(err.message);
+        // this.toastr.error(this.authService.COMMON_ERROR);
+      })
   }
 
   changeCompany(evt:any){
@@ -178,7 +201,8 @@ export class DbBrokerAppointmentComponent implements OnInit {
             	investor_id:this.investor_id,
             	form:this.form.value,
             	image:this.Signature,
-            	DateSigned:this.DateSigned
+            	DateSigned:this.DateSigned,
+            	AdvisorSignature:this.AdvisorSignature
 
             }
             // formdata.append("company_id", this.form.company_id.value);
@@ -198,6 +222,10 @@ export class DbBrokerAppointmentComponent implements OnInit {
             console.log(ob)
             if(this.Signature==''){
                 this.toastr.warning('Please sign the form','Warning')
+                return
+            }
+            if(this.AdvisorSignature==''){
+                this.toastr.warning('Please sign advisor the form','Warning')
                 return
             }
             if (this.investor_id==null || this.investor_id==undefined) {
@@ -273,6 +301,10 @@ export class DbBrokerAppointmentComponent implements OnInit {
   	SignUpload(evt: any){
         // console.log(evt);
         this.Signature = evt;
+    }
+  	SignUploadAdvisor(evt: any){
+        // console.log(evt);
+        this.AdvisorSignature = evt;
     }
 
     goBack(){

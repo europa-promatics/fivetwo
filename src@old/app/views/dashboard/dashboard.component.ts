@@ -11,6 +11,7 @@ am4core.useTheme(am4themes_animated);
 import { AuthService } from '../.././auth/auth.service';
 import { pushAll } from '@amcharts/amcharts4/.internal/core/utils/Array';
 import zaId from "node_modules/formvalidation/src/js/validator/id.js";
+import * as currencyFormatter from 'currency-formatter';
 
 @Component({
   selector: 'app-dashboard',
@@ -342,7 +343,7 @@ export class DashboardComponent implements OnInit {
 			categoryAxis.renderer.ticks.template.disabled = true;
 			categoryAxis.renderer.line.opacity = 1;
 			categoryAxis.renderer.grid.template.disabled = true;
-			categoryAxis.renderer.minGridDistance = 0;
+			categoryAxis.renderer.minGridDistance = 40;
 			categoryAxis.dataFields.category = "year";
 			categoryAxis.startLocation = 0.4;
 			categoryAxis.endLocation = 0.6;
@@ -512,6 +513,41 @@ export class DashboardComponent implements OnInit {
 		}
 		// return item.year_wise_data && item.year_wise_data != "zz" ? "Year "+item.year_wise_data.replace ( /[^\d.]/g, '' ) : "--"
 	}
+	
+	
+	showYear(obj){
+
+		if(obj.year_wise_data){
+	
+		   if(obj.year_wise_data.type == "year1"){
+			return "Year 1"
+			
+		  }else if(obj.year_wise_data.type == "year2"){
+			return "Year 2"
+		  
+		  }else if(obj.year_wise_data.type == "year3"){
+			return "Year 3"
+		  
+		  }else if(obj.year_wise_data.type == "year4"){
+			return "Year 4"
+		  
+		  }else if(obj.year_wise_data.type == "year5"){
+			return "Year 5"
+		  }
+		  
+		  else if(obj.year_wise_data.type == "year6"){
+			return "Year 6"
+		  } 
+	
+		  else {
+			return "-";
+		  }
+	
+		}else{
+		  return "--"
+		}
+	
+	  }
 
 	showName(item){
 
@@ -554,7 +590,7 @@ export class DashboardComponent implements OnInit {
 		this.dateFrom = event.value;
 		console.log(`${type}: ${event.value}`);
 	  }
-
+	  
 	  filter(){
 		  if(this.dateFrom && this.dateTo){
 			var obj = {
@@ -565,8 +601,8 @@ export class DashboardComponent implements OnInit {
 	
 				if (data.success == 1) {
 					console.log(data)
-					this.holding = data.values;
-					this.showMap()					
+					this.holding = data.array;
+					this.showCoparisonChart();					
 				}else{
 					this.toastr.error(data.message,'Error')
 				}
@@ -580,8 +616,15 @@ export class DashboardComponent implements OnInit {
 		   }
 	  }
 
+	  formatAmount(amount){
+
+		return currencyFormatter.format(amount, { code: 'ZAR',symbol: '', })
+	
+	  }
+
 	  getPercentage(item){
 		if(item.totalAmount > 0){
+			console.log(item.totalAmount / this.total_review_amount * 100);
 			return Math.round(item.totalAmount / this.total_review_amount * 100)
 		}else{
 			return 0;

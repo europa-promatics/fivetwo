@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../.././auth/auth.service';
 import { ActivatedRoute, Router } from  "@angular/router";
 import { ToastrService } from 'ngx-toastr';
+import  * as moment from 'moment';
+import { Location } from '@angular/common';
+
 
 @Component({
   selector: 'app-db-add-risk-profiler',
@@ -22,11 +25,18 @@ export class DbAddRiskProfilerComponent implements OnInit {
     RiskProfilerClientSignature
     RiskProfilerAdvisorSignature
     chosenItem
+    errorClass=""
+    current_date;
+    DisclosureDate
+    DisclosureName
 
 
-  constructor(private authService:AuthService,private router:Router, private toastr: ToastrService) { }
+  constructor(private _location: Location,private authService:AuthService,private router:Router, private toastr: ToastrService) { }
 
   	ngOnInit() {
+
+        this.DisclosureDate = moment().format("YYYY-MM-DD");
+        // alert(this.DisclosureDate);
   		this.getInvestor()
   	}
 	ngAfterViewInit() {
@@ -41,7 +51,9 @@ export class DbAddRiskProfilerComponent implements OnInit {
   	var investor_data = JSON.parse(sessionStorage.getItem('investor'))
 
   	if (investor_data!=null) {
-  		this.investor=investor_data
+          this.investor=investor_data
+          this.DisclosureName = investor_data.LastName + " "+investor_data.FirstName
+        //   this.DisclosureName = investor_data.LastName
   		this.investor_id = investor_data.id
   		this.chosenItem = investor_data.RecordAdviceOfAdvisorTaken
   		console.log(this.investor)
@@ -75,10 +87,10 @@ export class DbAddRiskProfilerComponent implements OnInit {
       formdata.append("Year6", this.Year6.toString());
 
 
-      if (this.Year1==0 || this.Year2==0|| this.Year3==0|| this.Year4==0|| this.Year5==0|| this.Year6==0) {
-          this.toastr.warning('Year % should be greater than 0')
-          return
-      }
+    //   if (this.Year1==0 || this.Year2==0|| this.Year3==0|| this.Year4==0|| this.Year5==0|| this.Year6==0) {
+    //       this.toastr.warning('Year % should be greater than 0')
+    //       return
+    //   }
       
       if (this.YearTotal!=100) {
           this.toastr.warning('Total should be 100%')
@@ -114,7 +126,7 @@ export class DbAddRiskProfilerComponent implements OnInit {
               sessionStorage.setItem('investor',JSON.stringify(investor_data))
               
               this.toastr.success('Risk Profiler added successfully')
-              this.router.navigate(['/user/clientProfile'])
+              this._location.back();
               
               
 
@@ -157,8 +169,25 @@ export class DbAddRiskProfilerComponent implements OnInit {
        }else{
            console.log(this.YearTotal)
         }
+
+        if(this.YearTotal == 100){
+            this.errorClass = "";
+        }else{
+            this.errorClass = "error-percent";
+        }
       // this.YearTotal= YearTotals;
   }
+
+    clearSign() {
+         // console.log(evt)
+        this.RiskProfilerClientSignature = "";
+
+    }
+    clearSignRiskProfiler() {
+         // console.log(evt)
+        this.RiskProfilerClientSignature = "";
+
+    }
 
   RiskClientSignUpload(evt: any){
       // console.log(evt);
@@ -166,6 +195,10 @@ export class DbAddRiskProfilerComponent implements OnInit {
   }
   RiskAdvisorSignUpload(evt: any){
       this.RiskProfilerAdvisorSignature = evt;
+  }
+
+  goBack(){
+    this._location.back();
   }
 
 }

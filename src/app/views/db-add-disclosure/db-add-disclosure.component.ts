@@ -21,7 +21,7 @@ export class DbAddDisclosureComponent implements OnInit {
 	DisclosureAgree=false
   // thirdStep
   ThirdStepStatus=false
-  constructor(private _location: Location,private authService:AuthService,private router:Router, private toastr: ToastrService) { }
+  constructor(private _location: Location,private route : ActivatedRoute,  private authService:AuthService,private router:Router, private toastr: ToastrService) { }
 
   ngOnInit() {
   	this.getInvestor()
@@ -43,15 +43,34 @@ export class DbAddDisclosureComponent implements OnInit {
     }
 
   getInvestor(){
-  	var investor_data = JSON.parse(sessionStorage.getItem('investor'))
+  	// var investor_data = JSON.parse(sessionStorage.getItem('investor'))
 
-  	if (investor_data!=null) {
-  		this.investor=investor_data
-  		this.investor_id=investor_data.id
-  		this.DisclosureName= investor_data.FirstName+' '+investor_data.LastName; 
-  		console.log(this.investor)
+  	// if (investor_data!=null) {
+  	// 	this.investor=investor_data
+  	// 	this.investor_id=this.route.snapshot.params.investor_id
+  	// 	 
+  	// 	console.log(this.investor)
   		
-  	}
+      // }
+      var ob = {
+        id: atob(this.route.snapshot.params.investor_id),
+      };
+      console.log(ob)
+      this.authService.singleInvestor(ob).subscribe(data => {
+  
+        if (data.success) {
+            this.investor = data.data
+            this.investor_id=atob(this.route.snapshot.params.investor_id)
+            this.DisclosureName= this.investor.FirstName+' '+this.investor.LastName;
+
+        }
+      }, err => {
+        console.log(err)
+        // If not token provided or token invalid
+        this.authService.showAuthError(err);
+        //this.toastr.error(err.message);
+        // this.toastr.error(this.authService.COMMON_ERROR);
+      })
   }
 
   form3 = new FormGroup({
@@ -76,7 +95,7 @@ export class DbAddDisclosureComponent implements OnInit {
         if(this.DisclosureName!='' && this.DisclosureDate!=''){
             agree='yes';
             var formdata: FormData = new FormData();
-            formdata.append("id", this.investor_id);
+            formdata.append("investor_id", this.investor_id);
             formdata.append("DisclosureSign", this.DisclosureSign);
             formdata.append("DisclosureDate", this.DisclosureDate);
             formdata.append("DisclosureName", this.DisclosureName);
@@ -97,7 +116,7 @@ export class DbAddDisclosureComponent implements OnInit {
 
             // this.isThirdStepDone=true;
 
-            this.authService.addInvestorThirdForm(formdata).subscribe(data => {
+            this.authService.updateDisclosure(formdata).subscribe(data => {
                 
                 // console.log('in');
                 if (data.success == 1) {
@@ -142,6 +161,7 @@ export class DbAddDisclosureComponent implements OnInit {
         var formData = new FormData();
         formData.append("pdf_file",this.DisclosurePDF);
         formData.append("investor_id",this.investor_id);
+        formData.append("type","pdf");
 
         this.authService.updateDisclosure(formData).subscribe(data => {
 

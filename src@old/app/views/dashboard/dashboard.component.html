@@ -144,9 +144,9 @@
 	            								</thead>
 	            								<tbody>
 	            									<tr *ngFor="let item of reviews_list;let i=index">
-	            										<td> {{ getYearFromString(item,i) }} </td>
+	            										<td> {{ showYear(item) }} </td>
 	            										<td>{{ getPercentage(item) }}%</td>
-	            										<td>R {{ item.totalAmount}}</td>
+	            										<td>R {{ formatAmount(item.totalAmount)}}</td>
 	            										<td>{{ showName(item) }}</td>
 	            									</tr>
 	            									<!-- <tr>

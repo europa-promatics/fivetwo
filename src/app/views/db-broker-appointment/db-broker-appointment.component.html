@@ -54,7 +54,7 @@
 			            								</li>
 			            								<li>
 			            									<span class="tlt_lbl">Broker:</span>
-			            									<span>MC Oosthuizen</span>
+			            									<span>{{ BROKER ? BROKER.full_name : "--" }}</span>
 			            								</li>
 			            							</ul>
 			            						</div>
@@ -240,10 +240,19 @@
 			            							<div class="row">
 			            								<div class="col-sm-6">
 			            									<label>Signature of Policy Owner / Insured</label>
-			            									<ng-signature-pad [emitOnDragEnd]="true" (done)="SignUpload($event)" doneButtonText="Save Sign" format="base64" [showClearButton]="hide" [showDoneButton]="hide">
+			            									<ng-signature-pad [emitOnDragEnd]="true" (done)="SignUpload($event)" doneButtonText="Save Sign" format="base64" [showClearButton]="true" [showDoneButton]="hide">
 															</ng-signature-pad>
-			            								</div>
-			            								<div class="col-sm-4">
+														</div>
+														<div class="col-sm-6">
+			            									<label>Advisor Signature</label>
+			            									<ng-signature-pad [emitOnDragEnd]="true" (done)="SignUploadAdvisor($event)" doneButtonText="Save Sign" format="base64" [showClearButton]="true" [showDoneButton]="hide">
+															</ng-signature-pad>
+														</div>
+			            								
+													</div>
+													<div class="row">
+			            									
+														<div class="col-sm-4">
 			            									<label>Date Signed</label>
 			            									<input [(ngModel)]="DateSigned" [ngModelOptions]="{standalone: true}" type="date" class="form-control" name="" required #DateSignedVal="ngModel">
 
@@ -257,7 +266,7 @@
 	            											    </span>
 	            											    
 	            											</span>
-			            								</div>
+			            								</div>		            								
 			            							</div>
 			            						</div>
 			            						<div class="form-group text-right">

@@ -70,7 +70,7 @@
 																<label>Year (From)</label>			            							
 																<mat-form-field appearance="fill">
 																	<mat-label>Choose a date</mat-label>
-																	<input matInput [matDatepicker]="pickerFrom" (dateInput)="addEventFrom('input', $event)" (dateChange)="addEventFrom('change', $event)">
+																	<input  readonly matInput [matDatepicker]="pickerFrom" (dateInput)="addEventFrom('input', $event)" (dateChange)="addEventFrom('change', $event)">
 																	<mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
 																	<mat-datepicker #pickerFrom></mat-datepicker>
 																</mat-form-field>														  
@@ -81,7 +81,7 @@
 																<label>Year (To)</label>			            									            							
 																<mat-form-field appearance="fill">
 																	<mat-label>Choose a date</mat-label>
-																	<input matInput [matDatepicker]="pickerTo" (dateInput)="addEventTo('input', $event)" (dateChange)="addEventTo('change', $event)">
+																	<input readonly matInput [matDatepicker]="pickerTo" (dateInput)="addEventTo('input', $event)" (dateChange)="addEventTo('change', $event)">
 																	<mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
 																	<mat-datepicker #pickerTo></mat-datepicker>
 																</mat-form-field>
@@ -146,7 +146,7 @@
 	            									<tr *ngFor="let item of reviews_list;let i=index">
 	            										<td> {{ showYear(item) }} </td>
 	            										<td>{{ getPercentage(item) }}%</td>
-	            										<td>R {{ formatAmount(item.totalAmount)}}</td>
+	            										<td style="text-align: right;">R {{ formatAmount(item.totalAmount)}}</td>
 	            										<td>{{ showName(item) }}</td>
 	            									</tr>
 	            									<!-- <tr>

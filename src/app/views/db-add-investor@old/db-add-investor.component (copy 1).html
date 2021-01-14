@@ -1,0 +1,971 @@
+<!-- Header -->
+<app-db-header></app-db-header>
+<!-- Header ends -->
+
+<div class="wrapper_shala wrapper_db">
+	<section class="outer_db_wraper db_main_invstr">
+    	<div class="combine_sidenav_right_db d-flex">
+        	<div class="main_right_db invstr_db">
+        		<section class="bread_top_sec">
+        			<div class="db_container">
+            			<div class="d-flex justify-content-between align-items-center text-white pos_rel">
+            				<div class="sid_controlr">
+            					<i class="clos_sid fa fa-bars"></i>
+            					<!-- <i class="opn_sid fa fa-times"></i> -->
+            				</div>
+	            			<h3>Add Investor</h3>
+	            			<nav class="bread_nav_sec">
+								<ol class="breadcrumb">
+								    <li class="breadcrumb-item"><a href="#">Home</a></li>
+								    <li class="breadcrumb-item">Dashboard</li>
+								    <li class="breadcrumb-item active">Add Investor</li>
+								</ol>
+							</nav>
+	            		</div>
+	            	</div>
+        		</section>
+        		<div class="marg_over_bread">
+        			<section class="review_sec_db">
+            			<div class="db_container">
+            				<div class="row">
+	            				<div class="col-sm-12">
+		            				<div class="card">
+		            					<div class="card-body">
+			            					<div class="card_ttl">
+			            						<h3>Add Investor</h3>
+			            						<small class="sub_crd">A project is an activity to meet the creation of a unique product or service and thus activities that are undertaken to accomplish routine activities.</small>
+			            					</div>
+		            						<div class="table-responsive table_seler">
+		            							<mat-horizontal-stepper labelPosition="bottom" linear #stepper>
+												  	<mat-step [stepControl]="firstFormGroup" [editable]="isEditable">
+													    <form [formGroup]="form"
+													    	(ngSubmit)="submit()"
+													    	>
+													      	<ng-template matStepLabel>Info</ng-template>
+													      	<!-- stepper Inner -->
+													      	<div class="stepper_cuntnt">
+													      		<div class="table-responsive mb-4">
+															      	<table class="table table-bordered table-striped">
+							            								<thead>
+							            									<tr>
+							            										<th></th>
+							            										<th>Principle</th>
+							            										<th>Spouse</th>
+							            									</tr>
+							            								</thead>
+							            								<tbody>
+							            									<tr>
+							            										<th>Surname</th>
+							            										<td class="table_inpt">
+							            											<input formControlName="LastName" type="text" class="form-control" name="" maxlength="100">
+							            											<span *ngIf="LastName.invalid && (LastName.dirty || LastName.touched || firstStep)"
+							            											    class="text-danger">
+
+							            											    Invalid Surname.
+							            											    
+							            											</span>
+							            										</td>
+							            										<td class="table_inpt">
+							            											<input formControlName="LastName2" type="text" class="form-control" name="" maxlength="100">
+							            											<span *ngIf="LastName2.invalid && (LastName2.dirty || LastName2.touched || firstStep)"
+							            											    class="text-danger">
+							            											    Invalid First Name.
+							            											    
+							            											</span>
+							            										</td>
+							            									</tr>
+							            									<tr>
+							            										<th>First Name</th>
+							            										<td class="table_inpt">
+							            											<input formControlName="FirstName" type="text" class="form-control" name="">
+							            											<span *ngIf="FirstName.invalid && (FirstName.dirty || FirstName.touched || firstStep)"
+							            											    class="text-danger">
+							            											    Invalid First Name.
+							            											    
+							            											</span>
+							            										</td>
+							            										<td class="table_inpt">
+							            											<input formControlName="FirstName2" type="text" class="form-control" name="">
+							            											<span *ngIf="FirstName2.invalid && checkSpouse && (FirstName2.dirty || FirstName2.touched || firstStep)"
+							            											    class="text-danger">
+							            											    Invalid First Name.
+							            											</span>
+							            											
+							            										</td>
+							            									</tr>
+							            									<tr>
+							            										<th>ID</th>
+							            										<td class="table_inpt">
+							            											<input formControlName="IdNumber" type="text" class="form-control" name="">
+							            											<span *ngIf="IdNumber.invalid && (IdNumber.dirty || IdNumber.touched || firstStep)"
+							            											    class="text-danger">
+							            											    Invalid IdNumber.
+							            											    
+							            											</span>
+							            										</td>
+							            										<td class="table_inpt">
+							            											<input formControlName="IdNumber2" type="text" class="form-control" name="">
+							            											<span *ngIf="IdNumber2.invalid && checkSpouse && (IdNumber2.dirty || IdNumber2.touched || firstStep)"
+							            											    class="text-danger">
+							            											    Invalid IdNumber.
+							            											    
+							            											</span>
+							            										</td>
+							            									</tr>
+							            									<tr>
+							            										<th>Cell Number</th>
+							            										<td class="table_inpt">
+							            											<input formControlName="CellNumber" type="text" class="form-control" name="">
+							            											<span *ngIf="CellNumber.invalid && (CellNumber.dirty || CellNumber.touched || firstStep)"
+							            											    class="text-danger">
+							            											    Invalid Cell Number.
+							            											</span>
+							            										</td>
+							            										<td class="table_inpt">
+							            											<input formControlName="CellNumber2" type="text" class="form-control" name="">
+							            											<span *ngIf="CellNumber2.invalid && checkSpouse && (CellNumber2.dirty || CellNumber2.touched || firstStep)"
+							            											    class="text-danger">
+							            											    Invalid Cell Number.
+							            											    
+							            											</span>
+							            										</td>
+							            									</tr>
+							            									<tr>
+							            										<th>Email Address</th>
+							            										<td class="table_inpt">
+							            											<input formControlName="Email" type="text" class="form-control" name="">
+							            											<span *ngIf="Email.invalid && (Email.dirty || Email.touched || firstStep)"
+							            											    class="text-danger">
+							            											    Invalid Email Address
+							            											    
+							            											</span>
+							            										</td>
+							            										<td class="table_inpt">
+							            											<input formControlName="Email2" type="text" class="form-control" name="">
+							            											<span *ngIf="Email2.invalid && checkSpouse && (Email2.dirty || Email2.touched || firstStep)"
+							            											    class="text-danger">
+							            											    Invalid Email Address
+							            											</span>
+							            										</td>
+							            									</tr>
+							            									<tr>
+							            										<th>Home Number</th>
+							            										<td class="table_inpt">
+							            											<input formControlName="HomeNumber" type="text" class="form-control" name="">
+							            											<span *ngIf="HomeNumber.invalid && (HomeNumber.dirty || HomeNumber.touched || firstStep)"
+							            											    class="text-danger">
+							            											    Invalid Home Number
+							            											    
+							            											</span>
+							            										</td>
+							            										<td class="table_inpt">
+							            											<input formControlName="HomeNumber2" type="text" class="form-control" name="">
+							            											<span *ngIf="HomeNumber2.invalid && checkSpouse && (HomeNumber2.dirty || HomeNumber2.touched || firstStep)"
+							            											    class="text-danger">
+							            											    Invalid Home Number
+							            											    
+							            											</span>
+							            										</td>
+							            									</tr>
+							            									<tr>
+							            										<th>Work Number</th>
+							            										<td class="table_inpt">
+							            											<input formControlName="WorkNumber" type="text" class="form-control" name="">
+							            											<span *ngIf="WorkNumber.invalid && (WorkNumber.dirty || WorkNumber.touched || firstStep)"
+							            											    class="text-danger">
+							            											    Invalid Work Number
+							            											    
+							            											</span>
+							            										</td>
+							            										<td class="table_inpt">
+							            											<input formControlName="WorkNumber2" type="text" class="form-control" name="">
+							            											<span *ngIf="WorkNumber2.invalid && checkSpouse && (WorkNumber2.dirty || WorkNumber2.touched || firstStep)"
+							            											    class="text-danger">
+							            											    Invalid Work Number
+							            											</span>
+							            										</td>
+							            									</tr>
+							            									<tr>
+							            										<th>Home Address</th>
+							            										<td class="table_inpt">
+							            											<input formControlName="HomeAddress" type="text" class="form-control" name="">
+							            											<span *ngIf="HomeAddress.invalid && (HomeAddress.dirty || HomeAddress.touched || firstStep)"
+							            											    class="text-danger">
+							            											    Invalid Home Address
+							            											    
+							            											</span>
+							            										</td>
+							            										<td class="table_inpt">
+							            											<input formControlName="HomeAddress2" type="text" class="form-control" name="">
+							            											<span *ngIf="HomeAddress2.invalid && checkSpouse && (HomeAddress2.dirty || HomeAddress2.touched || firstStep)"
+							            											    class="text-danger">
+							            											    Invalid Home Address
+							            											</span>
+							            										</td>
+							            									</tr>
+							            									<tr>
+							            										<th>Postal Address</th>
+							            										<td class="table_inpt">
+							            											<input formControlName="PostalAddress" type="text" class="form-control" name="">
+							            											<span *ngIf="PostalAddress.invalid && (PostalAddress.dirty || PostalAddress.touched || firstStep)"
+							            											    class="text-danger">
+							            											    Invalid Postal Address
+							            											    
+							            											</span>
+
+							            										</td>
+							            										<td class="table_inpt">
+							            											<input formControlName="PostalAddress2" type="text" class="form-control" name="">
+							            											<span *ngIf="PostalAddress2.invalid && checkSpouse && (PostalAddress2.dirty || PostalAddress2.touched || firstStep)"
+							            											    class="text-danger">
+							            											    Invalid Postal Address
+							            											</span>
+							            										</td>
+							            									</tr>
+							            									<tr>
+							            										<th>Tax Number</th>
+							            										<td class="table_inpt">
+							            											<input formControlName="TaxNumber" type="text" class="form-control" name="">
+							            											<span *ngIf="TaxNumber.invalid && (TaxNumber.dirty || TaxNumber.touched || firstStep)"
+							            											    class="text-danger">
+							            											    Invalid Tax Number
+							            											    
+							            											</span>
+							            										</td>
+							            										<td class="table_inpt">
+							            											<input formControlName="TaxNumber2" type="text" class="form-control" name="">
+							            											<span *ngIf="TaxNumber2.invalid && checkSpouse && (TaxNumber2.dirty || TaxNumber2.touched || firstStep)"
+							            											    class="text-danger">
+							            											    Invalid Tax Number
+							            											</span>
+							            										</td>
+							            									</tr>
+							            									<tr>
+							            										<th>Marital Status & Contract Type</th>
+							            										<td class="table_inpt" colspan="2">
+							            											<mat-radio-group formControlName="MaritalStatus" aria-label="Select an option">
+								            											<span class="chk_bxx">
+								            												<mat-radio-button value="1">Single</mat-radio-button>
+								            											</span>
+								            											<span class="chk_bxx">
+								            												<mat-radio-button value="2">COP</mat-radio-button>
+								            											</span>
+								            											<span class="chk_bxx">
+								            												<mat-radio-button value="3">ANC + CC</mat-radio-button>
+								            											</span>
+								            											<span class="chk_bxx">
+								            												<mat-radio-button value="4">Anc + Acc</mat-radio-button>
+								            											</span>
+								            											<span class="chk_bxx">
+								            												<mat-radio-button value="5">Rel</mat-radio-button>
+								            											</span>
+								            											<span class="chk_bxx">
+								            												<mat-radio-button value="6">Div/Wid</mat-radio-button>
+								            											</span>
+								            										</mat-radio-group>
+								            										<span *ngIf="MaritalStatus.invalid && (MaritalStatus.dirty || MaritalStatus.touched || firstStep)"
+							            											    class="text-danger">
+							            											    This field is required.
+							            											</span>
+							            										</td>
+							            									</tr>
+							            									<tr>
+							            										<th>Bank Name</th>
+							            										<td class="table_inpt">
+							            											<input formControlName="BankName" type="text" class="form-control" name="">
+							            											<span *ngIf="BankName.invalid && (BankName.dirty || BankName.touched || firstStep)"
+							            											    class="text-danger">
+							            											     Invalid Bank Name
+							            											</span>
+							            										</td>
+							            										<td class="table_inpt">
+							            											<input formControlName="BankName2" type="text" class="form-control" name="">
+							            											<span *ngIf="BankName2.invalid && checkSpouse && (BankName2.dirty || BankName2.touched || firstStep)"
+							            											    class="text-danger">
+							            											    Invalid Bank Name
+							            											    
+							            											</span>
+							            										</td>
+							            									</tr>
+							            									<tr>
+							            										<th>Bank Number</th>
+							            										<td class="table_inpt">
+							            											<input formControlName="BankNumber" type="text" class="form-control" name="">
+							            											<span *ngIf="BankNumber.invalid && (BankNumber.dirty || BankNumber.touched || firstStep)"
+							            											    class="text-danger">
+							            											    Invalid Bank Number
+							            											    
+							            											</span>
+							            										</td>
+							            										<td class="table_inpt">
+							            											<input formControlName="BankNumber2" type="text" class="form-control" name="">
+							            											<span *ngIf="BankNumber2.invalid && checkSpouse && (BankNumber2.dirty || BankNumber2.touched || firstStep)"
+							            											    class="text-danger">
+							            											    Invalid Bank Number
+							            											</span>
+							            										</td>
+							            									</tr>
+							            									<tr>
+							            										<th>Account Type</th>
+							            										<td class="table_inpt">
+							            											<input formControlName="AccountType" type="text" class="form-control" name="">
+							            											<span *ngIf="AccountType.invalid && (AccountType.dirty || AccountType.touched || firstStep)"
+							            											    class="text-danger">
+							            											    Invalid Account Type
+							            											</span>
+							            										</td>
+							            										<td class="table_inpt">
+							            											<input formControlName="AccountType2" type="text" class="form-control" name="">
+							            											<span *ngIf="AccountType2.invalid && checkSpouse && (AccountType2.dirty || AccountType2.touched || firstStep)"
+							            											    class="text-danger">
+							            											    Invalid Account Type
+							            											</span>
+							            										</td>
+							            									</tr>
+							            								</tbody>
+							            							</table>
+							            						</div>
+							            						<div class="table-responsive mb-4">
+							            							<h5>Children <span (click)="addChildren()" class="add_child float-right cp"><i class="fa fa-plus"></i></span></h5>
+															      	<table class="table table-bordered table-striped">
+															      		<thead>
+															      			<tr>
+																      			<th>Full Name</th>
+																      			<th>ID</th>
+																      			<th>Contact No.</th>
+																      			<th>Email</th>
+																      		</tr>
+															      		</thead>
+															      		<tbody>
+
+															      			<tr *ngFor="let item of childrens ;let i=index">
+
+															      				<!-- {{item | json}} -->
+															      				<td class="table_inpt">
+							            											<input [(ngModel)]="item.FullName" [ngModelOptions]="{standalone: true}" type="text" class="form-control" name="">
+							            										</td>
+							            										
+							            										<td class="table_inpt">
+							            											<input [(ngModel)]="item.IdNumber" [ngModelOptions]="{standalone: true}" type="text" class="form-control" name="" required>
+							            											<span *ngIf="checkChildError(item.FullName,item.IdNumber) && firstStep"
+							            											    class="text-danger">
+							            											    This field is required.
+							            											</span>
+							            											
+							            											
+							            										</td>
+							            										<td class="table_inpt">
+							            											<input [(ngModel)]="item.CellNumber" [ngModelOptions]="{standalone: true}" type="text" class="form-control" name="" >
+							            											<span *ngIf="checkChildError(item.FullName,item.CellNumber) && firstStep"
+							            											    class="text-danger">
+							            											    This field is required.
+							            											</span>
+							            											<span *ngIf="AccountType2.invalid && checkSpouse && (AccountType2.dirty || AccountType2.touched || firstStep)"
+							            											    class="text-danger">
+							            											    Invalid Account Type
+							            											</span>
+							            										</td>
+							            										<td class="table_inpt">
+							            											<input [(ngModel)]="item.Email" [ngModelOptions]="{standalone: true}" type="text" class="form-control" name="">
+							            											<span *ngIf="checkChildError(item.FullName,item.Email) && firstStep"
+							            											    class="text-danger">
+							            											    This field is required.
+							            											</span>
+							            										</td>
+															      			</tr>
+															      			
+															      		</tbody>
+															      	</table>
+															    </div>
+															    <div class="table-responsive mb-4">
+															    	<h5>Beneficiaries <span (click)="addBeneficiary()" class="add_child float-right cp"><i class="fa fa-plus"></i></span></h5>
+															      	<table class="table table-bordered table-striped">
+															      		<thead>
+															      			<tr>
+																      			<th>Full Name</th>
+																      			<th>Relationship</th>
+																      			<th>Contact No.</th>
+																      			<th>%</th>
+																      		</tr>
+															      		</thead>
+															      		<tbody>
+															      			<tr *ngFor="let item of beneficiaries">
+															      				<td class="table_inpt">
+							            											<input [(ngModel)]="item.FullName" [ngModelOptions]="{standalone: true}" type="text" class="form-control" name="">
+							            										</td>
+							            										<td class="table_inpt">
+							            											<input [(ngModel)]="item.Relationship" [ngModelOptions]="{standalone: true}" type="text" class="form-control" name="">
+							            											<span *ngIf="checkChildError(item.FullName,item.Relationship) && firstStep"
+							            											    class="text-danger">
+							            											    This field is required.
+							            											</span>
+							            										</td>
+							            										<td class="table_inpt">
+							            											<input [(ngModel)]="item.CellNumber" [ngModelOptions]="{standalone: true}" type="text" class="form-control" name="">
+							            											<span *ngIf="checkChildError(item.FullName,item.CellNumber) && firstStep"
+							            											    class="text-danger">
+							            											    This field is required.
+							            											</span>
+							            										</td>
+							            										<td class="table_inpt">
+							            											<input [(ngModel)]="item.Percent" [ngModelOptions]="{standalone: true}" type="text" class="form-control" name="">
+							            											<span *ngIf="checkChildError(item.FullName,item.Percent) && firstStep"
+							            											    class="text-danger">
+							            											    This field is required.
+							            											</span>
+							            										</td>
+															      			</tr>
+															      			
+															      		</tbody>
+															      	</table>
+															    </div>
+															    <div class="form-group">
+															    	<label>Add Note</label>
+															    	<textarea formControlName="Note" rows="5" class="form-control" placeholder="Write a Note . . ."></textarea>
+															    	<span *ngIf="Note.invalid && (Note.dirty || Note.touched || firstStep)"
+															    	    class="text-danger">
+															    	    This field is required.
+															    	</span>
+															    </div>
+							            					</div>
+					            							<!-- stepper Inner -->
+													      	<div class="d-flex justify-content-end">
+													        	<button (click) ="firstForm(stepper)" mat-raised-button type="button" color="primary" >Next</button>
+													        	<!-- <button (click) ="firstForm(stepper)" mat-raised-button type="button" color="primary" matStepperNext>Next</button> -->
+													      	</div>
+													    </form>
+												  	</mat-step>
+												  	<mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
+													    <form [formGroup]="form2" enctype="multipart/form-data" >
+													      	<ng-template matStepLabel>ID</ng-template>
+													      	<!-- stepper Inner -->
+													      	<div class="stepper_cuntnt">
+													      		<div class="col-sm-10 offset-sm-1 pb-5 pt-5">
+													      			<div class="form-group">
+													      				<label>Upload ID</label>
+													      				<div class="custom-file">
+																		    <input (change)="serviceIdUpload($event)" type="file" class="custom-file-input" id="customFile">
+																		    <label class="custom-file-label" for="customFile">{{ upload_id_label }}</label>
+																		</div>
+													      			</div>
+													      			<!-- <div class="form-group">
+													      				<label>Upload Disclosure</label>
+													      				<div class="custom-file">
+																		    <input type="file" class="custom-file-input" id="customFile">
+																		    <label class="custom-file-label" for="customFile">Choose file</label>
+																		</div>
+													      			</div>
+													      			<div class="form-group">
+													      				<label>Record of Advice</label>
+													      				<div class="custom-file">
+																		    <input type="file" class="custom-file-input" id="customFile">
+																		    <label class="custom-file-label" for="customFile">Choose file</label>
+																		</div>
+													      			</div>
+													      			<div class="form-group">
+													      				<label>Risk Profiler</label>
+													      				<div class="custom-file">
+																		    <input type="file" class="custom-file-input" id="customFile">
+																		    <label class="custom-file-label" for="customFile">Choose file</label>
+																		</div>
+													      			</div>
+													      			<div class="form-group">
+													      				<label>Broker Appointment</label>
+													      				<div class="custom-file">
+																		    <input type="file" class="custom-file-input" id="customFile">
+																		    <label class="custom-file-label" for="customFile">Choose file</label>
+																		</div>
+													      			</div>
+													      			<div class="form-group">
+													      				<label>Letter of Authority</label>
+													      				<div class="custom-file">
+																		    <input type="file" class="custom-file-input" id="customFile">
+																		    <label class="custom-file-label" for="customFile">Choose file</label>
+																		</div>
+													      			</div> -->
+													      		</div>
+													      	</div>
+													      	<!-- stepper Inner /-->
+													      	<div class="d-flex justify-content-between">
+													        	<button type="button" mat-raised-button class="btn_back_stppr" matStepperPrevious>Back</button>
+													        	<!-- <button (click) ="goBack(stepper)" type="button" mat-raised-button class="btn_back_stppr" >Back</button> -->
+													        	<button (click) ="secondForm(stepper)" mat-raised-button type="button" color="primary" >Next</button>
+													        	<!-- <button mat-raised-button type="button" color="primary" matStepperNext>Next</button> -->
+													      	</div>
+													    </form>
+												  	</mat-step>
+												  	<mat-step [stepControl]="thirdFormGroup" [editable]="isEditable">
+													    <form [formGroup]="form3">
+													      	<ng-template matStepLabel>Disclosure</ng-template>
+													      	<!-- stepper Inner -->
+													      	<div class="stepper_cuntnt">
+													      		<div class="col-sm-10 offset-sm-1">
+													      			<div class="outr_boundry_disclos">
+													      				<div class="wrp_upr_disc text-center">
+													      					<h3>Intermidatry Disclosure</h3>
+													      					<p>Advisor Full Name: Marthunis Christiaan Oosthuizen<br>
+													      					Director of Five Two Investment (PTY) Ltd<br>
+													      					Practicing since 2010-Salary employed<br>
+													      					No commision is recieved directly from product providers</p>
+													      					<p>Formal Association: Member of Mensa<br>
+													      					Formal Qualification: Certificate in Financial Planning.</p>
+													      					<h5>I have training and experience to advice clients regarding:</h5>
+													      					<ul type="circle">
+													      						<li>Investment Management</li><li>Estate Planning</li><li>Domestic & Commercial Insurance</li><li>Financial Planning</li><li>Health Care</li>
+													      					</ul>
+													      				</div>
+													      				<div class="botom_div_ard">
+													      					<div class="row">
+													      						<div class="col-sm-6">
+													      							<div class="wrp_span_typ">
+													      								<h5>Professional Indemnity Cover</h5>
+													      								<p>R 1,000,000</p>
+													      							</div>
+													      							<div class="wrp_span_typ">
+													      								<h5>Commission</h5>
+													      								<p>Investor 80%</p>
+													      							</div>
+													      							<div class="wrp_span_typ">
+													      								<h5>FAIS Ombud</h5>
+													      								<p>Phone: 012 46879430</p>
+													      								<p>Email: info@example.com</p>
+													      								<p>Postal Address: <br>P.O. 465798,<br>Rosewood Ridge<br>0040</p>
+													      							</div>
+													      						</div>
+													      						<div class="col-sm-6">
+													      							<div class="wrp_span_typ">
+													      								<h5>Shareholdings</h5>
+													      								<p>No sharehold of FSP's support</p>
+													      							</div>
+													      							<div class="wrp_span_typ">
+													      								<h5>Compliance officer</h5>
+													      								<p>National Compliance<br>Practice Number: 45612<br>Contact Number: 7895315</p>
+													      							</div>
+													      							<div class="wrp_span_typ">
+													      								<h5>TCF & POPI</h5>
+													      								<p>Weabiding by treating customer Fairly(TCF) & the Protectiion of Personal information (POPI) Copies are avaiabble upon request.</p>
+													      							</div>
+													      						</div>
+													      					</div>
+													      					<div class="img_logos text-center">
+													      						<h6>Financial services providers licenced to represent</h6>
+													      						<div class="wrp_logs">
+													      							<span class="iimg_spn"><img src="https://findvectorlogo.com/wp-content/uploads/2018/09/serato-sample-vector-logo.png" class="img-fluid"></span>
+													      							<span class="iimg_spn"><img src="https://www.qualia.com/images/branding/qualia_logo_medium.png" class="img-fluid"></span>
+													      							<span class="iimg_spn"><img src="https://pngimage.net/wp-content/uploads/2018/06/sample-company-logo-png-1.png" class="img-fluid"></span>
+													      							<span class="iimg_spn"><img src="https://www.pngfind.com/pngs/m/132-1329963_logo-design-concept-for-huebris-sample-logo-design.png" class="img-fluid"></span>
+													      							<span class="iimg_spn"><img src="https://fbcd.co/images/products/0479bfbf54a9cdb35d8a51b824ee0fcc_resize.png" class="img-fluid"></span>
+													      							<span class="iimg_spn"><img src="https://www.logogarden.com/wp-content/uploads/lg-logo-samples/Technology-Science-Logo-3.png" class="img-fluid"></span>
+													      							<span class="iimg_spn"><img src="https://fbcd.co/product-lg/04498c286875e145371671a30ed93581_resize.jpg" class="img-fluid"></span>
+													      						</div>
+													      					</div>
+													      					<h6>By signing this disclosure, I confirm that i have recieved a copy of such:</h6>
+													      					<form [formGroup]="form" class="row mb-3" action="">
+													      						<div class="col-sm-4">
+													      							<div class="form-group">
+																						<label for="email">Name:</label>
+																						<input [(ngModel)]="DisclosureName" [ngModelOptions]="{standalone: true}" type="text" class="form-control" placeholder="Name" id="email" required #DisclosureNameRe="ngModel">
+																						<span *ngIf="DisclosureNameRe.invalid && (DisclosureNameRe.dirty || DisclosureNameRe.touched || thirdStep)"
+																						    class="text-danger">
+
+																						    This field is required.
+																						    
+																						</span>
+																					</div>
+																				</div>
+																				<div class="col-sm-4">
+																					<div class="form-group">
+																						<label for="pwd">Date:</label>
+																						<input [(ngModel)]="DisclosureDate" [ngModelOptions]="{standalone: true}" type="date" class="form-control" placeholder="Date" id="pwd" required #DisclosureDateRe="ngModel">
+																						<span *ngIf="DisclosureDateRe.invalid && (DisclosureDateRe.dirty || DisclosureDateRe.touched || thirdStep)"
+																						    class="text-danger">
+
+																						    This field is required.
+																						    
+																						</span>
+																					</div>
+																				</div>
+																				<div class="col-sm-12">
+																					<div class="form-group">
+																						<label for="pwd">Sign in the given box below</label>
+																						<ng-signature-pad [emitOnDragEnd]="true" (done)="DisclosureSignUpload($event)"
+																						  doneButtonText="Save Sign"
+																						  format="base64" [showClearButton]="hide" [showDoneButton]="hide">
+																						</ng-signature-pad>
+																					</div>
+																				</div>
+																			</form> 
+																			<mat-checkbox [(ngModel)]="DisclosureAgree" [ngModelOptions]="{standalone: true}" required #DisclosureAgreeRe="ngModel" class="example-margin">I hereby agree to the terms and conditions of the above disclosure</mat-checkbox>
+																			<span *ngIf="DisclosureAgreeRe.invalid && (DisclosureAgreeRe.dirty || DisclosureAgreeRe.touched || thirdStep)"
+																			    class="text-danger">
+
+																			    This field is required.
+																			    
+																			</span>
+													      				</div>
+													      			</div>
+													      		</div>
+													      	</div>
+													      	<!-- stepper Inner /-->
+													      	<div class="d-flex justify-content-between">
+													        	<button type="button" mat-raised-button class="btn_back_stppr" matStepperPrevious>Back</button>
+													        	<button (click) ="thirdForm(stepper)" mat-raised-button type="button" color="primary" >Next</button>
+													        	<!-- <button mat-raised-button type="button" color="primary" matStepperNext>Next</button> -->
+													      	</div>
+													    </form>
+												  	</mat-step>
+												  	<mat-step [stepControl]="fourthFormGroup" [editable]="isEditable">
+													    <form [formGroup]="form">
+													      	<ng-template matStepLabel>Record of Advice</ng-template>
+													      	<!-- stepper Inner -->
+													      	<div class="stepper_cuntnt">
+													      		<div class="row">
+													      			<div class="col-sm-4">
+													      				<div class="form-group">
+													      					<label>Date</label>
+													      					<input [(ngModel)]="RecordAdviceDate" [ngModelOptions]="{standalone: true}" type="" required class="form-control" name="" #RecordAdviceDateVal="ngModel">
+													      					<span *ngIf="RecordAdviceDateVal.invalid && (RecordAdviceDateVal.dirty || RecordAdviceDateVal.touched || forthStep)"
+																			    class="text-danger">
+																			    This field is required.
+																			</span>
+													      				</div>
+													      			</div>
+													      			<div class="col-sm-4">
+													      				<div class="form-group">
+													      					<label>Client</label>
+													      					<input [(ngModel)]="RecordAdviceClient" [ngModelOptions]="{standalone: true}" type="" required class="form-control" name="" #RecordAdviceClientVal="ngModel">
+													      					<span *ngIf="RecordAdviceClientVal.invalid && (RecordAdviceClientVal.dirty || RecordAdviceClientVal.touched || forthStep)"
+																			    class="text-danger">
+																			    This field is required.
+																			</span>
+													      				</div>
+													      			</div>
+													      			<div class="col-sm-4">
+													      				<div class="form-group">
+													      					<label>Advisor</label>
+													      					<input [(ngModel)]="RecordAdviceAdvisor" [ngModelOptions]="{standalone: true}" type="" required class="form-control" name="" #RecordAdviceAdvisorVal="ngModel">
+													      					<span *ngIf="RecordAdviceAdvisorVal.invalid && (RecordAdviceAdvisorVal.dirty || RecordAdviceAdvisorVal.touched || forthStep)"
+																			    class="text-danger">
+																			    This field is required.
+																			</span>
+													      				</div>
+													      			</div>
+													      			<div class="col-sm-12">
+													      				<div class="form-group">
+													      					<label>Summary of discussion with client</label>
+													      					<textarea required [(ngModel)]="RecordAdviceSummaryOfDiscussionWithClient" [ngModelOptions]="{standalone: true}" class="form-control" rows="4" #RecordAdviceSummaryOfDiscussionWithClientVal="ngModel"></textarea>
+													      					<span *ngIf="RecordAdviceSummaryOfDiscussionWithClientVal.invalid && (RecordAdviceSummaryOfDiscussionWithClientVal.dirty || RecordAdviceSummaryOfDiscussionWithClientVal.touched || forthStep)"
+																			    class="text-danger">
+																			    This field is required.
+																			</span>
+													      				</div>
+													      			</div>
+													      		</div>
+													      		<div class="row">
+													      			<div class="col-sm-12">
+													      				<div class="form-group">
+													      					<label>Summary of Advice from Advisor</label>
+													      					<textarea required [(ngModel)]="RecordAdviceSummaryOfAdviceFromAdvisor" [ngModelOptions]="{standalone: true}" class="form-control" rows="4" #RecordAdviceSummaryOfAdviceFromAdvisorVal="ngModel"></textarea>
+													      					<span *ngIf="RecordAdviceSummaryOfAdviceFromAdvisorVal.invalid && (RecordAdviceSummaryOfAdviceFromAdvisorVal.dirty || RecordAdviceSummaryOfAdviceFromAdvisorVal.touched || forthStep)"
+																			    class="text-danger">
+																			    This field is required.
+																			</span>
+													      				</div>
+													      			</div>
+													      			<div class="col-sm-6">
+													      				<div class="form-group">
+													      					<label>Was the Advice of Advisor taken::</label>
+													      				</div>
+													      			</div>
+													      			<div class="col-sm-6">
+													      				<div class="form-group">
+													      				
+																					
+																					  <mat-radio-group name="opList"  fxLayout="column" [(ngModel)]="chosenItem" [ngModelOptions]="{standalone: true}">
+<span class="mr-4">
+																					  	<mat-radio-button *ngFor="let op of list" [value]="op.name" name="opList" >{{ op.name}}</mat-radio-button>
+																					  </span></mat-radio-group>
+																				
+
+													      						
+													      			
+
+													      					
+													      				</div>
+													      			</div>
+													      			<div class="col-sm-12">
+													      				<div class="form-group">
+													      					<label>If not then, Explain:</label>
+													      					<textarea required [(ngModel)]="RecordAdviceOfAdvisorExplain" [ngModelOptions]="{standalone: true}" class="form-control" rows="4" #RecordAdviceOfAdvisorExplainVal="ngModel"></textarea>
+													      					<span *ngIf="RecordAdviceOfAdvisorExplainVal.invalid && chosenItemStatus() && (RecordAdviceOfAdvisorExplainVal.dirty || RecordAdviceOfAdvisorExplainVal.touched || forthStep)"
+																			    class="text-danger">
+																			    This field is required.
+																			</span>
+													      				</div>
+													      			</div>
+													      			<div class="col-sm-6">
+													      				<div class="form-group">
+													      					<label>Client Signature</label>
+													      					<ng-signature-pad doneButtonText="Save Sign" format="base64" [emitOnDragEnd]="true" (done)="ClientSignUpload($event)" [showClearButton]="hide" [showDoneButton]="hide">
+																			</ng-signature-pad>
+													      				</div>
+													      			</div>
+													      			<div class="col-sm-6">
+													      				<div class="form-group">
+													      					<label>Advisor Signature</label>
+													      					<ng-signature-pad
+																			  doneButtonText="Save Sign" format="base64" [emitOnDragEnd]="true" (done)="AdvisorSignUpload($event)" [showClearButton]="hide" [showDoneButton]="hide">
+																			</ng-signature-pad>
+													      				</div>
+													      			</div>
+													      		</div>
+													      	</div>
+													      	<!-- stepper Inner /-->
+													      	<div class="d-flex justify-content-between">
+													        	<button type="button" mat-raised-button class="btn_back_stppr" matStepperPrevious>Back</button>
+													        	<button mat-raised-button type="button" color="primary" (click)="forthForm(stepper)">Next</button>
+													        	<!-- <button mat-raised-button type="button" color="primary" matStepperNext>Next</button> -->
+													      	</div>
+													    </form>
+												  	</mat-step>
+												  	<mat-step [stepControl]="fifthFormGroup" [editable]="isEditable">
+													    <form [formGroup]="form">
+													      	<ng-template matStepLabel>Risk Profiler</ng-template>
+													      	<!-- stepper Inner -->
+													      	<div class="stepper_cuntnt">
+													      		<div class="top_amnt mb-5">
+													      			<div class="col-sm-6">
+													      				<h6>What is the max amount that you need to withdraw for investment in the following periods?</h6>
+													      				<div class="one_div_wrp">
+														      				<div class="row align-items-center">
+														      					<div class="col-sm-5">
+														      						year 1
+														      					</div>
+														      					<div class="col-sm-4">
+														      						<div class="input-group mb-3">
+																				  		<input [(ngModel)]="Year1" [ngModelOptions]="{standalone: true}" (blur)="getYearTotal()" required type="text"  class="form-control" #Year1Val="ngModel">
+														  		      			<span *ngIf="Year1Val.invalid && (Year1Val.dirty || Year1Val.touched || forthStep)"
+														  								    class="text-danger">
+														  								    This field is required.
+														  								</span>
+																					  	<div class="input-group-append">
+																					    	<span class="input-group-text" id="basic-addon2">%</span>
+																					  	</div>
+																					</div>
+														      					</div>
+														      				</div>
+														      			</div>
+														      			<div class="one_div_wrp">
+														      				<div class="row align-items-center">
+														      					<div class="col-sm-5">
+														      						year 2
+														      					</div>
+														      					<div class="col-sm-4">
+														      						<div class="input-group mb-3">
+																				  		<input [(ngModel)]="Year2" [ngModelOptions]="{standalone: true}" (blur)="getYearTotal()" required type="text" class="form-control" #Year2Val="ngModel">
+																				  		<span *ngIf="Year2Val.invalid && (Year2Val.dirty || Year2Val.touched || forthStep)"
+														  								    class="text-danger">
+														  								    This field is required.
+														  								</span>
+																					  	<div class="input-group-append">
+																					    	<span class="input-group-text" id="basic-addon2">%</span>
+																					  	</div>
+																					</div>
+														      					</div>
+														      				</div>
+														      			</div>
+														      			<div class="one_div_wrp">
+														      				<div class="row align-items-center">
+														      					<div class="col-sm-5">
+														      						year 3
+														      					</div>
+														      					<div class="col-sm-4">
+														      						<div class="input-group mb-3">
+																				  		<input [(ngModel)]="Year3" [ngModelOptions]="{standalone: true}" (blur)="getYearTotal()" required type="text" class="form-control" #Year3Val="ngModel">
+																				  		<span *ngIf="Year3Val.invalid && (Year3Val.dirty || Year3Val.touched || forthStep)"
+														  								    class="text-danger">
+														  								    This field is required.
+														  								</span>
+																					  	<div class="input-group-append">
+																					    	<span class="input-group-text" id="basic-addon2">%</span>
+																					  	</div>
+																					</div>
+														      					</div>
+														      				</div>
+														      			</div>
+														      			<div class="one_div_wrp">
+														      				<div class="row align-items-center">
+														      					<div class="col-sm-5">
+														      						year 4
+														      					</div>
+														      					<div class="col-sm-4">
+														      						<div class="input-group mb-3">
+																				  		<input [(ngModel)]="Year4" [ngModelOptions]="{standalone: true}" (blur)="getYearTotal()" required type="text" class="form-control" #Year4Val="ngModel">
+																				  		<span *ngIf="Year4Val.invalid && (Year4Val.dirty || Year4Val.touched || forthStep)"
+														  								    class="text-danger">
+														  								    This field is required.
+														  								</span>
+																					  	<div class="input-group-append">
+																					    	<span class="input-group-text" id="basic-addon2">%</span>
+																					  	</div>
+																					</div>
+														      					</div>
+														      				</div>
+														      			</div>
+														      			<div class="one_div_wrp">
+														      				<div class="row align-items-center">
+														      					<div class="col-sm-5">
+														      						year 5
+														      					</div>
+														      					<div class="col-sm-4">
+														      						<div class="input-group mb-3">
+																				  		<input [(ngModel)]="Year5" [ngModelOptions]="{standalone: true}" (blur)="getYearTotal()" required type="text" class="form-control" #Year5Val="ngModel">
+																				  		<span *ngIf="Year5Val.invalid && (Year5Val.dirty || Year5Val.touched || forthStep)"
+														  								    class="text-danger">
+														  								    This field is required.
+														  								</span>
+																					  	<div class="input-group-append">
+																					    	<span class="input-group-text" id="basic-addon2">%</span>
+																					  	</div>
+																					</div>
+														      					</div>
+														      				</div>
+														      			</div>
+														      			<div class="one_div_wrp">
+														      				<div class="row align-items-center">
+														      					<div class="col-sm-5">
+														      						year 6
+														      					</div>
+														      					<div class="col-sm-4">
+														      						<div class="input-group mb-3">
+																				  		<input [(ngModel)]="Year6" [ngModelOptions]="{standalone: true}" (blur)="getYearTotal()" required type="text" class="form-control" #Year6Val="ngModel">
+																				  		<span *ngIf="Year6Val.invalid && (Year6Val.dirty || Year6Val.touched || forthStep)"
+														  								    class="text-danger">
+														  								    This field is required.
+														  								</span>
+																					  	<div class="input-group-append">
+																					    	<span class="input-group-text" id="basic-addon2">%</span>
+																					  	</div>
+																					</div>
+														      					</div>
+														      				</div>
+														      			</div>
+														      			<div class="one_div_wrp">
+														      				<div class="row align-items-center">
+														      					<div class="col-sm-5">
+														      						Total
+														      					</div>
+														      					<div class="col-sm-4">
+														      						<div class="input-group mb-3">
+																				  		<input [(ngModel)]="YearTotal" [ngModelOptions]="{standalone: true}" type="text" class="form-control" value="" readonly="">
+																					  	<div class="input-group-append">
+																					    	<span class="input-group-text" id="basic-addon2">%</span>
+																					  	</div>
+																					</div>
+														      					</div>
+														      				</div>
+														      			</div>
+													      			</div>
+													      		</div>
+													      		<div class="botom_quet mb-3">
+													      			<h6>Explanation of how asset allocation is made?</h6>
+													      			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+													      			<div class="col-sm-6">
+													      				<div class="one_div_wrp">
+														      				<div class="row">
+														      					<div class="col-sm-5">
+														      						year 1
+														      					</div>
+														      					<div class="col-sm-7">
+														      						Cash
+														      					</div>
+														      				</div>
+														      			</div>
+														      			<div class="one_div_wrp">
+														      				<div class="row">
+														      					<div class="col-sm-5">
+														      						year 2
+														      					</div>
+														      					<div class="col-sm-7">
+														      						Multi Asset-Income
+														      					</div>
+														      				</div>
+														      			</div>
+														      			<div class="one_div_wrp">
+														      				<div class="row">
+														      					<div class="col-sm-5">
+														      						year 3
+														      					</div>
+														      					<div class="col-sm-7">
+														      						Multi Asset-Low Equity
+														      					</div>
+														      				</div>
+														      			</div>
+														      			<div class="one_div_wrp">
+														      				<div class="row">
+														      					<div class="col-sm-5">
+														      						year 4
+														      					</div>
+														      					<div class="col-sm-7">
+														      						Multi Asset-High Equity
+														      					</div>
+														      				</div>
+														      			</div>
+														      			<div class="one_div_wrp">
+														      				<div class="row">
+														      					<div class="col-sm-5">
+														      						Year 5
+														      					</div>
+														      					<div class="col-sm-7">
+														      						Equity
+														      					</div>
+														      				</div>
+														      			</div>
+													      			</div>
+													      		</div>
+													      		<div class="row">
+													      			<div class="col-sm-6">
+													      				<div class="form-group">
+													      					<label>Client Signature</label>
+													      					<ng-signature-pad doneButtonText="Save Sign" format="base64" [emitOnDragEnd]="true" (done)="RiskClientSignUpload($event)" [showClearButton]="hide" [showDoneButton]="hide">
+																			</ng-signature-pad>
+													      				</div>
+													      			</div>
+													      			<div class="col-sm-6">
+													      				<div class="form-group">
+													      					<label>Advisor Signature</label>
+													      					<ng-signature-pad
+																			  doneButtonText="Save Sign" format="base64" [emitOnDragEnd]="true" (done)="RiskAdvisorSignUpload($event)" [showClearButton]="hide" [showDoneButton]="hide">
+																			</ng-signature-pad>
+													      				</div>
+													      			</div>	
+													      		</div>
+													      	</div>
+													      	<!-- stepper Inner /-->
+													      	<div class="d-flex justify-content-between">
+													        	<button type="button" mat-raised-button class="btn_back_stppr" matStepperPrevious>Back</button>
+													        	<!-- <button mat-raised-button type="button" color="primary">Done</button> -->
+													        	<button (click)="fifthForm()" mat-raised-button type="button" color="primary">Done</button>
+													      	</div>
+													    </form>
+												  	</mat-step>
+												</mat-horizontal-stepper>
+		            						</div>		
+		            					</div>
+		            				</div>
+		            			</div>
+		            		</div>
+            			</div>
+            		</section>
+            	</div>
+        	</div>
+        	<div class="sidenav_db">
+				<app-db-sidebar></app-db-sidebar>
+        	</div>
+        </div>
+    </section>
+    <!-- footer starts -->
+    <!-- <app-footer></app-footer> -->
+    <!-- footer ends -->
+</div>
+

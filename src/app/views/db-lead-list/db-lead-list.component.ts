@@ -2,6 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../.././auth/auth.service';
 import { ActivatedRoute, Router } from "@angular/router";
 // import * as $ from 'jquery';
+import Swal from 'sweetalert2';
+import { ToastrService } from 'ngx-toastr';
+import { DatePipe } from '@angular/common';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+
 declare var $;
 
 @Component({
@@ -21,6 +26,9 @@ export class DbLeadListComponent implements OnInit {
   tableSort = []
   orderBy = 'created_at'
   sortName = 'DESC'
+  ShowEditNote
+  lead_id
+  edit = true
   // tableSort[0]
   // tableSort[1]
   // tableSort[2]
@@ -29,9 +37,16 @@ export class DbLeadListComponent implements OnInit {
   // tableSort[5]
   // tableSort[6]
 
-  constructor(private service: AuthService, private router: Router) { }
+
+  constructor(
+    private authService: AuthService,
+    private service: AuthService,
+    private router: Router,
+    private toastr: ToastrService,
+  ) { }
 
   ngOnInit() {
+    this.ShowEditNote = false
     // this.tableSort={firstName:"John", lastName:"Doe", age:46}
 
     this.tableSort = [true, true, true, true, true, true, true]
@@ -146,6 +161,7 @@ export class DbLeadListComponent implements OnInit {
     };
 
     this.service.leads(ob).subscribe(data => {
+      console.log(data)
 
       if (data) {
         this.leads = data.data
@@ -170,7 +186,6 @@ export class DbLeadListComponent implements OnInit {
       sort: this.sortName
     };
     this.service.leads(ob).subscribe(data => {
-
       if (data) {
         this.leads = data.data
         this.length = data.count
@@ -256,21 +271,107 @@ export class DbLeadListComponent implements OnInit {
     })
   }
 
-  viewMore(type, description) {
+  updateLeadNote() {
+    var ob = {
+      id: this.lead_id,
+      Note: this.ModalBody
+    }
+    this.service.updateLeadNote(ob).subscribe(data => {
+      // console.log()
+      if (data.success) {
+        this.ShowEditNote = false
+        this.getLeads()
+      }
+    })
+  }
+
+  viewMore(note, id) {
 
     console.log('viewMore')
-    console.log(type, description)
-    this.ModalHeading = type
-    this.ModalBody = description
-
+    console.log(note, id)
+    this.ModalBody = note
+    this.lead_id = id
+    if (!note) {
+      this.edit = true
+      this.ShowEditNote = true
+    }
     $('#myModal').modal('show');
-
-    // $('#myModal').validate({
-
-    // })
-
 
     // console.log(html)
   }
+
+  deleteLead(id) {
+    var obj = {
+      id: id,
+    }
+
+    Swal.fire({
+      title: 'Are you sure want to remove?',
+      text: 'You will not be able to recover this lead!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, keep it'
+    }).then((result) => {
+      if (result.value) {
+        this.authService.deleteLead(obj).subscribe(data => {
+          console.log(data);
+          if (data.success == 1) {
+            Swal.fire(
+              'Deleted!',
+              'Your lead has been deleted.',
+              'success'
+            )
+            this.ngOnInit();
+          } else {
+            this.toastr.error(data.message, 'Error');
+          }
+        });
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        Swal.fire(
+          'Cancelled',
+          'Your lead is safe :)',
+          'error'
+        )
+      }
+    })
+  }
+
+  conditionCheck(item) {
+    var now = new Date()
+    var datePipe = new DatePipe('en-US');
+    let date = datePipe.transform(now, 'yyyy-MM-dd');
+    // console.log(date, item.follow_up_date)
+    if (item.follow_up_date <= date) {
+      return true
+    } else {
+      return false
+    }
+  }
+
+  showEditNote() {
+    this.ShowEditNote = true
+  }
+  changeDate(type: string, event: MatDatepickerInputEvent<Date>,value) {
+		console.log(event.value);
+	//	this.dateFrom = event.value;
+    console.log(`${type}: ${event.value}`);
+    console.log(value);
+    var obj = {
+      lead_data : value,
+      date : event.value,
+    }
+
+    this.service.updateLeadFollowDate(obj).subscribe(data => {
+      
+      if (data) {
+        this.toastr.success(data.message,"Success!");
+      }
+    }, err => {
+      this.authService.showAuthError(err);
+      // this.toastr.error(this.authService.COMMON_ERROR);
+    })
+
+	  }
 
 }

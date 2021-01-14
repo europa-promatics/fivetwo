@@ -28,8 +28,9 @@ export class DbAddRecordAdviceComponent implements OnInit {
     ]
     chosenItem = this.list[0].name;
     adviseTaken
+    BROKER
 
-  constructor(private _location: Location,private authService:AuthService,private router:Router, private toastr: ToastrService) { }
+  constructor(private route : ActivatedRoute, private _location: Location,private authService:AuthService,private router:Router, private toastr: ToastrService) { }
 
   ngOnInit() {
   	this.getInvestor()
@@ -40,7 +41,8 @@ export class DbAddRecordAdviceComponent implements OnInit {
   	let currYear = d.getFullYear();
   	let today=currYear + "-" + ((currMonth<10) ? '0'+currMonth : currMonth )+ "-" + ((currDate<10) ? '0'+currDate : currDate );
   	
-  	this.RecordAdviceDate=today
+    this.RecordAdviceDate=today
+    this.BROKER = this.authService.getLoggedUserDetails();
   }
   get forthStep() { return this.ForthStepStatus; }
   get advisorRequired() { return (this.chosenItem=='Yes'); }
@@ -54,14 +56,34 @@ export class DbAddRecordAdviceComponent implements OnInit {
     }
 
   getInvestor(){
-  	var investor_data = JSON.parse(sessionStorage.getItem('investor'))
+  	// var investor_data = JSON.parse(sessionStorage.getItem('investor'))
 
-  	if (investor_data!=null) {
-  		this.investor=investor_data
-  		this.investor_id=investor_data.id
-  		console.log(this.investor)
+  	// if (investor_data!=null) {
+  	// 	this.investor=investor_data
+  	// 	this.investor_id=investor_data.id
+  	// 	console.log(this.investor)
   		
-  	}
+      // }
+      var ob = {
+        id: atob(this.route.snapshot.params.investor_id),
+      };
+      console.log(ob)
+      this.authService.singleInvestor(ob).subscribe(data => {
+  
+        if (data.success) {
+            this.investor = data.data
+            this.RecordAdviceClient = this.investor.FirstName + " "+this.investor.LastName;
+            this.RecordAdviceAdvisor = this.BROKER ? this.BROKER.full_name : "--";
+            this.investor_id=atob(this.route.snapshot.params.investor_id)
+
+        }
+      }, err => {
+        console.log(err)
+        // If not token provided or token invalid
+        this.authService.showAuthError(err);
+        //this.toastr.error(err.message);
+        // this.toastr.error(this.authService.COMMON_ERROR);
+      })
   }
 
   public add(){
@@ -117,8 +139,8 @@ export class DbAddRecordAdviceComponent implements OnInit {
                     var investor_data = data.data
               		sessionStorage.setItem('investor',JSON.stringify(investor_data))
                 
-                  this.toastr.success('Record of Advice added successfully')
-              		this.router.navigate(['/user/clientProfile']);
+                    this.toastr.success('Record of Advice added successfully')
+                     this._location.back();
                     // stepper.next();
                     // this.stepperNextAsyc(stepper,'4')
                     // this.DisclosureSign=null;

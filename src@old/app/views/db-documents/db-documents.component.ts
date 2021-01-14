@@ -4,6 +4,7 @@ import * as _ from 'underscore';
 import { AuthService } from '../.././auth/auth.service';
 import { ActivatedRoute, Router } from  "@angular/router";
 import { environment } from './../../../environments/environment'
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-db-documents',
@@ -17,13 +18,16 @@ export class DbDocumentsComponent implements OnInit {
   authService
   client_data
   in_arr
-  constructor(private route: ActivatedRoute,private service:AuthService,private router:Router,private toastr: ToastrService) {
+  client_id_
+  
+  constructor(private route: ActivatedRoute,private _location: Location,private service:AuthService,private router:Router,private toastr: ToastrService) {
       this.authService = service;
    }
 
 
   ngOnInit() {
     this.getInvestor()
+    this.client_id_ = this.route.snapshot.params.id;
   }
 
   getInvestor(){
@@ -65,8 +69,8 @@ export class DbDocumentsComponent implements OnInit {
           return "--";
         }
     }else if(file == "DisclosureSign"){      
-      if(this.client_data && this.client_data.DisclosureSign){
-        return environment.InvestorSignBasePath+""+this.client_data.DisclosureSign;
+      if(this.client_data && this.client_data.DisclosurePDF){
+        return environment.InvestorSignBasePath+""+this.client_data.DisclosurePDF;
       }else{
         return "--"
       }
@@ -104,6 +108,10 @@ export class DbDocumentsComponent implements OnInit {
     }else{
       return "javascript:;";
     }
+  }
+
+  goBack(){
+    this._location.back();
   }
 
 }

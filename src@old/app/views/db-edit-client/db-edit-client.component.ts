@@ -50,6 +50,7 @@ export class DbEditClientComponent implements OnInit {
   ThirdStepStatus = false;
   defaultImage = `data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAtcAAAC1CAYAAACULdMlAAACFUlEQVR4nO3BAQ0AAADCoPdPbQ8HFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwJkBCTkAAbMzGX4AAAAASUVORK5CYII=`;
 
+  errorClass=""
 
   // defaultShortImage=`data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAggAAACCCAYAAAAjSDD0AAABHUlEQVR4nO3BMQEAAADCoPVPbQ0PoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADeDCD+AAEWEPbFAAAAAElFTkSuQmCC`;
 
@@ -98,6 +99,7 @@ export class DbEditClientComponent implements OnInit {
   broker_id
   InvestorID
 
+  RiskProfileName
   bank_list
 
   constructor(private route: ActivatedRoute, private router: Router, private authService: AuthService, private toastr: ToastrService, public formBuilder: FormBuilder) { }
@@ -236,6 +238,10 @@ export class DbEditClientComponent implements OnInit {
             
           if (data.success == 1) {
                 this.profile = data.data;
+
+                this.DisclosureName = data.data.LastName + " "+data.data.FirstName
+                this.RiskProfileName = data.data.LastName + " "+data.data.FirstName
+                // alert(this.DisclosureName);
                 this.form.controls['LastName'].setValue(data.data.LastName);
                 this.form.controls['FirstName'].setValue(data.data.FirstName);
                 this.form.controls['IdNumber'].setValue(data.data.IdNumber);
@@ -1042,10 +1048,10 @@ export class DbEditClientComponent implements OnInit {
       formdata.append("Year6", this.Year6.toString());
 
 
-      if (this.Year1 == 0 || this.Year2 == 0 || this.Year3 == 0 || this.Year4 == 0 || this.Year5 == 0 || this.Year6 == 0) {
-          this.toastr.warning('Year % should be greater than 0')
-          return
-      }
+    //   if (this.Year1 == 0 || this.Year2 == 0 || this.Year3 == 0 || this.Year4 == 0 || this.Year5 == 0 || this.Year6 == 0) {
+    //       this.toastr.warning('Year % should be greater than 0')
+    //       return
+    //   }
 
       if (this.YearTotal != 100) {
           this.toastr.warning('Total should be 100%')
@@ -1130,6 +1136,12 @@ export class DbEditClientComponent implements OnInit {
           console.log(this.YearTotal)
       } else {
           console.log(this.YearTotal)
+      }
+
+      if(this.YearTotal == 100){
+        this.errorClass = "";
+      }else{
+        this.errorClass = "error-percent";
       }
       // this.YearTotal= YearTotals;
   }

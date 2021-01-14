@@ -38,7 +38,8 @@ import { DbEditClientComponent } from './views/db-edit-client/db-edit-client.com
 import { DbDocumentsComponent } from './views/db-documents/db-documents.component';
 import { TermsAndConditionComponent } from './views/terms-and-condition/terms-and-condition.component';
 import { PrivacyPolicyComponent } from './views/privacy-policy/privacy-policy.component';
-
+import { FaqComponent } from './views/faq/faq.component';
+import { AboutComponent } from './views/about/about.component';
 
 
 const routes: Routes = [
@@ -52,6 +53,14 @@ const routes: Routes = [
 		component: LoginComponent,
 
 
+	},
+	{
+		path: 'faqs',
+		component: FaqComponent
+	},
+	{
+		path: 'aboutUs',
+		component: AboutComponent
 	},
 	{
 		path: 'forgotPassword',
