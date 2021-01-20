@@ -250,7 +250,7 @@
 														</div>
 			            								
 													</div>
-													<div class="row">
+													<!-- <div class="row">
 			            									
 														<div class="col-sm-4">
 			            									<label>Date Signed</label>
@@ -267,7 +267,43 @@
 	            											    
 	            											</span>
 			            								</div>		            								
-			            							</div>
+			            							</div> -->
+			            							<form class="row mb-3" action="">													      						
+																
+																<div class="col-sm-4">
+																	  <div class="form-group">
+																		<label for="email">Name of signatory:</label>
+																		<input readonly="true" [(ngModel)]="DisclosureName" [ngModelOptions]="{standalone: true}" type="text" class="form-control" placeholder="Name" id="email" required #DisclosureNameRe="ngModel" oninput="this.value = this.value.replace(/[^a-zA-Z .]/g, '').replace(/(\..*)\./g, '$1');" >
+																		<span *ngIf="DisclosureNameRe.invalid && (DisclosureNameRe.dirty || DisclosureNameRe.touched  || thirdStep)"
+																			class="text-danger">
+
+																			This field is required.
+																			
+																		</span>
+																	</div>
+																</div>
+																<div class="col-sm-4">
+																	<div class="form-group">
+																		<label>Name of Advisor</label>
+																		<input type="text" readonly="" value="{{ BROKER ? BROKER.full_name : '--' }}" class="form-control" >
+																	</div>
+																</div>
+																<div class="col-sm-4">
+			            									<label>Date Signed</label>
+			            									<input [(ngModel)]="DateSigned" [ngModelOptions]="{standalone: true}" type="date" class="form-control" name="" required #DateSignedVal="ngModel">
+
+			            									<span *ngIf="DateSignedVal.invalid && (DateSignedVal.dirty || DateSignedVal.touched || steps)"
+							            											    class="text-danger">
+	            											    <span *ngIf="DateSignedVal.errors.required">
+	            											        This field is required.
+	            											    </span>
+	            											    <span *ngIf="DateSignedVal.errors.pattern">
+	            											    	Invalid Date
+	            											    </span>
+	            											    
+	            											</span>
+			            								</div>		
+															</form> 
 			            						</div>
 			            						<div class="form-group text-right">
 			            						    <div class="pos_rel log_sgn_btn">

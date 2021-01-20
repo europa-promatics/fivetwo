@@ -46,6 +46,7 @@ import { DbAddTaskComponent } from './views/db-add-task/db-add-task.component';
 import { DraftClientsComponent } from './views/draft-clients/draft-clients.component';
 
 import { CreateRequestGuardService  } from "./user/deactivate_guard.service";
+import { EditLeadComponent } from './views/edit-lead/edit-lead.component';
 
 const routes: Routes = [
 	{
@@ -174,6 +175,10 @@ const routes: Routes = [
 		            {
 		            	path: 'addLead',
 		            	component: AddLeadListComponent
+					},
+					{
+		            	path: 'editLead/:id',
+		            	component: EditLeadComponent
 		            },
 		            {
 		            	path: 'leadList',

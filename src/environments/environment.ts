@@ -17,6 +17,7 @@ export const environment = {
   recordAdvice : "https://production.promaticstechnologies.com/fivetwo_apis/public/record_advice/",
   CustomFile : "https://production.promaticstechnologies.com/fivetwo_apis/public/CustomFiles/",  
   image_url: 'https://production.promaticstechnologies.com/fivetwo_apis_new/public/',
+  welcome_letter: 'https://production.promaticstechnologies.com/fivetwo_apis/public/welcome_letters/',
   CLIENT_NAME: "Marthunis Christiaan Oosthuizen",
 };
 

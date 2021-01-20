@@ -331,55 +331,123 @@ export class DashboardComponent implements OnInit {
 		});
 	}
 	
+	// showCoparisonChart(){
+	// 	this.zone.runOutsideAngular(() => {
+	// 		let chart = am4core.create("chartdiv_fst", am4charts.XYChart);
+  
+	// 		var data = [];
+	// 		chart.data = this.holding;
+  
+	// 		var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+	// 		categoryAxis.renderer.grid.template.location = 0;
+	// 		categoryAxis.renderer.ticks.template.disabled = true;
+	// 		categoryAxis.renderer.line.opacity = 1;
+	// 		categoryAxis.renderer.grid.template.disabled = true;
+	// 		categoryAxis.renderer.minGridDistance = 40;
+	// 		categoryAxis.dataFields.category = "year";
+	// 		categoryAxis.startLocation = 0.4;
+	// 		categoryAxis.endLocation = 0.6;
+  
+  
+	// 		var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+	// 		valueAxis.tooltip.disabled = true;
+	// 		valueAxis.renderer.line.opacity = 1;
+	// 		valueAxis.renderer.ticks.template.disabled = true;
+	// 		valueAxis.min = 0;
+  
+	// 		var lineSeries = chart.series.push(new am4charts.LineSeries());
+	// 		lineSeries.dataFields.categoryX = "year";
+	// 		lineSeries.dataFields.valueY = "income";
+	// 		lineSeries.tooltipText = "AUM: {valueY.value}";
+	// 		lineSeries.fillOpacity = 0.5;
+	// 		lineSeries.strokeWidth = 3;
+	// 		lineSeries.propertyFields.stroke = "lineColor";
+	// 		lineSeries.propertyFields.fill = "lineColor";
+  
+	// 		var bullet = lineSeries.bullets.push(new am4charts.CircleBullet());
+	// 		bullet.circle.radius = 6;
+	// 		bullet.circle.fill = am4core.color("#fff");
+	// 		bullet.circle.strokeWidth = 3;
+  
+	// 		chart.cursor = new am4charts.XYCursor();
+	// 		chart.cursor.behavior = "panX";
+	// 		chart.cursor.lineX.opacity = 0;
+	// 		chart.cursor.lineY.opacity = 0;
+  
+	// 		this.chart = chart;
+	// 		// line chart ends
+	// 	  });
+	// }
+
+	//   Get total balance 
+	
 	showCoparisonChart(){
 		this.zone.runOutsideAngular(() => {
 			let chart = am4core.create("chartdiv_fst", am4charts.XYChart);
-  
-			var data = [];
-			chart.data = this.holding;
-  
-			var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
-			categoryAxis.renderer.grid.template.location = 0;
-			categoryAxis.renderer.ticks.template.disabled = true;
-			categoryAxis.renderer.line.opacity = 1;
-			categoryAxis.renderer.grid.template.disabled = true;
-			categoryAxis.renderer.minGridDistance = 40;
-			categoryAxis.dataFields.category = "year";
-			categoryAxis.startLocation = 0.4;
-			categoryAxis.endLocation = 0.6;
-  
-  
-			var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
-			valueAxis.tooltip.disabled = true;
-			valueAxis.renderer.line.opacity = 1;
-			valueAxis.renderer.ticks.template.disabled = true;
-			valueAxis.min = 0;
-  
-			var lineSeries = chart.series.push(new am4charts.LineSeries());
-			lineSeries.dataFields.categoryX = "year";
-			lineSeries.dataFields.valueY = "income";
-			lineSeries.tooltipText = "AUM: {valueY.value}";
-			lineSeries.fillOpacity = 0.5;
-			lineSeries.strokeWidth = 3;
-			lineSeries.propertyFields.stroke = "lineColor";
-			lineSeries.propertyFields.fill = "lineColor";
-  
-			var bullet = lineSeries.bullets.push(new am4charts.CircleBullet());
-			bullet.circle.radius = 6;
-			bullet.circle.fill = am4core.color("#fff");
-			bullet.circle.strokeWidth = 3;
-  
+
+			// Add data
+			chart.data = this.holding
+
+			// Set input format for the dates
+			chart.dateFormatter.inputDateFormat = "yyyy-MM-dd";
+
+			// Create axes
+			let dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+			let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+
+			// Create series
+			let series = chart.series.push(new am4charts.LineSeries());
+			series.dataFields.valueY = "value";
+			series.dataFields.dateX = "date";
+			series.tooltipText = "{value}"
+			series.strokeWidth = 2;
+			// series.fill=am4core.color("black");
+			
+			series.minBulletDistance = 15;
+
+			// Drop-shaped tooltips
+			series.tooltip.background.cornerRadius = 20;
+			series.tooltip.background.strokeOpacity = 0;
+			series.tooltip.pointerOrientation = "vertical";
+			series.tooltip.label.minWidth = 40;
+			series.tooltip.label.minHeight = 40;
+			series.tooltip.label.textAlign = "middle";
+			series.tooltip.label.textValign = "middle";
+
+			// Make bullets grow on hover
+			let bullet = series.bullets.push(new am4charts.CircleBullet());
+			bullet.circle.strokeWidth = 2;
+			bullet.circle.radius = 4;
+			bullet.circle.fill = am4core.color("#000");
+
+			let bullethover = bullet.states.create("hover");
+			bullethover.properties.scale = 1.3;
+
+			// Make a panning cursor
 			chart.cursor = new am4charts.XYCursor();
-			chart.cursor.behavior = "panX";
-			chart.cursor.lineX.opacity = 0;
-			chart.cursor.lineY.opacity = 0;
-  
-			this.chart = chart;
+			chart.cursor.behavior = "panXY";
+			chart.cursor.xAxis = dateAxis;
+			chart.cursor.snapToSeries = series;
+			// chart.fill=am4core.color("#000");
+
+			// Create vertical scrollbar and place it before the value axis
+			chart.scrollbarY = new am4core.Scrollbar();
+			chart.scrollbarY.parent = chart.leftAxesContainer;
+			chart.scrollbarY.toBack();
+
+			// Create a horizontal scrollbar with previe and place it underneath the date axis
+			chart.scrollbarX = new am4charts.XYChartScrollbar();
+			// chart.scrollbarX.series.push(series);
+			chart.scrollbarX.parent = chart.bottomAxesContainer;
+
+			dateAxis.start = 0;
+			dateAxis.keepSelection = true;
+
+
 			// line chart ends
 		  });
 	}
-
-	//   Get total balance 
+	
 	getInvestorTotalBalance(){
 		
 	  this.authService.getDashboardBalance().subscribe(data => {
@@ -540,7 +608,7 @@ export class DashboardComponent implements OnInit {
 		  } 
 	
 		  else {
-			return "-";
+			return "";
 		  }
 	
 		}else{
@@ -618,13 +686,13 @@ export class DashboardComponent implements OnInit {
 
 	  formatAmount(amount){
 
-		return currencyFormatter.format(amount, { code: 'ZAR',symbol: '', })
+		return currencyFormatter.format(amount, { code: 'ZAR',symbol: '',decimal: '.' })
 	
 	  }
 
 	  getPercentage(item){
 		if(item.totalAmount > 0){
-			console.log(item.totalAmount / this.total_review_amount * 100);
+			// console.log(item.totalAmount / this.total_review_amount * 100);
 			return Math.round(item.totalAmount / this.total_review_amount * 100)
 		}else{
 			return 0;

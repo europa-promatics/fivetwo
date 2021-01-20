@@ -4,11 +4,17 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { ToastrService } from 'ngx-toastr';
 import { MatStepper } from '@angular/material/stepper';
 import { AuthService } from '../.././auth/auth.service';
-
+// import { Subject } from 'rxjs/Subject';
+// import { Observable } from 'rxjs/Observable';
+import { Subscription, Subject, Observable } from 'rxjs';
+import { WebcamImage, WebcamInitError, WebcamUtil } from 'ngx-webcam';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
-import * as moment from "moment";
+// import * as moment from "moment";
+import { environment } from "./../../../environments/environment" 
+import { CanComponentDeactivate } from 'src/app/user/deactivate_guard.service';
 
 declare var Tesseract;
+
 
 function id() {
 
@@ -140,8 +146,13 @@ declare var $;
 })
 
 
-export class DbAddInvestorComponent implements OnInit {
-
+export class DbAddInvestorComponent implements OnInit,CanComponentDeactivate {
+    webCam: boolean;
+    webCamOpenedBY;
+    webcamImage
+    BankwebcamImage
+    AddresswebcamImage
+    bankDetailImage
     firstFormGroup: FormGroup;
     secondFormGroup: FormGroup;
     thirdFormGroup: FormGroup;
@@ -164,7 +175,8 @@ export class DbAddInvestorComponent implements OnInit {
 
     upload_id = []
     upload_id_label = ['Choose file'];
-
+    bank_upload_id = 'Choose File'
+    address_upload_id = 'Choose File'
     DisclosureSign
     DisclosureDate
     DisclosureName
@@ -172,7 +184,7 @@ export class DbAddInvestorComponent implements OnInit {
     ThirdStepStatus = false;
     defaultImage = `data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAtcAAAC1CAYAAACULdMlAAACFUlEQVR4nO3BAQ0AAADCoPdPbQ8HFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwJkBCTkAAbMzGX4AAAAASUVORK5CYII=`;
 
-    errorClass=""
+    errorClass = ""
 
     // defaultShortImage=`data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAggAAACCCAYAAAAjSDD0AAABHUlEQVR4nO3BMQEAAADCoPVPbQ0PoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADeDCD+AAEWEPbFAAAAAElFTkSuQmCC`;
 
@@ -196,6 +208,8 @@ export class DbAddInvestorComponent implements OnInit {
     chosenItem = this.list[0].name;
     isFirstStepDone = false
     isSecondStepDone = false
+    bankDetailStepDone = false
+    addressStepDone = false
     isThirdStepDone = false
     isForthStepDone = false
     isFifthStepDone = false
@@ -205,6 +219,7 @@ export class DbAddInvestorComponent implements OnInit {
     Year4
     Year5
     Year6
+    Relationship = ['son', 'daughter']
     // Year1=0
     // Year2=0
     // Year3=0
@@ -217,10 +232,23 @@ export class DbAddInvestorComponent implements OnInit {
     isEditable = false;
     opened = [];
     broker_id
+    BROKER
 
     bank_list
 
+
+
     @ViewChild('stepper', { static: true }) stepper: MatStepper;
+    public showWebcam = true;
+    public allowCameraSwitch = true;
+    public multipleWebcamsAvailable = false;
+    public allowCameraSwitch1 = true
+    public deviceId: string;
+    public videoOptions: MediaTrackConstraints = {
+        // width: {ideal: 1024},
+        // height: {ideal: 576}
+    };
+
     constructor(
         private route: ActivatedRoute,
         private router: Router,
@@ -229,6 +257,12 @@ export class DbAddInvestorComponent implements OnInit {
         public formBuilder: FormBuilder
     ) {
         // this.test()
+    }
+    [x: string]: any;
+    CanDeactivate: () => boolean | Observable<boolean> | Promise<boolean>;
+
+    canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
+        return confirm("WARNING: Are you sure you want to leave the ‘Add Client’ page?");
     }
 
     ngOnInit() {
@@ -313,26 +347,34 @@ export class DbAddInvestorComponent implements OnInit {
             FullName: '',
             IdNumber: '',
             CellNumber: '',
-            Email: ''
+            Email: '',
+            relation: '',
+            isChecked: false
         },
         {
             FullName: '',
             IdNumber: '',
             CellNumber: '',
-            Email: ''
+            Email: '',
+            relation: '',
+            isChecked: false
         },
         {
             FullName: '',
             IdNumber: '',
             CellNumber: '',
-            Email: ''
+            Email: '',
+            relation: '',
+            isChecked: false
         }];
         this.children =
         {
             FullName: '',
             IdNumber: '',
             CellNumber: '',
-            Email: ''
+            Email: '',
+            relation: '',
+            isChecked: false
         };
 
         this.beneficiaries = [{
@@ -361,6 +403,10 @@ export class DbAddInvestorComponent implements OnInit {
             Percent: ''
         };
         this.setLeadFields()
+        this.BROKER = this.authService.getLoggedUserDetails();
+        console.log("Broker -> ",this.BROKER )
+        // this.RecordAdviceAdvisor = "Marthunis Oosthuizen";
+        this.RecordAdviceAdvisor = this.BROKER.full_name;
 
     }
     bank_lists() {
@@ -385,8 +431,103 @@ export class DbAddInvestorComponent implements OnInit {
 
         })
     }
-    setLeadFields() {
 
+    private trigger: Subject<void> = new Subject<void>();
+    private triggerBank: Subject<void> = new Subject<void>();
+    private triggerAddress: Subject<void> = new Subject<void>();
+
+
+    private triggerUpdate: Subject<void> = new Subject<void>();
+
+    public get triggerObservableUpdate(): Observable<void> {
+        return this.triggerUpdate.asObservable();
+    }
+
+    public get triggerObservable(): Observable<void> {
+        return this.trigger.asObservable();
+    }
+    public get triggerBankObservable(): Observable<void> {
+        return this.triggerBank.asObservable();
+    }
+
+    public get triggerAddressObservable(): Observable<void> {
+        return this.triggerAddress.asObservable();
+    }
+    private nextWebcam: Subject<boolean | string> = new Subject<boolean | string>();
+
+    triggerSnapshot() {
+        console.log("===working====upload")
+        this.trigger.next();
+        // this.webCam = false;
+    }
+
+    triggerBankSnapshot() {
+        console.log("===working====upload")
+        this.triggerBank.next();
+        // this.webCam = false;
+    }
+
+    triggerAddressSnapshot() {
+        console.log("===working====upload")
+        this.triggerAddress.next();
+    }
+
+    triggerSnapshotUpdate() {
+        console.log("===working====capture")
+
+        this.triggerUpdate.next();
+        // this.webCam = false;
+    }
+
+    public get nextWebcamObservable(): Observable<boolean | string> {
+        return this.nextWebcam.asObservable();
+    }
+
+    uploadId() {
+        $('#pict_modal').modal('hide');
+    }
+
+    uploadBankImg() {
+        $('#bank_modal').modal('hide');
+    }
+    uploadAddressImg() {
+        $('#address_modal').modal('hide');
+    }
+    recapture() {
+        this.webcamImage = ""
+    }
+
+    handleImage(webcamImage) {
+        this.webcamImage = webcamImage._imageAsDataUrl
+        const object = {
+            // id: this.dispensedPatientSelected.id,
+            image: webcamImage._imageAsDataUrl
+        };
+    }
+
+    recaptureBank() {
+        this.BankwebcamImage = ""
+    }
+
+    handleBankImage(BankwebcamImage) {
+        this.BankwebcamImage = BankwebcamImage._imageAsDataUrl
+        const object = {
+            // id: this.dispensedPatientSelected.id,
+            image: BankwebcamImage._imageAsDataUrl
+        };
+    }
+
+    handleAddressImage(AddresswebcamImage) {
+        this.AddresswebcamImage = AddresswebcamImage._imageAsDataUrl
+
+    }
+
+    recaptureAddress() {
+        this.AddresswebcamImage = ""
+    }
+
+
+    setLeadFields() {
         var lead = JSON.parse(localStorage.getItem('lead'));
 
         if (lead !== null) {
@@ -400,6 +541,10 @@ export class DbAddInvestorComponent implements OnInit {
             this.form.controls['HomeNumber'].setValue(lead.HomeNumber);
             this.form.controls['MaritalStatus'].setValue(lead.MaritalStatus);
             this.form.controls['Note'].setValue(lead.Note);
+            this.DisclosureName = lead.FirstName + " " + lead.LastName
+            this.RecordAdviceClient = lead.FirstName + " " + lead.LastName
+            // this.DisclosureName = lead.FirstName + "" + lead.LastName
+
         }
         // else{
         //     console.log(lead)
@@ -429,6 +574,8 @@ export class DbAddInvestorComponent implements OnInit {
     addChildren() {
         let obj = this.children;
         this.childrens.push(obj);
+        let obj1 = this.beneficiary;
+        this.beneficiaries.push(obj1);
     }
     addBeneficiary() {
         let obj = this.beneficiary;
@@ -527,8 +674,6 @@ export class DbAddInvestorComponent implements OnInit {
         // LastName: new FormControl(''),
     });
 
-
-
     get LastName() { return this.form.get('LastName'); }
     get LastName2() { return this.form.get('LastName2'); }
     get FirstName() { return this.form.get('FirstName'); }
@@ -579,12 +724,16 @@ export class DbAddInvestorComponent implements OnInit {
 
     });
 
+    showName() {
+        this.RecordAdviceClient = this.form.value.FirstName + " " + this.form.value.LastName;
+        this.DisclosureName = this.form.value.FirstName + " " + this.form.value.LastName;
+        // console.log()
+        this.RecordAdviceAdvisor = this.BROKER.full_name;
+    }
+
 
     public firstForm(stepper: MatStepper) {
-
         this.firstStepStatus = true;
-
-
         // this.changeIconColor(1,this.isFirstStepDone)
 
         var check = this.checkFirstFormValidity();
@@ -598,7 +747,7 @@ export class DbAddInvestorComponent implements OnInit {
             if (this.investor_id != null || this.investor_id != undefined) {
                 console.log('update');
 
-                var ob = { id: this.investor_id, form: this.form.value, children: this.childrens, beneficiaries: this.beneficiaries };
+                var ob = { id: this.investor_id, form: this.form.value, children: this.childrens, beneficiaries: this.childrens };
 
                 this.authService.updateInvestor(ob).subscribe(data => {
 
@@ -664,6 +813,61 @@ export class DbAddInvestorComponent implements OnInit {
         }
     }
 
+    public DraftfirstForm(stepper: MatStepper) {
+        // this.firstStepStatus = true;
+        this.isFirstStepDone = true
+        
+        if (this.investor_id != null || this.investor_id != undefined) {
+            console.log('update');
+
+            var ob = { id: this.investor_id, form: this.form.value, children: this.childrens, beneficiaries: this.childrens };
+
+            this.authService.updateInvestor(ob).subscribe(data => {
+
+                if (data.success == 1) {
+
+                    this.investor_id = data.data.id;
+                    console.log(this.investor_id);
+                    this.DisclosureName = this.FirstName.value + ' ' + this.LastName.value;
+                    this.stepperNextAsyc(stepper, '1')
+
+                } else {
+                    this.toastr.error(data.message, 'Error');
+                }
+            }, err => {
+                console.log(err)
+                this.toastr.error(this.authService.COMMON_ERROR);
+
+            })
+
+        } else {
+            var obj = { broker_id: this.broker_id, form: this.form.value, children: this.childrens, beneficiaries: this.beneficiaries };
+            console.log(obj);
+            this.authService.addDraftInvestor(obj).subscribe(data => {
+                console.log("====",data)
+                if (data.success == 1) {
+
+                    this.investor_id = data.data.id;
+                    console.log(this.investor_id);
+                    this.DisclosureName = this.FirstName.value + ' ' + this.LastName.value;
+                    console.log(this.DisclosureName);
+
+                    localStorage.removeItem('lead');
+
+                    this.stepperNextAsyc(stepper, '1')
+
+
+                } else {
+                    this.toastr.error(data.message, 'Error');
+                }
+            }, err => {
+                console.log(err)
+
+            })
+        }
+
+    }
+
 
 
     // UploadId
@@ -678,32 +882,30 @@ export class DbAddInvestorComponent implements OnInit {
         console.log(this.upload_id);
 
         this.upload_id.forEach(function (val, ind) {
-
-
             formdata.append("image", val);
 
         })
+        if (this.webcamImage) {
+            formdata.append("webcam_image", this.webcamImage);
+        }
 
         // console.log(formdata.getAll(image));
 
 
-        if (this.upload_id == null) {
+        if (this.upload_id == null || !this.webcamImage) {
             this.toastr.warning('Please upload atleast one document', 'Warning')
             return
         }
+
         var ext = this.fileext;
 
 
-        if (ext == 'jpeg' || ext == 'jpg' || ext == 'png' || ext == 'pdf') {
-            //
-        } else {
-            this.toastr.warning('Please select valid file', 'warning')
-            return
-
-        }
-
-
-
+        // if (ext == 'jpeg' || ext == 'jpg' || ext == 'png' || ext == 'pdf') {
+        //     //
+        // } else {
+        //     this.toastr.warning('Please select valid file', 'warning')
+        //     return
+        // }
 
         if (this.investor_id == null || this.investor_id == undefined) {
             this.toastr.warning('Please complete form 1 first', 'Warning')
@@ -732,6 +934,89 @@ export class DbAddInvestorComponent implements OnInit {
                 this.stepperNextAsyc(stepper, '2')
 
 
+            } else {
+                // this.toastr.error(data.message, 'Error');
+            }
+        }, err => {
+            console.log(err)
+            // this.toastr.error(this.authService.COMMON_ERROR);
+
+        })
+        return
+    }
+
+    public BankDetailsForm(stepper: MatStepper) {
+        var formdata: FormData = new FormData();
+        formdata.append("id", this.investor_id);
+        console.log(this.bank_upload_id);
+        if (this.bank_upload_id) {
+            formdata.append("image", this.bank_upload_id);
+        }
+        if (this.BankwebcamImage) {
+            formdata.append("webcam_image", this.BankwebcamImage);
+        }
+        console.log("Bank --->"+!this.bank_upload_id);
+        console.log("Bank Web --->"+!this.BankwebcamImage);
+
+        if (this.bank_upload_id == "Choose File" && !this.BankwebcamImage) {
+            this.toastr.warning('Please upload atleast one document', 'Warning')
+            return
+        }
+        var ext = this.fileext;
+        // if (ext == 'jpeg' || ext == 'jpg' || ext == 'png' || ext == 'pdf') {
+        // } else {
+        //     this.toastr.warning('Please select valid file', 'warning')
+        //     return
+        // }
+        if (this.investor_id == null || this.investor_id == undefined) {
+            this.toastr.warning('Please complete form 1 first', 'Warning')
+            return
+        }
+        this.bankDetailStepDone = true;
+        this.authService.addBankDetailForm(formdata).subscribe(data => {
+            console.log(data)
+            if (data.success == 1) {
+                this.stepperNextAsyc(stepper, '3')
+            } else {
+                // this.toastr.error(data.message, 'Error');
+            }
+        }, err => {
+            console.log(err)
+            // this.toastr.error(this.authService.COMMON_ERROR);
+
+        })
+        return
+    }
+
+    public AddressForm(stepper: MatStepper) {
+        var formdata: FormData = new FormData();
+        formdata.append("id", this.investor_id);
+        console.log(this.address_upload_id);
+        if (this.address_upload_id) {
+            formdata.append("image", this.address_upload_id);
+        }
+        if (this.AddresswebcamImage) {
+            formdata.append("webcam_image", this.AddresswebcamImage);
+        }
+        if (this.address_upload_id == "Choose File" && !this.AddresswebcamImage) {
+            this.toastr.warning('Please upload atleast one document', 'Warning')
+            return
+        }
+        var ext = this.fileext;
+        // if (ext == 'jpeg' || ext == 'jpg' || ext == 'png' || ext == 'pdf') {
+        // } else {
+        //     this.toastr.warning('Please select valid file', 'warning')
+        //     return
+        // }
+        if (this.investor_id == null || this.investor_id == undefined) {
+            this.toastr.warning('Please complete form 1 first', 'Warning')
+            return
+        }
+        this.addressStepDone = true;
+        this.authService.addAddressForm(formdata).subscribe(data => {
+            console.log(data)
+            if (data.success == 1) {
+                this.stepperNextAsyc(stepper, '4')
             } else {
                 // this.toastr.error(data.message, 'Error');
             }
@@ -774,7 +1059,8 @@ export class DbAddInvestorComponent implements OnInit {
         var ext = img_arr.pop();
 
         this.fileext = ext;
-        if (ext == 'jpeg' || ext == 'jpg' || ext == 'png') {
+        // if (ext == 'jpeg' || ext == 'jpg' || ext == 'png') {
+        if (true) { // client want to add any type of file
             // code...
             this.upload_id.push(file);
             // console.log(this.upload_id)
@@ -810,6 +1096,82 @@ export class DbAddInvestorComponent implements OnInit {
         }
 
 
+    }
+
+    bankUpload(evt: any) {
+        console.log(evt)
+        // this.fileToUpload = ''
+
+        // console.log(evt);
+
+        if (!evt.target) {
+            return;
+        }
+        if (!evt.target.files) {
+            return;
+        }
+        if (evt.target.files.length !== 1) {
+            return;
+        }
+        // this.upload_id = [];
+        const file = evt.target.files[0];
+        var img_arr = file.name.split('.');
+
+        var ext = img_arr.pop();
+
+        this.fileext = ext;
+        if (true) { // client want to add any type of image
+        // if (ext == 'jpeg' || ext == 'jpg' || ext == 'png') {
+            this.bank_upload_id = evt.target.files[0];
+            const fr = new FileReader();
+            fr.onloadend = (loadEvent) => {
+                let mainImage = fr.result;
+                //this.serviceDoc = mainImage;
+            };
+            fr.readAsDataURL(file);
+            // this.imageUpload("sample")
+        } else {
+            evt.target.value = ""
+            this.toastr.warning('Please select valid file', 'warning');
+        }
+    }
+
+    addressUpload(evt: any) {
+        console.log(evt)
+        // this.fileToUpload = ''
+
+        // console.log(evt);
+
+        if (!evt.target) {
+            return;
+        }
+        if (!evt.target.files) {
+            return;
+        }
+        if (evt.target.files.length !== 1) {
+            return;
+        }
+        // this.upload_id = [];
+        const file = evt.target.files[0];
+        var img_arr = file.name.split('.');
+
+        var ext = img_arr.pop();
+
+        this.fileext = ext;
+        // if (ext == 'jpeg' || ext == 'jpg' || ext == 'png') {
+        if (true) { // client want to add any type of file
+            this.address_upload_id = evt.target.files[0];
+            const fr = new FileReader();
+            fr.onloadend = (loadEvent) => {
+                let mainImage = fr.result;
+                //this.serviceDoc = mainImage;
+            };
+            fr.readAsDataURL(file);
+            // this.imageUpload("sample")
+        } else {
+            evt.target.value = ""
+            this.toastr.warning('Please select valid file', 'warning');
+        }
     }
 
     validateImage(image) {
@@ -848,10 +1210,8 @@ export class DbAddInvestorComponent implements OnInit {
         } else if (this.LastName2.value != '') {
             // status=false;
             if (this.FirstName2.invalid || this.IdNumber2.invalid || this.CellNumber2.invalid || this.Email2.invalid || this.HomeNumber2.invalid || this.WorkNumber2.invalid || this.HomeAddress2.invalid || this.PostalAddress2.invalid || this.TaxNumber2.invalid || this.BankName2.invalid || this.BankNumber2.invalid || this.AccountType2.invalid) {
-
                 status = false;
             }
-
         } else {
 
             var checkchild = this.checkChildValidity();
@@ -898,6 +1258,52 @@ export class DbAddInvestorComponent implements OnInit {
         return status;
     }
 
+    keyFunc(event, ind) {
+        console.log("index=", ind, "child", this.childrens)
+        // this.childrens.forEach((element, index) => {
+        //     if (element.FullName && element.IdNumber && element.Email && element.CellNumber && element.relation) {
+        //         console.log("-----", index == ind)
+        //         if (index == ind) {
+        //             if (!this.beneficiaries[index].FullName && !this.beneficiaries[index].Relationship && !this.beneficiaries[index].CellNumber) {
+        //                 this.beneficiaries[index].FullName = element.FullName
+        //                 this.beneficiaries[index].Relationship = element.relation
+        //                 this.beneficiaries[index].CellNumber = element.CellNumber
+        //                 return
+        //             }
+        //             else {
+        //                 this.beneficiaries[index + 1].FullName = element.FullName
+        //                 this.beneficiaries[index + 1].Relationship = element.relation
+        //                 this.beneficiaries[index + 1].CellNumber = element.CellNumber
+        //                 return
+        //             }
+        //         } else {
+        //             if (!this.beneficiaries[ind].FullName && !this.beneficiaries[ind].Relationship && !this.beneficiaries[ind].CellNumber) {
+        //                 this.beneficiaries[ind].FullName = element.FullName
+        //                 this.beneficiaries[ind].Relationship = element.relation
+        //                 this.beneficiaries[ind].CellNumber = element.CellNumber
+        //                 return
+        //             }
+        //         }
+        //     }
+        // });
+    }
+
+    AddSpouse() {
+        var ind
+        if (this.FirstName2.value || this.LastName2.value) {
+            for (let index = 0; index < this.childrens.length; index++) {
+                const element = this.childrens[index];
+                if (!element.FullName && !element.relation && !element.CellNumber || element.relation == 'spouse') {
+                    ind = index
+                    break;
+                }
+            }
+            this.childrens[ind].FullName = this.FirstName2.value + " " + this.LastName2.value
+            this.childrens[ind].relation = 'spouse'
+            this.childrens[ind].CellNumber = this.CellNumber2.value
+        }
+    }
+
     checkChildError(i, v) {
 
         // console.log(i);
@@ -907,6 +1313,16 @@ export class DbAddInvestorComponent implements OnInit {
         } else {
             this.childError = false;
             return false;
+        }
+    }
+
+    checkEmail(value) {
+        if (value != null) {
+            this.childError = true;
+            return true
+        } else {
+            this.childError = false
+            return false
         }
     }
 
@@ -1111,7 +1527,7 @@ export class DbAddInvestorComponent implements OnInit {
     }
 
 
-    public fifthForm() {
+    public fifthForm(status) {
         console.log('fifth');
 
         this.FifthStepStatus = true;
@@ -1133,7 +1549,7 @@ export class DbAddInvestorComponent implements OnInit {
         formdata.append("Year4", this.Year4.toString());
         formdata.append("Year5", this.Year5.toString());
         formdata.append("Year6", this.Year6.toString());
-
+        formdata.append("status", status);
 
         // if (this.Year1 == 0 || this.Year2 == 0 || this.Year3 == 0 || this.Year4 == 0 || this.Year5 == 0 || this.Year6 == 0) {
         //     this.toastr.warning('Year % should be greater than 0')
@@ -1166,12 +1582,23 @@ export class DbAddInvestorComponent implements OnInit {
             this.toastr.warning('Please complete step 2 first', 'Warning')
             return
         }
-        if (!this.isThirdStepDone) {
+
+        if (!this.bankDetailStepDone) {
             this.toastr.warning('Please complete step 3 first', 'Warning')
             return
         }
-        if (!this.isForthStepDone) {
+
+        if (!this.addressStepDone) {
             this.toastr.warning('Please complete step 4 first', 'Warning')
+            return
+        }
+
+        if (!this.isThirdStepDone) {
+            this.toastr.warning('Please complete step 5 first', 'Warning')
+            return
+        }
+        if (!this.isForthStepDone) {
+            this.toastr.warning('Please complete step 6 first', 'Warning')
             return
         }
 
@@ -1179,12 +1606,9 @@ export class DbAddInvestorComponent implements OnInit {
 
             // console.log('in');
             if (data.success == 1) {
-
                 console.log(data);
                 this.toastr.success(data.message);
                 this.router.navigate(['/user/dbClients']);
-
-
             } else {
                 // this.toastr.error(data.message, 'Error');
             }
@@ -1200,22 +1624,22 @@ export class DbAddInvestorComponent implements OnInit {
     getYearTotal() {
         // p
         if (isNaN(this.Year1)) {
-            this.Year1 = 0;
+           // this.Year1 = 0;
         }
         if (isNaN(this.Year2)) {
-            this.Year2 = 0;
+          //  this.Year2 = 0;
         }
         if (isNaN(this.Year3)) {
-            this.Year3 = 0;
+           // this.Year3 = 0;
         }
         if (isNaN(this.Year4)) {
-            this.Year4 = 0;
+           // this.Year4 = 0;
         }
         if (isNaN(this.Year5)) {
-            this.Year5 = 0;
+           // this.Year5 = 0;
         }
         if (isNaN(this.Year6)) {
-            this.Year6 = 0;
+            //this.Year6 = 0;
         }
         this.YearTotal = Number(this.Year1) + Number(this.Year2) + Number(this.Year3) + Number(this.Year4) + Number(this.Year5) + Number(this.Year6);
         if (isNaN(this.YearTotal)) {
@@ -1225,9 +1649,9 @@ export class DbAddInvestorComponent implements OnInit {
             console.log(this.YearTotal)
         }
 
-        if(this.YearTotal == 100){
+        if (this.YearTotal == 100) {
             this.errorClass = "";
-        }else{
+        } else {
             this.errorClass = "error-percent";
         }
         // this.YearTotal= YearTotals;
@@ -1278,8 +1702,12 @@ export class DbAddInvestorComponent implements OnInit {
             } else if (item == 2) {
                 component.changeIconColor(item, component.isSecondStepDone)
             } else if (item == 3) {
-                component.changeIconColor(item, component.isThirdStepDone)
+                component.changeIconColor(item, component.bankDetailStepDone)
             } else if (item == 4) {
+                component.changeIconColor(item, component.addressStepDone)
+            } else if (item == 5) {
+                component.changeIconColor(item, component.isThirdStepDone)
+            } else if (item == 6) {
                 component.changeIconColor(item, component.isForthStepDone)
             } else {
                 component.changeIconColor(item, component.isFifthStepDone)

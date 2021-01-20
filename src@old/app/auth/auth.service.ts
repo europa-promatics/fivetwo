@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse  } from '@angular/common/htt
 import { Observable, throwError } from 'rxjs';
 import { map, catchError, retry } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
+import { environment } from './../../environments/environment'
 
 @Injectable({
   providedIn: 'root'
@@ -44,7 +45,8 @@ export class AuthService {
     // }
 
 
-    SERVER_URL = "https://production.promaticstechnologies.com:3001/";
+    SERVER_URL = environment.EndPointServer;
+    
     // SERVER_URL = "https://13.233.185.124:3001/";
     // SERVER_URL = "http://localhost:3001/";
     
@@ -60,6 +62,35 @@ export class AuthService {
               // 'Content-Type': 'application/x-www-form-urlencoded',
             'Content-Type':'application/json',
         })
+    }
+
+    setAuthToken(){
+      this.httpOptions = {
+        headers: new HttpHeaders({
+              // 'Content-Type': 'application/x-www-form-urlencoded',
+            'Content-Type':'application/json',
+            'authorization' : localStorage.getItem('token')
+        }) 
+      }
+
+      this.httpOptionswithoutContent = {
+        headers: new HttpHeaders({
+              // 'Content-Type': 'application/x-www-form-urlencoded',
+            'authorization' : localStorage.getItem('token')
+        })
+      }
+    }
+
+    getLoggedUserDetails(){
+
+      if(sessionStorage.getItem("user")){
+        return JSON.parse(sessionStorage.getItem("user"))
+      }else if(localStorage.getItem("user")){
+        return JSON.parse(localStorage.getItem("user"))
+      }else{
+        return null;
+      }
+
     }
 
     showAuthError(error){
@@ -218,6 +249,28 @@ export class AuthService {
         // catchError(this.error)
       )
     }
+    getDocuments(data): Observable<any> {
+      let API_URL = this.SERVER_URL+'get/client/documents';
+      return this.http.post(API_URL,data,this.httpOptions)
+      .pipe(
+        map((res: Response) => {
+          return res
+        }),
+        // retry(1),
+        // catchError(this.error)
+      )
+    }
+    getCustomDocuments(data): Observable<any> {
+      let API_URL = this.SERVER_URL+'get/custom/client/documents';
+      return this.http.post(API_URL,data,this.httpOptions)
+      .pipe(
+        map((res: Response) => {
+          return res
+        }),
+        // retry(1),
+        // catchError(this.error)
+      )
+    }
 
     updateInvestor(data): Observable<any> {
       let API_URL = this.SERVER_URL+'update-investor';
@@ -257,6 +310,29 @@ export class AuthService {
 
     addInvestorThirdForm(data): Observable<any> {
       let API_URL = this.SERVER_URL+'add-investor-third-form';
+      return this.http.post(API_URL,data,this.httpOptionswithoutContent)
+      .pipe(
+        map((res: Response) => {
+          return res
+        }),
+        // retry(1),
+        // catchError(this.error)
+        )
+    }
+
+    addMultipleDouments(data): Observable<any> {
+      let API_URL = this.SERVER_URL+'add-multiple-documents';
+      return this.http.post(API_URL,data,this.httpOptionswithoutContent)
+      .pipe(
+        map((res: Response) => {
+          return res
+        }),
+        // retry(1),
+        // catchError(this.error)
+        )
+    }
+    uploadAuthLetter(data): Observable<any> {
+      let API_URL = this.SERVER_URL+'add-authority-letter';
       return this.http.post(API_URL,data,this.httpOptionswithoutContent)
       .pipe(
         map((res: Response) => {
@@ -334,6 +410,17 @@ export class AuthService {
         )
     }
 
+    updateLeadNote(data): Observable<any> {
+      let API_URL = this.SERVER_URL+'edit-lead-note';
+      return this.http.post(API_URL,data)
+      .pipe(
+        map((res: Response) => {
+          return res
+        }),
+        // retry(1),
+        // catchError(this.error)
+        )
+    }
     brokers(data): Observable<any> {
       let API_URL = this.SERVER_URL+'broker';
       return this.http.post(API_URL,data)
@@ -348,7 +435,7 @@ export class AuthService {
 
     addBrokerAppointment(data): Observable<any> {
       let API_URL = this.SERVER_URL+'broker-appointment';
-      return this.http.post(API_URL,data)
+      return this.http.post(API_URL,data,this.httpOptions)
       .pipe(
         map((res: Response) => {
           return res
@@ -432,6 +519,46 @@ export class AuthService {
     }
     moveClient(obj) : Observable<any> {
       let API_URL = this.SERVER_URL+'move/investors';
+      return this.http.post(API_URL,obj,this.httpOptions)
+      .pipe(map((res:Response) => {
+        return res;
+      }))
+    }
+
+    getCustomFiles(obj) : Observable<any> {
+      let API_URL = this.SERVER_URL+'get/custom/files';
+      return this.http.post(API_URL,obj,this.httpOptions)
+      .pipe(map((res:Response) => {
+        return res;
+      }))
+    }
+
+    getFolderFiles(obj) : Observable<any> {
+      let API_URL = this.SERVER_URL+'get/folder/files';
+      return this.http.post(API_URL,obj,this.httpOptions)
+      .pipe(map((res:Response) => {
+        return res;
+      }))
+    }
+
+    getFolderFilesDocument(obj) : Observable<any> {
+      let API_URL = this.SERVER_URL+'get/document/folder/files';
+      return this.http.post(API_URL,obj,this.httpOptions)
+      .pipe(map((res:Response) => {
+        return res;
+      }))
+    }
+
+    addFolderDatabase(obj) : Observable<any> {
+      let API_URL = this.SERVER_URL+'add/new/folder';
+      return this.http.post(API_URL,obj,this.httpOptions)
+      .pipe(map((res:Response) => {
+        return res;
+      }))
+    }
+    
+    addDocumentFolderDatabase(obj) : Observable<any> {
+      let API_URL = this.SERVER_URL+'add/document/new/folder';
       return this.http.post(API_URL,obj,this.httpOptions)
       .pipe(map((res:Response) => {
         return res;
@@ -544,7 +671,29 @@ export class AuthService {
           // catchError(this.error)
           )
       }
-
+      addBankDetailForm(data): Observable<any> {
+        let API_URL = this.SERVER_URL+'add-investor-bank-details';
+        return this.http.post(API_URL,data)
+        .pipe(
+          map((res: Response) => {
+            return res
+          })
+          // retry(1),
+          // catchError(this.error)
+          )
+      }
+      
+      addAddressForm(data): Observable<any> {
+        let API_URL = this.SERVER_URL+'add-investor-address';
+        return this.http.post(API_URL,data)
+        .pipe(
+          map((res: Response) => {
+            return res
+          })
+          // retry(1),
+          // catchError(this.error)
+          )
+      }
 
     broker_codes(data): Observable<any> {
       let API_URL = this.SERVER_URL+'broker-codes';
@@ -617,6 +766,52 @@ export class AuthService {
         // catchError(this.error)
         )
     }
+    
+    getFolders(data): Observable<any> {
+      let API_URL = this.SERVER_URL+'get/directory';
+      return this.http.post(API_URL,data,this.httpOptions)
+      .pipe(
+        map((res: Response) => {
+          return res
+        }),
+        retry(1),
+        // catchError(this.error)
+        )
+    }
+
+    deleteFolder(data): Observable<any> {
+      let API_URL = this.SERVER_URL+'delete/directory';
+      return this.http.post(API_URL,data,this.httpOptions)
+      .pipe(
+        map((res: Response) => {
+          return res
+        }),
+        retry(1),
+        // catchError(this.error)
+        )
+    }
+    addFileInFolderDatabase(data): Observable<any> {
+      let API_URL = this.SERVER_URL+'add/file/in/folder';
+      return this.http.post(API_URL,data,this.httpOptionswithoutContent)
+      .pipe(
+        map((res: Response) => {
+          return res
+        }),
+        retry(1),
+        // catchError(this.error)
+        )
+    }
+    addFileInFolderDatabaseDocument(data): Observable<any> {
+      let API_URL = this.SERVER_URL+'add/document/file/in/folder';
+      return this.http.post(API_URL,data,this.httpOptionswithoutContent)
+      .pipe(
+        map((res: Response) => {
+          return res
+        }),
+        retry(1),
+        // catchError(this.error)
+        )
+    }
 
     updateDisclosure(data): Observable<any> {
       let API_URL = this.SERVER_URL+'upload/disclosure';
@@ -630,5 +825,135 @@ export class AuthService {
         )
     }
 
+
+    addTask(data): Observable<any> {
+      let API_URL = this.SERVER_URL+'add-broker-task';
+      return this.http.post(API_URL,data,this.httpOptions)
+      .pipe(
+        map((res: Response) => {
+          return res
+        }),
+        // retry(1),
+        // catchError(this.error)
+        )
+    }
+    getTasks(data): Observable<any> {
+      let API_URL = this.SERVER_URL+'get-broker-task';
+      return this.http.post(API_URL,data,this.httpOptions)
+      .pipe(
+        map((res: Response) => {
+          return res
+        }),
+        // retry(1),
+        // catchError(this.error)
+        )
+    }
+
+    editTask(data): Observable<any> {
+      let API_URL = this.SERVER_URL+'edit-broker-task';
+      return this.http.post(API_URL,data,this.httpOptions)
+      .pipe(
+        map((res: Response) => {
+          return res
+        }),
+        // retry(1),
+        // catchError(this.error)
+        )
+    }
+
+    deleteTask(data): Observable<any> {
+      let API_URL = this.SERVER_URL+'delete-broker-task';
+      return this.http.post(API_URL,data,this.httpOptions)
+      .pipe(
+        map((res: Response) => {
+          return res
+        }),
+        // retry(1),
+        // catchError(this.error)
+        )
+    }
+
+    changeTaskStatus(data): Observable<any> {
+      let API_URL = this.SERVER_URL+'change-task-status';
+      return this.http.post(API_URL,data,this.httpOptions)
+      .pipe(
+        map((res: Response) => {
+          return res
+        }),
+        // retry(1),
+        // catchError(this.error)
+        )
+    }
+
+    sideBarCount(data): Observable<any> {
+      let API_URL = this.SERVER_URL+'sideBarCount';
+      return this.http.post(API_URL,data,this.httpOptions)
+      .pipe(
+        map((res: Response) => {
+          return res
+        }),
+        // retry(1),
+        // catchError(this.error)
+        )
+    }
+
+    DraftInvestors(data): Observable<any> {
+      let API_URL = this.SERVER_URL+'draft-investor';
+      return this.http.post(API_URL,data,this.httpOptions)
+      .pipe(
+      map((res: Response) => {
+      return res
+      }),
+      // retry(1),
+      // catchError(this.error)
+      )
+    }
+
+    addDraftInvestor(data): Observable<any> {
+      let API_URL = this.SERVER_URL + 'draft-add-investor';
+      return this.http.post(API_URL, data, this.httpOptions)
+        .pipe(
+          map((res: Response) => {
+            return res
+          }),
+          // retry(1),
+          // catchError(this.error)
+        )
+    }
+
+    deleteLead(data): Observable<any> {
+      let API_URL = this.SERVER_URL + 'delete-lead';
+      return this.http.post(API_URL, data, this.httpOptions)
+        .pipe(
+          map((res: Response) => {
+            return res
+          }),
+          // retry(1),
+          // catchError(this.error)
+        )
+    }
+
+    deleteInvestor(data): Observable<any> {
+      let API_URL = this.SERVER_URL + 'delete-investor';
+      return this.http.post(API_URL, data, this.httpOptions)
+        .pipe(
+          map((res: Response) => {
+            return res
+          }),
+          // retry(1),
+          // catchError(this.error)
+        )
+    }
+    updateLeadFollowDate(data): Observable<any> {
+      let API_URL = this.SERVER_URL + 'update-lead';
+      return this.http.post(API_URL, data, this.httpOptions)
+        .pipe(
+          map((res: Response) => {
+            return res
+          }),
+          // retry(1),
+          // catchError(this.error)
+        )
+    }
 
 }

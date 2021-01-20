@@ -29,6 +29,7 @@ export class DbBrokerAppointmentComponent implements OnInit {
 	investors_data
     AdvisorSignature: any;
     BROKER
+    DisclosureName
 
 
   constructor(private _location: Location,private route:ActivatedRoute,private router:Router,private authService:AuthService,private toastr: ToastrService,public formBuilder: FormBuilder) { }
@@ -90,7 +91,7 @@ export class DbBrokerAppointmentComponent implements OnInit {
         if (data.success) {
             this.investor = data.data
             this.investor_id=atob(this.route.snapshot.params.investor_id)
-            // this.DisclosureName= this.investor.FirstName+' '+this.investor.LastName;
+            this.DisclosureName= this.investor.FirstName+' '+this.investor.LastName;
 
         }
       }, err => {

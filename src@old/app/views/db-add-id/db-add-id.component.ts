@@ -16,21 +16,40 @@ export class DbAddIdComponent implements OnInit {
     upload_id_label = ['Choose file']
     title='Add Id'
     fileext
-  constructor(private _location: Location,private authService:AuthService,private router:Router, private toastr: ToastrService) { }
+  constructor(private _location: Location,private route : ActivatedRoute, private authService:AuthService,private router:Router, private toastr: ToastrService) { }
 
   ngOnInit() {
   	this.getInvestor()
   }
 
   getInvestor(){
-  	var investor_data = JSON.parse(sessionStorage.getItem('investor'))
+  	// var investor_data = JSON.parse(sessionStorage.getItem('investor'))
 
-  	if (investor_data!=null) {
-  		this.investor=investor_data
-  		this.investor_id=investor_data.id
-  		console.log(this.investor)
+  	// if (investor_data!=null) {
+  	// 	this.investor=investor_data
+  	// 	this.investor_id=investor_data.id
+  	// 	console.log(this.investor)
   		
-  	}
+    // }
+    
+    var ob = {
+      id: atob(this.route.snapshot.params.investor_id),
+    };
+    console.log(ob)
+    this.authService.singleInvestor(ob).subscribe(data => {
+
+      if (data.success) {
+          this.investor = data.data
+          this.investor_id= atob(this.route.snapshot.params.investor_id)          
+
+      }
+    }, err => {
+      console.log(err)
+      // If not token provided or token invalid
+      this.authService.showAuthError(err);
+      //this.toastr.error(err.message);
+      // this.toastr.error(this.authService.COMMON_ERROR);
+    })
   }
 
   

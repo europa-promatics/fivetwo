@@ -1,6 +1,11 @@
 <aside class="seller_side_nav">
     <div class="top_selr_info text-center">
-        <img src="assets/img/maxresdefault.jpg" class="img-fluid">
+        <div class="span_img">
+            <img src="assets/img/maxresdefault.jpg" class="img-fluid">
+
+            <span class="inpt_ico"><i class="fa fa-pencil"></i><input type="file" class="form_inpt" name=""></span>
+        </div>
+        <h5 class="name_sid_prof">Marthunis Christiaan Oosthuizen</h5>
         <div class="d-flex justify-content-around below_icon">
             <span class="icon_short"><i data-toggle="tooltip" data-placement="top"  title="Settings" class="fa fa-cogs"></i></span>
             <span class="icon_short"><i data-toggle="tooltip" data-placement="top"  title="Notifications" class="fa fa-bell"></i></span>
@@ -23,9 +28,17 @@
                     <i class="fa fa-plus"></i>
                 </a>
             </li>
+            <li [ngClass]="isCurrentUrl('dbDraft') ? 'selected_bar':''">
+                <a routerLink="/user/dbDraft" class="dropdown-item">
+                    <span><i class="fas fa-user-tie"></i></span>Draft Clients
+                </a>
+                <a class="pls_nav_side" routerLink="/user/addClient" title="Add Client">
+                    <i class="fa fa-plus"></i>
+                </a>
+            </li>
 	        <li [ngClass]="isCurrentUrl('/user/leadList') ? 'selected_bar':''">
                 <a routerLink="/user/leadList" class="dropdown-item">
-                    <span><i class="fas fa-layer-group"></i></span> Leads
+                    <span><i class="fas fa-layer-group"></i></span> Leads <span class="nmbr_hglt">{{lead_count}}</span>
                 </a>
                 <a routerLink="/user/addLead" class="pls_nav_side" title="">
                     <i class="fa fa-plus"></i>
@@ -33,9 +46,9 @@
             </li>
 	        <li  [ngClass]="isCurrentUrl('/user/dbTasks') ? 'selected_bar':''">
                 <a routerLink="/user/dbTasks" class="dropdown-item">
-                    <span><i class="fas fa-tasks"></i></span> Tasks
+                    <span><i class="fas fa-tasks"></i></span> Tasks <span class="nmbr_hglt">{{task_count}}</span>
                 </a>
-                <a class="pls_nav_side" title="Add Task">
+                <a class="pls_nav_side" title="Add Task" routerLink="/user/addTask">
                     <i class="fa fa-plus"></i>
                 </a>
             </li>

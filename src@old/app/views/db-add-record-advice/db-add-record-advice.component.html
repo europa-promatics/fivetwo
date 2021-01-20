@@ -146,7 +146,7 @@
 													      					<ng-signature-pad doneButtonText="Save Sign" format="base64" [emitOnDragEnd]="true" (done)="ClientSignUpload($event)" [showClearButton]="hide" [showDoneButton]="hide">
 																			</ng-signature-pad>
 																			<label>Client</label>
-																			<input [(ngModel)]="RecordAdviceClient" [ngModelOptions]="{standalone: true}" type="" required class="form-control" name="" #RecordAdviceClientVal="ngModel" oninput="this.value = this.value.replace(/[^a-zA-Z .]/g, '').replace(/(\..*)\./g, '$1');" >
+																			<input [(ngModel)]="RecordAdviceClient" disabled="true" [ngModelOptions]="{standalone: true}" type="" required class="form-control" name="" #RecordAdviceClientVal="ngModel" oninput="this.value = this.value.replace(/[^a-zA-Z .]/g, '').replace(/(\..*)\./g, '$1');" >
 													      					<span *ngIf="RecordAdviceClientVal.invalid && (RecordAdviceClientVal.dirty || RecordAdviceClientVal.touched || forthStep)"
 																			    class="text-danger">
 																			    This field is required.
@@ -160,7 +160,7 @@
 																			  doneButtonText="Save Sign" format="base64" [emitOnDragEnd]="true" (done)="AdvisorSignUpload($event)" [showClearButton]="hide" [showDoneButton]="hide">
 																			</ng-signature-pad>
 																			<label>Advisor</label>
-													      					<input [(ngModel)]="RecordAdviceAdvisor" [ngModelOptions]="{standalone: true}" type="" required class="form-control" name="" #RecordAdviceAdvisorVal="ngModel"  oninput="this.value = this.value.replace(/[^a-zA-Z .]/g, '').replace(/(\..*)\./g, '$1');">
+													      					<input [(ngModel)]="RecordAdviceAdvisor" disabled="true" [ngModelOptions]="{standalone: true}" type="" required class="form-control" name="" #RecordAdviceAdvisorVal="ngModel"  oninput="this.value = this.value.replace(/[^a-zA-Z .]/g, '').replace(/(\..*)\./g, '$1');">
 													      					<span *ngIf="RecordAdviceAdvisorVal.invalid && advisorRequired && (RecordAdviceAdvisorVal.dirty || RecordAdviceAdvisorVal.touched || forthStep)"
 																			    class="text-danger">
 																			    This field is required.

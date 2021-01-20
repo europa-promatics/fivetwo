@@ -71,6 +71,7 @@ export class LoginComponent implements OnInit {
           await sessionStorage.setItem('user', JSON.stringify(res.data));
           await localStorage.setItem('token', res.token);
         }
+        this.authService.setAuthToken();
         await this.toastr.success(res.message);
         await this.router.navigate(['/user/dashboard']);
         //  alert(res.token);

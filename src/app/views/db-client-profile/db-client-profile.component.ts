@@ -33,6 +33,7 @@ export class DbClientProfileComponent implements OnInit {
     "year5" : "",
     "year6" : "",
   }
+  isLoading = true
 
   constructor(private route: ActivatedRoute,private service:AuthService,private router:Router,private toastr: ToastrService) {
       this.authService = service;
@@ -162,7 +163,7 @@ export class DbClientProfileComponent implements OnInit {
     };
     //console.log(ob)
     this.authService.clientProfile(ob).subscribe(data => {
-
+      this.isLoading = false
       if (data) {
 		    this.investor_data = data.investor;
 		    this.investor_DD = data.investor;

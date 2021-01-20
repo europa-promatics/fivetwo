@@ -874,7 +874,7 @@ ul.child_ul {
   background-color: green !important;
 }
 .orange_class{
- background-color: #238ab4 !important;
+ background-color: orange !important;
 }
 
 /*sidebar ends*/
@@ -1029,7 +1029,7 @@ ul.child_ul {
   }
   .chk_pls_field {
     .fa-check {
-      color: #1ab51a;
+      color: #3b4863;
     }
     .pls_ico_spn {
       border: 1px solid #7f7e7d;
@@ -1335,11 +1335,12 @@ div.foldrs {
   pointer-events: unset;
 }*/
 .downl_spn {
-  animation-name: example;
-  animation-duration: 1s;
-  animation-iteration-count: infinite;
+  /*animation-name: example;*/
+  /*animation-duration: 1s;*/
+  /*animation-iteration-count: infinite;*/
+  color: #238ab4
 }
-@keyframes example {
+/*@keyframes example {
   0% {
     transform: translateY(0px);
     opacity: 0.5;
@@ -1358,7 +1359,7 @@ div.foldrs {
     transform: translateY(0px);
     opacity: 1;
   }
-}
+}*/
 .colp_head_actn .textt_link.cp {
   background: #ededed;
   width: 30px;
@@ -1459,12 +1460,16 @@ tr.mat-row.folowup {
   display: block;
 }
 .txt_hdnn {
-  max-width: 190px;
+  /*max-width: 190px;
   word-wrap: break-word;
-  // white-space: nowrap;
+  white-space: nowrap;
   display: inline-block;
   overflow: hidden;
-  // text-overflow: ellipsis;
+  text-overflow: ellipsis;*/
+  max-width: 300px;
+  word-wrap: break-word;
+  display: inline-block;
+  overflow: hidden;
 }
 span.spn_edt:hover {
   color: #238ab4;
@@ -1498,4 +1503,23 @@ span.spn_edt:hover {
 .datpckr_td {
   width: 180px;
   max-width: 180px;
+}
+
+/*16-jan-2021 harsimran css*/
+.custom-mat-raised-button{
+  box-shadow: none !important;
+  color: #000;
+  background-color: transparent;
+  min-width: 0 !important;
+  line-height: 34px !important;
+  padding: 0 5px !important;
+}
+.custom-mat-icon{
+  font-size: 20px;
+  text-align: center;
+}
+
+
+.table-striped tbody tr:nth-of-type(2n+1) {
+	background-color: #edf5f9 !important;
 }

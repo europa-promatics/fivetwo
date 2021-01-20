@@ -14,10 +14,18 @@ import { ToastrService } from 'ngx-toastr';
 export class ReviewsComponent implements OnInit {
   years
   monthly
+  monthlyStatic
   investors
   monthNgModule = {};
   currentMoveOpen
+  option="FirstName"
+  search
   select_month
+  length
+  limit
+  offset
+  date
+  isSearched = false
   currentYear = moment().format("YYYY")
   constructor(private service : AuthService,private toastr: ToastrService) { }
 
@@ -113,15 +121,17 @@ export class ReviewsComponent implements OnInit {
     return moment(date).format('MMMM');
   }
 
-  getMonthlyInvestor(date){
+  getMonthlyInvestor(date,search="",col=""){
     var obj = {
-      date : date
+      date : date,
+      search : search,
+      col : col,
     }
     this.service.getMonthlyInvestor(obj).subscribe( res => {
       if(res.success){
         // this.monthly = res.investor_monthly;
         this.monthly = res.monthNames;
-
+        this.monthlyStatic = res.allMonth;
         this.monthly.forEach(element => {
             this.monthNgModule[element] = {
               checked : "no",
@@ -138,13 +148,24 @@ export class ReviewsComponent implements OnInit {
     })
   }
   getReviewsClient(date){
+    this.limit = 10;
+    this.offset = 0;
     var obj = {
-      date : date
+      date : date,
+      limit : this.limit,
+      offset : this.offset,
+      search : this.search,
+      col : this.option,
+      isSearched : this.isSearched
     }
+    this.date = date
+    
     this.monthNgModule[date].loader = true;
+    console.log(this.monthNgModule[date])
     this.service.getReviewsClient(obj).subscribe( res => {
       if(res.success){
         this.investors = res.data;
+        this.length = res.count;
       }
      this.monthNgModule[date].loader = false;
     },err => {
@@ -166,6 +187,34 @@ export class ReviewsComponent implements OnInit {
       }
 
       // console.log(this.monthNgModule);
+  }
+
+  paginationOptionChange(evt) {
+    console.log(evt)
+    this.offset = (evt.pageIndex * evt.pageSize).toString()
+    this.limit = evt.pageSize
+    var obj = {
+      date : this.date,
+      offset : this.offset,
+      limit : this.limit, 
+      search : this.search,
+      col : this.option,
+    }
+    this.investors = [];
+    this.date = this.date
+    this.monthNgModule[this.date].loader = true;
+    console.log(this.monthNgModule[this.date])
+    this.service.getReviewsClient(obj).subscribe( res => {
+      if(res.success){
+        this.investors = res.data;
+        this.length = res.count;
+      }
+     this.monthNgModule[this.date].loader = false;
+    },err => {
+     this.monthNgModule[this.date].loader = false;
+      this.service.showAuthError(err);
+    })    
+
   }
 
   moveModelOpen(item){
@@ -227,6 +276,14 @@ export class ReviewsComponent implements OnInit {
         this.monthNgModule[item].check[element.ClientNumber] = false;
       });
     }
+  }
+
+  getSearch(){
+    if(this.search && this.option){
+      this.isSearched = true;
+      this.getMonthlyInvestor(moment(),this.search,this.option);
+    }
+
   }
 
 

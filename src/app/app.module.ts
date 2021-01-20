@@ -76,6 +76,8 @@ import { DbAddTaskComponent } from './views/db-add-task/db-add-task.component';
 import {WebcamModule} from 'ngx-webcam';
 import { DraftClientsComponent } from './views/draft-clients/draft-clients.component';
 import { CreateRequestGuardService } from "./../app/user/deactivate_guard.service";
+import { EditLeadComponent } from './views/edit-lead/edit-lead.component';
+import { MAT_DATE_LOCALE } from '@angular/material';
 @NgModule({
   declarations: [
     AppComponent,
@@ -124,6 +126,7 @@ import { CreateRequestGuardService } from "./../app/user/deactivate_guard.servic
     DbLetterAuthorityComponent,
     DbAddTaskComponent,
     DraftClientsComponent,
+    EditLeadComponent,
   ],
   imports: [
     BrowserModule,
@@ -158,6 +161,7 @@ import { CreateRequestGuardService } from "./../app/user/deactivate_guard.servic
     MatNativeDateModule,
     MatDatepickerModule,
     CreateRequestGuardService,
+    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }
   ],
   bootstrap: [AppComponent]
 })

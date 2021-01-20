@@ -41,6 +41,11 @@ import { PrivacyPolicyComponent } from './views/privacy-policy/privacy-policy.co
 import { FaqComponent } from './views/faq/faq.component';
 import { AboutComponent } from './views/about/about.component';
 
+import { DbLetterAuthorityComponent } from './views/db-letter-authority/db-letter-authority.component'
+import { DbAddTaskComponent } from './views/db-add-task/db-add-task.component';
+import { DraftClientsComponent } from './views/draft-clients/draft-clients.component';
+
+import { CreateRequestGuardService  } from "./user/deactivate_guard.service";
 
 const routes: Routes = [
 	{
@@ -157,6 +162,10 @@ const routes: Routes = [
 		            {
 		            	path: 'dbClients',
 		            	component: DbInvestmentsComponent
+					},
+					{
+		            	path: 'dbDraft',
+		            	component: DraftClientsComponent
 		            },
 		            {
 		            	path: 'reviews',
@@ -176,14 +185,15 @@ const routes: Routes = [
 		            },
 		            {
 		            	path: 'addClient',
-		            	component: DbAddInvestorComponent
+						component: DbAddInvestorComponent,
+						canDeactivate : [CreateRequestGuardService],
 		            },
 		            {
 		            	path: 'welcomeLetter',
 		            	component: DbWelcomeLetterComponent
 		            },
 		            {
-		            	path: 'brokerAppointment',
+		            	path: 'brokerAppointment/:investor_id',
 		            	component: DbBrokerAppointmentComponent
 		            },
 		            {
@@ -212,22 +222,34 @@ const routes: Routes = [
 		            {
 		            	path: 'dbTasks',
 		            	component: DbTasksComponent
+					},
+					{
+		            	path: 'addTask',
+		            	component: DbAddTaskComponent
 		            },
 		            {
-		            	path: 'dbAddId',
+		            	path: 'dbAddId/:investor_id',
 		            	component: DbAddIdComponent
 		            },
 		            {
-		            	path: 'dbAddDisclosure',
+		            	path: 'dbAddDisclosure/:investor_id',
 		            	component: DbAddDisclosureComponent
 		            },
 		            {
-		            	path: 'dbAddRecordAdvice',
+		            	path: 'dbAddRecordAdvice/:investor_id',
 		            	component: DbAddRecordAdviceComponent
 		            },
 		            {
-		            	path: 'dbAddRiskProfiler',
+		            	path: 'dbAddRiskProfiler/:investor_id',
 		            	component: DbAddRiskProfilerComponent
+		            },
+		            {
+		            	path: 'dbAddWelcomeLetter/:investor_id',
+		            	component: DbWelcomeLetterComponent
+		            },
+		            {
+		            	path: 'dbAddLetterAuthority/:investor_id',
+		            	component: DbLetterAuthorityComponent
 		            },
 
 
@@ -260,7 +282,9 @@ const routes: Routes = [
 		            {
 		            	path: 'dbClients',
 		            	component: ComplianceOfficerInvestmentsComponent
-		            },
+					},
+					
+					
 
 
 		             {

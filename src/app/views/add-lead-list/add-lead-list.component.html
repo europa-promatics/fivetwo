@@ -47,7 +47,7 @@
 																<div class="pos_rel">
 																	<input type="text" formControlName="LastName"
 																		class="form-control" placeholder=""
-																		maxlength="15">
+																		maxlength="22">
 
 																	<span
 																		*ngIf="LastName.invalid && (LastName.dirty || LastName.touched || saveButton)"
@@ -68,7 +68,7 @@
 																<div class="pos_rel">
 																	<input formControlName="FirstName" type="text"
 																		class="form-control" placeholder=""
-																		maxlength="15">
+																		maxlength="22">
 
 																	<span
 																		*ngIf="FirstName.invalid && (FirstName.dirty || FirstName.touched || saveButton)"
@@ -247,10 +247,8 @@
 																<div class="pos_rel">
 																	<select formControlName="status"
 																		class="custom-select form-control">
-																		<option value="visitor">Visitor</option>
-																		<option value="called">Called</option>
-																		<option value="cancelled">Cancelled</option>
-																		<option value="investor">Make Investor</option>
+																		<option value="call_lead">Call Lead</option>
+																		<option value="client">Become Client</option>
 																	</select>
 																</div>
 															</div>

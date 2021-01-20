@@ -77,12 +77,16 @@
 													<button (click)="searchDocs()" class="btn btn_theme">Search</button>
 												</div>
 											</div> -->
-											<div class="col-sm-12">
-		            							<div class="form-group text-right">
+											<div class="col-sm-6">
+		            							<div class="form-group text-left">
 		            								<a href="javascript:;" class="textt_link cp" data-toggle="modal" data-target="#modal_add_folder_outer"><i class="fas fa-folder-plus"></i></a>
 		            								<a href="javascript:;" class="textt_link cp"><i class="fas fa-file-medical"></i>
 		            									<input type="file" class="form-control" (change)="createOuterFile($event)" name="">
 		            								</a>
+		            							</div>
+			            					</div>
+			            					<div class="col-sm-6">
+		            							<div class="form-group text-right">
 		            								<a href="javascript:;" (click)="goBack()" class="btn btn_theme">Back</a>
 		            							</div>
 			            					</div>
@@ -114,7 +118,7 @@
 						            							</span> -->
                                                             </h3>
                                                         </div>
-                                                        <div id="collapse1" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                                        <div id="collapse1" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                                                             <div class="sub_folders_div">
                                                             	 <div id="accordion1">
                                                                     <div class="">
@@ -129,7 +133,7 @@
 										            							</span>
 			                                                            	</div>
 			                                                            </div>
-			                                                            <div id="brokerAppointment" class="collapse show" *ngIf="custom_document.broker_appointment.length > 0 || broker_documents.length > 0" aria-labelledby="headingOne" data-parent="#accordion1">
+			                                                            <div id="brokerAppointment" class="collapse" *ngIf="custom_document.broker_appointment.length > 0 || broker_documents.length > 0" aria-labelledby="headingOne" data-parent="#accordion1">
 			                                                            	 <div class="card-body">
 			                                                            	 	<ul class="sub_folders_ul" type="none">
 				                                                                    <!-- <li class="d-flex col-sm-12">
@@ -272,7 +276,7 @@
 										            							</span>
 			                                                            	</div>
 			                                                            </div>
-			                                                            <div id="DisclosureOuter" class="collapse show" *ngIf="custom_document.disclosure.length > 0 || disclosure_documents.length > 0" aria-labelledby="headingOne" data-parent="#accordion1">
+			                                                            <div id="DisclosureOuter" class="collapse" *ngIf="custom_document.disclosure.length > 0 || disclosure_documents.length > 0" aria-labelledby="headingOne" data-parent="#accordion1">
 			                                                            	 <div class="card-body">
 			                                                            	 	<ul class="sub_folders_ul" type="none">
 				                                                                    <li class="d-flex col-sm-12" *ngFor="let item of disclosure_documents">
@@ -411,7 +415,7 @@
 										            							</span>
 			                                                            	</div>
 			                                                            </div>
-			                                                            <div id="IDClient" class="collapse show" *ngIf="custom_document.document_id.length > 0 || id_documents.length > 0" aria-labelledby="headingOne" data-parent="#accordion1">
+			                                                            <div id="IDClient" class="collapse" *ngIf="custom_document.document_id.length > 0 || id_documents.length > 0" aria-labelledby="headingOne" data-parent="#accordion1">
 			                                                            	 <div class="card-body">
 			                                                            	 	<ul class="sub_folders_ul" type="none">
 				                                                                    <li class="d-flex col-sm-12" *ngFor="let item of id_documents">
@@ -551,7 +555,7 @@
 										            							</span>
 			                                                            	</div>
 			                                                            </div>
-			                                                            <div id="LetterOfAuth" class="collapse show" *ngIf="custom_document.authority_letter.length > 0 || letterAuthority.length > 0" aria-labelledby="headingOne" data-parent="#accordion1">
+			                                                            <div id="LetterOfAuth" class="collapse" *ngIf="custom_document.authority_letter.length > 0 || letterAuthority.length > 0" aria-labelledby="headingOne" data-parent="#accordion1">
 			                                                            	 <div class="card-body">
 			                                                            	 	<ul class="sub_folders_ul" type="none">
 				                                                                    <li class="d-flex col-sm-12" *ngFor="let item of letterAuthority">
@@ -689,7 +693,7 @@
 										            							</span>
 			                                                            	</div>
 			                                                            </div>
-			                                                            <div id="proofOfAddress" class="collapse show" aria-labelledby="headingOne" *ngIf="custom_document.address.length > 0 || address_document.length > 0" data-parent="#accordion1">
+			                                                            <div id="proofOfAddress" class="collapse" aria-labelledby="headingOne" *ngIf="custom_document.address.length > 0 || address_document.length > 0" data-parent="#accordion1">
 			                                                            	 <div class="card-body">
 			                                                            	 	<ul class="sub_folders_ul" type="none">
 				                                                                    <li class="d-flex col-sm-12" *ngFor="let item of address_document">
@@ -827,7 +831,7 @@
 										            							</span>
 			                                                            	</div>
 			                                                            </div>
-			                                                            <div id="proofOfBank" class="collapse show" aria-labelledby="headingOne" *ngIf="custom_document.bank_details.length > 0 || bank_document.length > 0" data-parent="#accordion1">
+			                                                            <div id="proofOfBank" class="collapse" aria-labelledby="headingOne" *ngIf="custom_document.bank_details.length > 0 || bank_document.length > 0" data-parent="#accordion1">
 			                                                            	 <div class="card-body">
 			                                                            	 	<ul class="sub_folders_ul" type="none">
 				                                                                    <li class="d-flex col-sm-12" *ngFor="let item of bank_document">
@@ -965,7 +969,7 @@
 										            							</span>
 			                                                            	</div>
 			                                                            </div>
-			                                                            <div id="recordOfAdvice" class="collapse show" aria-labelledby="headingOne"  *ngIf="custom_document.record_of_advice.length > 0 || recordOfAdviceDocuments.length > 0"  data-parent="#accordion1">
+			                                                            <div id="recordOfAdvice" class="collapse" aria-labelledby="headingOne"  *ngIf="custom_document.record_of_advice.length > 0 || recordOfAdviceDocuments.length > 0"  data-parent="#accordion1">
 			                                                            	 <div class="card-body">
 			                                                            	 	<ul class="sub_folders_ul" type="none">
 				                                                                    <li class="d-flex col-sm-12" *ngFor="let item of recordOfAdviceDocuments">
@@ -1103,7 +1107,7 @@
 										            							</span>
 			                                                            	</div>
 			                                                            </div>
-			                                                            <div id="riskProfiler" class="collapse show" aria-labelledby="headingOne" *ngIf="custom_document.risk_profiler.length > 0 || risk_profiler_documents.length > 0" data-parent="#accordion1">
+			                                                            <div id="riskProfiler" class="collapse" aria-labelledby="headingOne" *ngIf="custom_document.risk_profiler.length > 0 || risk_profiler_documents.length > 0" data-parent="#accordion1">
 			                                                            	 <div class="card-body">
 			                                                            	 	<ul class="sub_folders_ul" type="none">
 				                                                                    <li class="d-flex col-sm-12" *ngFor="let item of risk_profiler_documents">
@@ -1228,6 +1232,144 @@
 				                                                                </ul>
 			                                                            	</div>
 																		</div>
+
+																		<!-- Welcome letter -->
+																		<div class="card-body" id="headingOne">
+			                                                            	<div class="foldrs d-flex align-items-center">
+			                                                            		<span class="name_spann" data-toggle="collapse" data-target="#welcome_letter" aria-expanded="true" aria-controls="welcome_letter"><i class="fa fa-folder-open"></i> WELCOME LETTER</span>
+			                                                            		<span class="colp_head_actn text-right">
+										            								<a href="javascript:;" class="textt_link cp" data-toggle="modal" (click)="addOuterFolderDocument('welcome_letter')" data-target="#modal_document_add_folder_outer"><i class="fas fa-folder-plus"></i></a>
+										            								<a href="javascript:;" class="textt_link cp"><i class="fas fa-file-medical"></i>
+										            									<input type="file" class="form-control" (change)="createDocumentOuterFile($event,'welcome_letter')" name="">
+										            								</a>
+										            							</span>
+			                                                            	</div>
+			                                                            </div>
+			                                                            <div id="welcome_letter" class="collapse" aria-labelledby="headingOne" *ngIf="custom_document.welcome_letter.length > 0 || welcome_letter.length > 0" data-parent="#accordion1">
+			                                                            	 <div class="card-body">
+			                                                            	 	<ul class="sub_folders_ul" type="none">
+				                                                                    <li class="d-flex col-sm-12" *ngFor="let item of welcome_letter">
+				                                                                        <span class="name_spann"><i class="far fa-file"></i> {{ item.upload_id }}</span>
+				                                                                        <span class="downl_spn textt_link cp" yo="" ><a download target="_blank" href="{{ env.welcome_letter + item.upload_id }}"><i class="fa fa-download"></i> </a></span>
+																					</li>
+																					<!-- <div> -->
+																						<!-- <ul > -->
+																							<li *ngFor="let item of custom_document.welcome_letter;let i1 = index;">
+																								<h3 class="mb-0 rev_h3 d-flex align-items-center">
+																									<span *ngIf="item.file_type == 'folder'" class="custm-cl" (click)="expandFolderDocument('welcome_letter',item.id,1,'level2','level3','level4','level5','level6',i1)"><i class="fa fa-folder-open mr-2"></i>  {{ item.name }}</span>
+																									<span *ngIf="item.file_type == 'document'" (click)="expandFolderDocument('welcome_letter',item.id,1,'level2','level3','level4','level5','level6',i1)">
+																										<i class="far fa-file"></i> {{ item.name }} 
+																										
+																									</span>
+																									<span *ngIf="item.file_type == 'document'" class="downl_spn textt_link cp" yo="" ><a download target="_blank" href="{{ env.welcome_letter+item.name }}"><i class="fa fa-download"></i> </a></span>
+																									<span *ngIf="item.file_type == 'folder'" class="colp_head_actn text-right">
+																										<a href="javascript:;" class="textt_link cp" data-toggle="modal" data-target="#modal_add_folder_document" (click)="folderValueInitializeDocument('welcome_letter',item.id,1,'level2','level3','level4','level5','level6',i1)" ><i class="fas fa-folder-plus"></i></a>
+																										<a href="javascript:;" class="textt_link cp" (click)="folderValueInitializeDocument('welcome_letter',item.id,1,'level2','level3','level4','level5','level6',i1)"><i class="fas fa-file-medical"></i>
+																											<input type="file" (change)="expandFileDocument('welcome_letter',$event,item.id,1,'level2','level3','level4','level5','level6',i1)" class="form-control" name="">
+																										</a>
+																										<!-- <a href="javascript:;" (click)="deleteFolderDocument('welcome_letter',item.id,1,'level2','level3','level4','level5','level6',i1)" class="textt_link cp trash_rem"><i class="fa fa-trash"></i></a> -->
+																									</span>
+																								</h3>
+																								<ul *ngIf="item.level2 && item.level2.length">
+																									<li *ngFor="let level2 of item.level2;let i2 = index;">
+																										<h3 class="mb-0 rev_h3 d-flex align-items-center">
+																											<span class="custm-cl" *ngIf="level2.file_type == 'folder'" (click)="expandFolderDocument('welcome_letter',level2.id,2,'level2','level3','level4','level5','level6',i1,i2)">
+																												<i class="fa fa-folder-open mr-2"></i> {{ level2.name }} 
+																											</span>
+																											<span *ngIf="level2.file_type == 'document'" (click)="expandFolderDocument('welcome_letter',level2.id,2,'level2','level3','level4','level5','level6',i1,i2)">
+																												<i class="far fa-file"></i> {{ level2.name }} 																		
+																											</span>
+																											<span *ngIf="level2.file_type == 'document'" class="downl_spn textt_link cp" yo="" ><a download target="_blank" href="{{ env.welcome_letter+level2.name }}"><i class="fa fa-download"></i> </a></span>
+																											<span *ngIf="level2.file_type == 'folder'" class="colp_head_actn text-right">
+																												<a href="javascript:;" class="textt_link cp" (click)="folderValueInitializeDocument('welcome_letter',level2.id,2,'level2','level3','level4','level5','level6',i1,i2)" data-toggle="modal" data-target="#modal_add_folder_document"><i class="fas fa-folder-plus"></i></a>
+																												<a href="javascript:;" class="textt_link cp"><i class="fas fa-file-medical"></i>
+																													<input type="file" class="form-control" (change)="expandFileDocument('welcome_letter',$event,level2.id,2,'level2','level3','level4','level5','level6',i1,i2)" name="">
+																												</a>
+																												<!-- <a href="javascript:;" (click)="deleteFolder(level2.id,2,'level2','level3','level4','level5','level6',i1,i2)" class="textt_link cp trash_rem"><i class="fa fa-trash"></i></a> -->
+																											</span>
+																										</h3>
+																										
+																										<ul *ngIf="level2.level3 && level2.level3.length">
+																											<li *ngFor="let level3 of level2.level3;let i3 = index;">
+																												
+																												<h3 class="mb-0 rev_h3 d-flex align-items-center">
+																													<!-- <span (click)="expandFolder(level2.id,3,'level2','level3','level4','level5','level6',i1,i2,i3)">
+																														<i class="fa fa-folder mr-2"></i> {{ level3.name }}
+																													</span> -->
+																													<span class="custm-cl" *ngIf="level3.file_type == 'folder'" (click)="expandFolderDocument('welcome_letter',level3.id,3,'level2','level3','level4','level5','level6',i1,i2,i3)">
+																														<i class="fa fa-folder-open mr-2"></i> {{ level3.name }} 
+																													</span>
+																													<span *ngIf="level3.file_type == 'document'" (click)="expandFolderDocument('welcome_letter',level3.id,3,'level2','level3','level4','level5','level6',i1,i2,i3)">
+																														<i class="far fa-file"></i> {{ level3.name }} 																				
+																													</span>
+																													<span *ngIf="level3.file_type == 'document'" class="downl_spn textt_link cp" yo="" ><a download target="_blank" href="{{ env.welcome_letter+level3.name }}"><i class="fa fa-download"></i> </a></span>
+																													<span *ngIf="level3.file_type == 'folder'" class="colp_head_actn text-right">
+																														<a href="javascript:;" (click)="folderValueInitializeDocument('welcome_letter',level3.id,3,'level2','level3','level4','level5','level6',i1,i2,i3)" class="textt_link cp" data-toggle="modal" data-target="#modal_add_folder_document"><i class="fas fa-folder-plus"></i></a>
+																														<a href="javascript:;" class="textt_link cp"><i class="fas fa-file-medical"></i>
+																															<input type="file" class="form-control" (change)="expandFileDocument('welcome_letter',$event,level3.id,3,'level2','level3','level4','level5','level6',i1,i2,i3)" name="">
+																														</a>
+																														<!-- <a href="javascript:;" (click)="deleteFolder(level3.id,3,'level2','level3','level4','level5','level6',i1,i2,i3)" class="textt_link cp trash_rem"><i class="fa fa-trash"></i></a> -->
+																													</span>
+																												</h3>
+																												<ul *ngIf="level3.level4 && level3.level4.length">
+																													<li *ngFor="let level4 of level3.level4;let i4 = index;">
+																														<h3 class="mb-0 rev_h3 d-flex align-items-center">
+																															<!-- <span (click)="expandFolder(level2.id,4,'level2','level3','level4','level5','level6',i1,i2,i3,i4)"><i class="fa fa-folder mr-2"></i> {{ level4.name }}</span> -->
+																															<span class="custm-cl" *ngIf="level4.file_type == 'folder'" (click)="expandFolderDocument('welcome_letter',level4.id,4,'level2','level3','level4','level5','level6',i1,i2,i3,i4)">
+																																<i class="fa fa-folder-open mr-2"></i> {{ level4.name }}
+																															</span>
+																															<span *ngIf="level4.file_type == 'document'" (click)="expandFolderDocument('welcome_letter',level4.id,4,'level2','level3','level4','level5','level6',i1,i2,i3,i4)">
+																																<i class="far fa-file"></i> {{ level4.name }} 																						
+																															</span>
+																															<span *ngIf="level4.file_type == 'document'" class="downl_spn textt_link cp"  yo="" ><a download target="_blank" href="{{ env.welcome_letter+level4.name }}"><i class="fa fa-download"></i> </a></span>
+																															<span *ngIf="level4.file_type == 'folder'" class="colp_head_actn text-right">
+																																<a href="javascript:;" (click)="folderValueInitializeDocument('welcome_letter',level4.id,4,'level2','level3','level4','level5','level6',i1,i2,i3,i4)" class="textt_link cp" data-toggle="modal" data-target="#modal_add_folder_document"><i class="fas fa-folder-plus"></i></a>
+																																<a href="javascript:;" class="textt_link cp"><i class="fas fa-file-medical"></i>
+																																	<input type="file" class="form-control" (change)="expandFileDocument('welcome_letter',$event,level4.id,4,'level2','level3','level4','level5','level6',i1,i2,i3,i4)" name="">
+																																</a>
+																																<!-- <a href="javascript:;" (click)="deleteFolder(level4.id,4,'level2','level3','level4','level5','level6',i1,i2,i3,i4)" class="textt_link cp trash_rem"><i class="fa fa-trash"></i></a> -->
+																															</span>
+																														</h3>
+																														<ul *ngIf="level4.level5 && level4.level5.length">
+																															<li *ngFor="let level5 of level4.level5;let i5 = index;">
+																																<h3 class="mb-0 rev_h3 d-flex align-items-center">
+																																	<span class="custm-cl" *ngIf="level5.file_type == 'folder'" (click)="expandFolderDocument('welcome_letter',level5.id,5,'level2','level3','level4','level5','level6',i1,i2,i3,i4,i5)">
+																																		<i class="fa fa-folder-open mr-2"></i> {{ level5.name }}
+																																	</span>
+																																	<span *ngIf="level5.file_type == 'document'" (click)="expandFolderDocument('welcome_letter',level5.id,5,'level2','level3','level4','level5','level6',i1,i2,i3,i4,i5)">
+																																		<i class="far fa-file"></i> {{ level5.name }}
+																																		
+																																	</span>
+																																	<span *ngIf="level5.file_type == 'document'" class="downl_spn textt_link cp"  yo="" ><a download target="_blank" href="{{ env.welcome_letter+level5.name }}"><i class="fa fa-download"></i> </a></span>
+																																	<span *ngIf="level5.file_type == 'folder'" class="colp_head_actn text-right">
+																																		<!-- <a href="javascript:;" class="textt_link cp" data-toggle="modal" data-target="#modal_add_folder_document"><i class="fas fa-folder-plus"></i></a> -->
+																																		<a href="javascript:;" class="textt_link cp"><i class="fas fa-file-medical"></i>
+																																			<input type="file" class="form-control" (change)="expandFileDocument('welcome_letter',$event,level5.id,5,'level2','level3','level4','level5','level6',i1,i2,i3,i4,i5)" name="">
+																																		</a>
+																																		<!-- <a href="javascript:;" (click)="deleteFolder(level5.id,5,'level2','level3','level4','level5','level6',i1,i2,i3,i4,i5)" class="textt_link cp trash_rem"><i class="fa fa-trash"></i></a> -->
+																																	</span>
+																																</h3>
+																																<ul *ngIf="level5.level6 && level5.level6.length">
+																																	<li class="d-flex col-sm-12" *ngFor="let level6 of level5.level6;let i6 = index;">
+																																		<span class="name_spann" (click)="expandFolderDocument('welcome_letter',level2.id,6,'level2','level3','level4','level5','level6',i1,i2,i3,i4,i5,i6)"><i class="far fa-file"></i> {{ level6.name }}</span>																								
+																																	</li>
+																																	<span class="downl_spn textt_link cp" yo="" ><a download target="_blank" href="{{ env.welcome_letter+level6.name }}"><i class="fa fa-download"></i> </a></span>
+																																</ul>
+																															</li>
+																														</ul>
+																													</li>
+																												</ul>
+																											</li>
+																										</ul>
+																						
+																									</li>
+																								</ul>
+																							</li>
+																						<!-- </ul> -->
+																					<!-- </div>					                                                                     -->
+				                                                                </ul>
+			                                                            	</div>
+																		</div>
 			                                                        </div>
 			                                                    </div>
 	                                                        </div>
@@ -1249,7 +1391,7 @@
 																</span>
                                                             </h3>
 														</div>
-                                                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" *ngIf="custom_document.planning.length > 0" data-parent="#accordionExample">
+                                                        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" *ngIf="custom_document.planning.length > 0" data-parent="#accordionExample2">
                                                             <div class="sub_folders_div">
                                                             	<ul class="sub_folders_ul" type="none">
 																	<li class="d-flex col-sm-12" *ngFor="let item of planningDocuments">
@@ -1391,7 +1533,7 @@
 																</span>
                                                             </h3>
                                                         </div>
-                                                        <div id="collapsePlaning" class="collapse show" aria-labelledby="headingOne" *ngIf="custom_document.reviews.length > 0" data-parent="#accordionExample">
+                                                        <div id="collapsePlaning" class="collapse" aria-labelledby="headingOne" *ngIf="custom_document.reviews.length > 0" data-parent="#accordionExample">
                                                             <div class="sub_folders_div">
 																<div class="card-body">
 																	<ul class="sub_folders_ul" type="none">
@@ -1552,7 +1694,7 @@
 																	</span>
 																	<span *ngIf="level2.file_type == 'document'" class="downl_spn textt_link cp" yo="" ><a download target="_blank" href="{{ env.CustomFile+level2.name }}"><i class="fa fa-download"></i> </a></span>
 																	<span *ngIf="level2.file_type == 'folder'" class="colp_head_actn text-right">
-																		<a href="javascript:;" class="textt_link cp" (click)="folderValueInitialize(level2.id,2,'level2','level3','level4','level5','level6',i1,i2)" data-toggle="modal" data-target="#modal_add_folder">Add Folder</a>
+																		<a href="javascript:;" class="textt_link cp" (click)="folderValueInitialize(level2.id,2,'level2','level3','level4','level5','level6',i1,i2)" data-toggle="modal" data-target="#modal_add_folder"><i class="fas fa-folder-plus"></i></a>
 																		<a href="javascript:;" class="textt_link cp"><i class="fas fa-file-medical"></i>
 																			<input type="file" class="form-control" (change)="expandFile($event,level2.id,2,'level2','level3','level4','level5','level6',i1,i2)" name="">
 																		</a>
@@ -1575,7 +1717,7 @@
 																			</span>
 																			<span *ngIf="level3.file_type == 'document'" class="downl_spn textt_link cp" yo="" ><a download target="_blank" href="{{ env.CustomFile+level3.name }}"><i class="fa fa-download"></i> </a></span>
 																			<span *ngIf="level3.file_type == 'folder'" class="colp_head_actn text-right">
-																				<a href="javascript:;" (click)="folderValueInitialize(level3.id,3,'level2','level3','level4','level5','level6',i1,i2,i3)" class="textt_link cp" data-toggle="modal" data-target="#modal_add_folder">Add Folder</a>
+																				<a href="javascript:;" (click)="folderValueInitialize(level3.id,3,'level2','level3','level4','level5','level6',i1,i2,i3)" class="textt_link cp" data-toggle="modal" data-target="#modal_add_folder"><i class="fas fa-folder-plus"></i></a>
 																				<a href="javascript:;" class="textt_link cp"><i class="fas fa-file-medical"></i>
 																					<input type="file" class="form-control" (change)="expandFile($event,level3.id,3,'level2','level3','level4','level5','level6',i1,i2,i3)" name="">
 																				</a>
@@ -1594,7 +1736,7 @@
 																					</span>
 																					<span *ngIf="level4.file_type == 'document'" class="downl_spn textt_link cp"  yo="" ><a download target="_blank" href="{{ env.CustomFile+level4.name }}"><i class="fa fa-download"></i> </a></span>
 																					<span *ngIf="level4.file_type == 'folder'" class="colp_head_actn text-right">
-																						<a href="javascript:;" (click)="folderValueInitialize(level4.id,4,'level2','level3','level4','level5','level6',i1,i2,i3,i4)" class="textt_link cp" data-toggle="modal" data-target="#modal_add_folder">Add Folder</a>
+																						<a href="javascript:;" (click)="folderValueInitialize(level4.id,4,'level2','level3','level4','level5','level6',i1,i2,i3,i4)" class="textt_link cp" data-toggle="modal" data-target="#modal_add_folder"><i class="fas fa-folder-plus"></i></a>
 																						<a href="javascript:;" class="textt_link cp"><i class="fas fa-file-medical"></i>
 																							<input type="file" class="form-control" (change)="expandFile($event,level4.id,4,'level2','level3','level4','level5','level6',i1,i2,i3,i4)" name="">
 																						</a>

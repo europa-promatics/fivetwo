@@ -3,10 +3,11 @@ import { FormGroup, FormBuilder, Validators, FormControl, FormArray } from '@ang
 import { ActivatedRoute, Router } from "@angular/router";
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../.././auth/auth.service';
-import { DatePipe } from '@angular/common';
 import Swal from 'sweetalert2';
 
 import { SharedServiceService } from "./../../auth/shared-service.service"
+import { DatePipe } from '@angular/common';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-db-tasks',
@@ -197,4 +198,26 @@ export class DbTasksComponent implements OnInit {
       return false
     }
   }
+
+  changeDate(type: string, event: MatDatepickerInputEvent<Date>,value) {
+		console.log(event.value);
+	//	this.dateFrom = event.value;
+    console.log(`${type}: ${event.value}`);
+    console.log(value);
+    var obj = {
+      lead_data : value,
+      date : event.value,
+    }
+
+    this.authService.updateTaskFollowDate(obj).subscribe(data => {
+      
+      if (data) {
+        this.toastr.success(data.message,"Success!");
+      }
+    }, err => {
+      //this.authService.showAuthError(err);
+      // this.toastr.error(this.authService.COMMON_ERROR);
+    })
+
+	  }
 }

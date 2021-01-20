@@ -20,7 +20,7 @@ import { MatStepperModule } from '@angular/material/stepper'
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
 import { NgxAutocomPlaceModule } from 'ngx-autocom-place';
-
+import {MatSelectModule} from '@angular/material/select';
 
 
 import { AppComponent } from './app.component';
@@ -70,6 +70,12 @@ import { TermsAndConditionComponent } from './views/terms-and-condition/terms-an
 import { PrivacyPolicyComponent } from './views/privacy-policy/privacy-policy.component';
 import { FaqComponent } from './views/faq/faq.component';
 import { AboutComponent } from './views/about/about.component';
+import { DbAddWelcomeLetterComponent } from './views/db-add-welcome-letter/db-add-welcome-letter.component';
+import { DbLetterAuthorityComponent } from './views/db-letter-authority/db-letter-authority.component';
+import { DbAddTaskComponent } from './views/db-add-task/db-add-task.component';
+import {WebcamModule} from 'ngx-webcam';
+import { DraftClientsComponent } from './views/draft-clients/draft-clients.component';
+import { CreateRequestGuardService } from "./../app/user/deactivate_guard.service";
 @NgModule({
   declarations: [
     AppComponent,
@@ -114,6 +120,10 @@ import { AboutComponent } from './views/about/about.component';
     PrivacyPolicyComponent,
     FaqComponent,
     AboutComponent,
+    DbAddWelcomeLetterComponent,
+    DbLetterAuthorityComponent,
+    DbAddTaskComponent,
+    DraftClientsComponent,
   ],
   imports: [
     BrowserModule,
@@ -140,11 +150,14 @@ import { AboutComponent } from './views/about/about.component';
     MatFormFieldModule,
     MatInputModule,
     MatNativeDateModule,
+    MatSelectModule,   
+    WebcamModule,
     // NgbModule
   ],
   providers: [
     MatNativeDateModule,
     MatDatepickerModule,
+    CreateRequestGuardService,
   ],
   bootstrap: [AppComponent]
 })

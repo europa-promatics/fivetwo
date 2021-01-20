@@ -10,7 +10,7 @@ import { Subscription, Subject, Observable } from 'rxjs';
 import { WebcamImage, WebcamInitError, WebcamUtil } from 'ngx-webcam';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 // import * as moment from "moment";
-import { environment } from "./../../../environments/environment" 
+import { environment } from "./../../../environments/environment"
 import { CanComponentDeactivate } from 'src/app/user/deactivate_guard.service';
 
 declare var Tesseract;
@@ -146,7 +146,7 @@ declare var $;
 })
 
 
-export class DbAddInvestorComponent implements OnInit,CanComponentDeactivate {
+export class DbAddInvestorComponent implements OnInit, CanComponentDeactivate {
     webCam: boolean;
     webCamOpenedBY;
     webcamImage
@@ -404,7 +404,7 @@ export class DbAddInvestorComponent implements OnInit,CanComponentDeactivate {
         };
         this.setLeadFields()
         this.BROKER = this.authService.getLoggedUserDetails();
-        console.log("Broker -> ",this.BROKER )
+        console.log("Broker -> ", this.BROKER)
         // this.RecordAdviceAdvisor = "Marthunis Oosthuizen";
         this.RecordAdviceAdvisor = this.BROKER.full_name;
 
@@ -630,14 +630,14 @@ export class DbAddInvestorComponent implements OnInit,CanComponentDeactivate {
         Validators.minLength(1), Validators.maxLength(20)]),
         WorkNumber2: new FormControl('', [Validators.pattern('^[0-9]*'),
         Validators.minLength(1), Validators.maxLength(20)]),
-        HomeAddress: new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z0-9 #,.]*'),
-        Validators.minLength(1), Validators.maxLength(60)]),
-        HomeAddress2: new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z0-9 #,.]*'),
-        Validators.minLength(1), Validators.maxLength(60)]),
-        PostalAddress: new FormControl('', [Validators.pattern('^[a-zA-Z0-9 #,.]*'),
-        Validators.minLength(1), Validators.maxLength(60)]),
-        PostalAddress2: new FormControl('', [Validators.pattern('^[a-zA-Z0-9 #,.]*'),
-        Validators.minLength(1), Validators.maxLength(60)]),
+        // HomeAddress: new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z0-9 #,.]*'),
+        // Validators.minLength(1), Validators.maxLength(60)]),
+        // HomeAddress2: new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z0-9 #,.]*'),
+        // Validators.minLength(1), Validators.maxLength(60)]),
+        // PostalAddress: new FormControl('', [Validators.pattern('^[a-zA-Z0-9 #,.]*'),
+        // Validators.minLength(1), Validators.maxLength(60)]),
+        // PostalAddress2: new FormControl('', [Validators.pattern('^[a-zA-Z0-9 #,.]*'),
+        // Validators.minLength(1), Validators.maxLength(60)]),
         TaxNumber: new FormControl('', [
             Validators.required,
             Validators.pattern('^[0-9]*'),
@@ -648,32 +648,74 @@ export class DbAddInvestorComponent implements OnInit,CanComponentDeactivate {
         TaxNumber2: new FormControl('', [Validators.required, Validators.pattern('^[0-9]*'),
         Validators.minLength(1), Validators.maxLength(60)]),
         MaritalStatus: new FormControl(''),
-        BankName: new FormControl('', [Validators.pattern('^[a-zA-Z0-9 ,]*'),
-        Validators.minLength(1), Validators.maxLength(60)]),
-        BankName2: new FormControl('', [Validators.pattern('^[a-zA-Z0-9 ,]*'),
-        Validators.minLength(1), Validators.maxLength(60)]),
-        BankNumber: new FormControl('', [
-            Validators.required,
-            Validators.pattern('^[0-9]*'),
-            Validators.minLength(1),
-            Validators.maxLength(60)
-        ]),
-        BankNumber2: new FormControl('', [Validators.pattern('^[0-9]*'),
-        Validators.minLength(1), Validators.maxLength(60)]),
-        AccountType: new FormControl('', [Validators.pattern('^[a-zA-Z0-9 ,]*'),
-        Validators.minLength(1), Validators.maxLength(60)]),
-        AccountType2: new FormControl('', [Validators.pattern('^[a-zA-Z0-9 ,]*'),
-        Validators.minLength(1), Validators.maxLength(60)]),
+        // BankName: new FormControl('', [Validators.pattern('^[a-zA-Z0-9 ,]*'),
+        // Validators.minLength(1), Validators.maxLength(60)]),
+        // BankName2: new FormControl('', [Validators.pattern('^[a-zA-Z0-9 ,]*'),
+        // Validators.minLength(1), Validators.maxLength(60)]),
+        // BankNumber: new FormControl('', [
+        //     Validators.required,
+        //     Validators.pattern('^[0-9]*'),
+        //     Validators.minLength(1),
+        //     Validators.maxLength(60)
+        // ]),
+        // BankNumber2: new FormControl('', [Validators.pattern('^[0-9]*'),
+        // Validators.minLength(1), Validators.maxLength(60)]),
+        // AccountType: new FormControl('', [Validators.pattern('^[a-zA-Z0-9 ,]*'),
+        // Validators.minLength(1), Validators.maxLength(60)]),
+        // AccountType2: new FormControl('', [Validators.pattern('^[a-zA-Z0-9 ,]*'),
+        // Validators.minLength(1), Validators.maxLength(60)]),
         Note: new FormControl('', [
             Validators.minLength(1), Validators.maxLength(255)]),
         // TaxNumber
 
     });
 
+    form7 = new FormGroup({
+        HomeAddress: new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z0-9 #,.]*'),
+        Validators.minLength(1), Validators.maxLength(60)]),
+        // HomeAddress2: new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z0-9 #,.]*'),
+        // Validators.minLength(1), Validators.maxLength(60)]),
+        PostalAddress: new FormControl('', [Validators.pattern('^[a-zA-Z0-9 #,.]*'),
+        Validators.minLength(1), Validators.maxLength(60)]),
+        // PostalAddress2: new FormControl('', [Validators.pattern('^[a-zA-Z0-9 #,.]*'),
+        // Validators.minLength(1), Validators.maxLength(60)]),
+
+    });
+
+    form8 = new FormGroup({
+        BankName: new FormControl('', [Validators.pattern('^[a-zA-Z0-9 ,]*'),
+        Validators.minLength(1), Validators.maxLength(60)]),
+        // BankName2: new FormControl('', [Validators.pattern('^[a-zA-Z0-9 ,]*'),
+        // Validators.minLength(1), Validators.maxLength(60)]),
+        BankNumber: new FormControl('', [
+            Validators.required,
+            Validators.pattern('^[0-9]*'),
+            Validators.minLength(1),
+            Validators.maxLength(60)
+        ]),
+        // BankNumber2: new FormControl('', [Validators.pattern('^[0-9]*'),
+        // Validators.minLength(1), Validators.maxLength(60)]),
+        AccountType: new FormControl('', [Validators.pattern('^[a-zA-Z0-9 ,]*'),
+        Validators.minLength(1), Validators.maxLength(60)]),
+        // AccountType2: new FormControl('', [Validators.pattern('^[a-zA-Z0-9 ,]*'),
+        // Validators.minLength(1), Validators.maxLength(60)]),
+
+    })
+
     form2 = new FormGroup({
         // LastName: new FormControl(''),
     });
 
+    get HomeAddress() { return this.form7.get('HomeAddress'); }
+    // get HomeAddress2() { return this.form.get('HomeAddress2'); }
+    get PostalAddress() { return this.form7.get('PostalAddress'); }
+    // get PostalAddress2() { return this.form.get('PostalAddress2'); }
+    get BankName() { return this.form8.get('BankName'); }
+    // get BankName2() { return this.form.get('BankName2'); }
+    get BankNumber() { return this.form8.get('BankNumber'); }
+    // get BankNumber2() { return this.form.get('BankNumber2'); }
+    get AccountType() { return this.form8.get('AccountType'); }
+    // get AccountType2() { return this.form.get('AccountType2'); }
     get LastName() { return this.form.get('LastName'); }
     get LastName2() { return this.form.get('LastName2'); }
     get FirstName() { return this.form.get('FirstName'); }
@@ -688,19 +730,9 @@ export class DbAddInvestorComponent implements OnInit,CanComponentDeactivate {
     get HomeNumber2() { return this.form.get('HomeNumber2'); }
     get WorkNumber() { return this.form.get('WorkNumber'); }
     get WorkNumber2() { return this.form.get('WorkNumber2'); }
-    get HomeAddress() { return this.form.get('HomeAddress'); }
-    get HomeAddress2() { return this.form.get('HomeAddress2'); }
-    get PostalAddress() { return this.form.get('PostalAddress'); }
-    get PostalAddress2() { return this.form.get('PostalAddress2'); }
     get TaxNumber() { return this.form.get('TaxNumber'); }
     get TaxNumber2() { return this.form.get('TaxNumber2'); }
     get MaritalStatus() { return this.form.get('MaritalStatus'); }
-    get BankName() { return this.form.get('BankName'); }
-    get BankName2() { return this.form.get('BankName2'); }
-    get BankNumber() { return this.form.get('BankNumber'); }
-    get BankNumber2() { return this.form.get('BankNumber2'); }
-    get AccountType() { return this.form.get('AccountType'); }
-    get AccountType2() { return this.form.get('AccountType2'); }
     get Note() { return this.form.get('Note'); }
     get checkSpouse() { return (this.LastName2.value != ''); }
     get firstStep() { return this.firstStepStatus; }
@@ -800,8 +832,6 @@ export class DbAddInvestorComponent implements OnInit,CanComponentDeactivate {
                     }
                 }, err => {
                     console.log(err)
-                    // this.toastr.error(this.authService.COMMON_ERROR);
-
                 })
                 // this.visitToggle('1')
                 // this.updateColor()
@@ -816,7 +846,7 @@ export class DbAddInvestorComponent implements OnInit,CanComponentDeactivate {
     public DraftfirstForm(stepper: MatStepper) {
         // this.firstStepStatus = true;
         this.isFirstStepDone = true
-        
+
         if (this.investor_id != null || this.investor_id != undefined) {
             console.log('update');
 
@@ -844,7 +874,7 @@ export class DbAddInvestorComponent implements OnInit,CanComponentDeactivate {
             var obj = { broker_id: this.broker_id, form: this.form.value, children: this.childrens, beneficiaries: this.beneficiaries };
             console.log(obj);
             this.authService.addDraftInvestor(obj).subscribe(data => {
-                console.log("====",data)
+                console.log("====", data)
                 if (data.success == 1) {
 
                     this.investor_id = data.data.id;
@@ -949,14 +979,22 @@ export class DbAddInvestorComponent implements OnInit,CanComponentDeactivate {
         var formdata: FormData = new FormData();
         formdata.append("id", this.investor_id);
         console.log(this.bank_upload_id);
+        if (this.BankName.invalid || this.BankNumber.invalid || this.AccountType.invalid ) {
+            this.toastr.warning('Please fill bank details', 'Warning')
+            return
+        }else{
+            formdata.append("BankName", this.BankName.value)
+            formdata.append("BankNumber", this.BankNumber.value);
+            formdata.append("AccountType", this.AccountType.value);
+        }
         if (this.bank_upload_id) {
             formdata.append("image", this.bank_upload_id);
         }
         if (this.BankwebcamImage) {
             formdata.append("webcam_image", this.BankwebcamImage);
         }
-        console.log("Bank --->"+!this.bank_upload_id);
-        console.log("Bank Web --->"+!this.BankwebcamImage);
+        console.log("Bank --->" + !this.bank_upload_id);
+        console.log("Bank Web --->" + !this.BankwebcamImage);
 
         if (this.bank_upload_id == "Choose File" && !this.BankwebcamImage) {
             this.toastr.warning('Please upload atleast one document', 'Warning')
@@ -992,6 +1030,13 @@ export class DbAddInvestorComponent implements OnInit,CanComponentDeactivate {
         var formdata: FormData = new FormData();
         formdata.append("id", this.investor_id);
         console.log(this.address_upload_id);
+        if (this.HomeAddress.invalid || this.PostalAddress.invalid ) {
+            this.toastr.warning('Please add physical address', 'Warning')
+            return
+        }else{
+            formdata.append("HomeAddress", this.HomeAddress.value)
+            formdata.append("PostalAddress", this.PostalAddress.value);
+        }
         if (this.address_upload_id) {
             formdata.append("image", this.address_upload_id);
         }
@@ -1002,12 +1047,6 @@ export class DbAddInvestorComponent implements OnInit,CanComponentDeactivate {
             this.toastr.warning('Please upload atleast one document', 'Warning')
             return
         }
-        var ext = this.fileext;
-        // if (ext == 'jpeg' || ext == 'jpg' || ext == 'png' || ext == 'pdf') {
-        // } else {
-        //     this.toastr.warning('Please select valid file', 'warning')
-        //     return
-        // }
         if (this.investor_id == null || this.investor_id == undefined) {
             this.toastr.warning('Please complete form 1 first', 'Warning')
             return
@@ -1039,10 +1078,6 @@ export class DbAddInvestorComponent implements OnInit,CanComponentDeactivate {
 
     serviceIdUpload(evt: any) {
         console.log(evt)
-        // this.fileToUpload = ''
-
-        // console.log(evt);
-
         if (!evt.target) {
             return;
         }
@@ -1121,7 +1156,7 @@ export class DbAddInvestorComponent implements OnInit,CanComponentDeactivate {
 
         this.fileext = ext;
         if (true) { // client want to add any type of image
-        // if (ext == 'jpeg' || ext == 'jpg' || ext == 'png') {
+            // if (ext == 'jpeg' || ext == 'jpg' || ext == 'png') {
             this.bank_upload_id = evt.target.files[0];
             const fr = new FileReader();
             fr.onloadend = (loadEvent) => {
@@ -1202,14 +1237,14 @@ export class DbAddInvestorComponent implements OnInit,CanComponentDeactivate {
     checkFirstFormValidity() {
 
         var status = true;
-        if (this.LastName.invalid || this.FirstName.invalid || this.IdNumber.invalid || this.CellNumber.invalid || this.Email.invalid || this.HomeNumber.invalid || this.WorkNumber.invalid || this.HomeAddress.invalid || this.PostalAddress.invalid || this.TaxNumber.invalid || this.BankName.invalid || this.BankNumber.invalid || this.AccountType.invalid || this.Note.invalid) {
+        if (this.LastName.invalid || this.FirstName.invalid || this.IdNumber.invalid || this.CellNumber.invalid || this.Email.invalid || this.HomeNumber.invalid || this.WorkNumber.invalid || this.TaxNumber.invalid || this.Note.invalid) {
 
             return status = false;
 
 
         } else if (this.LastName2.value != '') {
             // status=false;
-            if (this.FirstName2.invalid || this.IdNumber2.invalid || this.CellNumber2.invalid || this.Email2.invalid || this.HomeNumber2.invalid || this.WorkNumber2.invalid || this.HomeAddress2.invalid || this.PostalAddress2.invalid || this.TaxNumber2.invalid || this.BankName2.invalid || this.BankNumber2.invalid || this.AccountType2.invalid) {
+            if (this.FirstName2.invalid || this.IdNumber2.invalid || this.CellNumber2.invalid || this.Email2.invalid || this.HomeNumber2.invalid || this.WorkNumber2.invalid ||  this.TaxNumber2.invalid) {
                 status = false;
             }
         } else {
@@ -1624,19 +1659,19 @@ export class DbAddInvestorComponent implements OnInit,CanComponentDeactivate {
     getYearTotal() {
         // p
         if (isNaN(this.Year1)) {
-           // this.Year1 = 0;
+            // this.Year1 = 0;
         }
         if (isNaN(this.Year2)) {
-          //  this.Year2 = 0;
+            //  this.Year2 = 0;
         }
         if (isNaN(this.Year3)) {
-           // this.Year3 = 0;
+            // this.Year3 = 0;
         }
         if (isNaN(this.Year4)) {
-           // this.Year4 = 0;
+            // this.Year4 = 0;
         }
         if (isNaN(this.Year5)) {
-           // this.Year5 = 0;
+            // this.Year5 = 0;
         }
         if (isNaN(this.Year6)) {
             //this.Year6 = 0;

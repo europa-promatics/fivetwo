@@ -398,6 +398,30 @@ export class AuthService {
         // catchError(this.error)
         )
     }
+    editLead(data): Observable<any> {
+      let API_URL = this.SERVER_URL+'edit-lead';
+      return this.http.post(API_URL,data)
+      .pipe(
+        map((res: Response) => {
+          return res
+        }),
+        // retry(1),
+        // catchError(this.error)
+        )
+    }
+
+    getSingleLead(data): Observable<any> {
+      let API_URL = this.SERVER_URL+'get-lead';
+      return this.http.post(API_URL,data)
+      .pipe(
+        map((res: Response) => {
+          return res
+        }),
+        // retry(1),
+        // catchError(this.error)
+        )
+    }
+
     leadStatus(data): Observable<any> {
       let API_URL = this.SERVER_URL+'lead-status';
       return this.http.post(API_URL,data)
@@ -946,6 +970,18 @@ export class AuthService {
     }
     updateLeadFollowDate(data): Observable<any> {
       let API_URL = this.SERVER_URL + 'update-lead';
+      return this.http.post(API_URL, data, this.httpOptions)
+        .pipe(
+          map((res: Response) => {
+            return res
+          }),
+          // retry(1),
+          // catchError(this.error)
+        )
+    }
+
+    updateTaskFollowDate(data): Observable<any> {
+      let API_URL = this.SERVER_URL + 'updateTaskDate';
       return this.http.post(API_URL, data, this.httpOptions)
         .pipe(
           map((res: Response) => {

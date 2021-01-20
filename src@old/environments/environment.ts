@@ -4,10 +4,20 @@
 
 export const environment = {
   production: true,
-  InvestorID: "https://production.promaticstechnologies.com/fivetwo/assets/img/investorId/",
-  InvestorSignBasePath : "https://production.promaticstechnologies.com/fivetwo/assets/img/investorSign/",
-  BrokerAppointmentSignBasePath : "https://production.promaticstechnologies.com/fivetwo/assets/img/brokerAppointmentSign/",
-  image_url: 'https://production.promaticstechnologies.com/fivetwo_apis_new/public/'
+  EndPointLocal : "http://localhost:3001/",
+  EndPointServer : "https://production.promaticstechnologies.com:3001/",
+  InvestorID: "https://production.promaticstechnologies.com/fivetwo_apis/public/investor_id/",
+  InvestorSignBasePath : "https://production.promaticstechnologies.com/fivetwo_apis/public/investor_sign/",
+  BrokerAppointmentSignBasePath : "https://production.promaticstechnologies.com/fivetwo_apis/public/broker_appointment/",
+  RiskPDF : "https://production.promaticstechnologies.com/fivetwo_apis/public/risk_pdf/",
+  disclosurePDF : "https://production.promaticstechnologies.com/fivetwo_apis/public/disclosure-pdf/",
+  letterAuthority : "https://production.promaticstechnologies.com/fivetwo_apis/public/letter_authority/",
+  Planning : "https://production.promaticstechnologies.com/fivetwo_apis/public/planning/",
+  reviews : "https://production.promaticstechnologies.com/fivetwo_apis/public/review_pdf/",
+  recordAdvice : "https://production.promaticstechnologies.com/fivetwo_apis/public/record_advice/",
+  CustomFile : "https://production.promaticstechnologies.com/fivetwo_apis/public/CustomFiles/",  
+  image_url: 'https://production.promaticstechnologies.com/fivetwo_apis_new/public/',
+  CLIENT_NAME: "Marthunis Christiaan Oosthuizen",
 };
 
 /*

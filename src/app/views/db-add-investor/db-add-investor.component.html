@@ -75,7 +75,8 @@
 																					</span>
 																				</td>
 																				<td class="table_inpt">
-																					<input (click)="showName()" (blur)="AddSpouse()"
+																					<input (click)="showName()"
+																						(blur)="AddSpouse()"
 																						formControlName="LastName2"
 																						type="text" class="form-control"
 																						name="" maxlength="100">
@@ -97,9 +98,9 @@
 																			<tr>
 																				<th>First Name</th>
 																				<td class="table_inpt">
-																					<input formControlName="FirstName" (blur)="showName()"
-																						type="text" class="form-control"
-																						name="">
+																					<input formControlName="FirstName"
+																						(blur)="showName()" type="text"
+																						class="form-control" name="">
 																					<span
 																						*ngIf="FirstName.invalid && (FirstName.dirty || FirstName.touched || firstStep)"
 																						class="text-danger">
@@ -115,9 +116,9 @@
 																					</span>
 																				</td>
 																				<td class="table_inpt">
-																					<input formControlName="FirstName2" (blur)="AddSpouse()"
-																						type="text" class="form-control"
-																						name="">
+																					<input formControlName="FirstName2"
+																						(blur)="AddSpouse()" type="text"
+																						class="form-control" name="">
 																					<span
 																						*ngIf="FirstName2.invalid && checkSpouse && (FirstName2.dirty || FirstName2.touched || firstStep)"
 																						class="text-danger">
@@ -138,7 +139,7 @@
 																			<tr>
 																				<th>ID</th>
 																				<td class="table_inpt">
-																					<input formControlName="IdNumber" 
+																					<input formControlName="IdNumber"
 																						type="text" class="form-control"
 																						name="">
 																					<span
@@ -160,9 +161,9 @@
 																					</span>
 																				</td>
 																				<td class="table_inpt">
-																					<input formControlName="IdNumber2" (blur)="AddSpouse()"
-																						type="text" class="form-control"
-																						name="">
+																					<input formControlName="IdNumber2"
+																						(blur)="AddSpouse()" type="text"
+																						class="form-control" name="">
 																					<span
 																						*ngIf="IdNumber2.invalid && checkSpouse && (IdNumber2.dirty || IdNumber2.touched || firstStep)"
 																						class="text-danger">
@@ -214,9 +215,9 @@
 																					</span>
 																				</td>
 																				<td class="table_inpt">
-																					<input formControlName="CellNumber2" (blur)="AddSpouse()"
-																						type="text" class="form-control"
-																						name="">
+																					<input formControlName="CellNumber2"
+																						(blur)="AddSpouse()" type="text"
+																						class="form-control" name="">
 																					<span
 																						*ngIf="CellNumber2.invalid && checkSpouse && (CellNumber2.dirty || CellNumber2.touched || firstStep)"
 																						class="text-danger">
@@ -365,97 +366,7 @@
 																					</span>
 																				</td>
 																			</tr>
-																			<tr>
-																				<th>Home Address</th>
-																				<td class="table_inpt">
-																					<input formControlName="HomeAddress"
-																						type="text" class="form-control"
-																						placeholder="" name=""
-																						ngxAutocomPlace
-																						(selectedPlace)="placeChangedCallback($event)">
-																					<span
-																						*ngIf="HomeAddress.invalid && (HomeAddress.dirty || HomeAddress.touched || firstStep)"
-																						class="text-danger">
-																						<span
-																							*ngIf="HomeAddress.errors.required">
-																							This field is required.
-																						</span>
-																						<span
-																							*ngIf="HomeAddress.errors.pattern">
-																							Invalid Home Address
-																						</span>
-
-																					</span>
-																				</td>
-																				<td class="table_inpt">
-																					<input
-																						formControlName="HomeAddress2"
-																						type="text" class="form-control"
-																						placeholder="" name=""
-																						ngxAutocomPlace
-																						(selectedPlace)="placeChangedCallback($event)">
-																					<span
-																						*ngIf="HomeAddress2.invalid && checkSpouse && (HomeAddress2.dirty || HomeAddress2.touched || firstStep)"
-																						class="text-danger">
-
-																						<span
-																							*ngIf="HomeAddress2.errors.required">
-																							This field is required.
-																						</span>
-																						<span
-																							*ngIf="HomeAddress2.errors.pattern">
-																							Invalid Home Address
-																						</span>
-																					</span>
-																				</td>
-																			</tr>
-																			<tr>
-																				<th>Postal Address</th>
-																				<td class="table_inpt">
-																					<input
-																						formControlName="PostalAddress"
-																						type="text" class="form-control"
-																						name="" ngxAutocomPlace
-																						(selectedPlace)="placeChangedCallback($event)"
-																						placeholder="">
-																					<span
-																						*ngIf="PostalAddress.invalid && (PostalAddress.dirty || PostalAddress.touched || firstStep)"
-																						class="text-danger">
-
-																						<span
-																							*ngIf="PostalAddress.errors.required">
-																							This field is required.
-																						</span>
-																						<span
-																							*ngIf="PostalAddress.errors.pattern">
-																							Invalid Postal Address
-																						</span>
-
-																					</span>
-
-																				</td>
-																				<td class="table_inpt">
-																					<input
-																						formControlName="PostalAddress2"
-																						type="text" class="form-control"
-																						name="" ngxAutocomPlace
-																						(selectedPlace)="placeChangedCallback($event)"
-																						placeholder="">
-																					<span
-																						*ngIf="PostalAddress2.invalid && checkSpouse && (PostalAddress2.dirty || PostalAddress2.touched || firstStep)"
-																						class="text-danger">
-
-																						<span
-																							*ngIf="PostalAddress2.errors.required">
-																							This field is required.
-																						</span>
-																						<span
-																							*ngIf="PostalAddress2.errors.pattern">
-																							Invalid Postal Address
-																						</span>
-																					</span>
-																				</td>
-																			</tr>
+																			
 																			<tr>
 																				<th>Tax Number</th>
 																				<td class="table_inpt">
@@ -551,115 +462,6 @@
 																					</span>
 																				</td>
 																			</tr>
-																			<tr>
-																				<th>Bank Name</th>
-																				<td class="table_inpt">
-																					<!-- <input  type="text" class="form-control" name=""> -->
-																					<select
-																						class="custom-select form-control"
-																						formControlName="BankName">
-																						<option
-																							*ngFor="let ele of bank_list;let i=index"
-																							value="{{ ele.id }}">
-																							{{ ele.bank_name }}</option>
-
-																					</select>
-																					<span
-																						*ngIf="BankName.invalid && (BankName.dirty || BankName.touched || firstStep)"
-																						class="text-danger">
-																						Invalid Bank Name
-																					</span>
-																				</td>
-																				<td class="table_inpt">
-																					<!-- <input formControlName="BankName2" type="text" class="form-control" name=""> -->
-																					<select
-																						class="custom-select form-control"
-																						formControlName="BankName2">
-																						<option
-																							*ngFor="let ele of bank_list;let i=index"
-																							value="{{ ele.id }}">
-																							{{ ele.bank_name }}</option>
-																					</select>
-																					<span
-																						*ngIf="BankName2.invalid && checkSpouse && (BankName2.dirty || BankName2.touched || firstStep)"
-																						class="text-danger">
-																						Invalid Bank Name
-
-																					</span>
-																				</td>
-																			</tr>
-																			<tr>
-																				<th>Account Number</th>
-																				<td class="table_inpt">
-																					<input formControlName="BankNumber"
-																						type="text" class="form-control"
-																						name="">
-																					<span
-																						*ngIf="BankNumber.invalid && (BankNumber.dirty || BankNumber.touched || firstStep)"
-																						class="text-danger">
-																						<!-- Invalid Account Number -->
-																						<span
-																							*ngIf="TaxNumber2.errors.pattern">
-																							Invalid Account Number
-																						</span>
-
-																						<span
-																							*ngIf="TaxNumber2.errors.required">
-																							This field is required.
-																						</span>
-
-																					</span>
-																				</td>
-																				<td class="table_inpt">
-																					<input formControlName="BankNumber2"
-																						type="text" class="form-control"
-																						name="">
-																					<span
-																						*ngIf="BankNumber2.invalid && checkSpouse && (BankNumber2.dirty || BankNumber2.touched || firstStep)"
-																						class="text-danger">
-																						Invalid Account Number
-																					</span>
-																				</td>
-																			</tr>
-																			<tr>
-																				<th>Account Type</th>
-																				<td class="table_inpt">
-																					<!-- <input formControlName="AccountType" type="text" class="form-control" name=""> -->
-																					<select
-																						class="custom-select form-control"
-																						formControlName="AccountType">
-																						<option value="Cheque">Cheque
-																						</option>
-																						<option value="Saving">Saving
-																						</option>
-																						<option value="Transmission">
-																							Transmission</option>
-																					</select>
-																					<span
-																						*ngIf="AccountType.invalid && (AccountType.dirty || AccountType.touched || firstStep)"
-																						class="text-danger">
-																						Invalid Account Type
-																					</span>
-																				</td>
-																				<td class="table_inpt">
-																					<!-- <input formControlName="AccountType2" type="text" class="form-control" name=""> -->
-																					<select
-																						class="custom-select form-control"
-																						formControlName="AccountType2">
-																						<option value="Cheque">Cheque
-																						</option>
-																						<option value="Saving">Saving
-																						</option>
-																						<option value="Transmission">
-																							Transmission</option>
-																					</select>
-																					<span
-																						*ngIf="AccountType2.invalid && checkSpouse && (AccountType2.dirty || AccountType2.touched || firstStep)"
-																						class="text-danger">
-																						Invalid Account Type
-																					</span>
-																				</td>
-																			</tr>
 																		</tbody>
 																	</table>
 																</div>
@@ -683,9 +485,11 @@
 																			<tr
 																				*ngFor="let item of childrens ;let i=index">
 																				<!-- {{item | json}} -->
-																				
-																				<td class="table_inpt" *ngIf="item.relation != 'spouse'">
-																					<input [(ngModel)]="item.FullName" (blur)="keyFunc($event,i)"
+
+																				<td class="table_inpt"
+																					*ngIf="item.relation != 'spouse'">
+																					<input [(ngModel)]="item.FullName"
+																						(blur)="keyFunc($event,i)"
 																						[ngModelOptions]="{standalone: true}"
 																						type="text" class="form-control"
 																						name=""
@@ -693,8 +497,10 @@
 																						pattern="[0-9.]+">
 																				</td>
 
-																				<td class="table_inpt" *ngIf="item.relation != 'spouse'">
-																					<input [(ngModel)]="item.IdNumber" (blur)="keyFunc($event,i)"
+																				<td class="table_inpt"
+																					*ngIf="item.relation != 'spouse'">
+																					<input [(ngModel)]="item.IdNumber"
+																						(blur)="keyFunc($event,i)"
 																						[ngModelOptions]="{standalone: true}"
 																						type="text" class="form-control"
 																						name="" required
@@ -706,8 +512,10 @@
 																						This field is required.
 																					</span>
 																				</td>
-																				<td class="table_inpt" *ngIf="item.relation != 'spouse'">
-																					<input [(ngModel)]="item.CellNumber" (blur)="keyFunc($event,i)"
+																				<td class="table_inpt"
+																					*ngIf="item.relation != 'spouse'">
+																					<input [(ngModel)]="item.CellNumber"
+																						(blur)="keyFunc($event,i)"
 																						[ngModelOptions]="{standalone: true}"
 																						type="text" class="form-control"
 																						name=""
@@ -719,52 +527,44 @@
 																						This field is required.
 																					</span>
 																				</td>
-																				<td class="table_inpt" *ngIf="item.relation != 'spouse'">
-																					<input [(ngModel)]="item.Email" (blur)="keyFunc($event,i)"
+																				<td class="table_inpt"
+																					*ngIf="item.relation != 'spouse'">
+																					<input [(ngModel)]="item.Email"
+																						(blur)="keyFunc($event,i)"
 																						[ngModelOptions]="{standalone: true}"
 																						type="text" class="form-control"
 																						name="" #contactemail="ngModel"
-																						pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
-																						>
+																						pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
 																					<span
-																						*ngIf="checkChildError(item.FullName,item.Email) && firstStep"
+																						*ngIf="checkChildError(item.FullName,item.Email)"
 																						class="text-danger">
 																						This field is required.
 																					</span>
 																					<span
-																						*ngIf="checkEmail(contactemail.errors) && firstStep"
+																						*ngIf="checkEmail(contactemail.errors)"
 																						class="text-danger">
 																						Please provide valid Email
 																					</span>
 																				</td>
 
-																				<td class="table_inpt" *ngIf="item.relation != 'spouse'">
-																					<!-- <select [(ngModel)]="item.relation" [ngModelOptions]="{standalone: true}">
-																						<option>Son</option>
-																						<option>Daughter</option>
-																					</select> -->
-																					<!-- <div 
-																						*ngFor="let relation of Relationship">
-																						<input
-																							[(ngModel)]="item.relation" (blur)="keyFunc($event,i)"
-																							[ngModelOptions]="{standalone: true}"
-																							[value]= "relation"
-																							type="radio"
-																							name="exampleRadios{{i}}"
-																							id="exampleRadios{{i}}">
-																							<span>
-																								{{relation}}
-																							</span>
-																					</div> -->
-																						<mat-radio-group  aria-label="Select an option" [(ngModel)]="item.relation" 
+																				<td class="table_inpt"
+																					*ngIf="item.relation != 'spouse'">
+																					<mat-radio-group
+																						aria-label="Select an option"
+																						[(ngModel)]="item.relation"
 																						[ngModelOptions]="{standalone: true}">
-																							<span class="chk_bxx">
-																								<mat-radio-button value="Daughter">Daughter</mat-radio-button>
-																							</span><br>
-																							<span class="chk_bxx">
-																								<mat-radio-button value="Son">Son</mat-radio-button>
-																							</span>
-																						</mat-radio-group>
+																						<span class="chk_bxx">
+																							<mat-radio-button
+																								value="Daughter">
+																								Daughter
+																							</mat-radio-button>
+																						</span><br>
+																						<span class="chk_bxx">
+																							<mat-radio-button
+																								value="Son">Son
+																							</mat-radio-button>
+																						</span>
+																					</mat-radio-group>
 																					<span
 																						*ngIf="checkChildError(item.FullName,item.relation) && firstStep"
 																						class="text-danger">
@@ -790,23 +590,25 @@
 																			</tr>
 																		</thead>
 																		<tbody>
-																			<tr *ngFor="let item of childrens ;let i=index">
+																			<tr
+																				*ngFor="let item of childrens ;let i=index">
 																				<td class="table_inpt">
 																					<input [(ngModel)]="item.isChecked"
 																						[ngModelOptions]="{standalone: true}"
-																						type="checkbox" class="form-control"
-																					>
+																						type="checkbox"
+																						class="form-control">
 																				</td>
-																				<td  class="table_inpt">
-																					<input [(ngModel)]="item.FullName" readonly='true'
+																				<td class="table_inpt">
+																					<input [(ngModel)]="item.FullName"
+																						readonly='true'
 																						[ngModelOptions]="{standalone: true}"
 																						type="text" class="form-control"
 																						name=""
 																						oninput="this.value = this.value.replace(/[^a-zA-Z .]/g, '').replace(/(\..*)\./g, '$1');">
 																				</td>
-																				<td  class="table_inpt">
-																					<input
-																						[(ngModel)]="item.relation" readonly='true'
+																				<td class="table_inpt">
+																					<input [(ngModel)]="item.relation"
+																						readonly='true'
 																						[ngModelOptions]="{standalone: true}"
 																						type="text" class="form-control"
 																						name=""
@@ -817,8 +619,9 @@
 																						This field is required.
 																					</span>
 																				</td>
-																				<td  class="table_inpt">
-																					<input [(ngModel)]="item.CellNumber" readonly='true'
+																				<td class="table_inpt">
+																					<input [(ngModel)]="item.CellNumber"
+																						readonly='true'
 																						[ngModelOptions]="{standalone: true}"
 																						type="text" class="form-control"
 																						name=""
@@ -829,8 +632,9 @@
 																						This field is required.
 																					</span>
 																				</td>
-																				<td  class="table_inpt">
-																					<input [(ngModel)]="item.Percent" [readonly]='item.isChecked == true ? false : true'
+																				<td class="table_inpt">
+																					<input [(ngModel)]="item.Percent"
+																						[readonly]='item.isChecked == true ? false : true'
 																						[ngModelOptions]="{standalone: true}"
 																						type="text" class="form-control"
 																						name=""
@@ -865,8 +669,9 @@
 															</div>
 															<!-- stepper Inner -->
 															<div class="d-flex justify-content-end">
-																<button (click)="DraftfirstForm(stepper)" mat-raised-button
-																	type="button" color="basic" class="mr-2">Draft</button>
+																<button (click)="DraftfirstForm(stepper)"
+																	mat-raised-button type="button" color="basic"
+																	class="mr-2">Draft</button>
 																<button (click)="firstForm(stepper)" mat-raised-button
 																	type="button" color="primary">Next</button>
 																<!-- <button (click) ="firstForm(stepper)" mat-raised-button type="button" color="primary" matStepperNext>Next</button> -->
@@ -921,11 +726,87 @@
 													</mat-step>
 													<!-- new added tab -->
 													<mat-step [stepControl]="">
-														<form [formGroup]="form6" enctype="multipart/form-data">
+														<form [formGroup]="form8" enctype="multipart/form-data">
 															<ng-template matStepLabel>Proof of Banking</ng-template>
 															<!-- stepper Inner -->
 															<div class="stepper_cuntnt">
 																<div class="col-sm-10 offset-sm-1 pb-5 pt-5">
+																	<div class="table-responsive mb-4">
+																		<table class="table table-bordered table-striped">
+																			<thead>
+																				<tr>
+																					<th></th>
+																					<th>Principle</th>
+																				</tr>
+																			</thead>
+																			<tbody>
+																				<tr>
+																					<th>Bank Name</th>
+																					<td class="table_inpt">
+																						<!-- <input  type="text" class="form-control" name=""> -->
+																						<select
+																							class="custom-select form-control"
+																							formControlName="BankName">
+																							<option
+																								*ngFor="let ele of bank_list;let i=index"
+																								value="{{ ele.id }}">
+																								{{ ele.bank_name }}</option>
+																	
+																						</select>
+																						<span
+																							*ngIf="BankName.invalid && (BankName.dirty || BankName.touched || firstStep)"
+																							class="text-danger">
+																							Invalid Bank Name
+																						</span>
+																					</td>
+																				</tr>
+																				<tr>
+																					<th>Account Number</th>
+																					<td class="table_inpt">
+																						<input formControlName="BankNumber"
+																							type="text" class="form-control"
+																							name="">
+																						<span
+																							*ngIf="BankNumber.invalid && (BankNumber.dirty || BankNumber.touched || firstStep)"
+																							class="text-danger">
+																							<!-- Invalid Account Number -->
+																							<span
+																								*ngIf="TaxNumber2.errors.pattern">
+																								Invalid Account Number
+																							</span>
+																	
+																							<span
+																								*ngIf="TaxNumber2.errors.required">
+																								This field is required.
+																							</span>
+																	
+																						</span>
+																					</td>
+																				</tr>
+																				<tr>
+																					<th>Account Type</th>
+																					<td class="table_inpt">
+																						<!-- <input formControlName="AccountType" type="text" class="form-control" name=""> -->
+																						<select
+																							class="custom-select form-control"
+																							formControlName="AccountType">
+																							<option value="Cheque">Cheque
+																							</option>
+																							<option value="Saving">Saving
+																							</option>
+																							<option value="Transmission">
+																								Transmission</option>
+																						</select>
+																						<span
+																							*ngIf="AccountType.invalid && (AccountType.dirty || AccountType.touched || firstStep)"
+																							class="text-danger">
+																							Invalid Account Type
+																						</span>
+																					</td>
+																				</tr>
+																			</tbody>
+																		</table>
+																	</div>
 																	<div class="form-group">
 																		<label>Proof of Banking</label>
 																		<div class="custom-file">
@@ -969,10 +850,71 @@
 													<!-- new added tab -->
 													<mat-step [stepControl]="">
 														<form [formGroup]="form7" enctype="multipart/form-data">
-															<ng-template matStepLabel>Address</ng-template>
+															<ng-template matStepLabel>Proof of Address</ng-template>
 															<!-- stepper Inner -->
 															<div class="stepper_cuntnt">
 																<div class="col-sm-10 offset-sm-1 pb-5 pt-5">
+																	<div class="table-responsive mb-4">
+																		<table class="table table-bordered table-striped">
+																			<thead>
+																				<tr>
+																					<th></th>
+																					<th>Principle</th>
+																				</tr>
+																			</thead>
+																			<tbody>
+																				<tr>
+																					<th>Physical Address</th>
+																					<td class="table_inpt">
+																						<input formControlName="HomeAddress"
+																							type="text" class="form-control"
+																							placeholder="" name=""
+																							ngxAutocomPlace
+																							(selectedPlace)="placeChangedCallback($event)">
+																						<span
+																							*ngIf="HomeAddress.invalid && (HomeAddress.dirty || HomeAddress.touched || firstStep)"
+																							class="text-danger">
+																							<span
+																								*ngIf="HomeAddress.errors.required">
+																								This field is required.
+																							</span>
+																							<span
+																								*ngIf="HomeAddress.errors.pattern">
+																								Invalid Physical Address
+																							</span>
+																	
+																						</span>
+																					</td>
+																				</tr>
+																				<tr>
+																					<th>Postal Address</th>
+																					<td class="table_inpt">
+																						<input
+																							formControlName="PostalAddress"
+																							type="text" class="form-control"
+																							name="" ngxAutocomPlace
+																							(selectedPlace)="placeChangedCallback($event)"
+																							placeholder="">
+																						<span
+																							*ngIf="PostalAddress.invalid && (PostalAddress.dirty || PostalAddress.touched || firstStep)"
+																							class="text-danger">
+																	
+																							<span
+																								*ngIf="PostalAddress.errors.required">
+																								This field is required.
+																							</span>
+																							<span
+																								*ngIf="PostalAddress.errors.pattern">
+																								Invalid Postal Address
+																							</span>
+																	
+																						</span>
+																	
+																					</td>
+																				</tr>
+																			</tbody>
+																		</table>
+																	</div>
 																	<div class="form-group">
 																		<label>Address Detail</label>
 																		<div class="custom-file">
@@ -1210,19 +1152,6 @@
 																							This field is required.
 
 																						</span>
-																						<!-- <ng-template #elseBlock>
-																							
-																						<span *ngIf="DisclosureName==''"
-																						    class="text-danger">
-
-																						    This field is required.
-																						    
-																						</span>
-																						</ng-template> -->
-
-
-
-
 																					</div>
 																				</div>
 																				<div class="col-sm-4 ml-auto">
@@ -1246,14 +1175,6 @@
 																					</div>
 																				</div>
 																			</form>
-																			<!-- <mat-checkbox [(ngModel)]="DisclosureAgree" [ngModelOptions]="{standalone: true}" required #DisclosureAgreeRe="ngModel" class="example-margin">I hereby agree to the terms and conditions of the above disclosure</mat-checkbox> -->
-																			<!-- <br> -->
-																			<!-- <span *ngIf="DisclosureAgreeRe.invalid && (DisclosureAgreeRe.dirty || DisclosureAgreeRe.touched || thirdStep)"
-																			    class="text-danger">
-
-																			    This field is required.
-																			    
-																			</span> -->
 																		</div>
 																	</div>
 																</div>
@@ -1263,7 +1184,7 @@
 																<button type="button" mat-raised-button
 																	class="btn_back_stppr"
 																	matStepperPrevious>Back</button>
-																	<button (click)="thirdForm(stepper)" mat-raised-button
+																<button (click)="thirdForm(stepper)" mat-raised-button
 																	type="button" color="primary">Save</button>
 																<button (click)="thirdForm(stepper)" mat-raised-button
 																	type="button" color="primary">Next</button>
@@ -1277,36 +1198,6 @@
 															<!-- stepper Inner -->
 															<div class="stepper_cuntnt">
 																<div class="row">
-																	<!-- <div class="col-sm-4">
-													      				<div class="form-group">
-													      					<label>Date</label>
-													      					<input [(ngModel)]="RecordAdviceDate" [ngModelOptions]="{standalone: true}" type="date" required class="form-control" name="" #RecordAdviceDateVal="ngModel">
-													      					<span *ngIf="RecordAdviceDateVal.invalid && (RecordAdviceDateVal.dirty || RecordAdviceDateVal.touched || forthStep)"
-																			    class="text-danger">
-																			    This field is required.
-																			</span>
-													      				</div>
-													      			</div>
-													      			<div class="col-sm-4">
-													      				<div class="form-group">
-													      					<label>Client</label>
-													      					<input [(ngModel)]="RecordAdviceClient" [ngModelOptions]="{standalone: true}" type="" required class="form-control" name="" #RecordAdviceClientVal="ngModel" oninput="this.value = this.value.replace(/[^a-zA-Z .]/g, '').replace(/(\..*)\./g, '$1');" >
-													      					<span *ngIf="RecordAdviceClientVal.invalid && (RecordAdviceClientVal.dirty || RecordAdviceClientVal.touched || forthStep)"
-																			    class="text-danger">
-																			    This field is required.
-																			</span>
-													      				</div>
-													      			</div>
-													      			<div class="col-sm-4">
-													      				<div class="form-group">
-													      					<label>Advisor</label>
-													      					<input [(ngModel)]="RecordAdviceAdvisor" [ngModelOptions]="{standalone: true}" type="" required class="form-control" name="" #RecordAdviceAdvisorVal="ngModel"  oninput="this.value = this.value.replace(/[^a-zA-Z .]/g, '').replace(/(\..*)\./g, '$1');">
-													      					<span *ngIf="RecordAdviceAdvisorVal.invalid && (RecordAdviceAdvisorVal.dirty || RecordAdviceAdvisorVal.touched || forthStep)"
-																			    class="text-danger">
-																			    This field is required.
-																			</span>
-													      				</div>
-													      			</div> -->
 																	<div class="col-sm-12">
 																		<div class="form-group">
 																			<label>Summary of discussion with
@@ -1450,18 +1341,6 @@
 																			</span>
 																		</div>
 																	</div>
-																	<!-- <div class="col-sm-4">
-													      				<div class="form-group">
-													      					
-													      					
-													      				</div>
-													      			</div> -->
-																	<!-- <div class="col-sm-4">
-													      				<div class="form-group">
-													      					
-													      				</div>
-													      			</div> -->
-
 																</div>
 															</div>
 															<!-- stepper Inner /-->
@@ -1469,7 +1348,7 @@
 																<button type="button" mat-raised-button
 																	class="btn_back_stppr"
 																	matStepperPrevious>Back</button>
-																	<button mat-raised-button type="button" color="primary"
+																<button mat-raised-button type="button" color="primary"
 																	(click)="forthForm(stepper)">Save</button>
 																<button mat-raised-button type="button" color="primary"
 																	(click)="forthForm(stepper)">Next</button>
@@ -1813,8 +1692,10 @@
 																<div class="col-sm-4">
 																	<div class="form-group">
 																		<label>Name of Advisor</label>
-																		<input type="text" [(ngModel)]="RecordAdviceAdvisor" [ngModelOptions]="{standalone: true}" readonly=""
-																			class="form-control">
+																		<input type="text"
+																			[(ngModel)]="RecordAdviceAdvisor"
+																			[ngModelOptions]="{standalone: true}"
+																			readonly="" class="form-control">
 																	</div>
 																</div>
 																<div class="col-sm-4">
@@ -1840,13 +1721,12 @@
 																<button type="button" mat-raised-button
 																	class="btn_back_stppr"
 																	matStepperPrevious>Back</button>
-																<!-- <button mat-raised-button type="button" color="primary">Done</button> -->
-																<!-- <button (click)="fifthForm()" mat-raised-button type="button" color="primary">Done</button> -->
 																<div class="btnss_botm">
-																	<button (click)="fifthForm('draft')" class="mr-2" mat-raised-button type="button"
+																	<button (click)="fifthForm('draft')" class="mr-2"
+																		mat-raised-button type="button"
 																		color="primary">Save Draft</button>
-																	<button (click)="fifthForm('final')" mat-raised-button
-																		type="button" color="primary">
+																	<button (click)="fifthForm('final')"
+																		mat-raised-button type="button" color="primary">
 																		Submit</button>
 																</div>
 															</div>

@@ -33,17 +33,23 @@
 			            				<div class="row">
 				            				<div class="col-sm-3">
 		            							<div class="form-group">
-		            								<input type="" class="form-control" name="" placeholder="From Date">
+		            								<select class="custom-select form-control" [(ngModel)]="option" [ngModelOptions]="{standalone: true}">
+		            									<option value="FirstName">First Name</option>
+		            									<option value="LastName">Last Name</option>
+		            									<option value="Email">Email</option>
+		            									<!-- <option>Option 4</option> -->
+		            									<!-- <option>Option 5</option> -->
+		            								</select>
 		            							</div>
 			            					</div>
 				            				<div class="col-sm-3">
 		            							<div class="form-group">
-		            								<input type="" class="form-control" name="" placeholder="To Date">
+		            								<input type="" class="form-control" name="" placeholder="Search Keyword" [(ngModel)]="search" [ngModelOptions]="{standalone: true}">
 		            							</div>
 			            					</div>
 			            					<div class="col-sm-6">
 		            							<div class="form-group">
-		            								<button class="btn btn_theme">Upload</button>
+		            								<button class="btn btn_theme" (click)="getSearch()" >Search</button>
 		            							</div>
 			            					</div>
 			            				</div>
@@ -59,7 +65,7 @@
 	            				<div class="col-sm-12">
 		            				<div class="card">
 		            					<div class="card-body">
-		            						<h3 class="rev_h3 pb-2"><i class="fa fa-folder"></i> Reviews</h3>
+		            						<!-- <h3 class="rev_h3 pb-2"><i class="fa fa-folder"></i> Reviews</h3> -->
 		            						<div class="wrap_overall_revws">
 		            							<!--  -->
 												<div class="accordion" id="accordionExample">
@@ -102,8 +108,8 @@
 																			</td>
 																			<td class="mat-cell wtnrp" style="cursor: pointer;" routerLink="/user/clientProfile/{{inv.ClientNumber}}">{{ inv.ClientNumber }}</td>
 																			<td class="mat-cell wtnrp" style="cursor: pointer;" routerLink="/user/clientProfile/{{inv.ClientNumber}}">{{inv.LastName}} {{inv.FirstName}}</td>
-																			<td class="mat-cell">{{ getTotalNoOfProducts(inv.investor_clients_multiple) }}</td>
-																			<td class="mat-cell">R {{ formatAmount(getTotalHolding(inv.investor_clients_multiple)) }}</td>
+																			<td class="mat-cell">{{inv.total_products_holding }}</td>
+																			<td class="mat-cell">R {{ formatAmount(inv.total_amount_holding) }}</td>
 																			<td class="mat-cell">{{ inv.Year1 }}%</td>
 																			<td class="mat-cell">{{ inv.Year2 }}%</td>
 																			<td class="mat-cell">{{ inv.Year3 }}%</td>
@@ -111,7 +117,8 @@
 																			<td class="mat-cell">{{ inv.Year5 }}%</td>
 																			<td class="mat-cell">{{ inv.Year6 }}%</td>
 																		  </tr>																					  
-																	</table>															
+																	</table>	
+																	<mat-paginator [length]="length" [pageSize]="10" [pageSizeOptions]="[10, 25, 50 , 100]" (page)="paginationOptionChange($event)"></mat-paginator>														
 																</div>
 															</div>
 												        </div>
@@ -2109,7 +2116,7 @@
 						<!--  -->
 						<div class="card-body">
 							<ul class="">
-								 <li *ngFor="let item of monthly;let imonth = index"><mat-radio-button (change)="changeMove(item,$event)"> {{ item }} </mat-radio-button></li>
+								 <li *ngFor="let item of monthlyStatic;let imonth = index"><mat-radio-button (change)="changeMove(item,$event)"> {{ item }} </mat-radio-button></li>
 								 
 							</ul>
 						</div>

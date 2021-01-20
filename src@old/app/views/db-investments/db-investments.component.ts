@@ -22,12 +22,26 @@ export class DbInvestmentsComponent implements OnInit {
 
   length
   offset = '0'
-  limit = 50
-  orderBy = 'created_at'
+  limit = 10
+  orderBy = 'LastName'
   tableSort = []
-  sortName = 'DESC'
+  sortName = 'ASC'
   opened = [];
   checkbox = '<i class="fa fa-check"></>';
+  loaderSort = {
+    FirstName : false,
+    LastName : false,
+    total_products : false,
+    ClientNumber : false,
+  }
+  sortStatus = {
+      total_products : "DESC", 
+      FirstName : "DESC", 
+      LastName : "ASC", 
+      ClientNumber : "DESC", 
+      total_holding : "DESC", 
+  }
+
 
   constructor(private route: ActivatedRoute, private router: Router, private authService: AuthService, private toastr: ToastrService, public formBuilder: FormBuilder) { }
 
@@ -73,6 +87,14 @@ export class DbInvestmentsComponent implements OnInit {
       return "";
     }
   }
+  
+  validateID(count){
+    if(count > 0){
+      return '<i class="fa fa-check"></i>';
+    }else{
+      return "";
+    }
+  }
   validateItem(item){
     if(item){
       return '<i class="fa fa-check"></i>';
@@ -83,7 +105,7 @@ export class DbInvestmentsComponent implements OnInit {
 
   getToggleKey(orderName) {
     var key
-    if (orderName == 'investor_number') {
+    if (orderName == 'ClientNumber') {
       key = 0
     } else if (orderName == 'investor_name') {
       key = 1
@@ -118,6 +140,8 @@ export class DbInvestmentsComponent implements OnInit {
       order_by: this.orderBy,
       sort: this.sortName
     };
+
+    this.loaderSort[order_by] = true;
     console.log(ob)
     this.authService.investors(ob).subscribe(data => {
 
@@ -125,8 +149,49 @@ export class DbInvestmentsComponent implements OnInit {
         this.investors = data.data
         this.length = data.count
         console.log(data)
+        this.loaderSort[order_by] = false;
       }
     }, err => {
+      this.loaderSort[order_by] = false;
+      console.log(err)
+      // this.toastr.error(this.authService.COMMON_ERROR);
+    })
+  }
+  sortNew(order_by) {
+    var sortNameNew ;
+    // alert(this.sortStatus[order_by])
+    if(this.sortStatus[order_by] == "DESC"){
+      sortNameNew = "ASC";
+      this.sortStatus[order_by] = "ASC";
+    }else{
+      sortNameNew = "DESC";
+      this.sortStatus[order_by] = "DESC";
+    }
+    
+    var sort = this.getToggleSort(order_by)
+    console.log(sort)
+    this.orderBy = order_by
+    this.sortName = sort
+
+    var ob = {
+      offset: this.offset,
+      limit: this.limit,
+      order_by: this.orderBy,
+      sort: sortNameNew
+    };
+
+    this.loaderSort[order_by] = true;
+    console.log(ob)
+    this.authService.investors(ob).subscribe(data => {
+
+      if (data) {
+        this.investors = data.data
+        this.length = data.count
+        console.log(data)
+        this.loaderSort[order_by] = false;
+      }
+    }, err => {
+      this.loaderSort[order_by] = false;
       console.log(err)
       // this.toastr.error(this.authService.COMMON_ERROR);
     })
@@ -150,8 +215,8 @@ export class DbInvestmentsComponent implements OnInit {
     var ob = {
       offset: this.offset,
       limit: this.limit,
-      order_by: this.orderBy,
-      sort: this.sortName
+      order_by: "LastName",
+      sort: "ASC"
     };
 
     this.authService.investors(ob).subscribe(data => {
@@ -179,7 +244,8 @@ export class DbInvestmentsComponent implements OnInit {
     console.log(evt)
     this.offset = (evt.pageIndex * evt.pageSize).toString()
     this.limit = evt.pageSize
-
+    // order_by: "LastName",
+    //   sort: "ASC"
     var ob = {
       offset: this.offset,
       limit: this.limit,
@@ -278,9 +344,9 @@ export class DbInvestmentsComponent implements OnInit {
             if(element.investor_clients_deal_single){ //make sure deal is active or inactive // if null then deal is not active
               ++totalProduct;
             }
-            element.investor_clients_dailyBalance.forEach(balance => {
-              totalHolding = totalHolding + balance.net_amount
-            });
+            // element.investor_clients_dailyBalance.forEach(balance => {
+            //   totalHolding = totalHolding + balance.net_amount
+            // });
           }
         }
       });
@@ -295,16 +361,19 @@ export class DbInvestmentsComponent implements OnInit {
       ele.forEach((element,ind) => {
           if(ind == 0){
             TempDeal.push(element.deal_reference);
-            element.investor_clients_dailyBalance.forEach(balance => {
-              totalHolding = totalHolding + balance.net_amount
-            });
+            if(element.investor_clients_deal_single){
+              element.investor_clients_deal_single.dealAttribute_balance.forEach(balance => {
+                totalHolding = totalHolding + balance.net_amount
+              });
+            }
           }else{
             if(TempDeal.indexOf(element.deal_reference) == -1){
               // console.log("Im here -> "+element.deal_reference);
-
-              element.investor_clients_dailyBalance.forEach(balance => {
-                totalHolding = totalHolding + balance.net_amount
-              });
+              if(element.investor_clients_deal_single){
+                element.investor_clients_deal_single.dealAttribute_balance.forEach(balance => {
+                  totalHolding = totalHolding + balance.net_amount
+                });
+              }
             }
           }
       });
