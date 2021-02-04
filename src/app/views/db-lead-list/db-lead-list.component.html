@@ -119,8 +119,9 @@
 																	<!-- <td class="mat-cell addrs_td">{{value.HomeAddress.substr(0,20)}} <a (click)="viewMore('Address',value.HomeAddress)" href="javascript:;" class="wtnrp">View More</a></td> -->
 																	<td class="mat-cell">
 																		<span *ngIf='value.status == "call_lead"' class="badge badge-danger">Call Lead</span>
-																		<span *ngIf='value.status != "call_lead" && value.status != "archive"' class="badge badge-primary">Become Client</span>
-																		<span *ngIf='value.status != "call_lead" && value.status != "client"' class="badge" style="background-color: orange;">Archive</span>
+																		<span *ngIf='value.status != "call_lead" && value.status != "archive" && value.status != "upcoming"' class="badge badge-primary">Become Client</span>
+																		<span *ngIf='value.status != "call_lead" && value.status != "client" && value.status != "upcoming"' class="badge" style="background-color: orange;">Archive</span>
+																		<span *ngIf='value.status != "call_lead" && value.status != "client" && value.status != "archive" && value.status == "upcoming"' class="badge" style="background-color: orange;">Upcoming</span>
 																	</td>
 																	<!-- <td class="mat-cell" *ngIf='value.status != "call_lead"')>
 																		<span class="badge badge-primary">In progress</span>
@@ -154,6 +155,11 @@
 																					mat-menu-item>
 																					<span>Archieve</span>
 																				</button>
+																				<button
+																					(click)="changeStatus(value.id,'upcoming')"
+																					mat-menu-item>
+																					<span>Upcoming</span>
+																				</button>
 																				<!-- <button
 																					(click)="changeStatus(value.id,'cancelled')"
 																					mat-menu-item>
@@ -167,21 +173,24 @@
 																		</span>
 																	</td>
 																</tr>
-																<tr *ngIf="opened.includes(value.id)" class="mat-row">
-																	<td class="mat-cell" colspan="15">
-																		 <div class="collapse" id="multiCollapseExample1">
-																		<p>Address: {{value.HomeAddress.substr(0,20)}}</p>
-																		<p>ID: {{value.IdNumber}}</p>
-																		<h5>Name: {{ value.FirstName }}
-																			{{ value.LastName }}</h5>
-																		<p>Other Contact Number: {{ value.HomeNumber }}</p>
-																		<!-- <p>Marital Status: {{ value.MaritalStatus }}</p> -->
+																<tr *ngIf="opened.indexOf(value.id) >= 0" id="multiCollapseExample1" class="mat-row g {{opened.indexOf(value.id)}} collapse">
+																	<td colspan="7">
+																		<div class="">
+																			<p>Address: {{value.HomeAddress.substr(0,20)}}</p>
+																			<p>ID: {{value.IdNumber}}</p>
+																			<h5>Name: {{ value.FirstName }}
+																				{{ value.LastName }}</h5>
+																			<p>Other Contact Number: {{ value.HomeNumber }}</p>
+																			<!-- <p>Marital Status: {{ value.MaritalStatus }}</p> -->
+																			
+																			<p class="mb-0">Note: <a
+																					(click)="viewMore(value.Note,value.id)"
+																					class="wtnrp">View Note</a></p>
+																		</div>
+																	</td>	
 																		
-																		<p class="mb-0">Note: <a
-																				(click)="viewMore(value.Note,value.id)"
-																				class="wtnrp">View Note</a></p>
-																			</div>
-																	</td>
+																		
+
 																</tr>
 															</ng-container>
 															</tbody>

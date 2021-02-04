@@ -671,7 +671,7 @@
 															<div class="d-flex justify-content-end">
 																<button (click)="DraftfirstForm(stepper)"
 																	mat-raised-button type="button" color="basic"
-																	class="mr-2">Draft</button>
+																	class="mr-2">Save</button>
 																<button (click)="firstForm(stepper)" mat-raised-button
 																	type="button" color="primary">Next</button>
 																<!-- <button (click) ="firstForm(stepper)" mat-raised-button type="button" color="primary" matStepperNext>Next</button> -->
@@ -1670,7 +1670,7 @@
 															</div>
 															<form class="row mb-3" action="">
 
-																<div class="col-sm-4">
+																<div class="col-sm-6"> 
 																	<div class="form-group">
 																		<label for="email">Name of signatory:</label>
 																		<input readonly="true"
@@ -1689,7 +1689,7 @@
 																		</span>
 																	</div>
 																</div>
-																<div class="col-sm-4">
+																<div class="col-sm-6">
 																	<div class="form-group">
 																		<label>Name of Advisor</label>
 																		<input type="text"
@@ -1698,7 +1698,7 @@
 																			readonly="" class="form-control">
 																	</div>
 																</div>
-																<div class="col-sm-4">
+																<div class="col-sm-6">
 																	<div class="form-group">
 																		<label for="pwd">Date:</label>
 																		<input [(ngModel)]="DisclosureDate"
@@ -1724,7 +1724,7 @@
 																<div class="btnss_botm">
 																	<button (click)="fifthForm('draft')" class="mr-2"
 																		mat-raised-button type="button"
-																		color="primary">Save Draft</button>
+																		color="primary">Save</button>
 																	<button (click)="fifthForm('final')"
 																		mat-raised-button type="button" color="primary">
 																		Submit</button>

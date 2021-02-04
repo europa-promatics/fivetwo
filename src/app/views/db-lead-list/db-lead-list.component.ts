@@ -24,8 +24,8 @@ export class DbLeadListComponent implements OnInit {
   ModalHeading
   ModalBody
   tableSort = []
-  orderBy = 'created_at'
-  sortName = 'DESC'
+  orderBy = 'follow_up_date'
+  sortName = 'ASC'
   ShowEditNote
   lead_id
   edit = true
@@ -216,13 +216,26 @@ export class DbLeadListComponent implements OnInit {
   }
 
   toggle(id) {
-    this.opened = [];
-    const index = this.opened.indexOf(id);
-    if (index > -1) {
-      this.opened.splice(index, 1);
-    } else {
-      this.opened.push(id);
+    
+    if(this.opened.indexOf(id) >= 0){
+
+      this.opened = [];
+
+
+    }else{
+      this.opened = [];
+      this.opened.push(id)
     }
+
+    
+    //alert("lead")
+    //const index = this.opened.indexOf(id);
+    
+    // if (index > -1) {
+    //   this.opened.splice(index, 1);
+    // } else {
+    //   this.opened.push(id);
+    // }
   }
 
   getLeads() {
@@ -440,6 +453,7 @@ export class DbLeadListComponent implements OnInit {
       
       if (data) {
         this.toastr.success(data.message,"Success!");
+        this.getLeads();
       }
     }, err => {
       this.authService.showAuthError(err);

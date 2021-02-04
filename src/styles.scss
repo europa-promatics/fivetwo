@@ -1521,5 +1521,18 @@ span.spn_edt:hover {
 
 
 .table-striped tbody tr:nth-of-type(2n+1) {
-	background-color: #edf5f9 !important;
+	background-color: #f0f0f0 !important;
+}
+.datpckr_td .mat-form-field-underline {
+	bottom: 0.044em;
+}
+.datpckr_td .mat-form-field-prefix, .mat-form-field-suffix {
+	position: relative;
+	top: 9px;
+}
+
+.div_roww {
+	width: 100%;
+	background: red;
+	display: table-cell;
 }

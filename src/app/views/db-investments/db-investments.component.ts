@@ -22,7 +22,7 @@ export class DbInvestmentsComponent implements OnInit {
 
   length
   offset = '0'
-  limit = 100
+  limit = 50
   orderBy = 'LastName'
   tableSort = []
   sortName = 'ASC'

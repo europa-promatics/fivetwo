@@ -105,7 +105,7 @@
 		            					<div class="card-body">	
 											<div class="wrp_unedt_divs">
 												<!-- compliance -->
-                                            	<div class="accordion" id="accordionExample">
+                                            	<div class="accordion">
                                                     <div class="singl_doc">
                                                         <div class="" id="headingOne">
                                                             <h3 class="mb-0 rev_h3 outer_h3_bord d-flex align-items-center">
@@ -120,7 +120,7 @@
                                                         </div>
                                                         <div id="collapse1" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                                                             <div class="sub_folders_div">
-                                                            	 <div id="accordion1">
+                                                            	 <div class="inner_acordionn">
                                                                     <div class="">
 			                                                            <div class="card-body" id="headingOne">
 			                                                            	<div class="foldrs d-flex align-items-center">
@@ -133,7 +133,7 @@
 										            							</span>
 			                                                            	</div>
 			                                                            </div>
-			                                                            <div id="brokerAppointment" class="collapse" *ngIf="custom_document.broker_appointment.length > 0 || broker_documents.length > 0" aria-labelledby="headingOne" data-parent="#accordion1">
+			                                                            <div id="brokerAppointment" class="collapse" *ngIf="custom_document.broker_appointment.length > 0 || broker_documents.length > 0" aria-labelledby="headingOne">
 			                                                            	 <div class="card-body">
 			                                                            	 	<ul class="sub_folders_ul" type="none">
 				                                                                    <!-- <li class="d-flex col-sm-12">
@@ -276,7 +276,7 @@
 										            							</span>
 			                                                            	</div>
 			                                                            </div>
-			                                                            <div id="DisclosureOuter" class="collapse" *ngIf="custom_document.disclosure.length > 0 || disclosure_documents.length > 0" aria-labelledby="headingOne" data-parent="#accordion1">
+			                                                            <div id="DisclosureOuter" class="collapse" *ngIf="custom_document.disclosure.length > 0 || disclosure_documents.length > 0" aria-labelledby="headingOne" >
 			                                                            	 <div class="card-body">
 			                                                            	 	<ul class="sub_folders_ul" type="none">
 				                                                                    <li class="d-flex col-sm-12" *ngFor="let item of disclosure_documents">
@@ -415,7 +415,7 @@
 										            							</span>
 			                                                            	</div>
 			                                                            </div>
-			                                                            <div id="IDClient" class="collapse" *ngIf="custom_document.document_id.length > 0 || id_documents.length > 0" aria-labelledby="headingOne" data-parent="#accordion1">
+			                                                            <div id="IDClient" class="collapse" *ngIf="custom_document.document_id.length > 0 || id_documents.length > 0" aria-labelledby="headingOne">
 			                                                            	 <div class="card-body">
 			                                                            	 	<ul class="sub_folders_ul" type="none">
 				                                                                    <li class="d-flex col-sm-12" *ngFor="let item of id_documents">
@@ -555,7 +555,7 @@
 										            							</span>
 			                                                            	</div>
 			                                                            </div>
-			                                                            <div id="LetterOfAuth" class="collapse" *ngIf="custom_document.authority_letter.length > 0 || letterAuthority.length > 0" aria-labelledby="headingOne" data-parent="#accordion1">
+			                                                            <div id="LetterOfAuth" class="collapse" *ngIf="custom_document.authority_letter.length > 0 || letterAuthority.length > 0" aria-labelledby="headingOne" >
 			                                                            	 <div class="card-body">
 			                                                            	 	<ul class="sub_folders_ul" type="none">
 				                                                                    <li class="d-flex col-sm-12" *ngFor="let item of letterAuthority">
@@ -693,7 +693,7 @@
 										            							</span>
 			                                                            	</div>
 			                                                            </div>
-			                                                            <div id="proofOfAddress" class="collapse" aria-labelledby="headingOne" *ngIf="custom_document.address.length > 0 || address_document.length > 0" data-parent="#accordion1">
+			                                                            <div id="proofOfAddress" class="collapse" aria-labelledby="headingOne" *ngIf="custom_document.address.length > 0 || address_document.length > 0" >
 			                                                            	 <div class="card-body">
 			                                                            	 	<ul class="sub_folders_ul" type="none">
 				                                                                    <li class="d-flex col-sm-12" *ngFor="let item of address_document">
@@ -831,7 +831,7 @@
 										            							</span>
 			                                                            	</div>
 			                                                            </div>
-			                                                            <div id="proofOfBank" class="collapse" aria-labelledby="headingOne" *ngIf="custom_document.bank_details.length > 0 || bank_document.length > 0" data-parent="#accordion1">
+			                                                            <div id="proofOfBank" class="collapse" aria-labelledby="headingOne" *ngIf="custom_document.bank_details.length > 0 || bank_document.length > 0">
 			                                                            	 <div class="card-body">
 			                                                            	 	<ul class="sub_folders_ul" type="none">
 				                                                                    <li class="d-flex col-sm-12" *ngFor="let item of bank_document">
@@ -969,7 +969,7 @@
 										            							</span>
 			                                                            	</div>
 			                                                            </div>
-			                                                            <div id="recordOfAdvice" class="collapse" aria-labelledby="headingOne"  *ngIf="custom_document.record_of_advice.length > 0 || recordOfAdviceDocuments.length > 0"  data-parent="#accordion1">
+			                                                            <div id="recordOfAdvice" class="collapse" aria-labelledby="headingOne"  *ngIf="custom_document.record_of_advice.length > 0 || recordOfAdviceDocuments.length > 0">
 			                                                            	 <div class="card-body">
 			                                                            	 	<ul class="sub_folders_ul" type="none">
 				                                                                    <li class="d-flex col-sm-12" *ngFor="let item of recordOfAdviceDocuments">
@@ -1107,7 +1107,7 @@
 										            							</span>
 			                                                            	</div>
 			                                                            </div>
-			                                                            <div id="riskProfiler" class="collapse" aria-labelledby="headingOne" *ngIf="custom_document.risk_profiler.length > 0 || risk_profiler_documents.length > 0" data-parent="#accordion1">
+			                                                            <div id="riskProfiler" class="collapse" aria-labelledby="headingOne" *ngIf="custom_document.risk_profiler.length > 0 || risk_profiler_documents.length > 0" >
 			                                                            	 <div class="card-body">
 			                                                            	 	<ul class="sub_folders_ul" type="none">
 				                                                                    <li class="d-flex col-sm-12" *ngFor="let item of risk_profiler_documents">
@@ -1245,7 +1245,7 @@
 										            							</span>
 			                                                            	</div>
 			                                                            </div>
-			                                                            <div id="welcome_letter" class="collapse" aria-labelledby="headingOne" *ngIf="custom_document.welcome_letter.length > 0 || welcome_letter.length > 0" data-parent="#accordion1">
+			                                                            <div id="welcome_letter" class="collapse" aria-labelledby="headingOne" *ngIf="custom_document.welcome_letter.length > 0 || welcome_letter.length > 0" >
 			                                                            	 <div class="card-body">
 			                                                            	 	<ul class="sub_folders_ul" type="none">
 				                                                                    <li class="d-flex col-sm-12" *ngFor="let item of welcome_letter">

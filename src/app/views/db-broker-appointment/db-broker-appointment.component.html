@@ -62,7 +62,7 @@
 			            						<div class="compn_brokr mt-4 mb-4">
 			            							<p>The letter of appointment applies to the following companies.</p>
 			            							<div class="col-sm-10">
-				            							<div class="table-responsive table_seler">
+				            							<!-- <div class="table-responsive table_seler">
 				            								<table class="mat-table table-bordered table table-striped" sort>
 															  	<thead>
 															  		<tr>
@@ -75,11 +75,11 @@
 																	    <td class="table_inpt">
 					            											<select (change)="changeCompany($event)" formControlName="company_id" class="custom-select form-control">
 
-					            												<!-- <option value="">Select Company </option> -->
+					            											
 					            												<ng-container *ngFor="let item of companies">
 					            													<option [value]="item.id">{{item.name}}</option>
 					            												</ng-container>
-					            												<!-- <option>Company Name 2</option> -->
+					            											
 					            											</select>
 					            											<span *ngIf="company_idVal.invalid && (company_idVal.dirty || company_idVal.touched || steps)"
 							            											    class="text-danger">
@@ -104,10 +104,46 @@
 																  	</tr>
 																</tbody>
 															</table>
-				            							</div>
+				            							</div> -->
 				            							<div class="table-responsive table_seler">
 				            								<table class="mat-table table-bordered table table-striped" sort>
 				            									<tbody>
+																	<tr>
+																		<th>Company</th>
+																		<td class="table_inpt">
+					            											<select (change)="changeCompany($event)" formControlName="company_id" class="custom-select form-control">
+
+					            												<!-- <option value="">Select Company </option> -->
+					            												<ng-container *ngFor="let item of companies">
+					            													<option [value]="item.id">{{item.name}}</option>
+					            												</ng-container>
+					            												<!-- <option>Company Name 2</option> -->
+					            											</select>
+					            											<span *ngIf="company_idVal.invalid && (company_idVal.dirty || company_idVal.touched || steps)"
+							            											    class="text-danger">
+					            											    <span *ngIf="company_idVal.errors.required">
+					            											        This field is required.
+					            											    </span>
+					            											    <span *ngIf="company_idVal.errors.pattern">
+					            											    	Please enter digits only
+					            											    </span>
+					            											    
+					            											</span>
+					            										</td>
+																	</tr>
+
+																	<tr>
+																		<th>Broker Code</th>
+																		<td class="table_inpt">
+					            											<select formControlName="broker_code_id" class="custom-select form-control">
+
+					            												<ng-container *ngFor="let item of broker_codes">
+					            													<option [value]="item.id">{{item.name}}</option>
+					            												</ng-container>
+					            												
+					            											</select>
+					            										</td>
+																	</tr>
 																  	<tr>
 																	    <th>Owner Insured</th>
 																	    <td class="table_inpt">
@@ -270,7 +306,7 @@
 			            							</div> -->
 			            							<form class="row mb-3" action="">													      						
 																
-																<div class="col-sm-4">
+																<div class="col-sm-6">
 																	  <div class="form-group">
 																		<label for="email">Name of signatory:</label>
 																		<input readonly="true" [(ngModel)]="DisclosureName" [ngModelOptions]="{standalone: true}" type="text" class="form-control" placeholder="Name" id="email" required #DisclosureNameRe="ngModel" oninput="this.value = this.value.replace(/[^a-zA-Z .]/g, '').replace(/(\..*)\./g, '$1');" >
@@ -282,7 +318,7 @@
 																		</span>
 																	</div>
 																</div>
-																<div class="col-sm-4">
+																<div class="col-sm-6">
 																	<div class="form-group">
 																		<label>Name of Advisor</label>
 																		<input type="text" readonly="" value="{{ BROKER ? BROKER.full_name : '--' }}" class="form-control" >

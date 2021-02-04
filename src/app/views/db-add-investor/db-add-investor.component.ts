@@ -588,13 +588,13 @@ export class DbAddInvestorComponent implements OnInit, CanComponentDeactivate {
     }
     form = new FormGroup({
 
-        LastName: new FormControl('', [Validators.required, Validators.pattern('^[^ ]+[0-9a-zA-Z ]*'),
+        LastName: new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z0-9_ -]*$'),
         Validators.minLength(1), Validators.maxLength(20)]),
-        LastName2: new FormControl('', [Validators.pattern('^[^ ]+[0-9a-zA-Z ]*'),
+        LastName2: new FormControl('', [Validators.pattern('^[a-zA-Z0-9_ -]*$'),
         Validators.minLength(1), Validators.maxLength(20)]),
-        FirstName: new FormControl('', [Validators.required, Validators.pattern('^[^ ]+[0-9a-zA-Z ]*'),
+        FirstName: new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z0-9_ -]*$'),
         Validators.minLength(1), Validators.maxLength(20)]),
-        FirstName2: new FormControl('', [Validators.required, Validators.pattern('^[^ ]+[0-9a-zA-Z ]*'),
+        FirstName2: new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z0-9_ -]*$'),
         Validators.minLength(1), Validators.maxLength(20)]),
         IdNumber: new FormControl('', [
             Validators.required,

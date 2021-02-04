@@ -283,7 +283,7 @@
 															  
 															  <form class="row mb-3" action="">													      						
 																
-																<div class="col-sm-4">
+																<div class="col-sm-6">
 																	  <div class="form-group">
 																		<label for="email">Name of signatory:</label>
 																		<input readonly="true" [(ngModel)]="DisclosureName" [ngModelOptions]="{standalone: true}" type="text" class="form-control" placeholder="Name" id="email" required #DisclosureNameRe="ngModel" oninput="this.value = this.value.replace(/[^a-zA-Z .]/g, '').replace(/(\..*)\./g, '$1');" >
@@ -295,13 +295,13 @@
 																		</span>
 																	</div>
 																</div>
-																<div class="col-sm-4">
+																<div class="col-sm-6">
 																	<div class="form-group">
 																		<label>Name of Advisor</label>
 																		<input type="text" readonly="" value="{{ BROKER ? BROKER.full_name : '--' }}" class="form-control" >
 																	</div>
 																</div>
-																<div class="col-sm-4">
+																<div class="col-sm-6">
 																	<div class="form-group">
 																		<label for="pwd">Date:</label>
 																		<input [(ngModel)]="DisclosureDate" [ngModelOptions]="{standalone: true}" type="date" class="form-control" placeholder="Date" id="pwd" required #DisclosureDateRe="ngModel">

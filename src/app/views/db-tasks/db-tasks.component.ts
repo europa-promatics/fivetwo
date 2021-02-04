@@ -213,6 +213,7 @@ export class DbTasksComponent implements OnInit {
       
       if (data) {
         this.toastr.success(data.message,"Success!");
+        this.getTask()
       }
     }, err => {
       //this.authService.showAuthError(err);

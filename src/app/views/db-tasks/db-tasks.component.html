@@ -45,9 +45,9 @@
 																<thead>
 																	<tr>
 																		<!-- <th>Date</th> -->
-																		<th>Subject</th>
-																		<th>Description</th>
 																		<th>Follow Up</th>
+																		<th>Description</th>
+																		<th>Subject</th>
 																		<th>Status</th>
 																		<th>Action</th>
 																	</tr>
@@ -59,6 +59,27 @@
 																		<!-- <td>{{item.current_date | date: 'MM/dd/yyyy' }} -->
 																		<!-- {{conditionCheck(item)}} -->
 																		<!-- </td> -->
+																		<td class="datpckr_td">
+																			<span *ngIf="item.status != 'completed'">
+																				<mat-form-field appearance="fill">
+																					<input matInput
+																						[matDatepicker]="pickerFrom"
+																						readonly
+																						[(ngModel)]="item.follow_up_date"
+																						(dateInput)="changeDate('input', $event,item)"
+																						[ngModelOptions]="{standalone: true}">
+																					<mat-datepicker-toggle matSuffix
+																						[for]="pickerFrom">
+																					</mat-datepicker-toggle>
+																					<mat-datepicker 
+																						#pickerFrom></mat-datepicker>
+																				</mat-form-field>
+																			</span>
+																			<span *ngIf="item.status == 'completed'">
+																				-
+																			</span>
+																				
+																		</td>
 																		<td class="part_algn_top">
 																			<div class="d-flex align-items-start">
 																				<span *ngIf="!item.edit_subject"
@@ -104,30 +125,11 @@
 																					{{ item.description }}</span>
 																			</div>
 																		</td>
-																		<td class="datpckr_td">
-																			<span *ngIf="item.status != 'completed'">
-																				<mat-form-field appearance="fill">
-																					<input matInput
-																						[matDatepicker]="pickerFrom"
-																						readonly
-																						[(ngModel)]="item.follow_up_date"
-																						(dateInput)="changeDate('input', $event,item)"
-																						[ngModelOptions]="{standalone: true}">
-																					<mat-datepicker-toggle matSuffix
-																						[for]="pickerFrom">
-																					</mat-datepicker-toggle>
-																					<mat-datepicker 
-																						#pickerFrom></mat-datepicker>
-																				</mat-form-field>
-																			</span>
-																			<span *ngIf="item.status == 'completed'">
-																				-
-																			</span>
-																				
-																		</td>
+																		
 																		<td>
 																			<span class="badge badge-danger" *ngIf="item.status == 'in_progress'">Due</span>
 																			<span class="badge badge-success" *ngIf="item.status == 'completed'">COMPLETED</span>
+																			<span class="badge badge-success" *ngIf="item.status == 'upcoming'" style="background-color: orange;">UPCOMING</span>
 
 																		</td>
 																		<td class="mat-cell">
@@ -154,7 +156,10 @@
 																					<!-- <span mat-menu-item  *ngIf="item.status != 'in_progress'" (click)="changeStatus('in_progress',item)">Due</span> -->
 
 																					<span mat-menu-item *ngIf="item.status != 'completed'"
-																					(click)="changeStatus('in_progress',item)">Completed</span>
+																					(click)="changeStatus('completed',item)">Completed</span>
+
+																					<span mat-menu-item 
+																					(click)="changeStatus('upcoming',item)">Upcoming</span>
 
 																					<!-- </button> -->
 																					<!-- <button > -->
