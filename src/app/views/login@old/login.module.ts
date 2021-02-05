@@ -5,7 +5,6 @@ import { CommonModule } from '@angular/common';
 import { LoginRoutingModule } from './login-routing.module';
 import { LoginComponent } from './login.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
   declarations: [ LoginComponent ],
@@ -13,7 +12,6 @@ import {MatTabsModule} from '@angular/material/tabs';
     CommonModule,
     LoginRoutingModule,
     MatProgressSpinnerModule,
-    MatTabsModule,
     // FormsModule,
 // ReactiveFormsModule
   ]

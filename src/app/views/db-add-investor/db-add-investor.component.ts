@@ -238,6 +238,7 @@ export class DbAddInvestorComponent implements OnInit, CanComponentDeactivate {
     bank_list
 
     CMS_DISCLOSURE_DATA = {}
+    CMS_RISKPROFILER_DATA=""
 
 
     @ViewChild('stepper', { static: true }) stepper: MatStepper;
@@ -411,6 +412,7 @@ export class DbAddInvestorComponent implements OnInit, CanComponentDeactivate {
         this.RecordAdviceAdvisor = this.BROKER.full_name;
 
         this.getDisclosureData(this.BROKER.id);
+        this.getRiskProfilerData(this.BROKER.id);
 
     }
     bank_lists() {
@@ -447,6 +449,31 @@ export class DbAddInvestorComponent implements OnInit, CanComponentDeactivate {
             if (data.success == 1) {
 
                 this.CMS_DISCLOSURE_DATA = data.disclosure_data;
+
+                // console.log(data);
+                // stepper.next();
+
+
+            } else {
+                // this.toastr.error(data.message, 'Error');
+            }
+        }, err => {
+            console.log(err)
+            // this.toastr.error(this.authService.COMMON_ERROR);
+
+        })
+    }
+    getRiskProfilerData(broker_id){
+        var obj = {
+            broker_id : broker_id,
+        }
+        this.authService.getRiskProfilerData(obj).subscribe(data => {
+            console.log(data)
+            // alert(data)
+
+            if (data.success == 1 && data.riskprofiler) {
+
+                this.CMS_RISKPROFILER_DATA = data.riskprofiler.content;
 
                 // console.log(data);
                 // stepper.next();

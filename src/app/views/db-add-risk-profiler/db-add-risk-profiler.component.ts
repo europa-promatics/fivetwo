@@ -30,6 +30,7 @@ export class DbAddRiskProfilerComponent implements OnInit {
     DisclosureDate
     DisclosureName
     BROKER
+    CMS_RISKPROFILER_DATA=""
 
 
   constructor(private route: ActivatedRoute, private _location: Location,private authService:AuthService,private router:Router, private toastr: ToastrService) { }
@@ -40,6 +41,7 @@ export class DbAddRiskProfilerComponent implements OnInit {
         // alert(this.DisclosureDate);
         this.getInvestor()
         this.BROKER = this.authService.getLoggedUserDetails()
+        this.getRiskProfilerData(this.BROKER.id);
   	}
 	ngAfterViewInit() {
         
@@ -90,7 +92,32 @@ export class DbAddRiskProfilerComponent implements OnInit {
       })
   }
 
-  
+  getRiskProfilerData(broker_id){
+    var obj = {
+        broker_id : broker_id,
+    }
+    this.authService.getRiskProfilerData(obj).subscribe(data => {
+        console.log(data)
+        // alert(data)
+
+        if (data.success == 1 && data.riskprofiler) {
+
+            this.CMS_RISKPROFILER_DATA = data.riskprofiler.content;
+
+            // console.log(data);
+            // stepper.next();
+
+
+        } else {
+            // this.toastr.error(data.message, 'Error');
+        }
+    }, err => {
+        console.log(err)
+        // this.toastr.error(this.authService.COMMON_ERROR);
+
+    })
+}
+
 
   public add(){
       console.log('fifth');

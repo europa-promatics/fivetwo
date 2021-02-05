@@ -1003,4 +1003,16 @@ export class AuthService {
         )
     }
 
+    getRiskProfilerData(data): Observable<any> {
+      let API_URL = this.SERVER_URL + 'get/riskprofiler/data';
+      return this.http.post(API_URL, data, this.httpOptions)
+        .pipe(
+          map((res: Response) => {
+            return res
+          }),
+          // retry(1),
+          // catchError(this.error)
+        )
+    }
+
 }

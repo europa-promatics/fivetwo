@@ -78,6 +78,7 @@ import { DraftClientsComponent } from './views/draft-clients/draft-clients.compo
 import { CreateRequestGuardService } from "./../app/user/deactivate_guard.service";
 import { EditLeadComponent } from './views/edit-lead/edit-lead.component';
 import { MAT_DATE_LOCALE } from '@angular/material';
+import {MatTabsModule} from '@angular/material/tabs';
 @NgModule({
   declarations: [
     AppComponent,
@@ -155,6 +156,7 @@ import { MAT_DATE_LOCALE } from '@angular/material';
     MatNativeDateModule,
     MatSelectModule,   
     WebcamModule,
+    MatTabsModule
     // NgbModule
   ],
   providers: [

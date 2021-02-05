@@ -116,6 +116,7 @@ export class DbEditClientComponent implements OnInit {
     bank_list
 
     CMS_DISCLOSURE_DATA
+    CMS_RISKPROFILER_DATA=""
 
     constructor(private route: ActivatedRoute, private router: Router, private authService: AuthService, private toastr: ToastrService, public formBuilder: FormBuilder) { }
 
@@ -227,6 +228,7 @@ export class DbEditClientComponent implements OnInit {
         this.RecordAdviceAdvisor = this.BROKER.full_name;
 
         this.getDisclosureData(this.BROKER.id);
+        this.getRiskProfilerData(this.BROKER.id);
 
     }
 
@@ -1630,4 +1632,31 @@ export class DbEditClientComponent implements OnInit {
         }, 250);
 
     }
+
+    getRiskProfilerData(broker_id){
+        var obj = {
+            broker_id : broker_id,
+        }
+        this.authService.getRiskProfilerData(obj).subscribe(data => {
+            console.log(data)
+            // alert(data)
+
+            if (data.success == 1 && data.riskprofiler) {
+
+                this.CMS_RISKPROFILER_DATA = data.riskprofiler.content;
+
+                // console.log(data);
+                // stepper.next();
+
+
+            } else {
+                // this.toastr.error(data.message, 'Error');
+            }
+        }, err => {
+            console.log(err)
+            // this.toastr.error(this.authService.COMMON_ERROR);
+
+        })
+    }
+
 }

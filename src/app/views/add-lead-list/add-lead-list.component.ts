@@ -22,7 +22,7 @@ export class AddLeadListComponent implements OnInit {
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('user')) || JSON.parse(sessionStorage.getItem('user'));
 
-    this.status.setValue('call_lead')
+    this.status.setValue('upcoming')
 
   }
 
