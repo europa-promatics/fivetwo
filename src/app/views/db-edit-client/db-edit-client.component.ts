@@ -46,6 +46,8 @@ export class DbEditClientComponent implements OnInit {
     adviseTakenYes = false
     adviseTakenNo = false
 
+    environment = environment
+
     upload_id = []
     upload_id_label = ['Choose file'];
     bank_upload_id = 'Choose File'
@@ -58,6 +60,8 @@ export class DbEditClientComponent implements OnInit {
     defaultImage = `data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAtcAAAC1CAYAAACULdMlAAACFUlEQVR4nO3BAQ0AAADCoPdPbQ8HFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwJkBCTkAAbMzGX4AAAAASUVORK5CYII=`;
 
     errorClass = ""
+
+    BROKER
 
     // defaultShortImage=`data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAggAAACCCAYAAAAjSDD0AAABHUlEQVR4nO3BMQEAAADCoPVPbQ0PoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADeDCD+AAEWEPbFAAAAAElFTkSuQmCC`;
 
@@ -110,6 +114,8 @@ export class DbEditClientComponent implements OnInit {
 
     RiskProfileName
     bank_list
+
+    CMS_DISCLOSURE_DATA
 
     constructor(private route: ActivatedRoute, private router: Router, private authService: AuthService, private toastr: ToastrService, public formBuilder: FormBuilder) { }
 
@@ -213,7 +219,14 @@ export class DbEditClientComponent implements OnInit {
             CellNumber: '',
             Percent: ''
         };
-        this.setLeadFields()
+        this.setLeadFields();
+
+        this.BROKER = this.authService.getLoggedUserDetails();
+        console.log("Broker -> ", this.BROKER)
+        // this.RecordAdviceAdvisor = "Marthunis Oosthuizen";
+        this.RecordAdviceAdvisor = this.BROKER.full_name;
+
+        this.getDisclosureData(this.BROKER.id);
 
     }
 
@@ -468,6 +481,33 @@ export class DbEditClientComponent implements OnInit {
 
         })
     }
+
+    getDisclosureData(broker_id){
+        var obj = {
+            broker_id : broker_id,
+        }
+        this.authService.getDisclosureData(obj).subscribe(data => {
+            console.log(data)
+            // alert(data)
+
+            if (data.success == 1) {
+
+                this.CMS_DISCLOSURE_DATA = data.disclosure_data;
+
+                // console.log(data);
+                // stepper.next();
+
+
+            } else {
+                // this.toastr.error(data.message, 'Error');
+            }
+        }, err => {
+            console.log(err)
+            // this.toastr.error(this.authService.COMMON_ERROR);
+
+        })
+    }
+
     setLeadFields() {
 
         var lead = JSON.parse(localStorage.getItem('lead'));

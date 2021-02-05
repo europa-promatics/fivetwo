@@ -942,7 +942,7 @@
 																	<div class="outr_boundry_disclos">
 																		<div class="wrp_upr_disc text-center">
 																			<h3>Intermediary Disclosure</h3>
-																			<p>Advisor Full Name: Marthunis Christiaan
+																			<!-- <p>Advisor Full Name: Marthunis Christiaan
 																				Oosthuizen<br>
 																				Director of Five Two Investment (PTY)
 																				Ltd<br>
@@ -952,17 +952,22 @@
 																				product providers</p>
 																			<p>Formal Association: Member of Mensa<br>
 																				Formal Qualification: Certificate in
-																				Financial Planning.</p>
-																			<h5>I have training and experience to advice
-																				clients regarding:</h5>
+																				Financial Planning.</p>-->
+																			
+																				<div [innerHTML]="CMS_DISCLOSURE_DATA ? CMS_DISCLOSURE_DATA.intermediary_disclosure : ''">
+																					
+																				</div>
+																				<h5>I have training and experience to advice
+																					clients regarding:</h5> 
 																			<!-- <ul type="circle">
-													      						<li>Investment Management & Planning</li><li>Estate Planning</li><li>Retirement Planning </li><li>Domestic & Commercial Insurance</li><li>Financial Planning</li><li>Health Care</li>
-																			  </ul> -->
-																			<ul class="ul-itms">
-																				<li><i class="far fa-circle"
-																						aria-hidden="true"></i>Investment
-																					Management & Planning</li>
-																				<li> <i class="far fa-circle"
+																				<li>Investment Management & Planning</li><li>Estate Planning</li><li>Retirement Planning </li><li>Domestic & Commercial Insurance</li><li>Financial Planning</li><li>Health Care</li>
+																			</ul> -->
+																			<ul class="ul-itms" *ngIf="CMS_DISCLOSURE_DATA">
+																				<li *ngFor="let ele of CMS_DISCLOSURE_DATA.cms_closure_training">
+																					<i class="far fa-circle"
+																						aria-hidden="true"></i> {{ ele.title }}
+																				</li>
+																				<!-- <li> <i class="far fa-circle"
 																						aria-hidden="true"></i>Estate
 																					Planning</li>
 																				<li> <i class="far fa-circle"
@@ -976,7 +981,7 @@
 																					Planning</li>
 																				<li> <i class="far fa-circle"
 																						aria-hidden="true"></i>Health
-																					Care</li>
+																					Care</li> -->
 																			</ul>
 																		</div>
 																		<div class="botom_div_ard">
@@ -985,11 +990,12 @@
 																					<div class="wrp_span_typ">
 																						<h5>Professional Indemnity Cover
 																						</h5>
-																						<p>R10,000,000</p>
+																						<!-- <p>R10,000,000</p> -->
+																						<p>{{ CMS_DISCLOSURE_DATA ? CMS_DISCLOSURE_DATA.professional_indemnity_cover : "" }}</p>
 																					</div>
 																					<div class="wrp_span_typ">
 																						<h5>Commission</h5>
-																						<p>Ninety One > 80%</p>
+																						<p>{{ CMS_DISCLOSURE_DATA ? CMS_DISCLOSURE_DATA.commission : "" }}</p>
 																					</div>
 																					<div class="wrp_span_typ">
 																						<h5>FAIS Ombud</h5>
@@ -1006,16 +1012,19 @@
 																				<div class="col-sm-6">
 																					<div class="wrp_span_typ">
 																						<h5>Shareholdings</h5>
-																						<p>We do not hold share in any
+																						<!-- <p>We do not hold share in any
 																							of the FCP's we contact to.
+																						</p> -->
+																						<p>{{ CMS_DISCLOSURE_DATA ? CMS_DISCLOSURE_DATA.shareholdings : "" }}
 																						</p>
 																					</div>
 																					<div class="wrp_span_typ">
 																						<h5>Compliance officer</h5>
-																						<p>National
+																						<!-- <p>National
 																							Compliance<br>Practice
 																							Number: 1307<br>Contact
-																							Number: 032 946 2921</p>
+																							Number: 032 946 2921</p> -->
+																							<p style="white-space: pre;" [innerHTML]="CMS_DISCLOSURE_DATA ? CMS_DISCLOSURE_DATA.compliance_officer : ''"></p>
 																					</div>
 																					<div class="wrp_span_typ">
 																						<h5>POPI Requirements</h5>
@@ -1047,11 +1056,13 @@
 																			<div class="img_logos text-center">
 																				<h6>Financial services providers
 																					licenced to represent</h6>
-																				<div class="wrp_logs">
-																					<span class="iimg_spn"><img
-																							src="./../../../assets/img/discloser-logo/1.jpeg"
-																							class="img-fluid"></span>
-																					<span class="iimg_spn"><img
+																				<div class="wrp_logs" *ngIf="CMS_DISCLOSURE_DATA">
+																					<span class="iimg_spn" *ngFor="let ele of CMS_DISCLOSURE_DATA.cms_closure_images;let i = index;">
+																						<img
+																							src="{{ environment.disclosure_image +''+ele.image }}"
+																							class="img-fluid">
+																					</span>
+																					<!-- <span class="iimg_spn"><img
 																							src="./../../../assets/img/discloser-logo/2.png"
 																							class="img-fluid"></span>
 																					<span class="iimg_spn"><img
@@ -1066,7 +1077,8 @@
 																					<span class="iimg_spn"><img
 																							src="./../../../assets/img/discloser-logo/6.png"
 																							class="img-fluid"></span>
-																					<span class="iimg_spn"><img
+																				
+																							<span class="iimg_spn"><img
 																							src="./../../../assets/img/discloser-logo/7.png"
 																							class="img-fluid"></span>
 																					<span class="iimg_spn"><img
@@ -1084,6 +1096,7 @@
 																					<span class="iimg_spn"><img
 																							src="./../../../assets/img/discloser-logo/12.jpg"
 																							class="img-fluid"></span>
+ -->
 																					<!-- <span class="iimg_spn"><img src="./../../../assets/img/discloser-logo/13.jpg" class="img-fluid"></span> -->
 
 																				</div>
@@ -1093,43 +1106,29 @@
 																			<!-- <h6>By signing this disclosure, I confirm that i have recieved a copy of such:</h6> -->
 																			<form [formGroup]="form" class="row mb-3"
 																				action="">
-																				<div class="row">
-																					<div class="col-sm-9">
-																						<div class="form-group">
-																							<label for="pwd">Sign in the
-																								given box below</label>
-																							<!-- <ng-signature-pad [emitOnDragEnd]="true" (done)="DisclosureSignUpload($event)"
+
+																				<div class="col-sm-12">
+																					<div class="form-group">
+																						<label for="pwd">Sign in the
+																							given box below</label>
+																						<ng-signature-pad
+																							[emitOnDragEnd]="true"
+																							(done)="DisclosureSignUpload($event)"
 																							doneButtonText="Save Sign"
-																							format="base64" [showClearButton]="hide" [showDoneButton]="hide">
-																							</ng-signature-pad> -->
-																							<ng-signature-pad
-																								[emitOnDragEnd]="true"
-																								(done)="DisclosureSignUpload($event)"
-																								doneButtonText="Save Sign"
-																								(clear)="clearSign()"
-																								[editable]="true"
-																								format="base64"
-																								[showClearButton]="true"
-																								[showDoneButton]="false"
-																								[clearButtonText]="'Clear Signature'">
-																							</ng-signature-pad>
-																						</div>
-																					</div>
-																					<div class="col-sm-3">
-																						<label for="pwd"
-																							style="opacity: 0;">S</label>
-																						<div class="img-ID_up ml-1"
-																							*ngIf="profile && profile.DisclosureSign">
-																							<img src="{{InvestorSignBasePath}}{{profile.DisclosureSign}}"
-																								class="img-fluid">
-																						</div>
+																							(clear)="clearSign()"
+																							[editable]="true"
+																							format="base64"
+																							[showClearButton]="true"
+																							[showDoneButton]="false"
+																							[clearButtonText]="'Clear Signature'">
+																						</ng-signature-pad>
 																					</div>
 																				</div>
-																				<div class="col-sm-4">
+																				<div class="col-sm-6">
 																					<div class="form-group">
-																						<label for="email">Name:</label>
-																						
-																						<input
+																						<label for="email">Name of
+																							signatory:</label>
+																						<input readonly="true"
 																							[(ngModel)]="DisclosureName"
 																							[ngModelOptions]="{standalone: true}"
 																							type="text"
@@ -1145,22 +1144,9 @@
 																							This field is required.
 
 																						</span>
-																						<!-- <ng-template #elseBlock>
-																							
-																						<span *ngIf="DisclosureName==''"
-																						    class="text-danger">
-
-																						    This field is required.
-																						    
-																						</span>
-																						</ng-template> -->
-
-
-
-
 																					</div>
 																				</div>
-																				<div class="col-sm-4">
+																				<div class="col-sm-4 ml-auto">
 																					<div class="form-group">
 																						<label for="pwd">Date:</label>
 																						<input
@@ -1181,14 +1167,6 @@
 																					</div>
 																				</div>
 																			</form>
-																			<!-- <mat-checkbox [(ngModel)]="DisclosureAgree" [ngModelOptions]="{standalone: true}" required #DisclosureAgreeRe="ngModel" class="example-margin">I hereby agree to the terms and conditions of the above disclosure</mat-checkbox> -->
-																			<!-- <br> -->
-																			<!-- <span *ngIf="DisclosureAgreeRe.invalid && (DisclosureAgreeRe.dirty || DisclosureAgreeRe.touched || thirdStep)"
-																			    class="text-danger">
-
-																			    This field is required.
-																			    
-																			</span> -->
 																		</div>
 																	</div>
 																</div>

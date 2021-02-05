@@ -153,6 +153,7 @@ export class DbAddInvestorComponent implements OnInit, CanComponentDeactivate {
     BankwebcamImage
     AddresswebcamImage
     bankDetailImage
+    environment = environment
     firstFormGroup: FormGroup;
     secondFormGroup: FormGroup;
     thirdFormGroup: FormGroup;
@@ -236,6 +237,7 @@ export class DbAddInvestorComponent implements OnInit, CanComponentDeactivate {
 
     bank_list
 
+    CMS_DISCLOSURE_DATA = {}
 
 
     @ViewChild('stepper', { static: true }) stepper: MatStepper;
@@ -408,6 +410,8 @@ export class DbAddInvestorComponent implements OnInit, CanComponentDeactivate {
         // this.RecordAdviceAdvisor = "Marthunis Oosthuizen";
         this.RecordAdviceAdvisor = this.BROKER.full_name;
 
+        this.getDisclosureData(this.BROKER.id);
+
     }
     bank_lists() {
         this.authService.bankList().subscribe(data => {
@@ -417,6 +421,32 @@ export class DbAddInvestorComponent implements OnInit, CanComponentDeactivate {
             if (data.success == 1) {
 
                 this.bank_list = data.list;
+
+                // console.log(data);
+                // stepper.next();
+
+
+            } else {
+                // this.toastr.error(data.message, 'Error');
+            }
+        }, err => {
+            console.log(err)
+            // this.toastr.error(this.authService.COMMON_ERROR);
+
+        })
+    }
+
+    getDisclosureData(broker_id){
+        var obj = {
+            broker_id : broker_id,
+        }
+        this.authService.getDisclosureData(obj).subscribe(data => {
+            console.log(data)
+            // alert(data)
+
+            if (data.success == 1) {
+
+                this.CMS_DISCLOSURE_DATA = data.disclosure_data;
 
                 // console.log(data);
                 // stepper.next();

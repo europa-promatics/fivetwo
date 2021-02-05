@@ -19,6 +19,7 @@ export const environment = {
   image_url: 'https://production.promaticstechnologies.com/fivetwo_apis_new/public/',
   welcome_letter: 'https://production.promaticstechnologies.com/fivetwo_apis/public/welcome_letters/',
   CLIENT_NAME: "Marthunis Christiaan Oosthuizen",
+  disclosure_image: "https://production.promaticstechnologies.com/fivetwo_apis/public/disclosure/",
 };
 
 /*

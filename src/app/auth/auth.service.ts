@@ -991,5 +991,16 @@ export class AuthService {
           // catchError(this.error)
         )
     }
+    getDisclosureData(data): Observable<any> {
+      let API_URL = this.SERVER_URL + 'get/disclosure/data';
+      return this.http.post(API_URL, data, this.httpOptions)
+        .pipe(
+          map((res: Response) => {
+            return res
+          }),
+          // retry(1),
+          // catchError(this.error)
+        )
+    }
 
 }
