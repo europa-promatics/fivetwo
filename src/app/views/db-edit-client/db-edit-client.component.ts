@@ -118,6 +118,10 @@ export class DbEditClientComponent implements OnInit {
     CMS_DISCLOSURE_DATA
     CMS_RISKPROFILER_DATA=""
 
+    summary_of_discussion = []
+    summary_of_advice = []
+    explain = []
+
     constructor(private route: ActivatedRoute, private router: Router, private authService: AuthService, private toastr: ToastrService, public formBuilder: FormBuilder) { }
 
     ngOnInit() {
@@ -229,6 +233,7 @@ export class DbEditClientComponent implements OnInit {
 
         this.getDisclosureData(this.BROKER.id);
         this.getRiskProfilerData(this.BROKER.id);
+        this.getRecordAdviceData(this.BROKER.id);
 
     }
 
@@ -1631,6 +1636,49 @@ export class DbEditClientComponent implements OnInit {
             console.log("Hello");
         }, 250);
 
+    }
+
+    getRecordAdviceData(broker_id){
+        var obj = {
+            broker_id : broker_id,
+        }
+        this.authService.getRecordAdviceData().subscribe(data => {
+            console.log(data)
+            // alert(data)
+
+            if (data.success == 1) {
+
+                
+                this.summary_of_advice = data.summary_of_advice;
+                this.summary_of_discussion = data.summary_of_discussion;
+                this.explain = data.explain;
+
+                // console.log(data);
+                // stepper.next();
+
+
+            } else {
+                // this.toastr.error(data.message, 'Error');
+            }
+        }, err => {
+            console.log(err)
+            // this.toastr.error(this.authService.COMMON_ERROR);
+
+        })
+    }
+
+    onChangeSummary(event){
+        console.log(event)
+        this.RecordAdviceSummaryOfDiscussionWithClient = event.value
+    }
+
+    onChangeAdvisor(event){
+        console.log(event)
+        this.RecordAdviceSummaryOfAdviceFromAdvisor = event.value
+    }
+    onChangeExplain(event){
+        console.log(event)
+        this.RecordAdviceOfAdvisorExplain = event.value
     }
 
     getRiskProfilerData(broker_id){

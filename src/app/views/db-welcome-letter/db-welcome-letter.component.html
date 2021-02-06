@@ -47,28 +47,49 @@
 		            							<div class="letr_head_logo">
 		            								<img src="assets/img/logo.png" class="img-fluid">
 		            							</div>
-		            							<small class="dat_wlcm">10/11/2020</small>
+		            							<small class="dat_wlcm">{{ current_date }}</small>
 												<h6>
-													Welcome Letter Mrs C Matthias
+													Welcome Letter {{ DisclosureName }}
 												</h6>
 												<div class="wrp_wlcm_para_li">
 													<p>We welcome you to the Five Two Investment family. We thank you for your business and would like to confirm that the following investments have been placed under our care:</p>
-													<ul type="none">
-														<li>1. Investec Bond - Unit Trust(52.........)</li>
-														<li>Inception Date: 04 December 2019</li>
-														<li>Intial Deposit: R900,000.00</li>
-														<p>Fund Allocation: </p>
-														<li>50% Prescient Income Provider Fund</li>
-														<li>25% Coronation Strategic Income Fund</li>
-														<li>25% Old Mutual Gold Fund</li>
-														<p>The above money came from your father's inheritance.</p>
+													<ul type="none" *ngFor="let ele of products;let ind = index">
+														<!-- <li>1. Investec Bond - Unit Trust(52.........)</li> -->
+														<li>{{ ind + 1 }}. {{ ele.category }}(52.........)</li>
+														<li>Inception Date: {{ ele.obj.inception_date }}</li>
+														<li>Intial Deposit: R {{ ele.obj.dealAttribute_balance_single ? ele.obj.dealAttribute_balance_single.net_amount : 0  }}</li>
+														
+													</ul>
+													<p>Fund Allocation: </p>
+													<ul type="none">		
+
+														<li *ngFor="let item of totalClientValue" class="d-flex justify-content-between">
+															<!-- <span class="wid_two">{{ showYear(item) }}</span>
+															<span class="wid_two">{{ getPercentageTotalValue(item.totalAmount) }}%</span>
+															<span>R {{ formatAmount(item.totalAmount)}}<br> {{ item.product_name }} </span> -->
+															<span *ngIf="item.totalAmount > 0">{{ getPercentageTotalValue(item.totalAmount) }}% {{ item.product_name }}</span>
+															
+															
+														</li>  
+													
 													</ul>
 													<p>Please take note of the risk profiler completed, as your investments have their fund allocation based on your needs. Therefore, please keep us informed on major changes in your life that could possibly affect this, in order for us to make the necessary changes.</p>
 													<p>Note: As discussed, we have an annual fee of 1% +vat and an upfront fee of 1% +vat on all investments managed by Five Two Investments.</p><br>
 													<p>Past performance is not an indication of future performance.</p>
 													<p>Please scrutinize your policy schedule and inform us of any incorrect information.</p>
 												</div>
-		            						</div>
+											</div>
+											
+											<button class="btn btn_theme">
+
+												Send Welcome Letter
+
+											</button>
+											<button class="btn btn_theme">
+
+												Send Confirmation Letter
+
+											</button>
 		            					</div>
 		            				</div>
 		            			</div>

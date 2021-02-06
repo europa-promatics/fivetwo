@@ -742,6 +742,17 @@ export class AuthService {
         // catchError(this.error)
         )
     }
+    clientProducts(data): Observable<any> {
+      let API_URL = this.SERVER_URL+'get/data/for/welcome/letter';
+      return this.http.post(API_URL,data,this.httpOptions)
+      .pipe(
+        map((res: Response) => {
+          return res
+        }),
+        // retry(1),
+        // catchError(this.error)
+        )
+    }
 
     forgotPassword(data): Observable<any> {
       let API_URL = this.SERVER_URL+'forgot-password';
@@ -1006,6 +1017,29 @@ export class AuthService {
     getRiskProfilerData(data): Observable<any> {
       let API_URL = this.SERVER_URL + 'get/riskprofiler/data';
       return this.http.post(API_URL, data, this.httpOptions)
+        .pipe(
+          map((res: Response) => {
+            return res
+          }),
+          // retry(1),
+          // catchError(this.error)
+        )
+    }
+    getBrokerCompanies(): Observable<any> {
+      let API_URL = this.SERVER_URL + 'get/broker/companies';
+      return this.http.get(API_URL, this.httpOptions)
+        .pipe(
+          map((res: Response) => {
+            return res
+          }),
+          // retry(1),
+          // catchError(this.error)
+        )
+    }
+
+    getRecordAdviceData(): Observable<any> {
+      let API_URL = this.SERVER_URL + 'get/record/of/advice/data';
+      return this.http.get(API_URL, this.httpOptions)
         .pipe(
           map((res: Response) => {
             return res

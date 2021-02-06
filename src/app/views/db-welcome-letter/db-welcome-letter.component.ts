@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../.././auth/auth.service';
 import { ActivatedRoute, Router } from  "@angular/router";
 import { ToastrService } from 'ngx-toastr';
-import  * as moment from 'moment';
 import { Location } from '@angular/common';
+
+import * as moment from 'moment';
+import * as currencyFormatter from 'currency-formatter';
 
 @Component({
   selector: 'app-db-welcome-letter',
@@ -14,26 +16,28 @@ export class DbWelcomeLetterComponent implements OnInit {
   investor: any;
   investor_id: string;
   DisclosureName: string;
+  products
+  totalBalance=0;
+  totalClientValue = []
+  current_date = moment().format("YYYY-MM-DD")
+  
+  
 
   constructor(private route: ActivatedRoute, private _location: Location,private authService:AuthService,private router:Router, private toastr: ToastrService) { }
 
   ngOnInit() {
     this.getInvestor()
+    this.clientProducts();
+    // this.getTotalValue();
   }
 
-  getInvestor(){
-  	// var investor_data = JSON.parse(sessionStorage.getItem('investor'))
+  formatAmount(amount){
 
-  	// if (investor_data!=null) {
-    //       this.investor=investor_data
-    //       this.DisclosureName = investor_data.LastName + " "+investor_data.FirstName
-    //     //   this.DisclosureName = investor_data.LastName
-  	// 	this.investor_id = investor_data.id
-  		
-  	// 	console.log(this.investor)
-  		
-    //   }
-      
+    return currencyFormatter.format(amount, { code: 'ZAR',symbol: '', })
+
+  }
+
+  getInvestor(){ 
       var ob = {
         id: atob(this.route.snapshot.params.investor_id),
       };
@@ -42,16 +46,9 @@ export class DbWelcomeLetterComponent implements OnInit {
   
         if (data.success) {
             this.investor = data.data
+            this.getTotalValue(data.data.ClientNumber)
             this.investor_id=atob(this.route.snapshot.params.investor_id)
-            this.DisclosureName = this.investor.LastName + " "+this.investor.FirstName
-            // this.chosenItem = this.investor.RecordAdviceOfAdvisorTaken
-            // this.Year1 = this.investor.Year1;
-            // this.Year2 = this.investor.Year2;
-            // this.Year3 = this.investor.Year3;
-            // this.Year4 = this.investor.Year4;
-            // this.Year5 = this.investor.Year5;
-            // this.Year6 = this.investor.Year6;
-            // this.getYearTotal()
+            this.DisclosureName = this.investor.LastName + " "+this.investor.FirstName           
         }
       }, err => {
         console.log(err)
@@ -60,6 +57,68 @@ export class DbWelcomeLetterComponent implements OnInit {
         //this.toastr.error(err.message);
         // this.toastr.error(this.authService.COMMON_ERROR);
       })
+  }
+  clientProducts(){ 
+      var ob = {
+        id: atob(this.route.snapshot.params.investor_id),
+      };
+      console.log(ob)
+      this.authService.clientProducts(ob).subscribe(data => {
+        
+        if(data.success == 1){
+          this.products = data.products;
+        }
+        
+      }, err => {
+        console.log(err)
+        // If not token provided or token invalid
+        this.authService.showAuthError(err);
+        //this.toastr.error(err.message);
+        // this.toastr.error(this.authService.COMMON_ERROR);
+      })
+  }
+
+  getPercentageTotalValue(amount){
+		if(amount > 0){
+			return Math.round(amount / this.totalBalance * 100)
+		}else{
+			return 0;
+		}
+  }
+
+  getTotalValue(client_id){
+    // alert(this.investor_DD);
+    var obj = {
+      client_id : client_id
+    }
+    this.authService.getTotalValue(obj).subscribe(data => {
+      //console.log(data);
+        if(data.success){
+
+          
+
+
+
+          // console.log(this.investor)
+          data.deals.forEach((element,ind) => {
+            
+            this.totalBalance += element.totalAmount
+
+          });
+
+          this.totalClientValue = data.deals;
+          console.log(this.totalClientValue);
+
+
+        }else{
+          this.toastr.error(data.message);
+        }
+
+    },err => {
+      this.authService.showAuthError(err);
+    })
+
+
   }
 
   goBack(){

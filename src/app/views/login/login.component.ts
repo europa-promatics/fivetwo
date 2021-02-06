@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
 
   signinclick = false
   loginButtonText = "Sign In";
+  error_message=""
 
   constructor(private authService: AuthService, private toastr: ToastrService, private route: ActivatedRoute, private router: Router) {
 
@@ -62,7 +63,7 @@ export class LoginComponent implements OnInit {
     }
     this.authService.loginNew(formdata, remember).subscribe(async res => {
       console.log(res)
-      this.loginButtonText = "Sign in"
+      this.loginButtonText = "Sign in";
       if (res.success == 1) {
         if (remember) {
           await localStorage.setItem('user', JSON.stringify(res.data));
@@ -71,14 +72,16 @@ export class LoginComponent implements OnInit {
           await sessionStorage.setItem('user', JSON.stringify(res.data));
           await localStorage.setItem('token', res.token);
         }
+        this.error_message = "";
         this.authService.setAuthToken();
         await this.toastr.success(res.message);
         await this.router.navigate(['/user/dashboard']);
         //  alert(res.token);
         //  alert(localStorage.getItem('token'));
       } else {
+        this.error_message = res.message
         this.loginButtonText = "Sign in"
-        this.toastr.error(res.message);
+        // this.toastr.error(res.message);
         // console.log(res.message);
 
       }

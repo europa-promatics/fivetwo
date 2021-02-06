@@ -58,7 +58,8 @@ export class DbBrokerAppointmentComponent implements OnInit {
 
   ngOnInit() {
   	this.getInvestor()
-  	this.getCompanies()
+  	// this.getCompanies()
+  	this.getBrokerCompanies()
   	let d = new Date();
     let currDate = d.getDate();
     let currMonth = d.getMonth()+1;
@@ -107,8 +108,20 @@ export class DbBrokerAppointmentComponent implements OnInit {
 
   	console.log('change')
   	console.log(evt.target.value)
-  	var company_id = evt.target.value
-  	this.getBrokerCodes(company_id)
+      // var company_id = evt.target.value
+    var brokerCode = this.companies.find((item) => {
+        return item.company_id == evt.target.value;
+    })
+
+    if(brokerCode){
+        this.form.controls['broker_code_id'].setValue(brokerCode.broker_code);
+    }else{
+        this.form.controls['broker_code_id'].setValue("");
+    }
+
+    console.log(brokerCode)
+
+  //	this.getBrokerCodes(company_id)
 
   }
 
@@ -155,6 +168,28 @@ export class DbBrokerAppointmentComponent implements OnInit {
   	})
   }
 
+
+  getBrokerCompanies(){
+
+  	this.authService.getBrokerCompanies().subscribe(data => {
+  	    
+  	    if (data.success == 1) {    
+
+  	        this.companies = data.companies
+  	        // console.log(this.companies);
+  	        // this.form.controls['company_id'].setValue(this.companies[0].id);
+
+  	        // this.getBrokerCodes(this.companies[0].id)
+
+  	    }else  {
+  	        // this.toastr.error(data.message, 'Error');
+  	    }
+  	}, err => {
+  	        console.log(err)
+  	        // this.toastr.error(this.authService.COMMON_ERROR);
+  	})
+  }
+
   
   
 
@@ -176,6 +211,7 @@ export class DbBrokerAppointmentComponent implements OnInit {
     get CellNumberVal() { return this.form.get('CellNumber'); }
     get EmailVal() { return this.form.get('Email'); }
     get company_idVal() { return this.form.get('company_id'); }
+    get broker_code_id() { return this.form.get('broker_code_id'); }
 
     
 
@@ -246,7 +282,9 @@ export class DbBrokerAppointmentComponent implements OnInit {
 
                     // this.toastr.success('Broker appointment added successfully')
                     // this.router.navigate(['/user/clientProfile']);
-                    this.loadInvestors()
+                    // this.loadInvestors()
+                    this.toastr.success('Broker appointment added successfully')
+                    this._location.back();
 
                 }else  {
                     // this.toastr.error(data.message, 'Error');

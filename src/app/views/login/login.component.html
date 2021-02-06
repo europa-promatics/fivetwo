@@ -14,8 +14,8 @@
                     <mat-tab-group mat-stretch-tabs>
                         <mat-tab label="Login"> 
                             <div class="tab_one_data">
-                                <div class="erroe_div">
-                                    <p class="text-center">Email or password is invalid.</p>
+                                <div class="erroe_div" *ngIf="error_message">
+                                    <p class="text-center">{{ error_message }}</p>
                                 </div>
 
                                 <form [formGroup]="form" class="login_form_padng">

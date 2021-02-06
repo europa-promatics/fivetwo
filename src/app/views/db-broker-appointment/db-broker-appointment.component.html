@@ -112,13 +112,14 @@
 																		<th>Company</th>
 																		<td class="table_inpt">
 					            											<select (change)="changeCompany($event)" formControlName="company_id" class="custom-select form-control">
-
-					            												<!-- <option value="">Select Company </option> -->
+																				<option value="">Choose Company</option>
+					            												
 					            												<ng-container *ngFor="let item of companies">
-					            													<option [value]="item.id">{{item.name}}</option>
+					            													<option [value]="item.company_data ? item.company_data.id : 0">{{item.company_data ? item.company_data.name : 0}}</option>
 					            												</ng-container>
-					            												<!-- <option>Company Name 2</option> -->
-					            											</select>
+					            												
+																			</select>
+																			
 					            											<span *ngIf="company_idVal.invalid && (company_idVal.dirty || company_idVal.touched || steps)"
 							            											    class="text-danger">
 					            											    <span *ngIf="company_idVal.errors.required">
@@ -135,13 +136,24 @@
 																	<tr>
 																		<th>Broker Code</th>
 																		<td class="table_inpt">
-					            											<select formControlName="broker_code_id" class="custom-select form-control">
+					            											<!-- <select formControlName="broker_code_id" class="custom-select form-control">
 
 					            												<ng-container *ngFor="let item of broker_codes">
 					            													<option [value]="item.id">{{item.name}}</option>
 					            												</ng-container>
 					            												
-					            											</select>
+																			</select> -->
+																			
+																			<input formControlName="broker_code_id" type="text" class="form-control" name="" maxlength="20">
+
+																			<span *ngIf="broker_code_id.invalid && (broker_code_id.dirty || broker_code_id.touched || steps)"
+							            											    class="text-danger">
+					            											    <span *ngIf="broker_code_id.errors.required">
+					            											        This field is required.
+					            											    </span>
+					            											    
+					            											</span>
+					            											
 					            										</td>
 																	</tr>
 																  	<tr>
