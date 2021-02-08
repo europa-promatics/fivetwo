@@ -1013,6 +1013,17 @@ export class AuthService {
           // catchError(this.error)
         )
     }
+    sendWelcomeLetter(data): Observable<any> {
+      let API_URL = this.SERVER_URL + 'send/welcome/letter';
+      return this.http.post(API_URL, data, this.httpOptions)
+        .pipe(
+          map((res: Response) => {
+            return res
+          }),
+          // retry(1),
+          // catchError(this.error)
+        )
+    }
 
     getRiskProfilerData(data): Observable<any> {
       let API_URL = this.SERVER_URL + 'get/riskprofiler/data';
@@ -1040,6 +1051,18 @@ export class AuthService {
     getRecordAdviceData(): Observable<any> {
       let API_URL = this.SERVER_URL + 'get/record/of/advice/data';
       return this.http.get(API_URL, this.httpOptions)
+        .pipe(
+          map((res: Response) => {
+            return res
+          }),
+          // retry(1),
+          // catchError(this.error)
+        )
+    }
+
+    admin_login(form): Observable<any> {
+      let API_URL = environment.admin_endpoint + 'admin/login';
+      return this.http.post(API_URL,form)
         .pipe(
           map((res: Response) => {
             return res

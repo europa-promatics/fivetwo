@@ -86,7 +86,17 @@
 													      			</div> -->
 													      			<div class="col-sm-12">
 													      				<div class="form-group">
-													      					<label>Summary of discussion with client</label>
+																			<mat-form-field>
+																				<mat-label>Summary of discussion with
+																					client</mat-label>
+																				<mat-select (selectionChange)="onChangeSummary($event)">
+																					<mat-option *ngFor="let ele of summary_of_discussion" [value]="ele.content">
+																					{{ele.content}}
+																					</mat-option>
+																				</mat-select>
+																			</mat-form-field>
+
+													      					<!-- <label>Summary of discussion with client</label> -->
 													      					<textarea required [(ngModel)]="RecordAdviceSummaryOfDiscussionWithClient" [ngModelOptions]="{standalone: true}" class="form-control" rows="4" #RecordAdviceSummaryOfDiscussionWithClientVal="ngModel"></textarea>
 													      					<span *ngIf="RecordAdviceSummaryOfDiscussionWithClientVal.invalid && (RecordAdviceSummaryOfDiscussionWithClientVal.dirty || RecordAdviceSummaryOfDiscussionWithClientVal.touched || forthStep)"
 																			    class="text-danger">
@@ -98,7 +108,16 @@
 													      		<div class="row">
 													      			<div class="col-sm-12">
 													      				<div class="form-group">
-													      					<label>Summary of Advice from Advisor</label>
+																			  <!-- <label>Summary of Advice from Advisor</label> -->
+																			  <mat-form-field>
+																				<mat-label>Summary of Advice from
+																					Advisor</mat-label>
+																				<mat-select (selectionChange)="onChangeAdvisor($event)">
+																					<mat-option *ngFor="let ele of summary_of_advice" [value]="ele.content">
+																					{{ele.content}}
+																					</mat-option>
+																				</mat-select>
+																			</mat-form-field>
 													      					<textarea required [(ngModel)]="RecordAdviceSummaryOfAdviceFromAdvisor" [ngModelOptions]="{standalone: true}" class="form-control" rows="4" #RecordAdviceSummaryOfAdviceFromAdvisorVal="ngModel"></textarea>
 													      					<span *ngIf="RecordAdviceSummaryOfAdviceFromAdvisorVal.invalid && advisorRequired && (RecordAdviceSummaryOfAdviceFromAdvisorVal.dirty || RecordAdviceSummaryOfAdviceFromAdvisorVal.touched || forthStep)"
 																			    class="text-danger">
@@ -132,7 +151,16 @@
 													      			<div *ngIf="chosenItem=='No'" class="col-sm-12">
 
 													      				<div class="form-group">
-													      					<label>If not then, Explain:</label>
+																			  <!-- <label>If not then, Explain:</label> -->
+																			  <mat-form-field>
+																				<mat-label>If not then, Explain
+																					</mat-label>
+																				<mat-select (selectionChange)="onChangeExplain($event)">
+																					<mat-option *ngFor="let ele of explain" [value]="ele.content">
+																					{{ele.content}}
+																					</mat-option>
+																				</mat-select>
+																			</mat-form-field>
 													      					<textarea required [(ngModel)]="RecordAdviceOfAdvisorExplain" [ngModelOptions]="{standalone: true}" class="form-control" rows="4" #RecordAdviceOfAdvisorExplainVal="ngModel"></textarea>
 													      					<span *ngIf="RecordAdviceOfAdvisorExplainVal.invalid && chosenItemStatus() && (RecordAdviceOfAdvisorExplainVal.dirty || RecordAdviceOfAdvisorExplainVal.touched || forthStep)"
 																			    class="text-danger">

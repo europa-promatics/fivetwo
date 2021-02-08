@@ -13,7 +13,7 @@
             					<i class="clos_sid fa fa-bars"></i>
             					<!-- <i class="opn_sid fa fa-times"></i> -->
             				</div>
-	            			<h3>Add Disclosure</h3>
+	            			<h3>Add Disclosure for {{ DisclosureName }}</h3>
 	            			<!-- <nav class="bread_nav_sec">
 								<ol class="breadcrumb">
 								    <li class="breadcrumb-item"><a href="#">Home</a></li>
@@ -36,14 +36,14 @@
 			            						<h3>Add Disclosure</h3>
 			            						<small class="sub_crd">A project is an activity to meet the creation of a unique product or service and thus activities that are undertaken to accomplish routine activities.</small>
 											</div> -->
-											<!-- <form class="formm">
+											<form class="formm">
 												<div class="row">
 													<div class="col-sm-12 float-right">
 														<div class="form-group text-right">
 															<a href="javascript:;" (click)="goBack()" class="btn btn_theme">Back</a>
 														</div>
 													</div>
-													<div class="col-sm-2"></div>
+													<!-- <div class="col-sm-2"></div>
 													<div class="col-sm-6">
 														<div class="form-group">
 															<input type="file" class="form-control" (change)="selectPDF($event)" [accept]="'.pdf'" name="" placeholder="choose discloser">
@@ -53,10 +53,10 @@
 														<div class="form-group">
 															<button class="btn btn_theme" (click)="updateDisclosure()">Upload Disclosure</button>
 														</div>
-													</div>
+													</div> -->
 													
 												</div>
-											</form> -->
+											</form>
 		            						<div class="table-responsive table_seler">
 		            							<!-- <mat-horizontal-stepper labelPosition="bottom" linear #stepper (selectionChange)="selectionChange($event)"> -->
 												  	
@@ -225,7 +225,7 @@
 													      	</div>
 													      	<div class="form-group text-right">
 													      	    <div class="pos_rel log_sgn_btn">
-													      	        <a (click)="add()" href="javascript:;" class="btn btn_theme sgnup_btn"> Save  </a>
+													      	        <a (click)="add()" href="javascript:;" class="btn btn_theme sgnup_btn"> {{ button_message }}  </a>
 													      	    </div>
 													      	</div>
 													      	<!-- stepper Inner /-->

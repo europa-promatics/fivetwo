@@ -6,6 +6,7 @@ import { Location } from '@angular/common';
 
 import * as moment from 'moment';
 import * as currencyFormatter from 'currency-formatter';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-db-welcome-letter',
@@ -20,7 +21,7 @@ export class DbWelcomeLetterComponent implements OnInit {
   totalBalance=0;
   totalClientValue = []
   current_date = moment().format("YYYY-MM-DD")
-  
+  send_letter_message = "Send Welcome Letter"
   
 
   constructor(private route: ActivatedRoute, private _location: Location,private authService:AuthService,private router:Router, private toastr: ToastrService) { }
@@ -119,6 +120,32 @@ export class DbWelcomeLetterComponent implements OnInit {
     })
 
 
+  }
+
+  sendWelcomeLetter(){
+    var ob = {
+      id: atob(this.route.snapshot.params.investor_id),
+      client_id : this.investor.ClientNumber
+    };
+
+    this.send_letter_message = "sending..."
+    console.log(ob)
+    this.authService.sendWelcomeLetter(ob).subscribe(data => {
+      
+      if(data.success == 1){
+        window.open(environment.welcome_letter+""+data.pdfName)
+      }
+
+      this.send_letter_message = "Send Welcome Letter"
+      
+    }, err => {
+      console.log(err)
+      this.send_letter_message = "Send Welcome Letter"
+      // If not token provided or token invalid
+      this.authService.showAuthError(err);
+      //this.toastr.error(err.message);
+      // this.toastr.error(this.authService.COMMON_ERROR);
+    })
   }
 
   goBack(){

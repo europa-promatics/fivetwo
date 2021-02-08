@@ -72,7 +72,8 @@
                                             </div>
                                         </div>
                                         <div class="form-group link_target_div">
-                                            <a routerLink="/officerLogin" class="cp"><i>Complaince Officer Click Here To Login</i></a>
+                                            <!-- <a routerLink="/officerLogin" class="cp"><i>Complaince Officer Click Here To Login</i></a> -->
+                                            <a href="{{ environment.admin_url }}" class="cp"><i>Head Office Click Here To Login</i></a>
                                         </div>
                                     </div>
                                     <!-- <div class="form-group"> -->
@@ -85,79 +86,7 @@
                                 </form>
                             </div>
                         </mat-tab>
-                        <mat-tab label="Broker Login">
-                            <div class="tab_one_data">
-                                <div class="erroe_div">
-                                    <p class="text-center">Email or password is invalid.</p>
-                                </div>
-
-                                <form [formGroup]="form" class="login_form_padng">
-                                    <div class="padding_div_input">
-                                        <div class="form-group">
-                                            <label>Email Address</label>
-                                            <div class="pos_rel icon_input">
-                                                <i class="fa fa-envelope"></i>
-                                                <input name="email" type="email" class="form-control" placeholder="Email Address" formControlName="email" email maxlength="100">
-                                                <div *ngIf="email.invalid && (email.dirty || email.touched || signinclick)"
-                                                    class="text-danger">
-                                                    <div *ngIf="email.errors.required">
-                                                        This field is required.
-                                                    </div>
-                                                    <div *ngIf="email.errors.email">
-                                                        Please enter valid email
-                                                    </div>
-                                                    <div *ngIf="email.errors.maxlength">
-                                                        Please enter not more than 100 character
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Password</label>
-                                            <div class="pos_rel icon_input">
-                                                <i class="fa fa-key"></i>
-                                                <input type="password" class="form-control" placeholder="Enter Password" formControlName="password" maxlength="100">
-                                                <div *ngIf="password.invalid && (password.dirty || password.touched || signinclick)"
-                                                    class="text-danger">
-                                                    <div *ngIf="password.errors.required">
-                                                        This field is required.
-                                                    </div>
-                                                    <div *ngIf="password.errors.maxlength">
-                                                        Please enter not more than 100 character
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <div class="form-group">
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input formControlName="remember" type="checkbox" class="custom-control-input" id="customCheck" name="example1">
-                                                        <label class="custom-control-label" for="customCheck">Remember Me</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <div class="form-group text-right">
-                                                    <a routerLink="/forgotPassword" class="cp"><i>Forgot Password?</i></a>
-                                                    
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group link_target_div">
-                                            <a routerLink="/officerLogin" class="cp"><i>Complaince Officer Click Here To Login</i></a>
-                                        </div>
-                                    </div>
-                                    <!-- <div class="form-group"> -->
-                                        <div class="pos_rel log_sgn_btn">
-                                            <!-- <a href="javascript:;" class="btn btn_theme sgnup_btn"> <i class="far fa-key"></i> Sign In </a> -->
-                                            <!-- <button [disabled]="form.invalid || form.disabled" (click)="signInClick()" class="btn btn_theme sgnup_btn"> <i class="far fa-key"></i> Sign In </button> -->
-                                            <button (click)="signInClick()" class="btn btn_theme sgnup_btn"> <i class="far fa-key"></i> {{ loginButtonText }} </button>
-                                        </div>
-                                    <!-- </div> -->
-                                </form>
-                            </div>
-                        </mat-tab>
+                       
                     </mat-tab-group>
                 </div>
             </div>

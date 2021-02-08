@@ -26,6 +26,7 @@ export class DbAddDisclosureComponent implements OnInit {
     CMS_DISCLOSURE_DATA
     RecordAdviceAdvisor
     environment = environment
+    button_message= "Save"
   // thirdStep
   ThirdStepStatus=false
   constructor(private _location: Location,private route : ActivatedRoute,  private authService:AuthService,private router:Router, private toastr: ToastrService) { }
@@ -131,7 +132,7 @@ export class DbAddDisclosureComponent implements OnInit {
         this.ThirdStepStatus=true;
 
         console.log('third');
-       
+        this.button_message = "Uploading..."
         var agree='no';
 
             // this.DisclosureName.trim();
@@ -168,22 +169,25 @@ export class DbAddDisclosureComponent implements OnInit {
 
                     var investor_data = data.data
               		sessionStorage.setItem('investor',JSON.stringify(investor_data))
-                  
-                    this.toastr.success('Disclosure added successfully')
+                    
+                    this.toastr.success('Disclosure added successfully');
+                    window.open(environment.disclosurePDF + ""+data.pdfName,'_blank')
+                    this.button_message = "Save";
                       // this.router.navigate(['/user/clientProfile']);
                       this._location.back();
                     // stepper.next();
                     // this.stepperNextAsyc(stepper,'3')
 
                 }else  {
+                    this.button_message = "Save";
                     // this.toastr.error(data.message, 'Error');
                 }
             }, err => {
+                this.button_message = "Save";
                     console.log(err)
                     // this.toastr.error(this.authService.COMMON_ERROR);
                 
             })
-                    return
 
             // console.log('execute');
         }

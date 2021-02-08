@@ -5,6 +5,8 @@
 export const environment = {
   production: true,
   EndPointLocal : "http://localhost:3001/",
+  admin_endpoint: "https://production.promaticstechnologies.com:3015/",
+  admin_url: "https://fivetwo-admin.web.app/",
   EndPointServer : "https://production.promaticstechnologies.com:3001/",
   InvestorID: "https://production.promaticstechnologies.com/fivetwo_apis/public/investor_id/",
   InvestorSignBasePath : "https://production.promaticstechnologies.com/fivetwo_apis/public/investor_sign/",

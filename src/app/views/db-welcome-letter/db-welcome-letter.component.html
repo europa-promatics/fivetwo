@@ -55,9 +55,9 @@
 													<p>We welcome you to the Five Two Investment family. We thank you for your business and would like to confirm that the following investments have been placed under our care:</p>
 													<ul type="none" *ngFor="let ele of products;let ind = index">
 														<!-- <li>1. Investec Bond - Unit Trust(52.........)</li> -->
-														<li>{{ ind + 1 }}. {{ ele.category }}(52.........)</li>
+														<li>{{ ind + 1 }}. {{ ele.category }}</li>
 														<li>Inception Date: {{ ele.obj.inception_date }}</li>
-														<li>Intial Deposit: R {{ ele.obj.dealAttribute_balance_single ? ele.obj.dealAttribute_balance_single.net_amount : 0  }}</li>
+														<li>Intial Deposit: R {{ formatAmount(ele.obj.dealAttribute_balance_single ? ele.obj.dealAttribute_balance_single.net_amount : 0)  }}</li>
 														
 													</ul>
 													<p>Fund Allocation: </p>
@@ -79,18 +79,18 @@
 													<p>Please scrutinize your policy schedule and inform us of any incorrect information.</p>
 												</div>
 											</div>
-											<div style="text-align: center;">
+											<div style="text-align: center;" (click)="sendWelcomeLetter()">
 												<button class="btn btn_theme">
 
-													Send Welcome Letter
+													{{ send_letter_message }}
 
 												</button>
-												&nbsp;&nbsp;
+												<!-- &nbsp;&nbsp;
 												<button class="btn btn_theme">
 
 													Send Confirmation Letter
 
-												</button>
+												</button> -->
 
 											</div>
 												

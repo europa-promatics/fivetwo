@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from  "@angular/router";
 import { ToastrService } from 'ngx-toastr';
 import  * as moment from 'moment';
 import { Location } from '@angular/common';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -181,7 +182,7 @@ export class DbAddRiskProfilerComponent implements OnInit {
               console.log(data);
               var investor_data = data.data
               //sessionStorage.setItem('investor',JSON.stringify(investor_data))
-              
+              window.open(environment.RiskPDF+""+data.pdfName)
               this.toastr.success('Risk Profiler added successfully')
               this._location.back();
               

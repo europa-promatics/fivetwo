@@ -157,7 +157,7 @@
 					            										</td>
 																	</tr>
 																  	<tr>
-																	    <th>Owner Insured</th>
+																	    <th>Full Name</th>
 																	    <td class="table_inpt">
 					            											<input formControlName="OwnerInsured" type="text" class="form-control" name="" maxlength="20">
 
@@ -165,10 +165,7 @@
 							            											    class="text-danger">
 					            											    <span *ngIf="OwnerInsuredVal.errors.required">
 					            											        This field is required.
-					            											    </span>
-					            											    <span *ngIf="OwnerInsuredVal.errors.pattern">
-					            											    	Please enter digits only
-					            											    </span>
+					            											    </span>					            											    
 					            											    
 					            											</span>
 					            											
@@ -211,7 +208,7 @@
 																  	<tr>
 																  		<th colspan="2">Contact Details:</th>
 																  	</tr>
-																  	<tr>
+																  	<!-- <tr>
 																	    <th>Home</th>
 																	    <td class="table_inpt">
 					            											<input formControlName="HomeNumber" type="text" class="form-control" name="">
@@ -244,9 +241,9 @@
 					            											    
 					            											</span>
 					            										</td>
-																  	</tr>
+																  	</tr> -->
 																  	<tr>
-																	    <th>Cell</th>
+																	    <th>Mobile Number</th>
 																	    <td class="table_inpt">
 					            											<input formControlName="CellNumber" type="text" class="form-control" name="">
 
@@ -256,7 +253,7 @@
 					            											        This field is required.
 					            											    </span>
 					            											    <span *ngIf="CellNumberVal.errors.pattern">
-					            											    	Invalid Cell Number
+					            											    	Invalid Mobile Number Number
 					            											    </span>
 					            											    
 					            											</span>

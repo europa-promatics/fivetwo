@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from  "@angular/router";
 import { FormGroup, FormBuilder, Validators, FormControl, FormArray } from '@angular/forms';
 import { Location } from '@angular/common';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -36,16 +37,16 @@ export class DbBrokerAppointmentComponent implements OnInit {
 
   	form = new FormGroup({
         
-        OwnerInsured: new FormControl('', [Validators.required, Validators.pattern('^[0-9]*'),
+        OwnerInsured: new FormControl('', [
                     Validators.minLength(1), Validators.maxLength(20)]),
         PostalAddress: new FormControl('', [ Validators.pattern('^[a-zA-Z0-9 #,.]*'),
                     Validators.minLength(1), Validators.maxLength(60)]),
         IdNumber: new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z0-9]*'),
                     Validators.minLength(1), Validators.maxLength(20)]),
-        HomeNumber: new FormControl('', [Validators.pattern('^[0-9]*'),
-                    Validators.minLength(1), Validators.maxLength(20)]),
-        WorkNumber: new FormControl('', [ Validators.pattern('^[0-9]*'),
-                    Validators.minLength(1), Validators.maxLength(20)]),
+        // HomeNumber: new FormControl('', [Validators.pattern('^[0-9]*'),
+        //             Validators.minLength(1), Validators.maxLength(20)]),
+        // WorkNumber: new FormControl('', [ Validators.pattern('^[0-9]*'),
+        //             Validators.minLength(1), Validators.maxLength(20)]),
         CellNumber: new FormControl('', [Validators.required, Validators.pattern('^[0-9]*'),
                     Validators.minLength(1), Validators.maxLength(20)]),
         Email: new FormControl('', [Validators.required,Validators.pattern('^[a-zA-Z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$')]),
@@ -93,6 +94,11 @@ export class DbBrokerAppointmentComponent implements OnInit {
             this.investor = data.data
             this.investor_id=atob(this.route.snapshot.params.investor_id)
             this.DisclosureName= this.investor.FirstName+' '+this.investor.LastName;
+
+            this.form.get("OwnerInsured").setValue(this.DisclosureName);
+            this.form.get("IdNumber").setValue(this.investor.ClientNumber);
+            this.form.get("Email").setValue(this.investor.email);
+            this.form.get("CellNumber").setValue(this.investor.CellNumber);
 
         }
       }, err => {
@@ -206,8 +212,8 @@ export class DbBrokerAppointmentComponent implements OnInit {
     get OwnerInsuredVal() { return this.form.get('OwnerInsured'); }
     get PostalAddressVal() { return this.form.get('PostalAddress'); }
     get IdNumberVal() { return this.form.get('IdNumber'); }
-    get HomeNumberVal() { return this.form.get('HomeNumber'); }
-    get WorkNumberVal() { return this.form.get('WorkNumber'); }
+    // get HomeNumberVal() { return this.form.get('HomeNumber'); }
+    // get WorkNumberVal() { return this.form.get('WorkNumber'); }
     get CellNumberVal() { return this.form.get('CellNumber'); }
     get EmailVal() { return this.form.get('Email'); }
     get company_idVal() { return this.form.get('company_id'); }
@@ -229,6 +235,7 @@ export class DbBrokerAppointmentComponent implements OnInit {
         var valid = this.form.valid
         console.log(this.investor_id)
         console.log(this.form.value)
+        console.log(valid,this.checkFormValid())
     	if (valid && this.checkFormValid()) {
     		
             var formdata: FormData = new FormData();
@@ -284,6 +291,7 @@ export class DbBrokerAppointmentComponent implements OnInit {
                     // this.router.navigate(['/user/clientProfile']);
                     // this.loadInvestors()
                     this.toastr.success('Broker appointment added successfully')
+                    window.open(environment.BrokerAppointmentSignBasePath + ""+data.pdfName)
                     this._location.back();
 
                 }else  {
