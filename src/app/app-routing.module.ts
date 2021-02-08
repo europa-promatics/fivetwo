@@ -47,6 +47,7 @@ import { DraftClientsComponent } from './views/draft-clients/draft-clients.compo
 
 import { CreateRequestGuardService  } from "./user/deactivate_guard.service";
 import { EditLeadComponent } from './views/edit-lead/edit-lead.component';
+import {  DbEditBrokerComponent } from "./views/db-edit-broker/db-edit-broker.component";
 
 const routes: Routes = [
 	{
@@ -200,6 +201,10 @@ const routes: Routes = [
 		            {
 		            	path: 'brokerAppointment/:investor_id',
 		            	component: DbBrokerAppointmentComponent
+		            },
+		            {
+		            	path: 'edit-broker',
+		            	component: DbEditBrokerComponent
 		            },
 		            {
 		            	path: 'clientsList',

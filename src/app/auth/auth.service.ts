@@ -1013,6 +1013,18 @@ export class AuthService {
           // catchError(this.error)
         )
     }
+
+    editBrokerProfile(data): Observable<any> {
+      let API_URL = this.SERVER_URL + 'edit/broker/profile';
+      return this.http.post(API_URL, data, this.httpOptionswithoutContent)
+        .pipe(
+          map((res: Response) => {
+            return res
+          }),
+          // retry(1),
+          // catchError(this.error)
+        )
+    }
     sendWelcomeLetter(data): Observable<any> {
       let API_URL = this.SERVER_URL + 'send/welcome/letter';
       return this.http.post(API_URL, data, this.httpOptions)
@@ -1059,6 +1071,8 @@ export class AuthService {
           // catchError(this.error)
         )
     }
+
+
 
     admin_login(form): Observable<any> {
       let API_URL = environment.admin_endpoint + 'admin/login';

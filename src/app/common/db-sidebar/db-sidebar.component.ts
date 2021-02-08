@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import {SharedServiceService} from './../../auth/shared-service.service';
+import { environment } from "./../../../environments/environment";
 
 declare var $;
 
@@ -17,6 +18,8 @@ export class DbSidebarComponent implements OnInit {
   task_count: 0
   lead_count: 0
   subscription: Subscription;
+  BROKER
+  environment = environment;
   constructor(private authService: AuthService, 
     private router: Router, 
     private toastr: ToastrService,
@@ -35,6 +38,7 @@ export class DbSidebarComponent implements OnInit {
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('user')) || JSON.parse(sessionStorage.getItem('user'));
     this.count()
+    this.BROKER = this.authService.getLoggedUserDetails()
     // $('[data-toggle="tooltip"]').tooltip(); 
   }
 

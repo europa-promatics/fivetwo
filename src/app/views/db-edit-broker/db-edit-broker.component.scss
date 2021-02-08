@@ -1,0 +1,53 @@
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+    margin: 0 auto;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+  
+  td {
+    padding-right: 8px;
+  }
+
+  .outr_boundry_disclos .span_img {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    border-radius: 100%;
+    margin: 0 auto;
+    margin-bottom: 40px;
+  }
+  .outr_boundry_disclos .span_img img {
+    border-radius: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0px 5px 5px 0px rgba(44, 44, 44, 0.2);
+  }
+  .outr_boundry_disclos .span_img .inpt_ico {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 30px;
+    height: 30px;
+    background: #238ab4;
+    border-radius: 100%;
+    text-align: center;
+    line-height: 30px;
+    overflow: hidden;
+    color: #fff;
+  }
+
+  .outr_boundry_disclos .form_inpt {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    opacity: 0;
+  }

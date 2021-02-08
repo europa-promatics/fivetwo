@@ -98,6 +98,7 @@ export class LoginComponent implements OnInit {
       }
     }, err => {
       console.log(err)
+      this.authService.showAuthError(err)
       // this.toastr.error(this.authService.COMMON_ERROR);
 
     })

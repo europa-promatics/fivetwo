@@ -79,6 +79,7 @@ import { CreateRequestGuardService } from "./../app/user/deactivate_guard.servic
 import { EditLeadComponent } from './views/edit-lead/edit-lead.component';
 import { MAT_DATE_LOCALE } from '@angular/material';
 import {MatTabsModule} from '@angular/material/tabs';
+import { DbEditBrokerComponent } from './views/db-edit-broker/db-edit-broker.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -128,6 +129,7 @@ import {MatTabsModule} from '@angular/material/tabs';
     DbAddTaskComponent,
     DraftClientsComponent,
     EditLeadComponent,
+    DbEditBrokerComponent,
   ],
   imports: [
     BrowserModule,
