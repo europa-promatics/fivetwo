@@ -146,4 +146,8 @@ export class DbEditBrokerComponent implements OnInit {
 
   }
 
+  goBack(){
+    this._location.back();
+  }
+
 }

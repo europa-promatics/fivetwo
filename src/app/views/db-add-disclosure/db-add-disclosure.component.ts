@@ -174,7 +174,7 @@ export class DbAddDisclosureComponent implements OnInit {
                     window.open(environment.disclosurePDF + ""+data.pdfName,'_blank')
                     this.button_message = "Save";
                       // this.router.navigate(['/user/clientProfile']);
-                      this._location.back();
+                     this._location.back();
                     // stepper.next();
                     // this.stepperNextAsyc(stepper,'3')
 

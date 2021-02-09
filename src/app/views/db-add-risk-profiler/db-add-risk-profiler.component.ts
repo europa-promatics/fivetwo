@@ -184,7 +184,7 @@ export class DbAddRiskProfilerComponent implements OnInit {
               //sessionStorage.setItem('investor',JSON.stringify(investor_data))
               window.open(environment.RiskPDF+""+data.pdfName)
               this.toastr.success('Risk Profiler added successfully')
-              this._location.back();
+              // this._location.back();
               
               
 
