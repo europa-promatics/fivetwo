@@ -17,9 +17,9 @@ import { env } from 'process';
 export class DbEditBrokerComponent implements OnInit {
   
   BROKER
-  password
-  confirm_password
-  old_password
+  password=""
+  confirm_password=""
+  old_password=""
   profile_image
   profile_image_data
   emailFormControl = new FormControl('', [
