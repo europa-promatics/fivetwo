@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from  "@angular/router";
 import { FormGroup, FormBuilder, Validators, FormControl, FormArray } from '@angular/forms';
 import { Location } from '@angular/common';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -29,22 +30,23 @@ export class DbBrokerAppointmentComponent implements OnInit {
 	investors_data
     AdvisorSignature: any;
     BROKER
+    DisclosureName
 
 
   constructor(private _location: Location,private route:ActivatedRoute,private router:Router,private authService:AuthService,private toastr: ToastrService,public formBuilder: FormBuilder) { }
 
   	form = new FormGroup({
         
-        OwnerInsured: new FormControl('', [Validators.required, Validators.pattern('^[0-9]*'),
-                    Validators.minLength(1), Validators.maxLength(20)]),
+        OwnerInsured: new FormControl('', 
+            [Validators.required]),
         PostalAddress: new FormControl('', [ Validators.pattern('^[a-zA-Z0-9 #,.]*'),
                     Validators.minLength(1), Validators.maxLength(60)]),
         IdNumber: new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z0-9]*'),
                     Validators.minLength(1), Validators.maxLength(20)]),
-        HomeNumber: new FormControl('', [Validators.pattern('^[0-9]*'),
-                    Validators.minLength(1), Validators.maxLength(20)]),
-        WorkNumber: new FormControl('', [ Validators.pattern('^[0-9]*'),
-                    Validators.minLength(1), Validators.maxLength(20)]),
+        // HomeNumber: new FormControl('', [Validators.pattern('^[0-9]*'),
+        //             Validators.minLength(1), Validators.maxLength(20)]),
+        // WorkNumber: new FormControl('', [ Validators.pattern('^[0-9]*'),
+        //             Validators.minLength(1), Validators.maxLength(20)]),
         CellNumber: new FormControl('', [Validators.required, Validators.pattern('^[0-9]*'),
                     Validators.minLength(1), Validators.maxLength(20)]),
         Email: new FormControl('', [Validators.required,Validators.pattern('^[a-zA-Z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$')]),
@@ -57,7 +59,8 @@ export class DbBrokerAppointmentComponent implements OnInit {
 
   ngOnInit() {
   	this.getInvestor()
-  	this.getCompanies()
+  	// this.getCompanies()
+  	this.getBrokerCompanies()
   	let d = new Date();
     let currDate = d.getDate();
     let currMonth = d.getMonth()+1;
@@ -90,7 +93,12 @@ export class DbBrokerAppointmentComponent implements OnInit {
         if (data.success) {
             this.investor = data.data
             this.investor_id=atob(this.route.snapshot.params.investor_id)
-            // this.DisclosureName= this.investor.FirstName+' '+this.investor.LastName;
+            this.DisclosureName= this.investor.FirstName+' '+this.investor.LastName;
+
+            this.form.get("OwnerInsured").setValue(this.DisclosureName);
+            this.form.get("IdNumber").setValue(this.investor.ClientNumber);
+            this.form.get("Email").setValue(this.investor.Email);
+            this.form.get("CellNumber").setValue(this.investor.CellNumber);
 
         }
       }, err => {
@@ -106,8 +114,20 @@ export class DbBrokerAppointmentComponent implements OnInit {
 
   	console.log('change')
   	console.log(evt.target.value)
-  	var company_id = evt.target.value
-  	this.getBrokerCodes(company_id)
+      // var company_id = evt.target.value
+    var brokerCode = this.companies.find((item) => {
+        return item.company_id == evt.target.value;
+    })
+
+    if(brokerCode){
+        this.form.controls['broker_code_id'].setValue(brokerCode.broker_code);
+    }else{
+        this.form.controls['broker_code_id'].setValue("");
+    }
+
+    console.log(brokerCode)
+
+  //	this.getBrokerCodes(company_id)
 
   }
 
@@ -154,6 +174,28 @@ export class DbBrokerAppointmentComponent implements OnInit {
   	})
   }
 
+
+  getBrokerCompanies(){
+
+  	this.authService.getBrokerCompanies().subscribe(data => {
+  	    
+  	    if (data.success == 1) {    
+
+  	        this.companies = data.companies
+  	        // console.log(this.companies);
+  	        // this.form.controls['company_id'].setValue(this.companies[0].id);
+
+  	        // this.getBrokerCodes(this.companies[0].id)
+
+  	    }else  {
+  	        // this.toastr.error(data.message, 'Error');
+  	    }
+  	}, err => {
+  	        console.log(err)
+  	        // this.toastr.error(this.authService.COMMON_ERROR);
+  	})
+  }
+
   
   
 
@@ -170,11 +212,12 @@ export class DbBrokerAppointmentComponent implements OnInit {
     get OwnerInsuredVal() { return this.form.get('OwnerInsured'); }
     get PostalAddressVal() { return this.form.get('PostalAddress'); }
     get IdNumberVal() { return this.form.get('IdNumber'); }
-    get HomeNumberVal() { return this.form.get('HomeNumber'); }
-    get WorkNumberVal() { return this.form.get('WorkNumber'); }
+    // get HomeNumberVal() { return this.form.get('HomeNumber'); }
+    // get WorkNumberVal() { return this.form.get('WorkNumber'); }
     get CellNumberVal() { return this.form.get('CellNumber'); }
     get EmailVal() { return this.form.get('Email'); }
     get company_idVal() { return this.form.get('company_id'); }
+    get broker_code_id() { return this.form.get('broker_code_id'); }
 
     
 
@@ -192,6 +235,7 @@ export class DbBrokerAppointmentComponent implements OnInit {
         var valid = this.form.valid
         console.log(this.investor_id)
         console.log(this.form.value)
+        console.log(valid,this.checkFormValid())
     	if (valid && this.checkFormValid()) {
     		
             var formdata: FormData = new FormData();
@@ -245,7 +289,10 @@ export class DbBrokerAppointmentComponent implements OnInit {
 
                     // this.toastr.success('Broker appointment added successfully')
                     // this.router.navigate(['/user/clientProfile']);
-                    this.loadInvestors()
+                    // this.loadInvestors()
+                    this.toastr.success('Broker appointment added successfully')
+                    window.open(environment.BrokerAppointmentSignBasePath + ""+data.pdfName)
+                    this._location.back();
 
                 }else  {
                     // this.toastr.error(data.message, 'Error');

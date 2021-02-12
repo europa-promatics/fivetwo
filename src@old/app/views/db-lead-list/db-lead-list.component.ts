@@ -24,8 +24,8 @@ export class DbLeadListComponent implements OnInit {
   ModalHeading
   ModalBody
   tableSort = []
-  orderBy = 'created_at'
-  sortName = 'DESC'
+  orderBy = 'follow_up_date'
+  sortName = 'ASC'
   ShowEditNote
   lead_id
   edit = true
@@ -44,6 +44,15 @@ export class DbLeadListComponent implements OnInit {
     private router: Router,
     private toastr: ToastrService,
   ) { }
+
+  sortStatus = {
+    total_products : "DESC", 
+    FirstName : "DESC", 
+    LastName : "ASC", 
+    ClientNumber : "DESC", 
+    total_holding : "DESC", 
+    follow_up_date : "DESC", 
+}
 
   ngOnInit() {
     this.ShowEditNote = false
@@ -81,6 +90,68 @@ export class DbLeadListComponent implements OnInit {
     }
   }
 
+  // getToggleKey(orderName) {
+  //   var key
+  //   if (orderName == 'ClientNumber') {
+  //     key = 0
+  //   } else if (orderName == 'investor_name') {
+  //     key = 1
+  //   }
+  //   return key
+  // }
+
+  // getToggleSort(orderName) {
+  //   var key = this.getToggleKey(orderName)
+  //   this.toggleSort(key)
+
+  //   if (this.tableSort[key]) {
+  //     return 'DESC'
+  //   } else {
+  //     return 'ASC'
+  //   }
+
+  // }
+
+  sortNew(order_by) {
+    var sortNameNew ;
+    // alert(this.sortStatus[order_by])
+    if(this.sortStatus[order_by] == "DESC"){
+      sortNameNew = "ASC";
+      this.sortStatus[order_by] = "ASC";
+    }else{
+      sortNameNew = "DESC";
+      this.sortStatus[order_by] = "DESC";
+    }
+    
+    var sort = this.getToggleSort(order_by)
+    console.log(sort)
+    this.orderBy = order_by
+    this.sortName = sort
+
+    var ob = {
+      offset: this.offset,
+      limit: this.limit,
+      order_by: this.orderBy,
+      sort: sortNameNew
+    };
+
+    ///this.loaderSort[order_by] = true;
+    console.log(ob)
+    this.authService.investors(ob).subscribe(data => {
+
+      if (data) {
+      //  this.investors = data.data
+        this.length = data.count
+        console.log(data)
+        //this.loaderSort[order_by] = false;
+      }
+    }, err => {
+      //this.loaderSort[order_by] = false;
+      console.log(err)
+      // this.toastr.error(this.authService.COMMON_ERROR);
+    })
+  }
+
   getToggleKey(orderName) {
     var key
     if (orderName == 'LastName') {
@@ -96,7 +167,9 @@ export class DbLeadListComponent implements OnInit {
     } else if (orderName == 'HomeAddress') {
       key = 5
     } else if (orderName == 'status') {
-      key = 6
+      key = 6    
+    } else if (orderName == 'follow_up_date') {
+      key = 7
     }
     return key
   }
@@ -143,12 +216,26 @@ export class DbLeadListComponent implements OnInit {
   }
 
   toggle(id) {
-    const index = this.opened.indexOf(id);
-    if (index > -1) {
-      this.opened.splice(index, 1);
-    } else {
-      this.opened.push(id);
+    
+    if(this.opened.indexOf(id) >= 0){
+
+      this.opened = [];
+
+
+    }else{
+      this.opened = [];
+      this.opened.push(id)
     }
+
+    
+    //alert("lead")
+    //const index = this.opened.indexOf(id);
+    
+    // if (index > -1) {
+    //   this.opened.splice(index, 1);
+    // } else {
+    //   this.opened.push(id);
+    // }
   }
 
   getLeads() {
@@ -260,7 +347,7 @@ export class DbLeadListComponent implements OnInit {
       if (data) {
         console.log(data)
 
-        if (status == 'investor') {
+        if (status == 'client') {
 
           localStorage.setItem('lead', JSON.stringify(data.data));
           this.router.navigate(['/user/addClient']);
@@ -306,7 +393,7 @@ export class DbLeadListComponent implements OnInit {
     }
 
     Swal.fire({
-      title: 'Are you sure want to remove?',
+      title: 'Are you sure want to discard?',
       text: 'You will not be able to recover this lead!',
       icon: 'warning',
       showCancelButton: true,
@@ -366,6 +453,7 @@ export class DbLeadListComponent implements OnInit {
       
       if (data) {
         this.toastr.success(data.message,"Success!");
+        this.getLeads();
       }
     }, err => {
       this.authService.showAuthError(err);

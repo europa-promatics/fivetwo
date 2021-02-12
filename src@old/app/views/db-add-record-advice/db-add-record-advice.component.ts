@@ -3,6 +3,7 @@ import { AuthService } from '../.././auth/auth.service';
 import { ActivatedRoute, Router } from  "@angular/router";
 import { ToastrService } from 'ngx-toastr';
 import { Location } from '@angular/common';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-db-add-record-advice',
@@ -30,6 +31,11 @@ export class DbAddRecordAdviceComponent implements OnInit {
     adviseTaken
     BROKER
 
+    summary_of_discussion = []
+    summary_of_advice = []
+    explain = []
+
+
   constructor(private route : ActivatedRoute, private _location: Location,private authService:AuthService,private router:Router, private toastr: ToastrService) { }
 
   ngOnInit() {
@@ -43,6 +49,8 @@ export class DbAddRecordAdviceComponent implements OnInit {
   	
     this.RecordAdviceDate=today
     this.BROKER = this.authService.getLoggedUserDetails();
+
+    this.getRecordAdviceData(this.BROKER.id);
   }
   get forthStep() { return this.ForthStepStatus; }
   get advisorRequired() { return (this.chosenItem=='Yes'); }
@@ -85,6 +93,49 @@ export class DbAddRecordAdviceComponent implements OnInit {
         // this.toastr.error(this.authService.COMMON_ERROR);
       })
   }
+
+    onChangeSummary(event){
+        console.log(event)
+        this.RecordAdviceSummaryOfDiscussionWithClient = event.value
+    }
+
+    onChangeAdvisor(event){
+        console.log(event)
+        this.RecordAdviceSummaryOfAdviceFromAdvisor = event.value
+    }
+    onChangeExplain(event){
+        console.log(event)
+        this.RecordAdviceOfAdvisorExplain = event.value
+    }
+
+  getRecordAdviceData(broker_id){
+    var obj = {
+        broker_id : broker_id,
+    }
+    this.authService.getRecordAdviceData().subscribe(data => {
+        console.log(data)
+        // alert(data)
+
+        if (data.success == 1) {
+
+            
+            this.summary_of_advice = data.summary_of_advice;
+            this.summary_of_discussion = data.summary_of_discussion;
+            this.explain = data.explain;
+
+            // console.log(data);
+            // stepper.next();
+
+
+        } else {
+            // this.toastr.error(data.message, 'Error');
+        }
+    }, err => {
+        console.log(err)
+        // this.toastr.error(this.authService.COMMON_ERROR);
+
+    })
+}
 
   public add(){
 
@@ -139,8 +190,9 @@ export class DbAddRecordAdviceComponent implements OnInit {
                     var investor_data = data.data
               		sessionStorage.setItem('investor',JSON.stringify(investor_data))
                 
-                    this.toastr.success('Record of Advice added successfully')
-                     this._location.back();
+                    this.toastr.success('Record of Advice added successfully');
+                    window.open(environment.recordAdvice+""+data.pdfName)
+                    this._location.back();
                     // stepper.next();
                     // this.stepperNextAsyc(stepper,'4')
                     // this.DisclosureSign=null;

@@ -41,7 +41,7 @@ export class DbAddTaskComponent implements OnInit {
     var datePipe = new DatePipe('en-US');
     let date = datePipe.transform(this.currentDate, 'MM/dd/yyyy');
     this.form.controls['date'].setValue(date);
-    this.status = 'completed'
+    this.status = 'upcoming'
   }
 
   submit() {

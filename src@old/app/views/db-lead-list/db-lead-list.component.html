@@ -61,112 +61,146 @@
 			            						<small class="sub_crd">A project is an activity to meet the creation of a unique product or service and thus activities that are undertaken to accomplish routine activities.</small>
 			            					</div> -->
 											<div class="table-responsive table_seler">
-												<!-- table start -->
+		            							<!-- table start -->
 												<div class="table_db_indi">
-													<div class="onl_tabl">
-														<table class="mat-table table-bordered table table-striped"
-															sort>
-															<tr class="mat-header-row">
-																<th (click)="sort('LastName')" class="mat-header-cell">
-																	Surname</th>
-																<th (click)="sort('FirstName')" class="mat-header-cell">
-																	First Name</th>
-																<!-- <th (click)="sort('IdNumber')" class="mat-header-cell">ID</th> -->
-																<th (click)="sort('CellNumber')"
-																	class="mat-header-cell">Cell No.</th>
-																<th (click)="sort('Email')" class="mat-header-cell">
-																	Email</th>
-																<!-- <th (click)="sort('HomeAddress')" class="mat-header-cell">Address</th> -->
-																<!-- <th class="mat-header-cell">Last<br>Followed Up</th> -->
-																<th class="mat-header-cell">To<br>Follow Up</th>
-																<th (click)="sort('status')" class="mat-header-cell">
-																	Status</th>
-															</tr>
+													<div class="onl_tabl">	
+														<table class="mat-table table-bordered table table-striped" sort>	
+															<thead>
+															  	<tr class="mat-header-row">
+																	<th (click)="sort('follow_up_date')" class="mat-header-cell">Follow Up</th>
+																	<th (click)="sort('LastName')" class="mat-header-cell">
+																		Surname</th>
+																	<th (click)="sort('FirstName')" class="mat-header-cell">
+																		First Name</th>
+																	<!-- <th (click)="sort('IdNumber')" class="mat-header-cell">ID</th> -->
+																	<th (click)="sort('CellNumber')"
+																		class="mat-header-cell">Cell No.</th>
+																	<th (click)="sort('Email')" class="mat-header-cell">
+																		Email</th>
+																	<!-- <th (click)="sort('HomeAddress')" class="mat-header-cell">Address</th> -->
+																	<!-- <th class="mat-header-cell">Last<br>Followed Up</th> -->
+																	<th (click)="sort('status')" class="mat-header-cell">
+																		Status</th>
+																	<th class="mat-header-cell">
+																		Action</th>
+																</tr>
+															</thead>
+															<tbody>
+															  	<ng-container *ngFor="let value of leads; let i = index">
+																<tr class="mat-row"
+																	>
+																	<td class="mat-cell datpckr_td">
+																		<span *ngIf="value.status != 'archive'">
+																			<mat-form-field appearance="fill">
+																				<input readonly matInput
+																					[matDatepicker]="pickerFrom"
+																					[(ngModel)]="value.follow_up_date"
+																					(dateInput)="changeDate('input', $event,value)"
+																					[ngModelOptions]="{standalone: true}">
+																				<mat-datepicker-toggle
+																					matSuffix [for]="pickerFrom">
+																				</mat-datepicker-toggle>
+																				<mat-datepicker #pickerFrom>
+																				</mat-datepicker>
+																			</mat-form-field>
+																		</span>
 
-															<ng-container *ngFor="let value of leads; let i = index">
-																<tr class="mat-row folowup"
-																	[ngClass]="conditionCheck(value) ? 'abc':''">
+																		<span *ngIf="value.status == 'archive'">
+																			-
+																		</span>
+																	</td>
 																	<td class="mat-cell">{{value.LastName}} </td>
 																	<td (click)="toggle(value.id)"
-																		class="mat-cell wtnrp">{{value.FirstName}} </td>
+																		class="mat-cell wtnrp" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">{{value.FirstName}} </td>
 																	<!-- <td class="mat-cell">{{value.IdNumber}}</td> -->
 																	<td class="mat-cell">{{value.CellNumber}}</td>
 																	<td class="mat-cell">{{value.Email}}</td>
 																	<!-- <td class="mat-cell">12/18/2020</td> -->
-																	<td class="mat-cell datpckr_td">
-																		<mat-form-field appearance="fill">
-																			<input readonly matInput
-																				[matDatepicker]="pickerFrom"
-																				[(ngModel)]="value.follow_up_date"
-																				(dateInput)="changeDate('input', $event,value)"
-																				[ngModelOptions]="{standalone: true}">
-																			<mat-datepicker-toggle
-																				matSuffix [for]="pickerFrom">
-																			</mat-datepicker-toggle>
-																			<mat-datepicker #pickerFrom>
-																			</mat-datepicker>
-																		</mat-form-field>
-																	</td>
 																	<!-- <td class="mat-cell addrs_td">{{value.HomeAddress.substr(0,20)}} <a (click)="viewMore('Address',value.HomeAddress)" href="javascript:;" class="wtnrp">View More</a></td> -->
 																	<td class="mat-cell">
-																		<button mat-raised-button
-																			[matMenuTriggerFor]="menu"
-																			[color]="getStatusColor(value.status)">
-																			{{value.status}}
-																		</button>
-																		<mat-menu #menu="matMenu" xPosition="before">
-																			<button
-																				(click)="changeStatus(value.id,'visitor')"
-																				mat-menu-item>
-																				<span>Visitor</span>
+																		<span *ngIf='value.status == "call_lead"' class="badge badge-danger">Call Lead</span>
+																		<span *ngIf='value.status != "call_lead" && value.status != "archive" && value.status != "upcoming"' class="badge badge-primary">Become Client</span>
+																		<span *ngIf='value.status != "call_lead" && value.status != "client" && value.status != "upcoming"' class="badge" style="background-color: orange;">Archive</span>
+																		<span *ngIf='value.status != "call_lead" && value.status != "client" && value.status != "archive" && value.status == "upcoming"' class="badge" style="background-color: orange;">Upcoming</span>
+																	</td>
+																	<!-- <td class="mat-cell" *ngIf='value.status != "call_lead"')>
+																		<span class="badge badge-primary">In progress</span>
+																	</td> -->
+																	<!-- [color]="getStatusColor(value.status)" -->
+																	<td class="mat-cell">
+																		<span class="d-flex align-items-center">	
+																			<button mat-raised-button
+																				[matMenuTriggerFor]="menu"
+																				class="custom-mat-raised-button">
+																				<!-- {{value.status}} -->
+																				<mat-icon class="custom-mat-icon">keyboard_arrow_down</mat-icon>
 																			</button>
-																			<button
-																				(click)="changeStatus(value.id,'investor')"
-																				mat-menu-item>
-																				<span>Make Investor</span>
+																			<button mat-raised-button
+																				class="custom-mat-raised-button" routerLink="/user/editLead/{{value.id}}">
+																				<mat-icon class="custom-mat-icon">edit</mat-icon>
 																			</button>
-																			<button
-																				(click)="changeStatus(value.id,'called')"
-																				mat-menu-item>
-																				<span>Called</span>
-																			</button>
-																			<button
-																				(click)="changeStatus(value.id,'cancelled')"
-																				mat-menu-item>
-																				<span>Cancelled</span>
-																			</button>
-																			<button (click)="deleteLead(value.id)"
-																				mat-menu-item>
-																				<span>Discard</span>
-																			</button>
-																		</mat-menu>
+																			<mat-menu #menu="matMenu" xPosition="before">
+																				<button
+																					(click)="changeStatus(value.id,	'call_lead')"
+																					mat-menu-item>
+																					<span>Call Lead</span>
+																				</button>
+																				<button
+																					(click)="changeStatus(value.id,'client')"
+																					mat-menu-item>
+																					<span>Become Client</span>
+																				</button>
+																				<button
+																					(click)="changeStatus(value.id,'archive')"
+																					mat-menu-item>
+																					<span>Archieve</span>
+																				</button>
+																				<button
+																					(click)="changeStatus(value.id,'upcoming')"
+																					mat-menu-item>
+																					<span>Upcoming</span>
+																				</button>
+																				<!-- <button
+																					(click)="changeStatus(value.id,'cancelled')"
+																					mat-menu-item>
+																					<span>Cancelled</span>
+																				</button> -->
+																				<button (click)="deleteLead(value.id)"
+																					mat-menu-item>
+																					<span>Discard</span>
+																				</button>
+																			</mat-menu>
+																		</span>
 																	</td>
 																</tr>
-																<tr *ngIf="opened.includes(value.id)" class="mat-row">
-																	<td class="mat-cell" colspan="15">
-																		<p>Address: {{value.HomeAddress.substr(0,20)}}</p>
-																		<p>ID: {{value.IdNumber}}</p>
-																		<h5>Name: {{ value.FirstName }}
-																			{{ value.LastName }}</h5>
-																		<p>Other Contact Number: {{ value.HomeNumber }}</p>
-																		<!-- <p>Marital Status: {{ value.MaritalStatus }}</p> -->
+																<tr *ngIf="opened.indexOf(value.id) >= 0" id="multiCollapseExample1" class="mat-row g {{opened.indexOf(value.id)}} collapse">
+																	<td colspan="7">
+																		<div class="">
+																			<p>Address: {{value.HomeAddress.substr(0,20)}}</p>
+																			<p>ID: {{value.IdNumber}}</p>
+																			<h5>Name: {{ value.FirstName }}
+																				{{ value.LastName }}</h5>
+																			<p>Other Contact Number: {{ value.HomeNumber }}</p>
+																			<!-- <p>Marital Status: {{ value.MaritalStatus }}</p> -->
+																			
+																			<p class="mb-0">Note: <a
+																					(click)="viewMore(value.Note,value.id)"
+																					class="wtnrp">View Note</a></p>
+																		</div>
+																	</td>	
 																		
-																		<p class="mb-0">Note: <a
-																				(click)="viewMore(value.Note,value.id)"
-																				class="wtnrp">View Note</a></p>
-																	</td>
+																		
+
 																</tr>
 															</ng-container>
-
+															</tbody>
 														</table>
 
-														<mat-paginator [length]="length" [pageSize]="50"
-															[pageSizeOptions]="[10, 25, 50, 100]"
-															(page)="paginationOptionChange($event)"></mat-paginator>
+														<mat-paginator [pageSize]="limit" (page)="paginationOptionChange($event)" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>	
 													</div>
 												</div>
 												<!-- table start -->
-											</div>
+		            						</div>		
 										</div>
 									</div>
 								</div>

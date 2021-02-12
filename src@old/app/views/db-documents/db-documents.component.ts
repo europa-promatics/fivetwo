@@ -26,6 +26,7 @@ export class DbDocumentsComponent implements OnInit {
   letterAuthority = []
   otherDocuments = []
   reviewDocuments = []
+  welcome_letter = []
   recordOfAdviceDocuments = []
   planningDocuments = []
   id_documents = []
@@ -48,8 +49,8 @@ export class DbDocumentsComponent implements OnInit {
   index3
   index4
   index5
-  bank_document: [];
-  address_document: [];
+  bank_document =  [];
+  address_document = [];
 
   // search docs
   search: any
@@ -66,6 +67,7 @@ export class DbDocumentsComponent implements OnInit {
     document_id: [],
     planning: [],
     reviews: [],
+    welcome_letter: [],
   }
 
   planningTemp = []
@@ -74,7 +76,7 @@ export class DbDocumentsComponent implements OnInit {
   saveCreateFolder = false
   saveCreateFolderDoc = false
   saveOuterFolderDoc = false
-  broker_documents: any;
+  broker_documents = [];
   constructor(private route: ActivatedRoute, private _location: Location, private service: AuthService, private router: Router, private toastr: ToastrService) {
     this.authService = service;
   }
@@ -134,6 +136,7 @@ export class DbDocumentsComponent implements OnInit {
         this.bank_document = data.proof_of_banking,
         this.address_document = data.proof_of_address
         this.broker_documents = data.broker_appointment
+        this.welcome_letter = data.welcome_letter
 
         // this.custom_document.broker_appoinment.push({
         //   id :10,
@@ -180,6 +183,7 @@ export class DbDocumentsComponent implements OnInit {
         this.custom_document.planning = data.plainning_documents
         this.custom_document.risk_profiler = data.risk_profiler;
         this.custom_document.reviews = data.reviews_documents;
+        this.custom_document.welcome_letter = data.welcome_letter;
         // this.id_documents = data.ids;
         // this.otherDocuments = data.others_documents
         // this.reviewDocuments = data.reviews_documents

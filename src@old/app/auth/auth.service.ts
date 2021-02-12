@@ -398,6 +398,30 @@ export class AuthService {
         // catchError(this.error)
         )
     }
+    editLead(data): Observable<any> {
+      let API_URL = this.SERVER_URL+'edit-lead';
+      return this.http.post(API_URL,data)
+      .pipe(
+        map((res: Response) => {
+          return res
+        }),
+        // retry(1),
+        // catchError(this.error)
+        )
+    }
+
+    getSingleLead(data): Observable<any> {
+      let API_URL = this.SERVER_URL+'get-lead';
+      return this.http.post(API_URL,data)
+      .pipe(
+        map((res: Response) => {
+          return res
+        }),
+        // retry(1),
+        // catchError(this.error)
+        )
+    }
+
     leadStatus(data): Observable<any> {
       let API_URL = this.SERVER_URL+'lead-status';
       return this.http.post(API_URL,data)
@@ -718,6 +742,17 @@ export class AuthService {
         // catchError(this.error)
         )
     }
+    clientProducts(data): Observable<any> {
+      let API_URL = this.SERVER_URL+'get/data/for/welcome/letter';
+      return this.http.post(API_URL,data,this.httpOptions)
+      .pipe(
+        map((res: Response) => {
+          return res
+        }),
+        // retry(1),
+        // catchError(this.error)
+        )
+    }
 
     forgotPassword(data): Observable<any> {
       let API_URL = this.SERVER_URL+'forgot-password';
@@ -947,6 +982,101 @@ export class AuthService {
     updateLeadFollowDate(data): Observable<any> {
       let API_URL = this.SERVER_URL + 'update-lead';
       return this.http.post(API_URL, data, this.httpOptions)
+        .pipe(
+          map((res: Response) => {
+            return res
+          }),
+          // retry(1),
+          // catchError(this.error)
+        )
+    }
+
+    updateTaskFollowDate(data): Observable<any> {
+      let API_URL = this.SERVER_URL + 'updateTaskDate';
+      return this.http.post(API_URL, data, this.httpOptions)
+        .pipe(
+          map((res: Response) => {
+            return res
+          }),
+          // retry(1),
+          // catchError(this.error)
+        )
+    }
+    getDisclosureData(data): Observable<any> {
+      let API_URL = this.SERVER_URL + 'get/disclosure/data';
+      return this.http.post(API_URL, data, this.httpOptions)
+        .pipe(
+          map((res: Response) => {
+            return res
+          }),
+          // retry(1),
+          // catchError(this.error)
+        )
+    }
+
+    editBrokerProfile(data): Observable<any> {
+      let API_URL = this.SERVER_URL + 'edit/broker/profile';
+      return this.http.post(API_URL, data, this.httpOptionswithoutContent)
+        .pipe(
+          map((res: Response) => {
+            return res
+          }),
+          // retry(1),
+          // catchError(this.error)
+        )
+    }
+    sendWelcomeLetter(data): Observable<any> {
+      let API_URL = this.SERVER_URL + 'send/welcome/letter';
+      return this.http.post(API_URL, data, this.httpOptions)
+        .pipe(
+          map((res: Response) => {
+            return res
+          }),
+          // retry(1),
+          // catchError(this.error)
+        )
+    }
+
+    getRiskProfilerData(data): Observable<any> {
+      let API_URL = this.SERVER_URL + 'get/riskprofiler/data';
+      return this.http.post(API_URL, data, this.httpOptions)
+        .pipe(
+          map((res: Response) => {
+            return res
+          }),
+          // retry(1),
+          // catchError(this.error)
+        )
+    }
+    getBrokerCompanies(): Observable<any> {
+      let API_URL = this.SERVER_URL + 'get/broker/companies';
+      return this.http.get(API_URL, this.httpOptions)
+        .pipe(
+          map((res: Response) => {
+            return res
+          }),
+          // retry(1),
+          // catchError(this.error)
+        )
+    }
+
+    getRecordAdviceData(): Observable<any> {
+      let API_URL = this.SERVER_URL + 'get/record/of/advice/data';
+      return this.http.get(API_URL, this.httpOptions)
+        .pipe(
+          map((res: Response) => {
+            return res
+          }),
+          // retry(1),
+          // catchError(this.error)
+        )
+    }
+
+
+
+    admin_login(form): Observable<any> {
+      let API_URL = environment.admin_endpoint + 'admin/login';
+      return this.http.post(API_URL,form)
         .pipe(
           map((res: Response) => {
             return res

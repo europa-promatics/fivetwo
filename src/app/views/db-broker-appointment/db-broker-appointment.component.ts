@@ -37,8 +37,7 @@ export class DbBrokerAppointmentComponent implements OnInit {
 
   	form = new FormGroup({
         
-        OwnerInsured: new FormControl('', [
-                    Validators.minLength(1), Validators.maxLength(20)]),
+        OwnerInsured: new FormControl('', [Validators.required]),
         PostalAddress: new FormControl('', [ Validators.pattern('^[a-zA-Z0-9 #,.]*'),
                     Validators.minLength(1), Validators.maxLength(60)]),
         IdNumber: new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z0-9]*'),
@@ -97,7 +96,7 @@ export class DbBrokerAppointmentComponent implements OnInit {
 
             this.form.get("OwnerInsured").setValue(this.DisclosureName);
             this.form.get("IdNumber").setValue(this.investor.ClientNumber);
-            this.form.get("Email").setValue(this.investor.email);
+            this.form.get("Email").setValue(this.investor.Email);
             this.form.get("CellNumber").setValue(this.investor.CellNumber);
 
         }
@@ -292,7 +291,7 @@ export class DbBrokerAppointmentComponent implements OnInit {
                     // this.loadInvestors()
                     this.toastr.success('Broker appointment added successfully')
                     window.open(environment.BrokerAppointmentSignBasePath + ""+data.pdfName)
-                    this._location.back();
+                   this._location.back();
 
                 }else  {
                     // this.toastr.error(data.message, 'Error');

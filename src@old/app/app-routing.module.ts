@@ -46,6 +46,8 @@ import { DbAddTaskComponent } from './views/db-add-task/db-add-task.component';
 import { DraftClientsComponent } from './views/draft-clients/draft-clients.component';
 
 import { CreateRequestGuardService  } from "./user/deactivate_guard.service";
+import { EditLeadComponent } from './views/edit-lead/edit-lead.component';
+import {  DbEditBrokerComponent } from "./views/db-edit-broker/db-edit-broker.component";
 
 const routes: Routes = [
 	{
@@ -174,6 +176,10 @@ const routes: Routes = [
 		            {
 		            	path: 'addLead',
 		            	component: AddLeadListComponent
+					},
+					{
+		            	path: 'editLead/:id',
+		            	component: EditLeadComponent
 		            },
 		            {
 		            	path: 'leadList',
@@ -195,6 +201,10 @@ const routes: Routes = [
 		            {
 		            	path: 'brokerAppointment/:investor_id',
 		            	component: DbBrokerAppointmentComponent
+		            },
+		            {
+		            	path: 'edit-broker',
+		            	component: DbEditBrokerComponent
 		            },
 		            {
 		            	path: 'clientsList',

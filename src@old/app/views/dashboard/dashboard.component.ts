@@ -71,7 +71,7 @@ export class DashboardComponent implements OnInit {
 			label.wrap = true;
 			label.maxWidth = 120;
 			chart.colors.list = [
-			  am4core.color("#238ab4"),
+			  am4core.color("#105170"),
 			  am4core.color("#7e7f7e"),
 			];
   
@@ -90,7 +90,7 @@ export class DashboardComponent implements OnInit {
 				bullet.interactionsEnabled = false
 				bullet.dy = -10;
 				bullet.label.text = '{valueY}'
-				bullet.label.fill = am4core.color('#238ab4')
+				bullet.label.fill = am4core.color('#105170')
   
 				return series;
 			}
@@ -281,6 +281,7 @@ export class DashboardComponent implements OnInit {
 		  //     "income": 42,
 		  // }];
 
+
 		  //create category axis for years
 		  var categoryAxis = chart.yAxes.push(new am4charts.CategoryAxis());
 		  categoryAxis.dataFields.category = "year";
@@ -311,11 +312,14 @@ export class DashboardComponent implements OnInit {
 		  series.dataFields.categoryY = "year";
 		  series.dataFields.valueX = "income";
 		  series.name = "Value (M)";
-		  series.columns.template.fillOpacity = 0.5;
+		  series.columns.template.fillOpacity = 1;
 		  series.columns.template.strokeOpacity = 0;
 		  series.columns.template.width = am4core.percent(10);
+		  series.columns.template.fill = am4core.color("#105170");
 		  // series.tooltipText = "Value {categoryY}: {valueX.value}M";
-
+			// chart.colors.list = [
+			//   am4core.color("#F9F871")
+			// ];
 		  //add chart cursor
 		  chart.cursor = new am4charts.XYCursor();
 		  chart.cursor.behavior = "zoomY";
@@ -415,7 +419,7 @@ export class DashboardComponent implements OnInit {
 			series.tooltip.label.textValign = "middle";
 
 			// Make bullets grow on hover
-			let bullet = series.bullets.push(new am4charts.CircleBullet());
+			let bullet = series.bullets.push(new am4charts.CircleBullet()); 
 			bullet.circle.strokeWidth = 2;
 			bullet.circle.radius = 4;
 			bullet.circle.fill = am4core.color("#000");

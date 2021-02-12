@@ -5,6 +5,8 @@ import { ActivatedRoute, Router } from  "@angular/router";
 import { ToastrService } from 'ngx-toastr';
 import { Location } from '@angular/common';
 
+import { environment } from "./../../../environments/environment";
+
 @Component({
   selector: 'app-db-add-disclosure',
   templateUrl: './db-add-disclosure.component.html',
@@ -18,7 +20,13 @@ export class DbAddDisclosureComponent implements OnInit {
 	DisclosureSign
 	DisclosureDate
 	DisclosureName
-	DisclosureAgree=false
+    DisclosureAgree=false
+    
+    BROKER
+    CMS_DISCLOSURE_DATA
+    RecordAdviceAdvisor
+    environment = environment
+    button_message= "Save"
   // thirdStep
   ThirdStepStatus=false
   constructor(private _location: Location,private route : ActivatedRoute,  private authService:AuthService,private router:Router, private toastr: ToastrService) { }
@@ -34,7 +42,43 @@ export class DbAddDisclosureComponent implements OnInit {
         
 
         this.DisclosureDate=today
+        this.BROKER = this.authService.getLoggedUserDetails();
+        console.log("Broker -> ", this.BROKER)
+        // this.RecordAdviceAdvisor = "Marthunis Oosthuizen";
+        this.RecordAdviceAdvisor = this.BROKER.full_name;
+        this.getDisclosureData(this.BROKER.id);
+
+
+        
   }
+
+  getDisclosureData(broker_id){
+    var obj = {
+        broker_id : broker_id,
+    }
+    this.authService.getDisclosureData(obj).subscribe(data => {
+        console.log(data)
+        // alert(data)
+
+        if (data.success == 1) {
+
+            this.CMS_DISCLOSURE_DATA = data.disclosure_data;
+
+            // console.log(data);
+            // stepper.next();
+
+
+        } else {
+            // this.toastr.error(data.message, 'Error');
+        }
+    }, err => {
+        console.log(err)
+        // this.toastr.error(this.authService.COMMON_ERROR);
+
+    })
+}
+
+
   get thirdStep() { return this.ThirdStepStatus; }
 
   ngAfterViewInit() {
@@ -88,7 +132,7 @@ export class DbAddDisclosureComponent implements OnInit {
         this.ThirdStepStatus=true;
 
         console.log('third');
-       
+        this.button_message = "Uploading..."
         var agree='no';
 
             // this.DisclosureName.trim();
@@ -125,22 +169,25 @@ export class DbAddDisclosureComponent implements OnInit {
 
                     var investor_data = data.data
               		sessionStorage.setItem('investor',JSON.stringify(investor_data))
-                  
-                    this.toastr.success('Disclosure added successfully')
+                    
+                    this.toastr.success('Disclosure added successfully');
+                    window.open(environment.disclosurePDF + ""+data.pdfName,'_blank')
+                    this.button_message = "Save";
                       // this.router.navigate(['/user/clientProfile']);
-                      this._location.back();
+                     this._location.back();
                     // stepper.next();
                     // this.stepperNextAsyc(stepper,'3')
 
                 }else  {
+                    this.button_message = "Save";
                     // this.toastr.error(data.message, 'Error');
                 }
             }, err => {
+                this.button_message = "Save";
                     console.log(err)
                     // this.toastr.error(this.authService.COMMON_ERROR);
                 
             })
-                    return
 
             // console.log('execute');
         }

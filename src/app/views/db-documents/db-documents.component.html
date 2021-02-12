@@ -108,7 +108,7 @@
                                             	<div class="accordion">
                                                     <div class="singl_doc">
                                                         <div class="" id="headingOne">
-                                                            <h3 class="mb-0 rev_h3 outer_h3_bord d-flex align-items-center">
+                                                            <h3 class="mb-0 rev_h3 outer_h3_bord d-flex align-items-center dark_blue_ttl">
                                                                 <span data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1"><i class="fa fa-folder mr-2"></i> COMPLIANCE</span>
 	                                                            <!-- <span class="colp_head_actn text-right">
 						            								<a href="javascript:;" class="textt_link cp" data-toggle="modal" data-target="#modal_add_folder">Add Folder</a>
@@ -1381,7 +1381,7 @@
                                                 <div class="accordion" id="accordionExample">
                                                     <div class="singl_doc">
                                                         <div class="" id="headingOne">
-                                                            <h3 class="mb-0 rev_h3 outer_h3_bord d-flex align-items-center">
+                                                            <h3 class="mb-0 rev_h3 outer_h3_bord d-flex align-items-center dark_blue_ttl">
                                                                 <span data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"><i class="fa fa-folder mr-2"></i> PLANNING</span>
                                                                 <span class="colp_head_actn text-right">
 																	<a href="javascript:;" class="textt_link cp" data-toggle="modal" (click)="addOuterFolderDocument('planning')" data-target="#modal_document_add_folder_outer"><i class="fas fa-folder-plus"></i></a>
@@ -1523,7 +1523,7 @@
 												<div class="accordion" id="accordionExample">
                                                     <div class="singl_doc">
                                                         <div class="" id="headingOne">
-                                                            <h3 class="mb-0 rev_h3 outer_h3_bord d-flex align-items-center">
+                                                            <h3 class="mb-0 rev_h3 outer_h3_bord d-flex align-items-center dark_blue_ttl">
                                                                 <span data-toggle="collapse" data-target="#collapsePlaning" aria-expanded="true" aria-controls="collapsePlaning"><i class="fa fa-folder mr-2"></i> REVIEWS</span>
                                                                 <span class="colp_head_actn text-right">
 																	<a href="javascript:;" class="textt_link cp" data-toggle="modal" (click)="addOuterFolderDocument('reviews')" data-target="#modal_document_add_folder_outer"><i class="fas fa-folder-plus"></i></a>
@@ -1683,9 +1683,9 @@
 																<a href="javascript:;" (click)="deleteFolder(item.id,1,'level2','level3','level4','level5','level6',i1)" class="textt_link cp trash_rem"><i class="fa fa-trash"></i></a>
 															</span>
 														</h3>
-														<ul *ngIf="item.level2 && item.level2.length">
+														<ul *ngIf="item.level2 && item.level2.length" class="lt_green_ul">
 															<li *ngFor="let level2 of item.level2;let i2 = index;">
-																<h3 class="mb-0 rev_h3 d-flex align-items-center">
+																<h3 class="mb-0 rev_h3 d-flex align-items-center lt_green_ttl">
 																	<span class="custm-cl" *ngIf="level2.file_type == 'folder'" (click)="expandFolder(level2.id,2,'level2','level3','level4','level5','level6',i1,i2)">
 																		<i class="fa fa-folder-open mr-2"></i> {{ level2.name }} 
 																	</span>

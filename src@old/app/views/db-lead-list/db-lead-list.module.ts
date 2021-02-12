@@ -26,6 +26,6 @@ import { DbLeadListComponent } from './db-lead-list.component'
     MatMenuModule,
     MatIconModule,
     MatButtonModule
-  ]
+  ],
 })
 export class DbLeadListModule { }

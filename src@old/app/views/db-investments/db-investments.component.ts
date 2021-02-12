@@ -22,7 +22,7 @@ export class DbInvestmentsComponent implements OnInit {
 
   length
   offset = '0'
-  limit = 10
+  limit = 50
   orderBy = 'LastName'
   tableSort = []
   sortName = 'ASC'
@@ -201,6 +201,7 @@ export class DbInvestmentsComponent implements OnInit {
 
   // });
   toggle(id) {
+    this.opened = [];
     const index = this.opened.indexOf(id);
     if (index > -1) {
       this.opened.splice(index, 1);

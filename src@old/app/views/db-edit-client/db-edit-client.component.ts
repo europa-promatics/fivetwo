@@ -46,6 +46,8 @@ export class DbEditClientComponent implements OnInit {
     adviseTakenYes = false
     adviseTakenNo = false
 
+    environment = environment
+
     upload_id = []
     upload_id_label = ['Choose file'];
     bank_upload_id = 'Choose File'
@@ -58,6 +60,8 @@ export class DbEditClientComponent implements OnInit {
     defaultImage = `data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAtcAAAC1CAYAAACULdMlAAACFUlEQVR4nO3BAQ0AAADCoPdPbQ8HFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwJkBCTkAAbMzGX4AAAAASUVORK5CYII=`;
 
     errorClass = ""
+
+    BROKER
 
     // defaultShortImage=`data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAggAAACCCAYAAAAjSDD0AAABHUlEQVR4nO3BMQEAAADCoPVPbQ0PoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADeDCD+AAEWEPbFAAAAAElFTkSuQmCC`;
 
@@ -110,6 +114,13 @@ export class DbEditClientComponent implements OnInit {
 
     RiskProfileName
     bank_list
+
+    CMS_DISCLOSURE_DATA
+    CMS_RISKPROFILER_DATA=""
+
+    summary_of_discussion = []
+    summary_of_advice = []
+    explain = []
 
     constructor(private route: ActivatedRoute, private router: Router, private authService: AuthService, private toastr: ToastrService, public formBuilder: FormBuilder) { }
 
@@ -213,7 +224,16 @@ export class DbEditClientComponent implements OnInit {
             CellNumber: '',
             Percent: ''
         };
-        this.setLeadFields()
+        this.setLeadFields();
+
+        this.BROKER = this.authService.getLoggedUserDetails();
+        console.log("Broker -> ", this.BROKER)
+        // this.RecordAdviceAdvisor = "Marthunis Oosthuizen";
+        this.RecordAdviceAdvisor = this.BROKER.full_name;
+
+        this.getDisclosureData(this.BROKER.id);
+        this.getRiskProfilerData(this.BROKER.id);
+        this.getRecordAdviceData(this.BROKER.id);
 
     }
 
@@ -468,6 +488,33 @@ export class DbEditClientComponent implements OnInit {
 
         })
     }
+
+    getDisclosureData(broker_id){
+        var obj = {
+            broker_id : broker_id,
+        }
+        this.authService.getDisclosureData(obj).subscribe(data => {
+            console.log(data)
+            // alert(data)
+
+            if (data.success == 1) {
+
+                this.CMS_DISCLOSURE_DATA = data.disclosure_data;
+
+                // console.log(data);
+                // stepper.next();
+
+
+            } else {
+                // this.toastr.error(data.message, 'Error');
+            }
+        }, err => {
+            console.log(err)
+            // this.toastr.error(this.authService.COMMON_ERROR);
+
+        })
+    }
+
     setLeadFields() {
 
         var lead = JSON.parse(localStorage.getItem('lead'));
@@ -524,13 +571,13 @@ export class DbEditClientComponent implements OnInit {
     }
     form = new FormGroup({
 
-        LastName: new FormControl('', [Validators.required, Validators.pattern('^[^ ]+[0-9a-zA-Z ]*'),
+        LastName: new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z0-9_ -]*$'),
         Validators.minLength(1), Validators.maxLength(20)]),
-        LastName2: new FormControl('', [Validators.pattern('^[^ ]+[0-9a-zA-Z ]*'),
+        LastName2: new FormControl('', [Validators.pattern('^[a-zA-Z0-9_ -]*$'),
         Validators.minLength(1), Validators.maxLength(20)]),
-        FirstName: new FormControl('', [Validators.required, Validators.pattern('^[^ ]+[0-9a-zA-Z ]*'),
+        FirstName: new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z0-9_ -]*$'),
         Validators.minLength(1), Validators.maxLength(20)]),
-        FirstName2: new FormControl('', [Validators.required, Validators.pattern('^[^ ]+[0-9a-zA-Z ]*'),
+        FirstName2: new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z0-9_ -]*$'),
         Validators.minLength(1), Validators.maxLength(20)]),
         IdNumber: new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z0-9]*'),
         Validators.minLength(1), Validators.maxLength(20)]),
@@ -1590,4 +1637,74 @@ export class DbEditClientComponent implements OnInit {
         }, 250);
 
     }
+
+    getRecordAdviceData(broker_id){
+        var obj = {
+            broker_id : broker_id,
+        }
+        this.authService.getRecordAdviceData().subscribe(data => {
+            console.log(data)
+            // alert(data)
+
+            if (data.success == 1) {
+
+                
+                this.summary_of_advice = data.summary_of_advice;
+                this.summary_of_discussion = data.summary_of_discussion;
+                this.explain = data.explain;
+
+                // console.log(data);
+                // stepper.next();
+
+
+            } else {
+                // this.toastr.error(data.message, 'Error');
+            }
+        }, err => {
+            console.log(err)
+            // this.toastr.error(this.authService.COMMON_ERROR);
+
+        })
+    }
+
+    onChangeSummary(event){
+        console.log(event)
+        this.RecordAdviceSummaryOfDiscussionWithClient = event.value
+    }
+
+    onChangeAdvisor(event){
+        console.log(event)
+        this.RecordAdviceSummaryOfAdviceFromAdvisor = event.value
+    }
+    onChangeExplain(event){
+        console.log(event)
+        this.RecordAdviceOfAdvisorExplain = event.value
+    }
+
+    getRiskProfilerData(broker_id){
+        var obj = {
+            broker_id : broker_id,
+        }
+        this.authService.getRiskProfilerData(obj).subscribe(data => {
+            console.log(data)
+            // alert(data)
+
+            if (data.success == 1 && data.riskprofiler) {
+
+                this.CMS_RISKPROFILER_DATA = data.riskprofiler.content;
+
+                // console.log(data);
+                // stepper.next();
+
+
+            } else {
+                // this.toastr.error(data.message, 'Error');
+            }
+        }, err => {
+            console.log(err)
+            // this.toastr.error(this.authService.COMMON_ERROR);
+
+        })
+    }
+
 }

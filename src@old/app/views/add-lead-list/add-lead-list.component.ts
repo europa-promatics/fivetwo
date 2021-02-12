@@ -22,23 +22,23 @@ export class AddLeadListComponent implements OnInit {
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('user')) || JSON.parse(sessionStorage.getItem('user'));
 
-    this.status.setValue('visitor')
+    this.status.setValue('upcoming')
 
   }
-
-
-
 
   placeChangedCallback(evt: any) {
     console.log(evt)
+    this.HomeAddress.setValue(evt.formatted_address)
   }
+
+  
   form = new FormGroup({
-    LastName: new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z ]*'), Validators.maxLength(15)]),
-    FirstName: new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z ]*'), Validators.maxLength(15)]),
-    IdNumber: new FormControl('', [ Validators.pattern('^[a-zA-Z0-9 ]*'), Validators.maxLength(15)]),
-    CellNumber: new FormControl('', [ Validators.pattern('^[0-9]*'), Validators.maxLength(15)]),
-    Email: new FormControl('', [ Validators.pattern('^[a-zA-Z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$')]),
-    HomeAddress: new FormControl('', [ Validators.pattern('^[a-zA-Z0-9 #,.]*'), Validators.maxLength(255)]),
+    LastName: new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z -]*'), Validators.maxLength(22)]),
+    FirstName: new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z -]*'), Validators.maxLength(22)]),
+    IdNumber: new FormControl('', [Validators.pattern('^[a-zA-Z0-9 ]*'), Validators.maxLength(15)]),
+    CellNumber: new FormControl('', [Validators.pattern('^[0-9]*'), Validators.maxLength(15)]),
+    Email: new FormControl('', [Validators.pattern('^[a-zA-Z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$')]),
+    HomeAddress: new FormControl('', [/*[Validators.pattern('^[a-zA-Z0-9 #,.]*'),*/ Validators.maxLength(255)]),
     HomeNumber: new FormControl('', [Validators.pattern('^[0-9]*'), Validators.maxLength(15)]),
     MaritalStatus: new FormControl('',),
     Note: new FormControl('', [Validators.maxLength(1000)]),
@@ -67,21 +67,21 @@ export class AddLeadListComponent implements OnInit {
 
     // if (check && this.follow_up_date) {
 
-      console.log('valid')
-      var ob = this.form.value
-      ob.broker_id = this.user.id
-      ob.follow_up_date = this.follow_up_date
-      this.service.addLead(ob).subscribe(data => {
-        if (data.success == 1) {
-          console.log('success added')
-          this.toastr.success(data.message)
-          this.router.navigate(['/user/leadList'])
-        } else {
-          this.toastr.error(data.message)
-        }
-      }, err => {
-        console.log(err)
-      })
+    console.log('valid')
+    var ob = this.form.value
+    ob.broker_id = this.user.id
+    ob.follow_up_date = this.follow_up_date
+    this.service.addLead(ob).subscribe(data => {
+      if (data.success == 1) {
+        console.log('success added')
+        this.toastr.success(data.message)
+        this.router.navigate(['/user/leadList'])
+      } else {
+        this.toastr.error(data.message)
+      }
+    }, err => {
+      console.log(err)
+    })
     // } else {
     //   console.log('invalid')
     // }
