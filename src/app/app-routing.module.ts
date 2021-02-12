@@ -52,7 +52,8 @@ import {  DbEditBrokerComponent } from "./views/db-edit-broker/db-edit-broker.co
 const routes: Routes = [
 	{
 		path: '',
-		component: HomepageComponent,
+		// component: HomepageComponent,
+		component: LoginComponent,
 
 	},
 	{
