@@ -38,8 +38,10 @@
 											<form class="formm">
 												<div class="row">													
 													<div class="col-sm-12 float-right">
-														<div class="form-group text-right">
-															<a href="javascript:;" (click)="goBack()" class="btn btn_theme">Back</a>
+														<div class="form-group text-left">
+															<a href="javascript:;" (click)="goBack()" class="btn btn_theme">
+																<i class="fa fa-arrow-left "></i>
+															</a>
 														</div>
 													</div>
 												</div>
@@ -205,9 +207,9 @@
 					            											</span>
 					            										</td>
 																  	</tr>
-																  	<tr>
+																  	<!-- <tr>
 																  		<th colspan="2">Contact Details:</th>
-																  	</tr>
+																  	</tr> -->
 																  	<!-- <tr>
 																	    <th>Home</th>
 																	    <td class="table_inpt">
@@ -243,7 +245,7 @@
 					            										</td>
 																  	</tr> -->
 																  	<tr>
-																	    <th>Mobile Number</th>
+																	    <th>Contact Number</th>
 																	    <td class="table_inpt">
 					            											<input formControlName="CellNumber" type="text" class="form-control" name="">
 
@@ -253,7 +255,7 @@
 					            											        This field is required.
 					            											    </span>
 					            											    <span *ngIf="CellNumberVal.errors.pattern">
-					            											    	Invalid Mobile Number Number
+					            											    	Invalid Contact Number
 					            											    </span>
 					            											    
 					            											</span>

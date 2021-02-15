@@ -26,7 +26,7 @@ export class DbAddDisclosureComponent implements OnInit {
     CMS_DISCLOSURE_DATA
     RecordAdviceAdvisor
     environment = environment
-    button_message= "Save"
+    button_message= "Download"
   // thirdStep
   ThirdStepStatus=false
   constructor(private _location: Location,private route : ActivatedRoute,  private authService:AuthService,private router:Router, private toastr: ToastrService) { }
@@ -127,12 +127,15 @@ export class DbAddDisclosureComponent implements OnInit {
   // 	console.log('add')
   // }
 
-  public add(){
+  public add(type){
 
         this.ThirdStepStatus=true;
 
         console.log('third');
-        this.button_message = "Uploading..."
+        if(type == "add"){
+
+            this.button_message = "Downloading..."
+        }
         var agree='no';
 
             // this.DisclosureName.trim();
@@ -144,6 +147,7 @@ export class DbAddDisclosureComponent implements OnInit {
             formdata.append("DisclosureDate", this.DisclosureDate);
             formdata.append("DisclosureName", this.DisclosureName);
             formdata.append("DisclosureAgree", agree);
+            formdata.append("type", type); // email or download
 
             formdata.append("image", this.DisclosureSign);
 
@@ -170,9 +174,14 @@ export class DbAddDisclosureComponent implements OnInit {
                     var investor_data = data.data
               		sessionStorage.setItem('investor',JSON.stringify(investor_data))
                     
-                    this.toastr.success('Disclosure added successfully');
-                    window.open(environment.disclosurePDF + ""+data.pdfName,'_blank')
-                    this.button_message = "Save";
+                    var message = "Disclosure added successfully";
+                    
+                    if(type == "add"){
+                        message = "Disclosure sent via Email."
+                        window.open(environment.disclosurePDF + ""+data.pdfName,'_blank')
+                    }
+                    this.toastr.success(message);
+                    this.button_message = "Download";
                       // this.router.navigate(['/user/clientProfile']);
                      this._location.back();
                     // stepper.next();

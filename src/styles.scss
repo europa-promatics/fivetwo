@@ -1671,4 +1671,10 @@ h3.dark_blue_ttl{
 .revw_chart{
   height: 520px !important;
 }
+.mat-flat-button.mat-primary, .mat-raised-button.mat-primary, .mat-fab.mat-primary, .mat-mini-fab.mat-primary {
+	background-color: #105170;
+}
+.mat-step-header .mat-step-icon-selected, .mat-step-header .mat-step-icon-state-edit {
+	background-color: #2084ac;
+}
 /*========Rohit css 10 feb==========*/

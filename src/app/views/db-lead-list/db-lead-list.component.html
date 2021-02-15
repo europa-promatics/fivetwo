@@ -120,7 +120,7 @@
 																	<td class="mat-cell">
 																		<span *ngIf='value.status == "call_lead"' class="badge badge-danger">Call Lead</span>
 																		<span *ngIf='value.status != "call_lead" && value.status != "archive" && value.status != "upcoming"' class="badge badge-primary">Become Client</span>
-																		<span *ngIf='value.status != "call_lead" && value.status != "client" && value.status != "upcoming"' class="badge" style="background-color: orange;">Archive</span>
+																		<span *ngIf='value.status != "call_lead" && value.status != "client" && value.status != "upcoming"' class="badge" style="background-color: green;color: white;">Archive</span>
 																		<span *ngIf='value.status != "call_lead" && value.status != "client" && value.status != "archive" && value.status == "upcoming"' class="badge" style="background-color: orange;">Upcoming</span>
 																	</td>
 																	<!-- <td class="mat-cell" *ngIf='value.status != "call_lead"')>
@@ -153,7 +153,7 @@
 																				<button
 																					(click)="changeStatus(value.id,'archive')"
 																					mat-menu-item>
-																					<span>Archieve</span>
+																					<span>Archive</span>
 																				</button>
 																				<button
 																					(click)="changeStatus(value.id,'upcoming')"

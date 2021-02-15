@@ -39,8 +39,11 @@
 											<form class="formm">
 												<div class="row">
 													<div class="col-sm-12 float-right">
-														<div class="form-group text-right">
-															<a href="javascript:;" (click)="goBack()" class="btn btn_theme">Back</a>
+														<div class="form-group text-left">
+															<a href="javascript:;" (click)="goBack()" class="btn btn_theme">
+																<i class="fa fa-arrow-left "></i>
+
+															</a>
 														</div>
 													</div>
 													<!-- <div class="col-sm-2"></div>
@@ -224,8 +227,10 @@
 													      		</div>
 													      	</div>
 													      	<div class="form-group text-right">
+													      	    
 													      	    <div class="pos_rel log_sgn_btn">
-													      	        <a (click)="add()" href="javascript:;" class="btn btn_theme sgnup_btn"> {{ button_message }}  </a>
+																	<a (click)="add('email')" href="javascript:;" class="btn btn_theme sgnup_btn"> Send Email  </a>  
+																	&nbsp;<a (click)="add('add')" href="javascript:;" class="btn btn_theme sgnup_btn"> {{ button_message }}  </a>
 													      	    </div>
 													      	</div>
 													      	<!-- stepper Inner /-->

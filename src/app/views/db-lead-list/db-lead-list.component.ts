@@ -24,7 +24,7 @@ export class DbLeadListComponent implements OnInit {
   ModalHeading
   ModalBody
   tableSort = []
-  orderBy = 'follow_up_date'
+  orderBy = 'priority'
   sortName = 'ASC'
   ShowEditNote
   lead_id
