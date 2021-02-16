@@ -13,7 +13,12 @@ export class EditLeadComponent implements OnInit {
 	latitude = '28.7041';
 	longitude = '77.1025';
 	user
-	constructor(private route: ActivatedRoute, private service: AuthService, private toastr: ToastrService, private router: Router) { }
+	minDate : Date
+	constructor(private route: ActivatedRoute, private service: AuthService, private toastr: ToastrService, private router: Router) {
+
+		this.minDate = new Date()
+
+	 }
 	saveButton = false
 	follow_up_date
 	lead_id

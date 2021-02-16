@@ -27,6 +27,7 @@ export class DbAddDisclosureComponent implements OnInit {
     RecordAdviceAdvisor
     environment = environment
     button_message= "Download"
+    button_email= "Send Email"
   // thirdStep
   ThirdStepStatus=false
   constructor(private _location: Location,private route : ActivatedRoute,  private authService:AuthService,private router:Router, private toastr: ToastrService) { }
@@ -131,11 +132,7 @@ export class DbAddDisclosureComponent implements OnInit {
 
         this.ThirdStepStatus=true;
 
-        console.log('third');
-        if(type == "add"){
-
-            this.button_message = "Downloading..."
-        }
+        
         var agree='no';
 
             // this.DisclosureName.trim();
@@ -163,7 +160,13 @@ export class DbAddDisclosureComponent implements OnInit {
             }
 
             // this.isThirdStepDone=true;
+            console.log('third');
+            if(type == "add"){
 
+                this.button_message = "Downloading..."
+            }else{
+                this.button_email = "Sending...";
+            }
             this.authService.updateDisclosure(formdata).subscribe(data => {
                 
                 // console.log('in');
@@ -172,23 +175,25 @@ export class DbAddDisclosureComponent implements OnInit {
                     console.log(data);
 
                     var investor_data = data.data
-              		sessionStorage.setItem('investor',JSON.stringify(investor_data))
-                    
-                    var message = "Disclosure added successfully";
+              		sessionStorage.setItem('investor',JSON.stringify(investor_data))                    
+                   
+                    var message = "Disclosure sent via Email.";
                     
                     if(type == "add"){
-                        message = "Disclosure sent via Email."
+                        message = "Disclosure added successfully."
                         window.open(environment.disclosurePDF + ""+data.pdfName,'_blank')
                     }
                     this.toastr.success(message);
                     this.button_message = "Download";
+                    this.button_email = "Send Email";
                       // this.router.navigate(['/user/clientProfile']);
                      this._location.back();
                     // stepper.next();
                     // this.stepperNextAsyc(stepper,'3')
 
                 }else  {
-                    this.button_message = "Save";
+                    this.button_message = "Download";
+                    this.button_email = "Send Email";
                     // this.toastr.error(data.message, 'Error');
                 }
             }, err => {

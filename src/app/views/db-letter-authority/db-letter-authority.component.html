@@ -50,7 +50,9 @@
 															<input type="file" class="form-control" (change)="selectPDF($event)" [accept]="'.pdf'" name="" placeholder="choose discloser">
 														</div>
 														<div class="form-group text-center">
-															<button class="btn btn_theme" (click)="uploadAuthLetter()">Upload</button>
+															<button class="btn btn_theme" (click)="uploadAuthLetter('add')">{{ upload_button }}</button>
+															&nbsp;
+															<button class="btn btn_theme" (click)="uploadAuthLetter('email')">{{ email_button }}</button>
 														</div>
 													</div>
 												</div>

@@ -81,13 +81,19 @@
 													<p>Please scrutinize your policy schedule and inform us of any incorrect information.</p>
 												</div>
 											</div>
-											<div style="text-align: center;" (click)="sendWelcomeLetter()">
+											<div style="text-align: center;" (click)="sendWelcomeLetter('email')">
 												<button class="btn btn_theme">
 
 													{{ send_letter_message }}
 
 												</button>
-												<!-- &nbsp;&nbsp;
+												&nbsp;
+												<button class="btn btn_theme" (click)="sendWelcomeLetter('add')">
+
+													{{ download_button }}
+
+												</button>
+												<!-- &nbsp;
 												<button class="btn btn_theme">
 
 													Send Confirmation Letter

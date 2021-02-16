@@ -31,6 +31,8 @@ export class DbBrokerAppointmentComponent implements OnInit {
     AdvisorSignature: any;
     BROKER
     DisclosureName
+    button_email = "Send Email"
+    button_download = "Download"
 
 
   constructor(private _location: Location,private route:ActivatedRoute,private router:Router,private authService:AuthService,private toastr: ToastrService,public formBuilder: FormBuilder) { }
@@ -221,7 +223,7 @@ export class DbBrokerAppointmentComponent implements OnInit {
     
 
 
-    public add(){
+    public add(type){
   		console.log('add')
   
         this.FormStatus=true;
@@ -245,7 +247,8 @@ export class DbBrokerAppointmentComponent implements OnInit {
             	form:this.form.value,
             	image:this.Signature,
             	DateSigned:this.DateSigned,
-            	AdvisorSignature:this.AdvisorSignature
+            	AdvisorSignature:this.AdvisorSignature,
+            	type:type
 
             }
             // formdata.append("company_id", this.form.company_id.value);
@@ -276,6 +279,13 @@ export class DbBrokerAppointmentComponent implements OnInit {
                 return
             }
 
+            if(type == "email"){
+                this.button_email = "Sending...";
+            }else{
+                this.button_download = "Downloading..."
+            }
+
+
             this.authService.addBrokerAppointment(ob).subscribe(data => {
                 
                 // console.log('in');
@@ -289,14 +299,27 @@ export class DbBrokerAppointmentComponent implements OnInit {
                     // this.toastr.success('Broker appointment added successfully')
                     // this.router.navigate(['/user/clientProfile']);
                     // this.loadInvestors()
-                    this.toastr.success('Broker appointment added successfully')
-                    window.open(environment.BrokerAppointmentSignBasePath + ""+data.pdfName)
+
+                    if(type == "email"){
+                        this.toastr.success('Broker appointment sent via Email')
+                    }else{
+                        this.toastr.success('Broker appointment added successfully')
+                        window.open(environment.BrokerAppointmentSignBasePath + ""+data.pdfName)
+                    }
+
+                    this.button_download = "Download"
+                    this.button_email = "Send Email"
+                   
                    this._location.back();
 
                 }else  {
                     // this.toastr.error(data.message, 'Error');
+                    this.button_download = "Download"
+                    this.button_email = "Send Email"
                 }
             }, err => {
+                this.button_download = "Download"
+                    this.button_email = "Send Email"
                     console.log(err)
                     // this.toastr.error(this.authService.COMMON_ERROR);
             })

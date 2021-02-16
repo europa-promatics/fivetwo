@@ -35,6 +35,9 @@ export class DbAddRecordAdviceComponent implements OnInit {
     summary_of_advice = []
     explain = []
 
+    button_download = "Download";
+    button_email = "Send Email";
+
 
   constructor(private route : ActivatedRoute, private _location: Location,private authService:AuthService,private router:Router, private toastr: ToastrService) { }
 
@@ -137,7 +140,7 @@ export class DbAddRecordAdviceComponent implements OnInit {
     })
 }
 
-  public add(){
+  public add(type){
 
         this.ForthStepStatus=true;
         console.log('forth');
@@ -160,6 +163,7 @@ export class DbAddRecordAdviceComponent implements OnInit {
             formdata.append("RecordAdviceOfAdvisorExplain", this.RecordAdviceOfAdvisorExplain);
             formdata.append("RecordAdviceClientSignature", this.RecordAdviceClientSignature);
             formdata.append("RecordAdviceAdvisorSignature", this.RecordAdviceAdvisorSignature);
+            formdata.append("type", type);
 
             // console.log(this.defaultShortImage)
             
@@ -180,6 +184,13 @@ export class DbAddRecordAdviceComponent implements OnInit {
             // this.isForthStepDone=true;
             console.log('go');
 
+            if(type == "email"){
+                this.button_email = "Sending...";
+            }else{
+                this.button_download = "Download";
+            }
+
+
             this.authService.addInvestorForthForm(formdata).subscribe(data => {
                 
                 // console.log('in');
@@ -189,9 +200,13 @@ export class DbAddRecordAdviceComponent implements OnInit {
 
                     var investor_data = data.data
               		sessionStorage.setItem('investor',JSON.stringify(investor_data))
-                
-                    this.toastr.success('Record of Advice added successfully');
-                    window.open(environment.recordAdvice+""+data.pdfName)
+                    if(type == "email"){
+                        this.toastr.success('Record of Advice sent via Email');
+                    }else{
+                        this.toastr.success('Record of Advice added successfully');
+                        window.open(environment.recordAdvice+""+data.pdfName)
+                    }
+                    
                     this._location.back();
                     // stepper.next();
                     // this.stepperNextAsyc(stepper,'4')
@@ -200,8 +215,13 @@ export class DbAddRecordAdviceComponent implements OnInit {
                 }else  {
                     // this.toastr.error(data.message, 'Error');
                 }
+
+                this.button_email = "Send Email";
+                this.button_download = "Download";
             }, err => {
-                    console.log(err)
+                this.button_email = "Send Email";
+                this.button_download = "Download";
+                console.log(err)
                     // this.toastr.error(this.authService.COMMON_ERROR);
                 
             })

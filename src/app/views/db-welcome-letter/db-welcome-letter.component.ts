@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from  "@angular/router";
 import { ToastrService } from 'ngx-toastr';
 import { Location } from '@angular/common';
 
+
 import * as moment from 'moment';
 import * as currencyFormatter from 'currency-formatter';
 import { environment } from 'src/environments/environment';
@@ -22,7 +23,7 @@ export class DbWelcomeLetterComponent implements OnInit {
   totalClientValue = []
   current_date = moment().format("YYYY-MM-DD")
   send_letter_message = "Send Welcome Letter"
-  
+  download_button = "Download"
 
   constructor(private route: ActivatedRoute, private _location: Location,private authService:AuthService,private router:Router, private toastr: ToastrService) { }
 
@@ -122,22 +123,31 @@ export class DbWelcomeLetterComponent implements OnInit {
 
   }
 
-  sendWelcomeLetter(){
+  sendWelcomeLetter(type){
     var ob = {
       id: atob(this.route.snapshot.params.investor_id),
-      client_id : this.investor.ClientNumber
+      client_id : this.investor.ClientNumber,
+      type:type
     };
+    if(type == "email"){
+      this.send_letter_message = "Sending..."
+    }else{
 
-    this.send_letter_message = "sending..."
+      this.download_button = "Downloading..."
+    }
     console.log(ob)
     this.authService.sendWelcomeLetter(ob).subscribe(data => {
       
-      if(data.success == 1){
+      if(data.success == 1 && type == "add"){
+        this.toastr.success("Welcome letter added successfully")
         window.open(environment.welcome_letter+""+data.pdfName)
+      }else{
+        this.toastr.success("Welcome letter sent via email")
       }
 
       this.send_letter_message = "Send Welcome Letter"
-      
+      this.download_button = "Download"
+      this._location.back();
     }, err => {
       console.log(err)
       this.send_letter_message = "Send Welcome Letter"

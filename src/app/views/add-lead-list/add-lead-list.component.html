@@ -223,7 +223,7 @@
 																<label>Follow Up Date</label>
 																<div class="pos_rel">
 																	<mat-form-field appearance="fill">
-																		<input matInput [matDatepicker]="pickerFrom" 
+																		<input matInput  [min]="minDate" [matDatepicker]="pickerFrom" 
 																			[(ngModel)]="follow_up_date"
 																			[ngModelOptions]="{standalone: true}">
 																		<mat-datepicker-toggle matSuffix

@@ -33,6 +33,9 @@ export class DbAddRiskProfilerComponent implements OnInit {
     BROKER
     CMS_RISKPROFILER_DATA=""
 
+    button_email = "Send Email"
+    button_download = "Download"
+
 
   constructor(private route: ActivatedRoute, private _location: Location,private authService:AuthService,private router:Router, private toastr: ToastrService) { }
 
@@ -120,7 +123,7 @@ export class DbAddRiskProfilerComponent implements OnInit {
 }
 
 
-  public add(){
+  public add(type){
       console.log('fifth');
 
       this.FifthStepStatus=true;
@@ -143,6 +146,7 @@ export class DbAddRiskProfilerComponent implements OnInit {
       formdata.append("Year5", this.Year5.toString());
       formdata.append("Year6", this.Year6.toString());
       formdata.append("edit", "true");
+      formdata.append("type", type);
 
 
     //   if (this.Year1==0 || this.Year2==0|| this.Year3==0|| this.Year4==0|| this.Year5==0|| this.Year6==0) {
@@ -173,6 +177,11 @@ export class DbAddRiskProfilerComponent implements OnInit {
       }
 
       
+      if(type == "email"){
+        this.button_email = "Sending..."
+      }else{
+        this.button_download = "Downloading..."
+      }
 
       this.authService.addInvestorFifthForm(formdata).subscribe(data => {
           
@@ -180,19 +189,31 @@ export class DbAddRiskProfilerComponent implements OnInit {
           if (data.success == 1) {
              
               console.log(data);
-              var investor_data = data.data
+              // var investor_data = data.data
               //sessionStorage.setItem('investor',JSON.stringify(investor_data))
-              window.open(environment.RiskPDF+""+data.pdfName)
-              this.toastr.success('Risk Profiler added successfully')
-              // this._location.back();
+              if(type == "email"){
+                this.toastr.success('Risk Profiler sent via Email')
+              }else{
+                window.open(environment.RiskPDF+""+data.pdfName)
+                this.toastr.success('Risk Profiler added successfully')
+              }
+
+              
+              this._location.back();
               
               
 
           }else  {
+            this.toastr.error(data.message)
               // this.toastr.error(data.message, 'Error');
           }
+
+          this.button_download = "Download";
+          this.button_email = "Send Email";
       }, err => {
               console.log(err)
+              this.button_download = "Download";
+              this.button_email = "Send Email";
               // this.toastr.error(this.authService.COMMON_ERROR);
           
       })

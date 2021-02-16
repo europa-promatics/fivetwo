@@ -13,9 +13,12 @@ export class DbAddIdComponent implements OnInit {
 	investor_id
 	investor
 	upload_id=[]
-    upload_id_label = ['Choose file']
-    title='Add Id'
-    fileext
+  upload_id_label = ['Choose file']
+  title='Add Id'
+  fileext
+  email_button = "Send Email"
+  upload_button = "Upload"
+
   constructor(private _location: Location,private route : ActivatedRoute, private authService:AuthService,private router:Router, private toastr: ToastrService) { }
 
   ngOnInit() {
@@ -54,7 +57,7 @@ export class DbAddIdComponent implements OnInit {
 
   
 
-  public add(){
+  public add(type){
 
       // stepper.next();
       console.log('scnd');
@@ -62,6 +65,8 @@ export class DbAddIdComponent implements OnInit {
 
       var formdata: FormData = new FormData();
       formdata.append("id", this.investor_id);
+      formdata.append("type", type);
+      formdata.append("send_from_documents", "true");
 
       this.upload_id.forEach(function(val,ind){
           
@@ -93,7 +98,11 @@ export class DbAddIdComponent implements OnInit {
           return
       }
       // this.isSecondStepDone=true;
-      
+      if(type == "add"){
+        this.upload_button = "uploading..."
+      }else{
+        this.email_button = "sending..." 
+      }
       // addInvestorSecondForm
       this.authService.addInvestorSecondForm(formdata).subscribe(data => {
           console.log(data)

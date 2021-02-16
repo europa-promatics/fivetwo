@@ -14,6 +14,8 @@ export class DbLetterAuthorityComponent implements OnInit {
   investor: any;
   investor_id: string;
   pdfFile : string
+  upload_button = "Upload"
+  email_button = "Send Email"
 
   constructor(private route: ActivatedRoute, private _location: Location,private authService:AuthService,private router:Router, private toastr: ToastrService) { }
 
@@ -66,22 +68,22 @@ export class DbLetterAuthorityComponent implements OnInit {
       })
   }
 
-  uploadAuthLetter(){
-    if(!this.pdfFile){
-        this.toastr.success("Please select PDF first",'Error')
-        return false
-    }
+  uploadAuthLetter(type){
+    // if(!this.pdfFile){
+    //     this.toastr.success("Please select PDF first",'Error')
+    //     return false
+    // }
     var formData = new FormData();
     formData.append("pdf_file",this.pdfFile);
     formData.append("investor_id",this.investor_id);
-    formData.append("type","pdf");
-
+    formData.append("type",type);
+    
     this.authService.uploadAuthLetter(formData).subscribe(data => {
 
         if (data.success == 1) {
             console.log(data)			
             this.toastr.success(data.message,'Success.!')
-            this._location.back();
+            // this._location.back();
         }else{
             this.toastr.error(data.message,'Error')
         }

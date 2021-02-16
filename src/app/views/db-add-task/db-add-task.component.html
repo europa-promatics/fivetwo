@@ -46,7 +46,7 @@
 															<label>Follow Up Date</label>
 															<div class="pos_rel">
 																<mat-form-field appearance="fill">
-																	<input matInput disabled="true" [matDatepicker]="pickerFrom"
+																	<input matInput [min]="currentDate" disabled="true" [matDatepicker]="pickerFrom"
 																	  [(ngModel)]="follow_up_date" (dateChange)="addEvent('change', $event)" [ngModelOptions]="{standalone: true}">
 																	<mat-datepicker-toggle matSuffix [for]="pickerFrom">
 																	</mat-datepicker-toggle>

@@ -107,7 +107,22 @@
                                                                                 <span> <!--ele.investor_deals.status_flag -->  R {{  formatAmount(calculateTotal(ele.investor_deals.dealAttribute_balance)) }}</span>
                                                                             </div>
                                                                             <!-- Income: R 5,000 = 6% (Monthly) -->
-                                                                            <p class="hedr_clk_p m-0"><small *ngIf="ele.investor_deals && ele.investor_deals.deal_income_details"> {{ ele.investor_deals['product_name'] == 'Ninety One Investment Portfolio' ? 'Regular Withdrawal:' : 'Income:'}}     R {{ ele.investor_deals && ele.investor_deals.deal_income_details ? ele.investor_deals.deal_income_details.gross_income : "--" }} = {{ ele.investor_deals &&  ele.investor_deals.deal_income_details ? ele.investor_deals.deal_income_details.income_rate : "--" }}% ({{ ele.investor_deals && ele.investor_deals.deal_income_details ? ele.investor_deals.deal_income_details.income_frequency : "--" }})  </small> <small *ngIf="!ele.investor_deals && ele.investor_deals.deal_income_details">Income: none</small></p>
+                                                                            <p class="hedr_clk_p m-0">
+                                                                                <small *ngIf="ele.investor_deals && ele.investor_deals.deal_income_details"> 
+                                                                                    {{ ele.investor_deals['product_name'] == 'Ninety One Investment Portfolio' ? 'Regular Withdrawal:' : 'Income:'}}     
+                                                                                    
+                                                                                    R {{ ele.investor_deals && ele.investor_deals.deal_income_details ? ele.investor_deals.deal_income_details.gross_income : "--" }} = 
+                                                                                    
+                                                                                    {{ ele.investor_deals &&  ele.investor_deals.deal_income_details && ele.investor_deals.deal_income_details.income_frequency != "Monthly" ? ele.investor_deals.deal_income_details.income_rate : ele.investor_deals &&  ele.investor_deals.deal_income_details && ele.investor_deals.deal_income_details.income_frequency == "Monthly" ?  (ele.investor_deals.deal_income_details.gross_income * 12 / calculateTotal(ele.investor_deals.dealAttribute_balance) * 100).toFixed(2) : "--" }}% 
+                                                                                    
+                                                                                    ({{ ele.investor_deals && ele.investor_deals.deal_income_details ? ele.investor_deals.deal_income_details.income_frequency : "--" }})  
+                                                                                    
+                                                                                    
+                                                                                </small> 
+                                                                                <small *ngIf="!ele.investor_deals && ele.investor_deals.deal_income_details">Income: none
+
+                                                                                </small>
+                                                                            </p>
                                                                         </div>
                                                                     </div>
                                                                     <div id="collapseThree{{i}}" class="collapse {{ i == 0 ? 'show' : '' }}" aria-labelledby="headingThree" data-parent="#accordion">
@@ -186,7 +201,8 @@
                                                                                     <span  (click)="plusClick('risk_profiler')" class="pls_ico_spn"><i class="fa fa-plus"></i></span>
                                                                                 </li>
                                                                                 <li class="d-flex justify-content-between">
-                                                                                    <span><i class="fa fa-check"></i> Welcome Letter</span>
+                                                                                    <!-- <span><i class="fa fa-check"></i> Welcome Letter</span> -->
+                                                                                    <span><i *ngIf="investor && investor.investor_documents_welcome_letter!=null" class="fa fa-check"></i> Welcome Letter</span>
                                                                                     <span (click)="plusClick('welcome_letter')" class="pls_ico_spn">
                                                                                         <i class="fa fa-plus"></i>
                                                                                         </span>
