@@ -1173,6 +1173,14 @@
 															</div>
 															<!-- stepper Inner /-->
 															<div class="d-flex justify-content-between">
+																<button (click)="disclosureDownloadEmail('add')" type="button" mat-raised-button
+																	class="btn_back_stppr"
+																	>Download</button>
+
+																<button type="button" mat-raised-button
+																	class="btn_back_stppr" (click)="disclosureDownloadEmail('email')"
+																	>Send Email</button>
+
 																<button type="button" mat-raised-button
 																	class="btn_back_stppr"
 																	matStepperPrevious>Back</button>
@@ -1409,6 +1417,12 @@
 															</div>
 															<!-- stepper Inner /-->
 															<div class="d-flex justify-content-between">
+																<button type="button" (click)="downloadEmailRecordOfAdvice('email')" mat-raised-button
+																	class="btn_back_stppr"
+																	>Send Email</button>
+																<button type="button" (click)="downloadEmailRecordOfAdvice('add')" mat-raised-button
+																	class="btn_back_stppr"
+																	>Download</button>
 																<button type="button" mat-raised-button
 																	class="btn_back_stppr"
 																	matStepperPrevious>Back</button>
@@ -1682,7 +1696,7 @@
 
 															<form class="row mb-3" action="">
 
-																<div class="col-sm-4">
+																<div class="col-sm-6">
 																	<div class="form-group">
 																		<label for="email">Name of signatory: </label>
 																		<input readonly="true"
@@ -1701,7 +1715,7 @@
 																		</span>
 																	</div>
 																</div>
-																<div class="col-sm-4">
+																<div class="col-sm-6">
 																	<div class="form-group">
 																		<label>Name of Advisor</label>
 																		<input type="text" readonly=""
@@ -1709,7 +1723,7 @@
 																			class="form-control">
 																	</div>
 																</div>
-																<div class="col-sm-4">
+																<div class="col-sm-6">
 																	<div class="form-group">
 																		<label for="pwd">Date:</label>
 																		<input [(ngModel)]="DisclosureDate"
@@ -1729,6 +1743,12 @@
 															</form>
 															<!-- stepper Inner /-->
 															<div class="d-flex justify-content-between">
+																<button type="button" mat-raised-button
+																	class="btn_back_stppr" (click)="downloadEmailRiskProfiler('email')"
+																	>Send Email</button>
+																<button type="button" mat-raised-button
+																	class="btn_back_stppr" (click)="downloadEmailRiskProfiler('add')"
+																	>Download</button>
 																<button type="button" mat-raised-button
 																	class="btn_back_stppr"
 																	matStepperPrevious>Back</button>

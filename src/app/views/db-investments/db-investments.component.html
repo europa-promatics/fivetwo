@@ -153,6 +153,22 @@
   
 															  </div>
 
+															  <div *ngIf="investors.length == 0"  style="height:60px; display: flex; justify-content: center; align-items: center; background: white;">
+																<div>
+																  <div>
+																	<div></div>
+																	<div></div>
+																	<div></div>
+																	<div>No clients</div>
+																	<div></div>
+																	<div></div>
+																	<div></div>
+																	<div></div>
+																  </div>
+																</div>
+  
+															  </div>
+
 														<mat-paginator [length]="length" [pageSize]="limit" [pageSizeOptions]="[10, 25, 50 , 100]" (page)="paginationOptionChange($event)"></mat-paginator>
 														
 													</div>

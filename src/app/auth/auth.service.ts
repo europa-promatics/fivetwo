@@ -378,7 +378,7 @@ export class AuthService {
     }
     leads(data): Observable<any> {
       let API_URL = this.SERVER_URL+'lead';
-      return this.http.post(API_URL,data)
+      return this.http.post(API_URL,data,this.httpOptions)
       .pipe(
         map((res: Response) => {
           return res

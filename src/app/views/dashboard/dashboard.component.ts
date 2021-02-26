@@ -48,6 +48,17 @@ export class DashboardComponent implements OnInit {
 
 	showProductsAUM(){
 		this.zone.runOutsideAngular(() => {
+			if(this.holding.length == 0){
+				var myobj = document.getElementById("p-of");
+				myobj.remove(); 
+				document.getElementById("chartdiv_compare")
+				var div = document.createElement("div");   // Create a <button> element
+				div.innerHTML = "No data found";  
+				div.style.textAlign = "center"                 // Insert text
+				document.getElementById("chartdiv_compare").appendChild(div);
+				return
+			}
+
 			let chart = am4core.create("chartdiv_compare", am4charts.XYChart);
   
 			chart.colors.step = 2;
@@ -149,6 +160,19 @@ export class DashboardComponent implements OnInit {
 	}
 	showProductsClient(){
 		this.zone.runOutsideAngular(() => {
+
+			if(this.holding.length == 0){
+				var myobj = document.getElementById("num-of");
+				myobj.remove(); 
+				document.getElementById("chartdiv_compare_products")
+				var div = document.createElement("div");   // Create a <button> element
+				div.innerHTML = "No data found";  
+				div.style.textAlign = "center"                 // Insert text
+				document.getElementById("chartdiv_compare_products").appendChild(div);
+				return
+			}
+			
+
 			let chart = am4core.create("chartdiv_compare_products", am4charts.XYChart);
   
 			chart.colors.step = 2;
@@ -252,6 +276,15 @@ export class DashboardComponent implements OnInit {
 
 	showMap() {
 		this.zone.runOutsideAngular(() => {
+			if(this.reviews_list.length == 0){
+				 
+				document.getElementById("chartdiv_value")
+				var div = document.createElement("div");   // Create a <button> element
+				div.innerHTML = "No data found";  
+				div.style.textAlign = "center"                 // Insert text
+				document.getElementById("chartdiv_value").appendChild(div);
+				return
+			}
 		  let chart = am4core.create("chartdiv_value", am4charts.XYChart);
 
 		  chart.data = this.reviews_list.map(function (obb) {
@@ -387,7 +420,19 @@ export class DashboardComponent implements OnInit {
 	
 	showCoparisonChart(){
 		this.zone.runOutsideAngular(() => {
+			if(this.holding.length == 0){
+				var myobj = document.getElementById("y-rm");
+				myobj.remove(); 
+				document.getElementById("chartdiv_fst")
+				var div = document.createElement("div");   // Create a <button> element
+				div.innerHTML = "No data founds";  
+				div.style.textAlign = "center"                 // Insert text
+				document.getElementById("chartdiv_fst").appendChild(div);
+				return
+			}
 			let chart = am4core.create("chartdiv_fst", am4charts.XYChart);
+
+			
 
 			// Add data
 			chart.data = this.holding

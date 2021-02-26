@@ -104,7 +104,7 @@
 			            						<h3>AUM</h3>
 			            					</div>
 			            					<div class="chart_line">
-		            							<div id="chartdiv_fst" class="chart_clas"><div class="year-comp"><mat-spinner></mat-spinner></div>	
+		            							<div id="chartdiv_fst" class="chart_clas"><div class="year-comp" id="y-rm"><mat-spinner></mat-spinner></div>	
 												</div>
 		            						</div>
 		            					</div>
@@ -148,6 +148,12 @@
 	            										<td>{{ getPercentage(item) }}%</td>
 	            										<td style="text-align: right;">R {{ formatAmount(item.totalAmount)}}</td>
 	            										<td>{{ showName(item) }}</td>
+	            									</tr>
+	            									<tr *ngIf="reviews_list.length == 0">
+	            										<td>  </td>
+	            										<td></td>
+	            										<td> No Data Found</td>
+	            										<td></td>
 	            									</tr>
 	            									<!-- <tr>
 	            										<td>2</td>
@@ -207,10 +213,10 @@
 		            						<h3>Products</h3>
 		            					</div>
 	            						<div class="chart_inside">
-	            							<div id="chartdiv_compare" class="chart_clas"><div class="no-of-products"><mat-spinner></mat-spinner></div></div>
+	            							<div id="chartdiv_compare" class="chart_clas"><div class="no-of-products" id="p-of"><mat-spinner></mat-spinner></div></div>
 										</div>
 										<div class="chart_inside">
-	            							<div id="chartdiv_compare_products" class="chart_clas"><div class="no-of-products"><mat-spinner></mat-spinner></div></div>
+	            							<div id="chartdiv_compare_products" class="chart_clas"><div class="no-of-products" id="num-of"><mat-spinner></mat-spinner></div></div>
 	            						</div>
 	            					</div>
 	            				</div>

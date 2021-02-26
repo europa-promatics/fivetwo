@@ -1240,6 +1240,86 @@ export class DbEditClientComponent implements OnInit {
         }
 
     }
+    
+    public disclosureDownloadEmail(type) {
+
+        this.ThirdStepStatus=true;
+
+        
+        var agree='no';
+
+            // this.DisclosureName.trim();
+        if(this.DisclosureName!='' && this.DisclosureDate!=''){
+            agree='yes';
+            var formdata: FormData = new FormData();
+            formdata.append("investor_id", this.investor_id);
+            formdata.append("DisclosureSign", this.DisclosureSign);
+            formdata.append("DisclosureDate", this.DisclosureDate);
+            formdata.append("DisclosureName", this.DisclosureName);
+            formdata.append("DisclosureAgree", agree);
+            formdata.append("type", type); // email or download
+
+            formdata.append("image", this.DisclosureSign);
+
+            console.log('disclosuresign',this.DisclosureSign)
+
+            if(this.DisclosureSign==''){
+                this.toastr.warning('Please sign the disclosure','Warning')
+                return
+            }
+            if (this.investor_id==null || this.investor_id==undefined) {
+                this.toastr.error('Something went wrong, Please try again later','Error')
+                return
+            }
+
+            // this.isThirdStepDone=true;
+            console.log('third');
+            // if(type == "add"){
+
+            //     this.button_message = "Downloading..."
+            // }else{
+            //     this.button_email = "Sending...";
+            // }
+            this.authService.updateDisclosure(formdata).subscribe(data => {
+                
+                // console.log('in');
+                if (data.success == 1) {
+                    
+                    console.log(data);
+
+                    var investor_data = data.data
+              		sessionStorage.setItem('investor',JSON.stringify(investor_data))                    
+                   
+                    var message = "Disclosure sent via Email.";
+                    
+                    if(type == "add"){
+                        message = "Disclosure added successfully."
+                        window.open(environment.disclosurePDF + ""+data.pdfName,'_blank')
+                    }
+                    this.toastr.success(message);
+                    // this.button_message = "Download";
+                    // this.button_email = "Send Email";
+                      // this.router.navigate(['/user/clientProfile']);
+                    // this._location.back();
+                    // stepper.next();
+                    // this.stepperNextAsyc(stepper,'3')
+
+                }else  {
+                    // this.button_message = "Download";
+                    // this.button_email = "Send Email";
+                    // this.toastr.error(data.message, 'Error');
+                }
+            }, err => {
+                //this.button_message = "Save";
+                    console.log(err)
+                    // this.toastr.error(this.authService.COMMON_ERROR);
+                
+            })
+
+            // console.log('execute');
+        }
+
+    }
 
     DisclosureSignUpload(evt: any) {
         // console.log(evt)
@@ -1310,6 +1390,92 @@ export class DbEditClientComponent implements OnInit {
         }
 
     }
+    public downloadEmailRecordOfAdvice(type) {
+
+        console.log('forth');
+        
+        this.RecordAdviceOfAdvisorTaken = this.chosenItem;
+
+        var validate=this.validateForthForm();
+        console.log(validate)
+        if (validate) {
+            
+
+            var formdata: FormData = new FormData();
+            formdata.append("id", this.investor_id);
+            formdata.append("RecordAdviceDate", this.RecordAdviceDate);
+            formdata.append("RecordAdviceClient", this.RecordAdviceClient);
+            formdata.append("RecordAdviceAdvisor", this.RecordAdviceAdvisor);
+            formdata.append("RecordAdviceSummaryOfDiscussionWithClient", this.RecordAdviceSummaryOfDiscussionWithClient);
+            formdata.append("RecordAdviceSummaryOfAdviceFromAdvisor", this.RecordAdviceSummaryOfAdviceFromAdvisor);
+            formdata.append("RecordAdviceOfAdvisorTaken", this.RecordAdviceOfAdvisorTaken);
+            formdata.append("RecordAdviceOfAdvisorExplain", this.RecordAdviceOfAdvisorExplain);
+            formdata.append("RecordAdviceClientSignature", this.RecordAdviceClientSignature);
+            formdata.append("RecordAdviceAdvisorSignature", this.RecordAdviceAdvisorSignature);
+            formdata.append("type", type);
+
+            // console.log(this.defaultShortImage)
+            
+            if(this.RecordAdviceClientSignature==''){
+                this.toastr.warning('Please sign the client signature','Warning')
+                return
+            }
+            // console.log(this.RecordAdviceAdvisorSignature)
+            if(this.RecordAdviceAdvisorSignature=='' && this.chosenItem=='Yes'){
+                this.toastr.warning('Please sign the advisor signature','Warning')
+                return
+            }
+
+            if (this.investor_id==null || this.investor_id==undefined) {
+                this.toastr.warning('Please complete form 1 first','Warning')
+                return
+            }
+            // this.isForthStepDone=true;
+            console.log('go');
+
+           
+
+
+            this.authService.addInvestorForthForm(formdata).subscribe(data => {
+                
+                // console.log('in');
+                if (data.success == 1) {
+                   
+                    console.log(data);
+
+                    var investor_data = data.data
+              		//sessionStorage.setItem('investor',JSON.stringify(investor_data))
+                    if(type == "email"){
+                        this.toastr.success('Record of Advice sent via Email');
+                    }else{
+                        this.toastr.success('Record of Advice added successfully');
+                        window.open(environment.recordAdvice+""+data.pdfName)
+                    }
+                    
+                  //  this._location.back();
+                    // stepper.next();
+                    // this.stepperNextAsyc(stepper,'4')
+                    // this.DisclosureSign=null;
+
+                }else  {
+                    // this.toastr.error(data.message, 'Error');
+                }
+
+                // this.button_email = "Send Email";
+                // this.button_download = "Download";
+            }, err => {
+                // this.button_email = "Send Email";
+                // this.button_download = "Download";
+                console.log(err)
+                    // this.toastr.error(this.authService.COMMON_ERROR);
+                
+            })
+
+        }
+
+    }
+
+
     goBack(stepper: MatStepper) {
         console.log('back in');
         stepper.previous();
@@ -1475,6 +1641,105 @@ export class DbEditClientComponent implements OnInit {
 
 
     }
+
+    public downloadEmailRiskProfiler(type){
+        console.log('fifth');
+  
+        this.FifthStepStatus=true;
+  
+        if (this.Year1==''|| this.Year1==null) {
+            this.toastr.warning('Please fill the required fields')
+            return
+        }
+  
+        this.getYearTotal()
+  
+        var formdata: FormData = new FormData();
+        formdata.append("id", this.investor_id);
+        formdata.append("RiskProfilerClientSignature", this.RiskProfilerClientSignature);
+        formdata.append("RiskProfilerAdvisorSignature", this.RiskProfilerAdvisorSignature);
+        formdata.append("Year1", this.Year1.toString());
+        formdata.append("Year2", this.Year2.toString());
+        formdata.append("Year3", this.Year3.toString());
+        formdata.append("Year4", this.Year4.toString());
+        formdata.append("Year5", this.Year5.toString());
+        formdata.append("Year6", this.Year6.toString());
+        formdata.append("edit", "true");
+        formdata.append("type", type);
+  
+  
+      //   if (this.Year1==0 || this.Year2==0|| this.Year3==0|| this.Year4==0|| this.Year5==0|| this.Year6==0) {
+      //       this.toastr.warning('Year % should be greater than 0')
+      //       return
+      //   }
+        
+        if (this.YearTotal!=100) {
+            this.toastr.warning('Total should be 100%')
+            return
+        }
+  
+        if(this.RiskProfilerClientSignature==''){
+            this.toastr.warning('Please sign the client signature','Warning')
+            return
+        }
+  
+        if(this.RiskProfilerAdvisorSignature=='' && this.chosenItem=='Yes'){
+            this.toastr.warning('Please sign the advisor signature','Warning')
+            return
+        }
+  
+        
+  
+        if (this.investor_id==null || this.investor_id==undefined) {
+            this.toastr.error('Something went wrong, Please try again later','Error')
+            return
+        }
+  
+        
+        // if(type == "email"){
+        //   this.button_email = "Sending..."
+        // }else{
+        //   this.button_download = "Downloading..."
+        // }
+  
+        this.authService.addInvestorFifthForm(formdata).subscribe(data => {
+            
+            // console.log('in');
+            if (data.success == 1) {
+               
+                console.log(data);
+                // var investor_data = data.data
+                //sessionStorage.setItem('investor',JSON.stringify(investor_data))
+                if(type == "email"){
+                  this.toastr.success('Risk Profiler sent via Email')
+                }else{
+                  window.open(environment.RiskPDF+""+data.pdfName)
+                  this.toastr.success('Risk Profiler added successfully')
+                }
+  
+                
+                ///this._location.back();
+                
+                
+  
+            }else  {
+              this.toastr.error(data.message)
+                // this.toastr.error(data.message, 'Error');
+            }
+  
+            // this.button_download = "Download";
+            // this.button_email = "Send Email";
+        }, err => {
+                console.log(err)
+                // this.button_download = "Download";
+                // this.button_email = "Send Email";
+                // this.toastr.error(this.authService.COMMON_ERROR);
+            
+        })
+  
+       
+    }
+  
 
     getYearTotal() {
         // p
