@@ -18,9 +18,7 @@
   .mobile_drop {
     display: block;
   }
-  .sidenav_db {
-    display: none;
-  }
+  
   .main_right_db {
     width: calc(100% - 0px) !important;
   }
@@ -46,6 +44,9 @@
 }
 
 @media (max-width: 991px) {
+  .sidenav_db {
+    display: none;
+  }
   .profl_dtl_clnt_outr .col-sm-6 {
   	flex: 0 0 100%;
   	max-width: 100%;
@@ -237,3 +238,12 @@
 }
 
 @media (max-width: 320px) {}
+
+
+.side_visible{
+  display: block;
+    position: fixed;
+    top: 0;
+    z-index: 999;
+    background: #fff;
+}

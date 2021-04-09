@@ -19,4 +19,14 @@ export class DbHeaderComponent implements OnInit {
   	// alert('tha');
   }
 
+  clickSidebarMiniButtton(){
+
+    var x = document.getElementsByClassName("sidenav_db")[0];
+    x.classList.toggle("side_visible");
+    console.log("Clicked");
+
+  }
+
+  
+
 }
