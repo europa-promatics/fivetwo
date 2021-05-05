@@ -144,7 +144,8 @@ export class DbInvestmentsComponent implements OnInit {
       offset: this.offset,
       limit: this.limit,
       order_by: this.orderBy,
-      sort: this.sortName
+      sort: this.sortName,
+      client_category_id : this.filter_category_id,
     };
 
     this.loaderSort[order_by] = true;
@@ -183,7 +184,8 @@ export class DbInvestmentsComponent implements OnInit {
       offset: this.offset,
       limit: this.limit,
       order_by: this.orderBy,
-      sort: sortNameNew
+      sort: sortNameNew,
+      client_category_id : this.filter_category_id,
     };
 
     this.loaderSort[order_by] = true;
@@ -261,7 +263,8 @@ export class DbInvestmentsComponent implements OnInit {
       offset: this.offset,
       limit: this.limit,
       order_by: this.orderBy,
-      sort: this.sortName
+      sort: this.sortName,
+      client_category_id : this.filter_category_id,
     };
     this.authService.investors(ob).subscribe(data => {
 
@@ -532,6 +535,7 @@ export class DbInvestmentsComponent implements OnInit {
 
   moveTo(id){
     this.investor_id = id;
+    this.category_id = "";
   }
 
   moveInvestor(){

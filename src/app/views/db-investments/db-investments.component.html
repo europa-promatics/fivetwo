@@ -74,7 +74,10 @@
 														<option value="all">All</option>
 														<option *ngFor="let cat of clientCategory;" value="{{ cat.id }}">{{ cat.category_name }}</option>
 													</select>
-													<p class="" *ngIf="categoryLoader"> <mat-spinner strokeWidth="3" [diameter]="20"></mat-spinner> </p>
+													<!-- <p class="" *ngIf="categoryLoader"> <mat-spinner strokeWidth="3" [diameter]="20"></mat-spinner> </p> -->
+													<div *ngIf="categoryLoader" class="spinner">
+														<mat-spinner strokeWidth="3" [diameter]="20"></mat-spinner>
+													</div>
 												</div>
 						            		</div>
 			            					<!-- <div class="card_ttl">
@@ -135,7 +138,7 @@
 															    <td class="mat-cell"> <i class="fa fa-check"></i></td>
 														  	</tr>
 														  	<tr *ngIf="opened.includes(value.id)" class="mat-row">
-															    <td class="mat-cell" colspan="15">
+															    <td class="mat-cell" colspan="17">
 																	<h5>Name: {{ value.FirstName }} {{ value.LastName }}</h5>
 																	<p class="">ID Number: {{ value.IdNumber }}</p>
 															    	<p>Contact number: {{ value.CellNumber }}</p>
@@ -259,7 +262,7 @@
                 	<div class="wrap_overall_revws">
 						<!--  -->
 						<div class="card-body">
-							<ul _ngcontent-alt-c14="" class="">
+							<ul _ngcontent-alt-c14="" class="rad_buttons">
 							    <!---->
 							    <li *ngFor="let item of clientCategory;let ind = index">
 							        <mat-radio-group
@@ -269,7 +272,6 @@
 									</mat-radio-button>
 								</mat-radio-group>
 							    </li>
-
 							</ul>
 						</div>
 
