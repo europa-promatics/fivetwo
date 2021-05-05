@@ -1,0 +1,324 @@
+<!-- Header -->
+<app-db-header></app-db-header>
+<!-- Header ends -->
+
+<div class="wrapper_shala wrapper_db swtch_dv">
+	<section class="outer_db_wraper db_main_investmnt">
+		<div class="combine_sidenav_right_db d-flex">
+			<div class="main_right_db invest_db">
+				<section class="bread_top_sec">
+					<div class="db_container">
+						<div class="d-flex justify-content-between align-items-center text-white pos_rel">
+							<div class="sid_controlr">
+								<i class="clos_sid fa fa-bars"></i>
+								<!-- <i class="opn_sid fa fa-times"></i> -->
+							</div>
+							<h3>Switches</h3>
+							<!-- <nav class="bread_nav_sec">
+								<ol class="breadcrumb">
+								    <li class="breadcrumb-item"><a href="#">Home</a></li>
+								    <li class="breadcrumb-item">Dashboard</li>
+								    <li class="breadcrumb-item active">Lead List</li>
+								</ol>
+							</nav> -->
+						</div>
+					</div>
+				</section>
+				<div class="marg_over_bread">
+					<section class="p-0 top_filter_sec">
+						<div class="db_container">
+							<div class="card">
+								<div class="card-body">
+									<form class="formm">
+										<div class="row">
+											<div class="col-sm-4">
+												<div class="form-group">
+													<input
+														type="" class="form-control" name=""
+														placeholder="Search Keyword">
+												</div>
+											</div>
+											<div class="col-sm-6">
+												<div class="form-group">
+													<button class="btn btn_theme">Search</button>
+												</div>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</section>
+
+					<section class="investment_table_sec">
+						<div class="db_container">
+							<div class="row">
+								<div class="col-sm-12">
+									<div class="card">
+										<div class="card-body">
+											<!-- <div class="card_ttl">
+			            						<h3>Lead List</h3>
+			            						<small class="sub_crd">A project is an activity to meet the creation of a unique product or service and thus activities that are undertaken to accomplish routine activities.</small>
+			            					</div> -->
+											<div class="table-responsive table_seler">
+		            							<!-- table start -->
+												<div class="table_db_indi">
+													<div class="onl_tabl">	
+														<table class="mat-table table-bordered table table-striped" sort>	
+															<thead>
+															  	<tr class="mat-header-row">
+																	<th class="mat-header-cell">Requested Date</th>
+																	<th class="mat-header-cell">Requested Fund</th>
+																	<th class="mat-header-cell">
+																		Surname</th>
+																	<th class="mat-header-cell">
+																		First Name</th>
+																	<!-- <th (click)="sort('IdNumber')" class="mat-header-cell">ID</th> -->
+																	<th 
+																		class="mat-header-cell">Cell No.</th>
+																	<th class="mat-header-cell">
+																		Email</th>
+																	<!-- <th (click)="sort('HomeAddress')" class="mat-header-cell">Address</th> -->
+																	<!-- <th class="mat-header-cell">Last<br>Followed Up</th> -->
+																	<th class="mat-header-cell">
+																		Status</th>
+																	<th class="mat-header-cell">
+																		Action</th>
+																</tr>
+															</thead>
+															<tbody>
+															  	
+																<tr class="mat-row">
+																	<td class="mat-cell datpckr_td">
+																		<!-- <span>
+																			<mat-form-field appearance="fill">
+																				<input readonly matInput>
+																				<mat-datepicker-toggle
+																					matSuffix [for]="pickerFrom">
+																				</mat-datepicker-toggle>
+																				<mat-datepicker #pickerFrom>
+																				</mat-datepicker>
+																			</mat-form-field>
+																		</span> -->
+
+																		<!-- <span>
+																			-
+																		</span> -->
+																		<span>10 March 2021</span>
+																	</td>
+																	<td class="mat-cell">Living Annuity</td>
+																	<td class="mat-cell">John </td>
+																	<td
+																		class="mat-cell wtnrp" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">cena </td>
+																	<!-- <td class="mat-cell">{{value.IdNumber}}</td> -->
+																	<td class="mat-cell">3542377</td>
+																	<td class="mat-cell">abc@mailinator.com</td>
+																	<!-- <td class="mat-cell">12/18/2020</td> -->
+																	<!-- <td class="mat-cell addrs_td">{{value.HomeAddress.substr(0,20)}} <a (click)="viewMore('Address',value.HomeAddress)" href="javascript:;" class="wtnrp">View More</a></td> -->
+																	<td class="mat-cell">
+																		<span class="badge" style="background-color: green;color: white;">Accepted</span>
+																	</td>
+																	<!-- <td class="mat-cell" *ngIf='value.status != "call_lead"')>
+																		<span class="badge badge-primary">In progress</span>
+																	</td> -->
+																	<!-- [color]="getStatusColor(value.status)" -->
+																	<td class="mat-cell">
+																		<span class="d-flex align-items-center">	
+																			<button mat-raised-button
+																				[matMenuTriggerFor]="menu"
+																				class="custom-mat-raised-button">
+																				<!-- {{value.status}} -->
+																				<mat-icon class="custom-mat-icon">keyboard_arrow_down</mat-icon>
+																			</button>
+																			<span
+																				class="custom-mat-raised-button" data-toggle="modal" data-target="#myModal1">
+																				<mat-icon class="custom-mat-icon">send</mat-icon>
+																			</span>
+																		</span>
+																	</td>
+																</tr>
+																<tr class="mat-row">
+																	<td class="mat-cell datpckr_td">
+																		<!-- <span>
+																			<mat-form-field appearance="fill">
+																				<input readonly matInput>
+																				<mat-datepicker-toggle
+																					matSuffix [for]="pickerFrom">
+																				</mat-datepicker-toggle>
+																				<mat-datepicker #pickerFrom>
+																				</mat-datepicker>
+																			</mat-form-field>
+																		</span> -->
+
+																		<!-- <span>
+																			-
+																		</span> -->
+																		<span>10 March 2021</span>
+																	</td>
+																	<td class="mat-cell">Living Annuity</td>
+																	<td class="mat-cell">John </td>
+																	<td
+																		class="mat-cell wtnrp" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">cena </td>
+																	<!-- <td class="mat-cell">{{value.IdNumber}}</td> -->
+																	<td class="mat-cell">3542377</td>
+																	<td class="mat-cell">abc@mailinator.com</td>
+																	<!-- <td class="mat-cell">12/18/2020</td> -->
+																	<!-- <td class="mat-cell addrs_td">{{value.HomeAddress.substr(0,20)}} <a (click)="viewMore('Address',value.HomeAddress)" href="javascript:;" class="wtnrp">View More</a></td> -->
+																	<td class="mat-cell">
+																		<span class="badge badge-primary">Submitted</span>
+																	</td>
+																	<!-- <td class="mat-cell" *ngIf='value.status != "call_lead"')>
+																		<span class="badge badge-primary">In progress</span>
+																	</td> -->
+																	<!-- [color]="getStatusColor(value.status)" -->
+																	<td class="mat-cell">
+																		<span class="d-flex align-items-center">	
+																			<button mat-raised-button
+																				[matMenuTriggerFor]="menu"
+																				class="custom-mat-raised-button">
+																				<!-- {{value.status}} -->
+																				<mat-icon class="custom-mat-icon">keyboard_arrow_down</mat-icon>
+																			</button>
+																			<span
+																				class="custom-mat-raised-button" data-toggle="modal" data-target="#myModal1">
+																				<mat-icon class="custom-mat-icon">send</mat-icon>
+																			</span>
+																		</span>
+																	</td>
+																</tr>
+																<tr class="mat-row">
+																	<td class="mat-cell datpckr_td">
+																		<!-- <span>
+																			<mat-form-field appearance="fill">
+																				<input readonly matInput>
+																				<mat-datepicker-toggle
+																					matSuffix [for]="pickerFrom">
+																				</mat-datepicker-toggle>
+																				<mat-datepicker #pickerFrom>
+																				</mat-datepicker>
+																			</mat-form-field>
+																		</span> -->
+
+																		<!-- <span>
+																			-
+																		</span> -->
+																		<span>10 March 2021</span>
+																	</td>
+																	<td class="mat-cell">Living Annuity</td>
+																	<td class="mat-cell">John </td>
+																	<td
+																		class="mat-cell wtnrp" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">cena </td>
+																	<!-- <td class="mat-cell">{{value.IdNumber}}</td> -->
+																	<td class="mat-cell">3542377</td>
+																	<td class="mat-cell">abc@mailinator.com</td>
+																	<!-- <td class="mat-cell">12/18/2020</td> -->
+																	<!-- <td class="mat-cell addrs_td">{{value.HomeAddress.substr(0,20)}} <a (click)="viewMore('Address',value.HomeAddress)" href="javascript:;" class="wtnrp">View More</a></td> -->
+																	<td class="mat-cell">
+																		<span class="badge badge-danger">Declined</span>
+																	</td>
+																	<!-- <td class="mat-cell" *ngIf='value.status != "call_lead"')>
+																		<span class="badge badge-primary">In progress</span>
+																	</td> -->
+																	<!-- [color]="getStatusColor(value.status)" -->
+																	<td class="mat-cell">
+																		<span class="d-flex align-items-center">	
+																			<button mat-raised-button
+																				[matMenuTriggerFor]="menu"
+																				class="custom-mat-raised-button">
+																				<!-- {{value.status}} -->
+																				<mat-icon class="custom-mat-icon">keyboard_arrow_down</mat-icon>
+																			</button>
+																			<span
+																				class="custom-mat-raised-button" data-toggle="modal" data-target="#myModal1">
+																				<mat-icon class="custom-mat-icon">send</mat-icon>
+																			</span>
+																		</span>
+																	</td>
+																</tr>
+															
+															
+															</tbody>
+														</table>
+
+														<mat-paginator [pageSize]="limit" (page)="paginationOptionChange($event)" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>	
+													</div>
+												</div>
+												<!-- table start -->
+		            						</div>		
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+				</div>
+			</div>
+
+			<div class="sidenav_db">
+				<app-db-sidebar></app-db-sidebar>
+			</div>
+		</div>
+	</section>
+	<!-- footer starts -->
+	<!-- <app-footer></app-footer> -->
+	<!-- footer ends -->
+	<div class="modal modl-switch" id="myModal1">
+		<div class="modal-dialog">
+			<div class="modal-content">
+
+				<!-- Modal Header -->
+				<div class="modal-header">
+					<h5 class="modal-title">Switch Fund</h5>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+
+				<!-- Modal body -->
+				<div class="modal-body">
+					<div class="swtch_modl">
+						<div class="form-group">
+							<label>Choose fund to switch</label>
+							<div class="pos_rel">
+								<select formControlName="status"
+									class="custom-select form-control">
+									<option value="coron_fnd">Coronation Jibar Plus Fund P</option>
+									<option value="mrkt_fnd">Ninety One Money Market Fund [B]</option>
+									<option value="incm_fund">Coronation Strategic Income Fund P</option>
+									<option value="prscnt_fund">Prescient Income Provider Fund A2</option>
+									<option value="fof_fund">Foord Flexible FoF B4</option>
+									<option value="mg_funda">Old Mutual Gold Fund A</option>
+									<option value="mg_fundb1">Old Mutual Gold Fund B1</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label>Choose existng fund</label>
+							<div class="pos_rel">
+								<select formControlName="status"
+									class="custom-select form-control">
+									<option value="coron_fnd">Coronation Jibar Plus Fund P</option>
+									<option value="mrkt_fnd">Ninety One Money Market Fund [B]</option>
+									<option value="incm_fund">Coronation Strategic Income Fund P</option>
+									<option value="prscnt_fund">Prescient Income Provider Fund A2</option>
+									<option value="fof_fund">Foord Flexible FoF B4</option>
+									<option value="mg_funda">Old Mutual Gold Fund A</option>
+									<option value="mg_fundb1">Old Mutual Gold Fund B1</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label>Message</label>
+							<textarea class="form-control" rows="3"></textarea>
+						</div>
+						<div class="form-group">
+							<div class="text-right btn_snd">
+								<button class="btn btn_theme">Send</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+</div>

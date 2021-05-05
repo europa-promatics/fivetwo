@@ -58,11 +58,45 @@
                 </a>
             </li>
 	        <li [ngClass]="isCurrentUrl('/user/reviews') ? 'selected_bar':''">
-                <a routerLink="/user/reviews" class="dropdown-item"><span><i class="fa fa-thumbs-up"></i></span> Reviews </a>
+                <a routerLink="/user/reviews" class="dropdown-item"><span><i class="fa fa-file-search"></i></span> Reviews </a>
             </li>
-            <li [ngClass]="isCurrentUrl('/user/dbInstructions') ? 'selected_bar':''">
+            <!-- <li [ngClass]="isCurrentUrl('/user/dbInstructions') ? 'selected_bar':''">
                 <a routerLink="/user/dbInstructions" class="dropdown-item"><span><i class="fa fa-info-circle"></i></span> Instructions </a>
+            </li> -->
+            <li class="inst_tab">
+                <mat-accordion>
+                    <mat-expansion-panel (opened)="panelOpenState = true"
+                                         (closed)="panelOpenState = false">
+                        <mat-expansion-panel-header>
+                          <mat-panel-title>
+                            <a routerLink="/user/dbInstructions" class="dropdown-item"><span><i class="fa fa-info-circle"></i></span> Instructions </a>
+                          </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <div class="inst_sbmnu">
+                            <ul type="none">
+                                <li>
+                                    <a routerLink="/user/switches" class="dropdown-item"><span><i class="fa fa-repeat"></i></span> Switches </a>
+                                </li>
+                                <li>
+                                    <a routerLink="/user/repurchase" class="dropdown-item"><span><img src="assets/img/repurchase.png" class="img-fluid icn_img"></span> Repurchase </a>
+                                </li>
+                                <li>
+                                    <a routerLink="" class="dropdown-item"><span><img src="assets/img/adtn.png" class="img-fluid icn_img"></span> Additions </a>
+                                </li>
+                                <li>
+                                    <a routerLink="" class="dropdown-item"><span><i class="far fa-usd-circle"></i></span> Income Changes </a>
+                                </li>
+                                <li>
+                                    <a routerLink="" class="dropdown-item"><span><i class="far fa-credit-card"></i></span> Debit Order Change </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </mat-expansion-panel>
+                </mat-accordion>
+
             </li>
+
+
 	        <li>
                 <a (click) = "logout()" href="javascript:;" class="dropdown-item"><span><i class="fa fa-power-off"></i></span> Log Out </a>
             </li>

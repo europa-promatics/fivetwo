@@ -14,6 +14,8 @@ declare var $;
   styleUrls: ['./db-sidebar.component.scss']
 })
 export class DbSidebarComponent implements OnInit {
+
+  panelOpenState = false;
   user
   task_count: 0
   lead_count: 0

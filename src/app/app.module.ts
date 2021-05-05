@@ -80,6 +80,10 @@ import { EditLeadComponent } from './views/edit-lead/edit-lead.component';
 import { MAT_DATE_LOCALE } from '@angular/material';
 import {MatTabsModule} from '@angular/material/tabs';
 import { DbEditBrokerComponent } from './views/db-edit-broker/db-edit-broker.component';
+import {MatExpansionModule} from '@angular/material/expansion';
+import { DbSwitchesComponent } from './views/db-switches/db-switches.component';
+import { DbRepurchaseComponent } from './views/db-repurchase/db-repurchase.component';
+import { DbInvestAdditionsComponent } from './views/db-invest-additions/db-invest-additions.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -130,6 +134,9 @@ import { DbEditBrokerComponent } from './views/db-edit-broker/db-edit-broker.com
     DraftClientsComponent,
     EditLeadComponent,
     DbEditBrokerComponent,
+    DbSwitchesComponent,
+    DbRepurchaseComponent,
+    DbInvestAdditionsComponent
   ],
   imports: [
     BrowserModule,
@@ -158,6 +165,8 @@ import { DbEditBrokerComponent } from './views/db-edit-broker/db-edit-broker.com
     MatNativeDateModule,
     MatSelectModule,   
     WebcamModule,
+    MatExpansionModule,
+    MatSortModule,
     MatTabsModule
     // NgbModule
   ],

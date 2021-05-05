@@ -376,6 +376,40 @@ export class AuthService {
         // catchError(this.error)
         )
     }
+
+    clientCategories(): Observable<any> {
+      let API_URL = this.SERVER_URL+'client-categories';
+      return this.http.get(API_URL,this.httpOptions)
+      .pipe(
+        map((res: Response) => {
+          return res
+        }),
+        // retry(1),
+        // catchError(this.error)
+        )
+    }
+
+    createClientCategories(data): Observable<any> {
+      let API_URL = this.SERVER_URL+'add/client/category';
+      return this.http.post(API_URL,data,this.httpOptions)
+      .pipe(
+        map((res: Response) => {
+          return res
+        }),
+        // retry(1),
+        // catchError(this.error)
+        )
+    }
+    
+    moveInvestorToCategory(data): Observable<any> {
+      let API_URL = this.SERVER_URL+'move/investor/client/category';
+      return this.http.post(API_URL,data,this.httpOptions)
+      .pipe(
+        map((res: Response) => {
+          return res
+        })
+        )
+    }
     leads(data): Observable<any> {
       let API_URL = this.SERVER_URL+'lead';
       return this.http.post(API_URL,data,this.httpOptions)

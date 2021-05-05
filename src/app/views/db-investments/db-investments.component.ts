@@ -19,6 +19,7 @@ export class DbInvestmentsComponent implements OnInit {
   option = "FirstName"
   search = ''
   isLoading = true
+  categoryLoader=false
 
   length
   offset = '0'
@@ -41,14 +42,19 @@ export class DbInvestmentsComponent implements OnInit {
       ClientNumber : "DESC", 
       total_holding : "DESC", 
   }
+  clientCategory: any;
+  category_name = "";
+  category_id:any;
+  filter_category_id:any = "all";
+  investor_id : any
 
 
   constructor(private route: ActivatedRoute, private router: Router, private authService: AuthService, private toastr: ToastrService, public formBuilder: FormBuilder) { }
 
   ngOnInit() {
-    // alert("Yes i am in");
     this.tableSort = [true, true]
     this.getinvestors()
+    this.clientCategories()
 
 
 
@@ -217,7 +223,8 @@ export class DbInvestmentsComponent implements OnInit {
       offset: this.offset,
       limit: this.limit,
       order_by: "LastName",
-      sort: "ASC"
+      sort: "ASC",
+      client_category_id : this.filter_category_id
     };
 
     this.authService.investors(ob).subscribe(data => {
@@ -231,10 +238,13 @@ export class DbInvestmentsComponent implements OnInit {
       }
 
       this.isLoading = false;
+      this.categoryLoader = false;
     }, err => {
 
       // console.log(err)
       this.authService.showAuthError(err);
+      this.isLoading = false;
+      this.categoryLoader = false;
       // this.toastr.error(this.authService.COMMON_ERROR);
     })
   }
@@ -475,6 +485,84 @@ export class DbInvestmentsComponent implements OnInit {
     //     })
     // }
 
+
+  }
+
+  clientCategories(){
+
+    this.authService.clientCategories().subscribe(data => {
+      if (data.success == 1) {
+        this.clientCategory = data.list;
+        
+      } else {
+        this.toastr.error(data.message, 'Error');
+      }
+    },(error) => {
+      this.toastr.error("Something went wrong", 'Error');
+    })
+
+  }
+
+  createClientCategories(){
+    console.log(this.category_name);
+    
+    if(!this.category_name){
+      this.toastr.error("Category name is required", 'Error');
+      return
+    }
+
+    $("#myModal1").modal("hide")
+
+    const obj = {
+      category_name : this.category_name
+    }
+
+    this.authService.createClientCategories(obj).subscribe(data => {
+      if (data.success == 1) {
+        this.toastr.success(data.message, 'Success');
+        this.clientCategories();
+      } else {
+        this.toastr.error(data.message, 'Error');
+      }
+    },(error) => {
+      this.toastr.error("Something went wrong", 'Error');
+    })
+
+  }
+
+  moveTo(id){
+    this.investor_id = id;
+  }
+
+  moveInvestor(){
+    const obj = {
+      client_category_id : this.category_id,
+      investor_id : this.investor_id
+    }
+
+    this.authService.moveInvestorToCategory(obj).subscribe(data => {
+      if (data.success == 1) {
+        this.toastr.success(data.message, 'Success');
+        const index = this.investors.findIndex( (item) => item.id == this.investor_id);
+        if(index >= 0){
+          this.investors[index].investor_client_category = data.category
+        }
+        console.log(index)
+      } else {
+        this.toastr.error(data.message, 'Error');
+      }
+    },(error) => {
+      this.toastr.error("Something went wrong", 'Error');
+    })
+  }
+
+  filterCategory(event){
+
+    console.log(event);
+    this.offset = "0";
+    this.categoryLoader = true
+    this.getinvestors();
+        
 
   }
 }

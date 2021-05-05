@@ -48,6 +48,9 @@ import { DraftClientsComponent } from './views/draft-clients/draft-clients.compo
 import { CreateRequestGuardService  } from "./user/deactivate_guard.service";
 import { EditLeadComponent } from './views/edit-lead/edit-lead.component';
 import {  DbEditBrokerComponent } from "./views/db-edit-broker/db-edit-broker.component";
+import { DbSwitchesComponent } from './views/db-switches/db-switches.component';
+import { DbRepurchaseComponent } from './views/db-repurchase/db-repurchase.component';
+import { DbInvestAdditionsComponent } from './views/db-invest-additions/db-invest-additions.component';
 
 const routes: Routes = [
 	{
@@ -259,9 +262,21 @@ const routes: Routes = [
 		            	component: DbWelcomeLetterComponent
 		            },
 		            {
+		            	path: 'dbinvestAdditions',
+		            	component: DbInvestAdditionsComponent
+		            },
+		            {
+				    	path: 'switches',
+				    	component: DbSwitchesComponent
+				    },
+				    {
+				    	path: 'repurchase',
+				    	component: DbRepurchaseComponent
+				    },
+		            {
 		            	path: 'dbAddLetterAuthority/:investor_id',
 		            	component: DbLetterAuthorityComponent
-		            },
+		            }
 
 
 
