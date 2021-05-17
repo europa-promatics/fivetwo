@@ -90,6 +90,7 @@
 													<div class="onl_tabl">	
 														<table class="mat-table table-bordered table table-striped" sort>	
 														  	<tr class="mat-header-row">
+															    <th class="mat-header-cell" rowspan="2">Move</th>
 															    <th (click)="sortNew('ClientNumber')" class="mat-header-cell" rowspan="2">Client Number<p class="text-center p_res" *ngIf="loaderSort.ClientNumber"> <mat-spinner strokeWidth="3" [diameter]="20"></mat-spinner> </p></th>
 															    <th (click)="sortNew('LastName')" class="mat-header-cell" rowspan="2">SurName <p class="text-center p_res" *ngIf="loaderSort.LastName"> <mat-spinner strokeWidth="3" [diameter]="20"></mat-spinner> </p></th>
 															    <th (click)="sortNew('FirstName')" class="mat-header-cell" rowspan="2">First Name<p class="text-center p_res" *ngIf="loaderSort.FirstName"> <mat-spinner strokeWidth="3" [diameter]="20"></mat-spinner> </p></th>
@@ -102,6 +103,7 @@
 															    <th class="mat-header-cell" rowspan="2">ROA</th>
 															    <th class="mat-header-cell" rowspan="2">RP</th>
 															    <th class="mat-header-cell" rowspan="2">WL</th>
+															    <th class="mat-header-cell" rowspan="2">Action</th>
 														  	</tr>
 														  	<tr class="mat-header-row">
 															    <th class="mat-header-cell">1st</th>
@@ -113,8 +115,9 @@
 														  	</tr>
 														  	<ng-container *ngFor="let value of investors; let i = index">
 														  	<tr class="mat-row">
+																<td class="mat-cell"><a href="#" class="move2_link" (click)="moveTo(value.id)" data-toggle="modal" data-target="#myModal">Move To</a></td>
 																<td class="mat-cell wtnrp" (click) = "toggle(value.id)">
-																<a href="#" class="move2_link" (click)="moveTo(value.id)" data-toggle="modal" data-target="#myModal">Move To</a>
+																
 																{{ value.ClientNumber }}</td>
 																<td class="mat-cell wtnrp" (click)="clientProfile(value)">{{ value.LastName }} </td>
 															    <td class="mat-cell wtnrp" (click)="clientProfile(value)">{{ value.FirstName }} </td>
@@ -136,9 +139,13 @@
 															    <td class="mat-cell" [innerHTML]=" validateItem(value.RecordAdviceClientSignature) "></td>
 															    <td class="mat-cell" [innerHTML]=" validateItem(value.RiskProfilerClientSignature) "></td>
 															    <td class="mat-cell"> <i class="fa fa-check"></i></td>
+																<td class="mat-cell"><span
+																	class="custom-mat-raised-button" (click)="fetchClientFunds(value.id,value.ClientNumber)" >
+																	<mat-icon class="custom-mat-icon">send</mat-icon>
+																</span></td>
 														  	</tr>
 														  	<tr *ngIf="opened.includes(value.id)" class="mat-row">
-															    <td class="mat-cell" colspan="17">
+															    <td class="mat-cell" colspan="18">
 																	<h5>Name: {{ value.FirstName }} {{ value.LastName }}</h5>
 																	<p class="">ID Number: {{ value.IdNumber }}</p>
 															    	<p>Contact number: {{ value.CellNumber }}</p>
@@ -302,4 +309,54 @@
             </div>
         </div>
     </div>
+</div>
+
+<div class="modal modl-switch" id="myModal2">
+	<div class="modal-dialog">
+		<div class="modal-content">
+
+			<!-- Modal Header -->
+			<div class="modal-header">
+				<h5 class="modal-title">Switch Fund</h5>
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+
+			<!-- Modal body -->
+			<div class="modal-body">
+				<div class="swtch_modl">
+					<div class="form-group">
+						<label>Choose fund to switch</label>
+						<div class="pos_rel">
+							<select 
+								class="custom-select form-control" [(ngModel)]="switchForm.all_fund_selected" [ngModelOptions]="{standalone: true}">
+								<option value="">Choose</option>
+								<option *ngFor="let item of all_funds" value="{{item.instrument_description}}">{{item.instrument_description}}</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label>Choose existng fund</label>
+						<div class="pos_rel">
+							<select 
+								class="custom-select form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="switchForm.exist_fund_selected" >
+								<option value="">Choose</option>
+								<option *ngFor="let item of client_funds" value="{{item.instrument_description}}">{{item.instrument_description}}</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label>Message</label>
+						<textarea class="form-control" [(ngModel)]="switchForm.message" [ngModelOptions]="{standalone: true}" rows="3"></textarea>
+					</div>
+					<div class="form-group">
+						<div class="text-right btn_snd">
+							<button class="btn btn_theme" (click)="switchFunds()">Send</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+		</div>
+	</div>
 </div>

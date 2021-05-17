@@ -47,7 +47,15 @@ export class DbInvestmentsComponent implements OnInit {
   category_id:any;
   filter_category_id:any = "all";
   investor_id : any
+  client_funds = []
+  all_funds = []
 
+  switchForm = {
+    all_fund_selected : "",
+    exist_fund_selected : "",
+    message : "",
+    client_id : "",
+  }
 
   constructor(private route: ActivatedRoute, private router: Router, private authService: AuthService, private toastr: ToastrService, public formBuilder: FormBuilder) { }
 
@@ -565,8 +573,54 @@ export class DbInvestmentsComponent implements OnInit {
     console.log(event);
     this.offset = "0";
     this.categoryLoader = true
-    this.getinvestors();
-        
+    this.getinvestors();        
 
+  }
+
+  fetchClientFunds(client_id,client_number){
+   
+    const obj = {
+      investor_id : client_id,
+      client_number : client_number
+    }
+
+    console.log(obj);
+    
+
+    this.authService.fetchClientFunds(obj).subscribe(data => {
+      if (data.success == 1) {
+        this.client_funds = data.funds;
+        this.all_funds = data.all_funds;
+        this.switchForm.client_id = client_id;
+        $("#myModal2").modal();
+        
+      } else {
+        this.toastr.error(data.message, 'Error');
+      }
+    },(error) => {
+      this.toastr.error("Something went wrong", 'Error');
+    })
+  }
+
+  switchFunds(){
+   
+    const obj = {
+      client_id : this.switchForm.client_id,
+      requested_fund : this.switchForm.all_fund_selected,
+      message : this.switchForm.message,
+    }
+    
+    this.authService.switchFunds(obj).subscribe(data => {
+      if (data.success == 1) {
+        this.toastr.success(data.message, 'Success');
+
+        $("#myModal2").modal("hide");
+        
+      } else {
+        this.toastr.error(data.message, 'Error');
+      }
+    },(error) => {
+      this.toastr.error("Something went wrong", 'Error');
+    })
   }
 }

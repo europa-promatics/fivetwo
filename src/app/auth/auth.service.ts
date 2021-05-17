@@ -400,6 +400,42 @@ export class AuthService {
         // catchError(this.error)
         )
     }
+
+    fetchClientFunds(data): Observable<any> {
+      let API_URL = this.SERVER_URL+'fetch/client/funds';
+      return this.http.post(API_URL,data,this.httpOptions)
+      .pipe(
+        map((res: Response) => {
+          return res
+        }),
+        // retry(1),
+        // catchError(this.error)
+        )
+    }
+
+    switchFunds(data): Observable<any> {
+      let API_URL = this.SERVER_URL+'switch/client/funds';
+      return this.http.post(API_URL,data,this.httpOptions)
+      .pipe(
+        map((res: Response) => {
+          return res
+        }),
+        // retry(1),
+        // catchError(this.error)
+        )
+    }
+
+    getRequestedFunds(data): Observable<any> {
+      let API_URL = this.SERVER_URL+'requested/funds';
+      return this.http.post(API_URL,data,this.httpOptions)
+      .pipe(
+        map((res: Response) => {
+          return res
+        }),
+        // retry(1),
+        // catchError(this.error)
+        )
+    }
     
     moveInvestorToCategory(data): Observable<any> {
       let API_URL = this.SERVER_URL+'move/investor/client/category';

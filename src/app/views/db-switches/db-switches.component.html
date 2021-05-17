@@ -34,13 +34,13 @@
 											<div class="col-sm-4">
 												<div class="form-group">
 													<input
-														type="" class="form-control" name=""
+														type="" [(ngModel)]="search_text" [ngModelOptions]="{standalone: true}" class="form-control" name=""
 														placeholder="Search Keyword">
 												</div>
 											</div>
 											<div class="col-sm-6">
 												<div class="form-group">
-													<button class="btn btn_theme">Search</button>
+													<button class="btn btn_theme" (click)="search()">Search</button>
 												</div>
 											</div>
 										</div>
@@ -87,36 +87,25 @@
 																</tr>
 															</thead>
 															<tbody>
-															  	
-																<tr class="mat-row">
-																	<td class="mat-cell datpckr_td">
-																		<!-- <span>
-																			<mat-form-field appearance="fill">
-																				<input readonly matInput>
-																				<mat-datepicker-toggle
-																					matSuffix [for]="pickerFrom">
-																				</mat-datepicker-toggle>
-																				<mat-datepicker #pickerFrom>
-																				</mat-datepicker>
-																			</mat-form-field>
-																		</span> -->
 
-																		<!-- <span>
-																			-
-																		</span> -->
-																		<span>10 March 2021</span>
+																<tr class="mat-row" *ngFor="let item of list" >
+																	<td class="mat-cell datpckr_td">
+																	
+																		<span>{{ item.requested_date | date:'MMMM d, y' }}</span>
 																	</td>
-																	<td class="mat-cell">Living Annuity</td>
-																	<td class="mat-cell">John </td>
+																	<td class="mat-cell">{{ item.requested_fund }}</td>
+																	<td class="mat-cell">{{ item.client_data ? item.client_data.LastName : "-" }} </td>
 																	<td
-																		class="mat-cell wtnrp" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">cena </td>
+																		class="mat-cell wtnrp" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">{{ item.client_data ? item.client_data.FirstName : "-" }} </td>
 																	<!-- <td class="mat-cell">{{value.IdNumber}}</td> -->
-																	<td class="mat-cell">3542377</td>
-																	<td class="mat-cell">abc@mailinator.com</td>
+																	<td class="mat-cell">{{ item.client_data ? item.client_data.CellNumber : "-" }}</td>
+																	<td class="mat-cell">{{ item.client_data ? item.client_data.Email : "-"  }}</td>
 																	<!-- <td class="mat-cell">12/18/2020</td> -->
 																	<!-- <td class="mat-cell addrs_td">{{value.HomeAddress.substr(0,20)}} <a (click)="viewMore('Address',value.HomeAddress)" href="javascript:;" class="wtnrp">View More</a></td> -->
 																	<td class="mat-cell">
-																		<span class="badge" style="background-color: green;color: white;">Accepted</span>
+																		<span *ngIf="item.status == 'accepted'" class="badge" style="background-color: green;color: white;">Accepted</span>
+																		<span  *ngIf="item.status == 'submitted'" class="badge badge-primary">Submitted</span>
+																		<span *ngIf="item.status == 'declined'" class="badge badge-danger">Declined</span>
 																	</td>
 																	<!-- <td class="mat-cell" *ngIf='value.status != "call_lead"')>
 																		<span class="badge badge-primary">In progress</span>
@@ -124,123 +113,15 @@
 																	<!-- [color]="getStatusColor(value.status)" -->
 																	<td class="mat-cell">
 																		<span class="d-flex align-items-center">	
-																			<button mat-raised-button
-																				[matMenuTriggerFor]="menu"
-																				class="custom-mat-raised-button">
-																				<!-- {{value.status}} -->
-																				<mat-icon class="custom-mat-icon">keyboard_arrow_down</mat-icon>
-																			</button>
-																			<span
-																				class="custom-mat-raised-button" data-toggle="modal" data-target="#myModal1">
-																				<mat-icon class="custom-mat-icon">send</mat-icon>
-																			</span>
+																																						
 																		</span>
 																	</td>
 																</tr>
-																<tr class="mat-row">
-																	<td class="mat-cell datpckr_td">
-																		<!-- <span>
-																			<mat-form-field appearance="fill">
-																				<input readonly matInput>
-																				<mat-datepicker-toggle
-																					matSuffix [for]="pickerFrom">
-																				</mat-datepicker-toggle>
-																				<mat-datepicker #pickerFrom>
-																				</mat-datepicker>
-																			</mat-form-field>
-																		</span> -->
-
-																		<!-- <span>
-																			-
-																		</span> -->
-																		<span>10 March 2021</span>
-																	</td>
-																	<td class="mat-cell">Living Annuity</td>
-																	<td class="mat-cell">John </td>
-																	<td
-																		class="mat-cell wtnrp" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">cena </td>
-																	<!-- <td class="mat-cell">{{value.IdNumber}}</td> -->
-																	<td class="mat-cell">3542377</td>
-																	<td class="mat-cell">abc@mailinator.com</td>
-																	<!-- <td class="mat-cell">12/18/2020</td> -->
-																	<!-- <td class="mat-cell addrs_td">{{value.HomeAddress.substr(0,20)}} <a (click)="viewMore('Address',value.HomeAddress)" href="javascript:;" class="wtnrp">View More</a></td> -->
-																	<td class="mat-cell">
-																		<span class="badge badge-primary">Submitted</span>
-																	</td>
-																	<!-- <td class="mat-cell" *ngIf='value.status != "call_lead"')>
-																		<span class="badge badge-primary">In progress</span>
-																	</td> -->
-																	<!-- [color]="getStatusColor(value.status)" -->
-																	<td class="mat-cell">
-																		<span class="d-flex align-items-center">	
-																			<button mat-raised-button
-																				[matMenuTriggerFor]="menu"
-																				class="custom-mat-raised-button">
-																				<!-- {{value.status}} -->
-																				<mat-icon class="custom-mat-icon">keyboard_arrow_down</mat-icon>
-																			</button>
-																			<span
-																				class="custom-mat-raised-button" data-toggle="modal" data-target="#myModal1">
-																				<mat-icon class="custom-mat-icon">send</mat-icon>
-																			</span>
-																		</span>
-																	</td>
-																</tr>
-																<tr class="mat-row">
-																	<td class="mat-cell datpckr_td">
-																		<!-- <span>
-																			<mat-form-field appearance="fill">
-																				<input readonly matInput>
-																				<mat-datepicker-toggle
-																					matSuffix [for]="pickerFrom">
-																				</mat-datepicker-toggle>
-																				<mat-datepicker #pickerFrom>
-																				</mat-datepicker>
-																			</mat-form-field>
-																		</span> -->
-
-																		<!-- <span>
-																			-
-																		</span> -->
-																		<span>10 March 2021</span>
-																	</td>
-																	<td class="mat-cell">Living Annuity</td>
-																	<td class="mat-cell">John </td>
-																	<td
-																		class="mat-cell wtnrp" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">cena </td>
-																	<!-- <td class="mat-cell">{{value.IdNumber}}</td> -->
-																	<td class="mat-cell">3542377</td>
-																	<td class="mat-cell">abc@mailinator.com</td>
-																	<!-- <td class="mat-cell">12/18/2020</td> -->
-																	<!-- <td class="mat-cell addrs_td">{{value.HomeAddress.substr(0,20)}} <a (click)="viewMore('Address',value.HomeAddress)" href="javascript:;" class="wtnrp">View More</a></td> -->
-																	<td class="mat-cell">
-																		<span class="badge badge-danger">Declined</span>
-																	</td>
-																	<!-- <td class="mat-cell" *ngIf='value.status != "call_lead"')>
-																		<span class="badge badge-primary">In progress</span>
-																	</td> -->
-																	<!-- [color]="getStatusColor(value.status)" -->
-																	<td class="mat-cell">
-																		<span class="d-flex align-items-center">	
-																			<button mat-raised-button
-																				[matMenuTriggerFor]="menu"
-																				class="custom-mat-raised-button">
-																				<!-- {{value.status}} -->
-																				<mat-icon class="custom-mat-icon">keyboard_arrow_down</mat-icon>
-																			</button>
-																			<span
-																				class="custom-mat-raised-button" data-toggle="modal" data-target="#myModal1">
-																				<mat-icon class="custom-mat-icon">send</mat-icon>
-																			</span>
-																		</span>
-																	</td>
-																</tr>
-															
 															
 															</tbody>
 														</table>
 
-														<mat-paginator [pageSize]="limit" (page)="paginationOptionChange($event)" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>	
+														<mat-paginator [length]="total" [pageSize]="limit" (page)="paginationOptionChange($event)" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>	
 													</div>
 												</div>
 												<!-- table start -->
@@ -278,7 +159,7 @@
 						<div class="form-group">
 							<label>Choose fund to switch</label>
 							<div class="pos_rel">
-								<select formControlName="status"
+								<select 
 									class="custom-select form-control">
 									<option value="coron_fnd">Coronation Jibar Plus Fund P</option>
 									<option value="mrkt_fnd">Ninety One Money Market Fund [B]</option>
@@ -293,7 +174,7 @@
 						<div class="form-group">
 							<label>Choose existng fund</label>
 							<div class="pos_rel">
-								<select formControlName="status"
+								<select
 									class="custom-select form-control">
 									<option value="coron_fnd">Coronation Jibar Plus Fund P</option>
 									<option value="mrkt_fnd">Ninety One Money Market Fund [B]</option>
