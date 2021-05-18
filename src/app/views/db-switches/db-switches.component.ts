@@ -13,6 +13,7 @@ export class DbSwitchesComponent implements OnInit {
   total = 0 
   search_text=""
   list = []
+  isLoading = false
   constructor(public authService : AuthService,public toastr : ToastrService) { }
   
   ngOnInit() {
@@ -24,11 +25,12 @@ export class DbSwitchesComponent implements OnInit {
    
     const obj = {
       limit : this.limit,
-      offset : this.offset
+      offset : this.offset,
+      search : this.search_text
     }
 
     console.log(obj);    
-
+    this.isLoading = true;
     this.authService.getRequestedFunds(obj).subscribe(data => {
       if (data.success == 1) {
         this.list = data.list
@@ -37,8 +39,10 @@ export class DbSwitchesComponent implements OnInit {
       } else {
         this.toastr.error(data.message, 'Error');
       }
+      this.isLoading = false;
     },(error) => {
       this.toastr.error("Something went wrong", 'Error');
+      this.isLoading = false;
     })
   }
 
@@ -53,6 +57,7 @@ export class DbSwitchesComponent implements OnInit {
   search(){
 
     console.log(this.search_text);
+    this.getRequestedFunds();
     
 
 

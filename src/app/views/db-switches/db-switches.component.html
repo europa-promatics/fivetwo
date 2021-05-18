@@ -82,8 +82,8 @@
 																	<!-- <th class="mat-header-cell">Last<br>Followed Up</th> -->
 																	<th class="mat-header-cell">
 																		Status</th>
-																	<th class="mat-header-cell">
-																		Action</th>
+																	<!-- <th class="mat-header-cell">
+																		Action</th> -->
 																</tr>
 															</thead>
 															<tbody>
@@ -111,17 +111,25 @@
 																		<span class="badge badge-primary">In progress</span>
 																	</td> -->
 																	<!-- [color]="getStatusColor(value.status)" -->
-																	<td class="mat-cell">
+																	<!-- <td class="mat-cell">
 																		<span class="d-flex align-items-center">	
 																																						
 																		</span>
-																	</td>
+																	</td> -->
 																</tr>
 															
 															</tbody>
 														</table>
+														<div *ngIf="isLoading	"
+															style="display: flex; justify-content: center; align-items: center; background: white;">
+															<mat-progress-spinner 
+																color="primary" 
+																mode="indeterminate">
+															</mat-progress-spinner>
+														</div>
 
 														<mat-paginator [length]="total" [pageSize]="limit" (page)="paginationOptionChange($event)" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>	
+														
 													</div>
 												</div>
 												<!-- table start -->

@@ -55,6 +55,7 @@ export class DbInvestmentsComponent implements OnInit {
     exist_fund_selected : "",
     message : "",
     client_id : "",
+    client_number : "",
   }
 
   constructor(private route: ActivatedRoute, private router: Router, private authService: AuthService, private toastr: ToastrService, public formBuilder: FormBuilder) { }
@@ -592,6 +593,7 @@ export class DbInvestmentsComponent implements OnInit {
         this.client_funds = data.funds;
         this.all_funds = data.all_funds;
         this.switchForm.client_id = client_id;
+        this.switchForm.client_number = client_number;
         $("#myModal2").modal();
         
       } else {
@@ -608,12 +610,20 @@ export class DbInvestmentsComponent implements OnInit {
       client_id : this.switchForm.client_id,
       requested_fund : this.switchForm.all_fund_selected,
       message : this.switchForm.message,
+      requested_from : this.switchForm.exist_fund_selected,
+      client_number : this.switchForm.client_number
     }
     
     this.authService.switchFunds(obj).subscribe(data => {
       if (data.success == 1) {
         this.toastr.success(data.message, 'Success');
-
+        this.switchForm = {
+          all_fund_selected : "",
+          exist_fund_selected : "",
+          message : "",
+          client_id : "",
+          client_number : "",
+        }
         $("#myModal2").modal("hide");
         
       } else {
